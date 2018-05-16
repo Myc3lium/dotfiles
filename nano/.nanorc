@@ -1,0 +1,99 @@
+#formatting
+#set preserve
+set tabsize 4
+set tabstospaces
+set autoindent
+set constantshow
+set multibuffer
+set casesensitive
+set cut
+set wordbounds
+set softwrap
+#set mouse
+set nohelp
+set quickblank
+#set brackets ""')>]}"
+#set matchbrackets "'(<[{')>]}"
+#set titlecolor brightwhite,brightblack
+#set functioncolor
+#set keycolor
+#set statuscolor brightblack,white
+
+#syntax highlighting includes
+include "/home/myc3lium/.Csyntax.nanorc"
+include "/home/myc3lium/.Cysyntax.nanorc"
+include "/home/myc3lium/.Pythonsyntax.nanorc"
+include "/home/myc3lium/.Perlsyntax.nanorc"
+include "/home/myc3lium/.Prologsyntax.nanorc"
+#keybinds
+
+
+#re-map CTRL^e to exit
+unbind ^e main
+unbind ^x main
+bind ^e exit main
+
+#undo-redo
+bind M-o undo main
+bind M-e redo main
+
+#rebind CTRL^F to find
+unbind ^w main
+bind ^f whereis main
+
+#save file without exiting with CTRL^W
+unbind ^o main
+bind ^w writeout main
+bind M-s writeout main
+bind M-q exit main
+
+#select
+bind ^o mark main
+
+#copy
+bind ^l copytext main
+
+#paste
+bind ^p uncut main
+
+#misc bindings
+#navigation
+#bind M-l nextword all
+#bind M-h prevword all
+#bind M-j left all
+#bind M-k right all
+#bind M-u up all
+#bind M-i down all
+bind M-h left all
+bind M-l right all
+bind M-j down all
+bind M-k up all
+
+bind M-i nextword all
+bind M-u prevword all
+bind M-g home all
+bind M-y end all
+
+#formating
+bind M-m mark main
+bind M-] indent main
+bind M-p unindent main
+
+bind M-. copytext main
+bind M-' cut main
+bind M-> uncut main
+
+bind M-b backspace main
+bind M-n delete main
+
+bind M-, enter all
+bind M-s enter writeout
+bind M-q cancel writeout
+
+bind M-- prevpage main
+bind M-= nextpage main
+bind M-_ prevbuf main
+bind M-+ nextbuf main
+bind M-d cutwordright all
+bind M-w cutwordleft all
+
