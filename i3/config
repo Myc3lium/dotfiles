@@ -132,11 +132,11 @@ assign [class="Nautilus"] $workspace7
 for_window [class="feh"] floating enable
 for_window [class="Tor Browser"] floating enable
 for_window [class="Gnome-calendar"] floating enable
-for_window [class="Eog"] floating enable
+for_window [class="Florence"] floating enable
+for_window [class="URxvt"] floating enable
 
-for_window [class="Gnome-terminal"] floating enable
-for_window [class="Gnome-terminal"] move position 14 0
-#for_window [class="Gnome-terminal"] border none
+#for_window [class="Gnome-terminal"] floating enable
+#for_window [class="Gnome-terminal"] move position 14 0
 for_window [class="^.*"] border pixel 2
 
 # reload the configuration file
@@ -180,7 +180,6 @@ set $text-color          #f3f4f5
 set $inactive-text-color #d4d5d6
 set $urgent-bg-color     #D88200
 
- 
 # window colors
 #                       border              background         text                 indicator
 
@@ -210,8 +209,8 @@ bar {
                 background $bg-color
                 separator #757575
                 #                  border             background         text
-                focused_workspace  $bg-color          $bg-color          $text-color
-                inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+                focused_workspace  $inactive-bg-color $inactive-bg-color $inactive-text-color
+                inactive_workspace $bg-color          $bg-color          $text-color
                 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
         }
 }
@@ -225,11 +224,12 @@ set $mod2 Mod1
 bindsym $mod2+Shift+l exec /home/myc3lium/.config/i3/lock.sh
 #bindsym $mod2+Shift+Return exec xterm -fa 'System San Francisco Display' -fs 11
 bindsym $mod+q kill
-bindsym $mod+m exec /home/myc3lium/.config/i3/random_wallpaper.py
+bindsym $mod+m exec /home/myc3lium/.config/i3/random_wallpaper.py ## && wal -a 88 -i "$(cat /home/myc3lium/.config/i3/wallpaper)"
 bindsym $mod+b exec i3-dmenu-desktop --dmenu="dmenu -b -i"
 bindsym $mod+n exec nautilus
 bindsym $mod+Shift+i exec i3-sensible-terminal -e "vim /home/myc3lium/.config/i3/config"
-bindsym $mod+u exec uxterm
+bindsym $mod+u exec urxvt	
+bindsym $mod+p exec python3 /home/myc3lium/.config/i3/cryptboard.py
 #bindsym $mod+Shift+f exec firefox
 
 # Pulse Audio controls
@@ -242,5 +242,5 @@ exec_always xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id compton -f -D 1 -cC #Z-rm 0 -o 0 -G --active-opacity 0
 exec_always --no-startup-id redshift -O 4500k
 
-exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
-exec_always gnome-terminal --geometry=148x42 -e "mux basic"
+#exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
+#exec_always --no-startup-id gnome-terminal --geometry=148x42 -e "mux basic"

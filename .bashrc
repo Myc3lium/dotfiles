@@ -177,7 +177,7 @@ alias clock="tty-clock -xcs -C 6"
 alias xp="ranger "
 alias pkfo="apt-cache show "
 alias clean="bleachbit --preset -c"
-
+alias prolog-man="less /usr/share/doc/gprolog-doc/gprolog.pdf"
 
 
 #alias cd="pushd "
@@ -242,7 +242,8 @@ function links(){
     dir $1 | grep "\->"
 }
 
-#screenfetch
-export GREP_COLOR='1;38;5;214'
-tracker daemon -k
+export PATH="${PATH}:${HOME}/local/bin/"
+#xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
+tracker daemon -k ## kill tracker
+(cat ~/.cache/wal/sequences &) ## apply wal to new terminals
 

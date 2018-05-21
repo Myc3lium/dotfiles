@@ -14,6 +14,8 @@ for file in listdir('nano'):
 cp('.vimrc', home+'/.vimrc')
 cp('.bashrc', home+'/.bashrc')
 
+cp('.Xresources', home+'/.Xresources')
+cp('.xfiles', home+'/.xfiles')
 
 
 
