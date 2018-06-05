@@ -18,6 +18,7 @@ font pango:System san Francisco Display 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
+#
 #font pango:DejaVu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
@@ -31,7 +32,7 @@ font pango:System san Francisco Display 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -60,6 +61,11 @@ bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Control+j move left 20px
+bindsym $mod+Shift+Control+k move down 20px
+bindsym $mod+Shift+Control+l move up 20px
+bindsym $mod+Shift+Control+semicolon move right 20px
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -95,10 +101,10 @@ bindsym $mod+a focus parent
 
 
 
-set $workspace10 "10 } terminals"
-set $workspace9 "9 } browsing"
-set $workspace8 "8 } anon"
-set $workspace7 "7 } files"
+set $workspace10 "10 ❭  _"
+set $workspace9 "9 ❭  "
+set $workspace8 "8 ❭  "
+set $workspace7 "7 ❭  "
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -124,19 +130,16 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-assign [class="Gnome-terminal"] $workspace10
 assign [class="Firefox"] $workspace9
 assign [class="Tor Browser"] $workspace8
 assign [class="Nautilus"] $workspace7
+assign [class="VirtualBox"] $workspace8
 
 for_window [class="feh"] floating enable
 for_window [class="Tor Browser"] floating enable
-for_window [class="Gnome-calendar"] floating enable
 for_window [class="Florence"] floating enable
 for_window [class="URxvt"] floating enable
 
-#for_window [class="Gnome-terminal"] floating enable
-#for_window [class="Gnome-terminal"] move position 14 0
 for_window [class="^.*"] border pixel 2
 
 # reload the configuration file
@@ -172,9 +175,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# default colors
+#set $ur_background #312e39
+#set $ur_foreground #ae835a
+
+# bridge wallpaper
+#set $ur_background #242225
+#set $ur_foreground #e2e8eb
+
+# gruvbox colors
+set $ur_background #282828
+set $ur_foreground #a89984
 
 set $bg-color            #373737
-set $border_focused      #354249
+set $border_focused      #ffffff
 set $inactive-bg-color   #4f4f4f
 set $text-color          #f3f4f5
 set $inactive-text-color #d4d5d6
@@ -194,9 +208,10 @@ hide_edge_borders both
 # finds out, if available)
 bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
-        position bottom
-        font pango:DejaVu Sans Mono 10
-        #status_command i3status
+        position top
+        #font pango:DejaVu Sans Mono 10
+        font pango:FontAwesome 10
+	#status_command i3status
         tray_output primary
         separator_symbol "|"
  
@@ -204,14 +219,20 @@ bar {
         #hidden_state hide
         #modifier $mod+0
         
-        colors {
-            
-                background $bg-color
-                separator #757575
-                #                  border             background         text
-                focused_workspace  $inactive-bg-color $inactive-bg-color $inactive-text-color
-                inactive_workspace $bg-color          $bg-color          $text-color
-                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+        colors { 
+                #background $bg-color
+                background $ur_background
+                separator $ur_foreground
+
+                #  border             background         text
+                focused_workspace  $ur_foreground $ur_foreground $ur_background
+                inactive_workspace $ur_background $ur_background $ur_foreground
+                urgent_workspace   $ur_foreground $ur_background $ur_foreground
+
+                ##                  border             background         text
+                #focused_workspace  $inactive-bg-color $inactive-bg-color $inactive-text-color
+                #inactive_workspace $bg-color          $bg-color          $text-color
+                #urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
         }
 }
 
@@ -224,13 +245,13 @@ set $mod2 Mod1
 bindsym $mod2+Shift+l exec /home/myc3lium/.config/i3/lock.sh
 #bindsym $mod2+Shift+Return exec xterm -fa 'System San Francisco Display' -fs 11
 bindsym $mod+q kill
-bindsym $mod+m exec /home/myc3lium/.config/i3/random_wallpaper.py ## && wal -a 88 -i "$(cat /home/myc3lium/.config/i3/wallpaper)"
+bindsym $mod+m exec /home/myc3lium/.config/i3/random_wallpaper.py
 bindsym $mod+b exec i3-dmenu-desktop --dmenu="dmenu -b -i"
-bindsym $mod+n exec nautilus
-bindsym $mod+Shift+i exec i3-sensible-terminal -e "vim /home/myc3lium/.config/i3/config"
-bindsym $mod+u exec urxvt	
+bindsym $mod+u exec urxvt -uc	
 bindsym $mod+p exec python3 /home/myc3lium/.config/i3/cryptboard.py
-#bindsym $mod+Shift+f exec firefox
+bindsym $mod+o exec urxvt -e bash -c calcurse
+bindsym $mod+i exec urxvt -e bash -c ranger
+bindsym $mod+y exec urxvt -e bash -c tmux
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -239,8 +260,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 
 exec_always xmodmap -e "clear lock"
 exec_always xmodmap -e "keysym Caps_Lock = Escape"
-exec_always --no-startup-id compton -f -D 1 -cC #Z-rm 0 -o 0 -G --active-opacity 0
-exec_always --no-startup-id redshift -O 4500k
+exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
+exec_always --no-startup-id redshift -O 4450k
+#exec_always --no-startup-id xrandr --output HDMI-1 --mode 1360x768 --auto --right-of LVDS-1
 
-#exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
-#exec_always --no-startup-id gnome-terminal --geometry=148x42 -e "mux basic"
+exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
+#exec_always wal -n -i "$(cat /home/myc3lium/.config/i3/wallpaper)"
+exec_always wal -R -n

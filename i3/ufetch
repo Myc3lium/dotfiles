@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # ufetch-debian - tiny system info for debian
-
+clear
 ## INFO
 
 # user is already defined
@@ -51,14 +51,16 @@ c1="${reset}${red}"				# second color
 ## OUTPUT
 
 cat <<EOF
-${c0}    _____    ${lc}${USER}${ic}@${lc}${host}${reset}
-${c0}   /  __ \\   ${lc}OS:        ${ic}${os}${reset}
-${c0}  |  /    |  ${lc}KERNEL:    ${ic}${kernel}${reset}
-${c0}  |  ${c1}\\___-   ${lc}UPTIME:    ${ic}${uptime}${reset}
-${c1}  -_         ${lc}PACKAGES:  ${ic}${packages}${reset}
-${c1}    --_      ${lc}SHELL:     ${ic}${shell}${reset}
-${c0}             ${lc}${envtype}:        ${ic}${WM}${reset}
+${c0}        __      ${lc}${USER}${ic}@${lc}${host}${reset}
+${c0}    . _/  \\     ${lc}OS:        ${ic}${os}${reset}
+${c0} __/   \\ _/     ${lc}KERNEL:    ${ic}${kernel}${reset}
+${c0}/  \\  _   \\     ${lc}UPTIME:    ${ic}${uptime}${reset}
+${c1}\\__/ { }   -    ${lc}PACKAGES:  ${ic}${packages}${reset}
+${c1}  \\   -  _/     ${lc}SHELL:     ${ic}${shell}${reset}
+${c0}   . __/  \\     ${lc}${envtype}:        ${ic}${WM}${reset}
+${c0}       \\__/ 
 EOF
 
-python3 -c "nl = lambda x: print('\n', ' '*x, end = '') ;col = lambda x, y: [print('\x1b[48;5;{}m  \x1b[0m'.format(i), end = '') for i in range(x, y)] ;nl(8) ;col(0, 8) ;nl(8) ;col(8, 16) ;print()"
+python3 -c "nl = lambda x: print('\n', ' '*x, end = '') ;col = lambda x, y: [print('\x1b[48;5;{}m  \x1b[0m'.format(i), end = '') for i in range(x, y)] ;nl(15) ;col(0, 8) ;nl(15) ;col(8, 16) ;print()"
 
+echo

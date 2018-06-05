@@ -1,13 +1,17 @@
 ## URxvt settings
 ## define FONT "System San Francisco Display"
-#define FONT "FreeMono Regular"
+
+#define FONT "Liberation Mono Regular"
+##define FONT "FontAwesome Regular"
 
 ! text formatting
-URxvt.letterSpace: -5
-URxvt.font: xft: FONT: size=10: Regular
-URxvt.boldFont: xft: FONT: size=10: Bold
-URxvt.italicFont: xft: FONT: size=10: Italic
-URxvt.boldItalicFont: xft: FONT: size=13: Bold: Italic
+## URxvt.letterSpace: -5
+URxvt.font: xft:Liberation Mono:size=10:Regular
+URxvt.boldFont: xft: FONT : size=10: Bold
+URxvt.italicFont: xft: FONT : size=10: Italic
+URxvt.boldItalicFont: xft: FONT : size=13: Bold: Italic
+URxvt.depth: 32
+URxvt.internalBorder:  32
 
 ! extensions
 URxvt.perl-ext-common: default,matcher
@@ -26,14 +30,11 @@ Xft.hinting: full
 URxvt.scrollBar: false
 URxvt.geometry: 81x23
 
-## include ".xfiles/apprentice"
-## include ".cache/wal/colors.Xresources"
-
-## i3wm.foreground:
-## i3wm.background: 
+URxvt.cursorColor:rgb:8d/81/50
 
 ## XTerm settings
 XTerm.termName: xterm-256color
 XTerm.vt100.locale: true
 XTerm.vt100.saveLines: 4096
 XTerm.vt100.faceName: System San Francisco Display:size=10:antialias=false
+

@@ -4,7 +4,7 @@ from random import randrange;
 from os import listdir, environ, system;
 
 HOME = environ['HOME'] + '/'
-path = HOME + 'Documents/wallpaper/'
+path = HOME + 'Downloads/wallpaper/'
 
 imgs = listdir(path)
 imgname = path + imgs[randrange(0, len(imgs))]

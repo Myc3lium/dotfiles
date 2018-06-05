@@ -57,9 +57,11 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;35m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}[\u @ \h] \w] -➢ '
+    #PS1='${debian_chroot:+($debian_chroot)}「\033[34m\u/\h\033[00m」\w\033[01;03;34m-➢\033[00m '
+    #PS1='\033[1m❬\033[0m\033[4m\u @ \h\033[0m\033[1m❭\033[0m\033[1m \w\033[0m\033[1m❭\033[0m\033[1m \033[38;5;24m-➢\033[0m ' 
 fi
 unset color_prompt force_color_prompt
 
@@ -178,8 +180,9 @@ alias xp="ranger "
 alias pkfo="apt-cache show "
 alias clean="bleachbit --preset -c"
 alias prolog-man="less /usr/share/doc/gprolog-doc/gprolog.pdf"
-
-
+alias wdate='wal -n -q -i "$(cat ~/.config/i3/wallpaper)"'
+alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
+alias ufetch='bash "$HOME/.config/i3/ufetch"'
 #alias cd="pushd "
 #alias back="popd "
 
@@ -194,10 +197,6 @@ python3 -c "from dis import dis;import $1;dis($1)" | less
 
 function diral(){
 ls --color=always -Altph $1 | tail -n +2 | nl -s '| ' -w 2 | less -R
-}
-
-function skr(){                   #clear the screen before displaying distro info
-cls && screenfetch
 }
 
 function peek(){
@@ -242,8 +241,13 @@ function links(){
     dir $1 | grep "\->"
 }
 
-export PATH="${PATH}:${HOME}/local/bin/"
-#xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
-tracker daemon -k ## kill tracker
-(cat ~/.cache/wal/sequences &) ## apply wal to new terminals
+function set_paper(){
+	echo "$PWD/$1" > "$HOME/.config/i3/wallpaper"
+	feh --bg-fill $1
+}
 
+export PATH="${PATH}:${HOME}/local/bin/"
+xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
+tracker daemon -k ## kill tracker
+#(cat ~/.cache/wal/sequences &) ## apply wal to new terminals
+wal -q --theme gruvbox
