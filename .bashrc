@@ -183,6 +183,7 @@ alias prolog-man="less /usr/share/doc/gprolog-doc/gprolog.pdf"
 alias wdate='wal -n -q -i "$(cat ~/.config/i3/wallpaper)"'
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias ufetch='bash "$HOME/.config/i3/ufetch"'
+alias clip="$HOME/clip"
 #alias cd="pushd "
 #alias back="popd "
 
@@ -195,24 +196,8 @@ function pybyte-code(){
 python3 -c "from dis import dis;import $1;dis($1)" | less
 }
 
-function diral(){
-ls --color=always -Altph $1 | tail -n +2 | nl -s '| ' -w 2 | less -R
-}
-
-function peek(){
-cat $1 | less
-}
-
 function pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
-}
-
-function compile(){
-    gcc $1 && ./a.out
-}
-
-function mkfile(){
-    cat ~/Templates/$1 > $2$1
 }
 
 function 0xdmp(){
@@ -233,9 +218,6 @@ while True:
 file.close()"
 }
 
-function dgrep(){
-    dir $1 | grep $2
-}
 
 function links(){
     dir $1 | grep "\->"
@@ -246,7 +228,7 @@ function set_paper(){
 	feh --bg-fill $1
 }
 
-export PATH="${PATH}:${HOME}/local/bin/"
+export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
 tracker daemon -k ## kill tracker
 #(cat ~/.cache/wal/sequences &) ## apply wal to new terminals

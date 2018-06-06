@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+bash $HOME/Documents/code/repos/personal/dotfiles/move
+cd $HOME/Documents/code/repos/personal/dotfiles/ && git add . && git commit -m "-"
+
