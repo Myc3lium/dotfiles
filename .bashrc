@@ -183,7 +183,7 @@ alias prolog-man="less /usr/share/doc/gprolog-doc/gprolog.pdf"
 alias wdate='wal -n -q -i "$(cat ~/.config/i3/wallpaper)"'
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias ufetch='bash "$HOME/.config/i3/ufetch"'
-alias clip="$HOME/clip"
+clip="$HOME/.clip"
 #alias cd="pushd "
 #alias back="popd "
 
