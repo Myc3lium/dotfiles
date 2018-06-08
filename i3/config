@@ -252,6 +252,7 @@ bindsym $mod+p exec python3 /home/myc3lium/.config/i3/cryptboard.py
 bindsym $mod+o exec urxvt -e bash -c calcurse
 bindsym $mod+i exec urxvt -e bash -c ranger
 bindsym $mod+y exec urxvt -e bash -c tmux
+bindsym $mod2+Shift+k exec /home/myc3lium/.config/i3/shutdown
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume

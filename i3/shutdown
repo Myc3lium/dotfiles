@@ -1,0 +1,3 @@
+#!/bin/bash
+
+i3-nagbar -t warning -m 'Secure Shutdown ?' -b 'Yes' 'urxvt -e bash -c "sudo bleachbit --preset -c && shutdown now"'

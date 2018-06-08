@@ -10,8 +10,8 @@ URxvt.font: xft:Liberation Mono:size=10:Regular
 URxvt.boldFont: xft: FONT : size=10: Bold
 URxvt.italicFont: xft: FONT : size=10: Italic
 URxvt.boldItalicFont: xft: FONT : size=13: Bold: Italic
-URxvt.depth: 32
 URxvt.internalBorder:  32
+URxvt.depth: 32
 
 ! extensions
 URxvt.perl-ext-common: default,matcher
