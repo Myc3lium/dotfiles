@@ -119,48 +119,27 @@ if ! shopt -oq posix; then
 fi
 
 alias nano="nano -D -P -S --tabsize=4 -i -k -W"
-alias cls="clear"   #Clear the screen.
 alias dir="ls --color=always -Altph"                  #List all files in dir.
-alias x="exit"                                                    #Exit.
-alias new="gnome-terminal && x"                                   #Restart the terminal.
-                                         
-alias scan-dir="clamscan -r --bell"                               #Use clamscan to scan a directory.
-alias full-scan="clamscan -r --bell /"                            #Scan for rootkits and viruses.
-alias win-scan="clamscan -r --bell /media/myc3lium/F43EC47D3EC439FE" #scan the windows partition.
+
 alias lspro="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | less"   #List running processes.
 alias lsport="netstat -np | less"                                 #List ports and processes listening on them.
 
-alias lsm="free -m && echo -------------- &&cat /proc/meminfo"    #List memory ussage for processes.
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
 alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"
-alias alist="cat ~/.bashrc | tail -57"                            #Print bound aliases.
 alias hgrep="history | grep "                                   #Search the terminal history.
 alias agrep="alias -p | grep "                                  #Search bound aliases.
 
-alias dmp-assembly="objdump -d "                                  #Dump the assembly of an executable file
-alias dmp-hex="objdump -s "                                       #Dump the hex data of an executable
-alias mkxe="sudo chmod 755 "                                      #Make a file executable
-alias lsop="nmap localhost"                                       #List open ports
-
 alias lspkg="apt list --installed | grep "                        #searches installed packages
-alias ecpt="gpg -a --symmetric --cipher-algo TWOFISH "            #encrypts <file> with twofish
-alias dcpt="gpg -d "                                              #decrypts <file>
 alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
 alias lsdp="apt-cache --installed depends "                       #lists package dependencies
-                                     
 alias install="sudo apt-get install --autoremove"                #installs packages
 alias uninstall="sudo apt-get remove --autoremove"               #removes and purges packages
-alias ark="wget --user-agent="Fuck_Commie_Propaganda" --page-requisites -e robots=off" #archives propaganda 
 alias rmdir="rm -r "                                              #removes directories
-alias root="echo -e '\033[7m'; sudo -s; echo -e '\033[0m'"
-
 alias ckrk="sudo rkhunter --check --nocf --sk && sudo chkrootkit | grep  'infected\|found' && cat /var/log/rkhunter.log | grep 'found\|warning'"
 #scans for rootkits etc.
-alias psearch="ps aux | grep "    #find a named process
-alias pksearch="apt list | grep " #find a package based on name
+alias pks="apt list | grep " #find a package based on name
 alias pss="dcpt ~/.Private_Docs/pss.txt.asc | less"
 alias xid="xprop | awk '/PID/ {print $3}'"
-alias lsap="ps aux | tail -n +1 | nl -s ' |' -w +3 | less"
 
 alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
 alias bashconfig="nano ~/.bashrc && new"
@@ -173,28 +152,13 @@ alias oyvey="bleachbit --preset -c && shutdown now"
 alias prolog-compile="gplc "
 alias pkgrep="apt list | grep "
 alias vi="busybox vi "
-alias rename="mv "
 alias printer-kill="lprm -"
-alias clock="tty-clock -xcs -C 6"
-alias xp="ranger "
 alias pkfo="apt-cache show "
-alias clean="bleachbit --preset -c"
 alias prolog-man="less /usr/share/doc/gprolog-doc/gprolog.pdf"
 alias wdate='wal -n -q -i "$(cat ~/.config/i3/wallpaper)"'
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias ufetch='bash "$HOME/.config/i3/ufetch"'
 clip="$HOME/.clip"
-#alias cd="pushd "
-#alias back="popd "
-
-
-
-
-
-#alias logs="ls --color=always -Altph /var/log | less -R"
-function pybyte-code(){
-python3 -c "from dis import dis;import $1;dis($1)" | less
-}
 
 function pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
@@ -230,6 +194,7 @@ function set_paper(){
 
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
-tracker daemon -k ## kill tracker
+#tracker daemon -k ## kill tracker
 #(cat ~/.cache/wal/sequences &) ## apply wal to new terminals
-wal -q --theme gruvbox
+#wal -R
+wal -q --theme sexy-monokai

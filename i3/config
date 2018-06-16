@@ -136,11 +136,12 @@ assign [class="Nautilus"] $workspace7
 assign [class="VirtualBox"] $workspace8
 
 for_window [class="feh"] floating enable
+for_window [class="mpv"] floating enable
 for_window [class="Tor Browser"] floating enable
 for_window [class="Florence"] floating enable
 for_window [class="URxvt"] floating enable
 
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 4
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -179,13 +180,9 @@ bindsym $mod+r mode "resize"
 #set $ur_background #312e39
 #set $ur_foreground #ae835a
 
-# bridge wallpaper
-#set $ur_background #242225
-#set $ur_foreground #e2e8eb
-
 # gruvbox colors
-set $ur_background #282828
-set $ur_foreground #a89984
+set $ur_background #272822
+set $ur_foreground #f1ebeb
 
 set $bg-color            #373737
 set $border_focused      #ffffff
@@ -251,7 +248,7 @@ bindsym $mod+u exec urxvt -uc
 bindsym $mod+p exec python3 /home/myc3lium/.config/i3/cryptboard.py
 bindsym $mod+o exec urxvt -e bash -c calcurse
 bindsym $mod+i exec urxvt -e bash -c ranger
-bindsym $mod+y exec urxvt -e bash -c tmux
+bindsym $mod+y exec urxvt -uc -e bash -c tmux
 bindsym $mod2+Shift+k exec /home/myc3lium/.config/i3/shutdown
 
 # Pulse Audio controls
@@ -261,10 +258,13 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 
 exec_always xmodmap -e "clear lock"
 exec_always xmodmap -e "keysym Caps_Lock = Escape"
+exec_always xmodmap-e "clear lock"
+
 exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
 exec_always --no-startup-id redshift -O 4450k
-#exec_always --no-startup-id xrandr --output HDMI-1 --mode 1360x768 --auto --right-of LVDS-1
+
+exec_always --no-startup-id python3 -c "from os import system;from time import sleep;while True:(system('tracker daemon -k'),sleep(4))"
 
 exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
 #exec_always wal -n -i "$(cat /home/myc3lium/.config/i3/wallpaper)"
-exec_always wal -R -n
+#exec_always wal -R -n
