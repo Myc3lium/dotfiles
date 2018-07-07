@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100
+HISTFILESIZE=200
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -60,8 +60,6 @@ if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;35m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}[\u @ \h] \w] -➢ '
-    #PS1='${debian_chroot:+($debian_chroot)}「\033[34m\u/\h\033[00m」\w\033[01;03;34m-➢\033[00m '
-    #PS1='\033[1m❬\033[0m\033[4m\u @ \h\033[0m\033[1m❭\033[0m\033[1m \w\033[0m\033[1m❭\033[0m\033[1m \033[38;5;24m-➢\033[0m ' 
 fi
 unset color_prompt force_color_prompt
 
@@ -78,9 +76,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -110,20 +105,16 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+#if ! shopt -oq posix; then
+#  if [ -f /usr/share/bash-completion/bash_completion ]; then
+#    . /usr/share/bash-completion/bash_completion
+#  elif [ -f /etc/bash_completion ]; then
+#    . /etc/bash_completion
+#  fi
+#fi
 
-alias nano="nano -D -P -S --tabsize=4 -i -k -W"
 alias dir="ls --color=always -Altph"                  #List all files in dir.
-
-alias lspro="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | less"   #List running processes.
 alias lsport="netstat -np | less"                                 #List ports and processes listening on them.
-
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
 alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"
 alias hgrep="history | grep "                                   #Search the terminal history.
@@ -133,7 +124,7 @@ alias lspkg="apt list --installed | grep "                        #searches inst
 alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
 alias lsdp="apt-cache --installed depends "                       #lists package dependencies
 alias install="sudo apt-get install --autoremove"                #installs packages
-alias uninstall="sudo apt-get remove --autoremove"               #removes and purges packages
+alias uninstall="sudo apt-get purge --autoremove"               #removes and purges packages
 alias rmdir="rm -r "                                              #removes directories
 alias ckrk="sudo rkhunter --check --nocf --sk && sudo chkrootkit | grep  'infected\|found' && cat /var/log/rkhunter.log | grep 'found\|warning'"
 #scans for rootkits etc.
@@ -142,15 +133,14 @@ alias pss="dcpt ~/.Private_Docs/pss.txt.asc | less"
 alias xid="xprop | awk '/PID/ {print $3}'"
 
 alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
-alias bashconfig="nano ~/.bashrc && new"
-alias aptdate="sudo apt-get update"
-alias aptgrade="sudo apt-get upgrade"
-alias apt-rec="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day" +"%F")" -e "$(date -d "-2 day" +"%F")" -e "$(date -d "-3 day" +"%F")" /var/log/apt/history.log | less -R"
+alias adate="sudo apt-get update"
+alias agrade="sudo apt-get upgrade"
+alias ahist="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day" +"%F")" -e "$(date -d "-2 day" +"%F")" -e "$(date -d "-3 day" +"%F")" /var/log/apt/history.log | less -R"
 alias less="less -R"
 
 alias oyvey="bleachbit --preset -c && shutdown now"
 alias prolog-compile="gplc "
-alias pkgrep="apt list | grep "
+alias pkgrep="apt list "
 alias vi="busybox vi "
 alias printer-kill="lprm -"
 alias pkfo="apt-cache show "
@@ -158,6 +148,7 @@ alias prolog-man="less /usr/share/doc/gprolog-doc/gprolog.pdf"
 alias wdate='wal -n -q -i "$(cat ~/.config/i3/wallpaper)"'
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias ufetch='bash "$HOME/.config/i3/ufetch"'
+alias trix="cmatrix -as && clear"
 clip="$HOME/.clip"
 
 function pyhelp(){
@@ -182,7 +173,6 @@ while True:
 file.close()"
 }
 
-
 function links(){
     dir $1 | grep "\->"
 }
@@ -194,7 +184,5 @@ function set_paper(){
 
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
-#tracker daemon -k ## kill tracker
 #(cat ~/.cache/wal/sequences &) ## apply wal to new terminals
-#wal -R
 wal -q --theme sexy-monokai

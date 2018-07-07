@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cpp $1 | python3 -c "from sys import stdin;exec(compile('\n'.join([line for line in stdin]), __name__, 'exec'))"

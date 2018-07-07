@@ -1,8 +1,5 @@
 ## URxvt settings
-## define FONT "System San Francisco Display"
-
 #define FONT "Liberation Mono Regular"
-##define FONT "FontAwesome Regular"
 
 ! text formatting
 ## URxvt.letterSpace: -5
