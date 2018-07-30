@@ -185,4 +185,5 @@ function set_paper(){
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
 #(cat ~/.cache/wal/sequences &) ## apply wal to new terminals
-wal -q --theme sexy-monokai
+#wal -q --theme sexy-monokai
+wal -q --theme sexy-hund

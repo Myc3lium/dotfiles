@@ -1,0 +1,13 @@
+#!/usr/bin/python3
+
+from subprocess import Popen as popen
+
+def main():
+    lines = [line[15:].rstrip().lstrip() for line in popen(['curl', 'wttr.in/Stafford?0T'], 
+                stdout = -1, stderr = -1).communicate()[0].decode().split('\n')[2:-1]]
+    print(' '.join(lines))
+
+if __name__ == '__main__':
+    exit( main() )
+
+
