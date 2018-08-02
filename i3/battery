@@ -38,10 +38,10 @@ $percent = $2;
 $full_text = "$percent%";
 
 if ($status eq 'Discharging') {
-	$full_text .= ' [discharging]'; 
+	$full_text .= ' v'; 
 		
 } elsif ($status eq 'Charging') {
-	$full_text .= ' [charging]';
+	$full_text .= ' ^';
 }
 
 $short_text = $full_text;

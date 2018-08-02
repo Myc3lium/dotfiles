@@ -4,6 +4,9 @@
 clear
 ## INFO
 
+
+wttr="$(./.config/i3/wttr)"
+
 # user is already defined
 host="$(hostname)"
 os='Ubuntu'
@@ -49,7 +52,7 @@ c0="${reset}${bold}${red}"		# first color
 c1="${reset}${red}"				# second color
 
 ## OUTPUT
-
+echo -e $wttr "\n"
 cat <<EOF
 ${c0}        __      ${lc}${USER}${ic}@${lc}${host}${reset}
 ${c0}    . _/  \\     ${lc}OS:        ${ic}${os}${reset}
