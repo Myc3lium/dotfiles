@@ -187,9 +187,9 @@ bindsym $mod+r mode "resize"
 set $ur_background #151515
 set $ur_foreground #f1ebeb
 
-set $bg-color            #373737
-set $border_focused      #1c1c1c    ## 2a2a2a
-set $border_unfocused    #202020   ## ffffff
+set $bg-color            #222222
+set $border_focused      #030303
+set $border_unfocused    #383838
 set $inactive-bg-color   #4f4f4f
 set $text-color          #f3f4f5
 set $inactive-text-color #d4d5d6
@@ -211,7 +211,7 @@ bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
         position top
         #font pango:DejaVu Sans Mono 10
-        font pango:FontAwesome 14px
+        font pango:FontAwesome 10
 	#status_command i3status
         tray_output primary
         #separator_symbol "| "
@@ -265,7 +265,7 @@ for_window [instance="urxvt"] move position center
 bindsym $mod2+Shift+l exec /home/myc3lium/.config/i3/lock.sh
 bindsym $mod+q kill
 bindsym $mod+m exec /home/myc3lium/.config/i3/random_wallpaper.py
-bindsym $mod+b exec i3-dmenu-desktop --dmenu="dmenu -b -i"
+bindsym $mod+b exec /home/myc3lium/.config/i3/dmenu
 bindsym $mod+u exec urxvt -uc -name urxvt
 #bindsym $mod+p exec python3 /home/myc3lium/.config/i3/cryptboard.py
 #bindsym $mod+o exec urxvt -e bash -c calcurse
@@ -274,12 +274,12 @@ bindsym $mod+u exec urxvt -uc -name urxvt
 bindsym $mod2+Shift+k exec urxvt -e bash /home/myc3lium/.config/i3/shutdown
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-exec_always xmodmap -e "clear lock"
 exec_always xmodmap -e "keysym Caps_Lock = Escape"
+exec_always xmodmap -e "clear lock"
 
 exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
 exec_always --no-startup-id redshift -O 4450k

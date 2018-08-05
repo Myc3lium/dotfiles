@@ -1,0 +1,8 @@
+#!/bin/bash
+
+nbg="#151515"
+nfg="#f1ebeb"
+sbg="#f1ebeb"
+sfg="#151515"
+
+i3-dmenu-desktop --dmenu="dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg"
