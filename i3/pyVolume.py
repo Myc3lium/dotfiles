@@ -1,10 +1,5 @@
 from sys import stdin
 
-def getVol():
-    return list(line for line in stdin)[0][:-2]
+vol = round(int(stdin.read()[:-2]), -1) // 10
+print('[%s]' % ('=' * vol + '|' + ('--' * (10 - vol))))
 
-def cVol():
-    vol = int(getVol()) // 10
-    return '[' + '=' * vol + '|' + ('-' * (10 - vol)) + ']'
-
-print(cVol(), end = '', flush = True)
