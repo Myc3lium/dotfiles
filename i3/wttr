@@ -7,7 +7,6 @@ def main():
                 stdout = -1, stderr = -1).communicate()[0].decode().split('\n')[2:-1]]
     print(' '.join(lines))
 
-if __name__ == '__main__':
-    exit( main() )
+main()
 
 

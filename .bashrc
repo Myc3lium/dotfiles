@@ -149,7 +149,13 @@ alias wdate='wal -n -q -i "$(cat ~/.config/i3/wallpaper)"'
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias ufetch='bash "$HOME/.config/i3/ufetch"'
 alias trix="cmatrix -as && clear"
+alias net="nmcli dev wifi"
+alias cnct="nmcli device wifi connect"
 clip="$HOME/.clip"
+
+function pkmg(){
+	apt-cache show $1 | grep Installed-Size | python3 -c "from sys import stdin;print(stdin.read().split()[1])"
+}
 
 function pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
