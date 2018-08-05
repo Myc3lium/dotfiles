@@ -148,7 +148,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -188,8 +188,8 @@ set $ur_background #151515
 set $ur_foreground #f1ebeb
 
 set $bg-color            #373737
-set $border_focused      #161b1e    ## 2a2a2a
-set $border_unfocused    #41484c   ## ffffff
+set $border_focused      #1c1c1c    ## 2a2a2a
+set $border_unfocused    #202020   ## ffffff
 set $inactive-bg-color   #4f4f4f
 set $text-color          #f3f4f5
 set $inactive-text-color #d4d5d6
@@ -214,7 +214,7 @@ bar {
         font pango:FontAwesome 14px
 	#status_command i3status
         tray_output primary
-        separator_symbol "| "
+        #separator_symbol "| "
  
         #mode hide toggle
         #hidden_state hide
@@ -225,8 +225,8 @@ bar {
                 background $ur_background
                 separator $ur_foreground
 
-                                #  border             background         text
-                focused_workspace  $ur_foreground $ur_foreground $ur_background
+                                   #  border             background         text
+                focused_workspace  $ur_background $ur_foreground $ur_background
                 inactive_workspace $ur_background $ur_background $ur_foreground
                 urgent_workspace   $ur_foreground $ur_background $ur_foreground
 
