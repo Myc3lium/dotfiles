@@ -68,7 +68,6 @@ case $BLOCK_BUTTON in
   5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
-vol="$(volume | format | python3 $HOME/.config/i3/pyVolume.py)"
-echo $vol
+volume | format | python3 $HOME/.config/i3/pyvol.py
 
 #volume | format
