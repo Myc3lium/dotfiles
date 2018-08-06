@@ -1,0 +1,25 @@
+#!/bin/bash
+
+nbg="#151515"
+nfg="#f1ebeb"
+sbg="#f1ebeb"
+sfg="#151515"
+
+option="$(echo -e 'network options\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
+optionq="$option" # the option quoted for comparison
+
+if [[ $optionq = "logout" ]]; then
+	i3-msg exit
+fi
+
+if [[ $optionq = "shutdown" ]]; then
+	shutdown now
+fi
+
+if [[ $optionq = "bleachbit & shutdown" ]]; then
+	bleachbit --preset -c && shutdown now
+fi
+
+if [[ $optionq = "network options" ]]; then
+	$HOME/.config/i3/dmenuNetwork
+fi

@@ -5,7 +5,6 @@ nfg="#f1ebeb"
 sbg="#f1ebeb"
 sfg="#151515"
 
-
 names(){
 	nmcli dev wifi | python3 -c "
 from sys import stdin;
@@ -18,6 +17,6 @@ for line in file[2:-1]:
 }
 
 option="$(names | dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
-pss="$(python3 -c 'print(chr(-1))' | dmenu -p "Wifi PassWord for $option" -i -l -b -nb $nbg -nf $nbg -sf $sfg -sb $sbg)"
+pss="$(python3 -c 'print(chr(-1))' | dmenu -p "[Wifi PassWord for $option]" -i -l -b -nb $nbg -nf $nbg -sf $sfg -sb $sbg)"
 
 # nmcli device wifi connect $option $pss
