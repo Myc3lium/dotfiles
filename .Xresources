@@ -3,28 +3,19 @@
 #define FONT "Ubuntu Mono Regular"
 
 ! text formatting
-## URxvt.letterSpace: -5
 URxvt.font: xft:Ubuntu Mono:size=11:Regular
-URxvt.boldFont: xft: FONT : size=10: Bold
-URxvt.italicFont: xft: FONT : size=10: Italic
-URxvt.boldItalicFont: xft: FONT : size=13: Bold: Italic
+URxvt.boldFont: xft: FONT : size=10:Bold
+URxvt.italicFont: xft: FONT : size=10:Italic
+URxvt.boldItalicFont: xft: FONT : size=13:Italic : Bold
 URxvt.internalBorder:  32
 URxvt.depth: 32
+
 
 ! extensions
 URxvt.perl-ext-common: default,matcher,keyboard-select,font-size
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline Bold fg5
-
-! text size extension
-!URxvt.keysym.C-Up:     font-size:increase
-!URxvt.keysym.C-Down:   font-size:decrease
-!URxvt.keysym.C-S-Up:   font-size:incglobal
-!URxvt.keysym.C-S-Down: font-size:decglobal
-!URxvt.keysym.C-equal:  font-size:reset
-!URxvt.keysym.C-slash:  font-size:show
-
 
 ! Xterm escapes, word by word movement
 URxvt.keysym.Control-Left:    \033[1;5D
