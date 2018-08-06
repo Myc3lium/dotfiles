@@ -11,7 +11,7 @@ from sys import stdin;
 file = [line.split() for line in stdin]
 for line in file[2:-1]:
 	if line[0] == '*':
-		print('[%s]' % line[1] + ' ' + line[-2])
+		print('[%s]' % (line[1] + ' ' + line[-2]))
 	else:
 		print(line[0] + ' ' + line[-2])"
 }
