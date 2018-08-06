@@ -5,8 +5,12 @@ nfg="#f1ebeb"
 sbg="#f1ebeb"
 sfg="#151515"
 
-option="$(echo -e 'network options\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
+option="$(echo -e 'restart i3\nnetwork options\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
 optionq="$option" # the option quoted for comparison
+
+if [[ $optionq = "network options" ]]; then
+	$HOME/.config/i3/dmenuNetwork
+fi
 
 if [[ $optionq = "logout" ]]; then
 	i3-msg exit
@@ -20,6 +24,12 @@ if [[ $optionq = "bleachbit & shutdown" ]]; then
 	bleachbit --preset -c && shutdown now
 fi
 
-if [[ $optionq = "network options" ]]; then
-	$HOME/.config/i3/dmenuNetwork
+if [[ $optionq = "restart i3" ]]; then
+	pkill ranger
+	pkill calcurse
+	pkill tmux
+	pkill urxvt
+	i3-msg "restart"
 fi
+
+
