@@ -5,7 +5,7 @@ nfg="#f1ebeb"
 sbg="#f1ebeb"
 sfg="#151515"
 
-option="$(echo -e 'restart i3\nnetwork options\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
+option="$(echo -e 'restart i3\nnetwork options\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
 optionq="$option" # the option quoted for comparison
 
 if [[ $optionq = "network options" ]]; then

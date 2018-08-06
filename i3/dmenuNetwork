@@ -16,7 +16,8 @@ for line in file[2:-1]:
 		print(line[0] + ' ' + line[-2])"
 }
 
-option="$(names | dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
-pss="$(python3 -c 'print(chr(-1))' | dmenu -p "[Wifi PassWord for $option]" -i -l -b -nb $nbg -nf $nbg -sf $sfg -sb $sbg)"
-
-# nmcli device wifi connect $option $pss
+option="$(names | dmenu -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
+if [ -n "$option" ]; then
+	pss="$(python3 -c 'print(chr(-1))' | dmenu -p "[Wifi PassWord for $option]" -i -l -b -nb $nbg -nf $nbg -sf $sfg -sb $sbg)"
+	# nmcli device wifi connect $option $pss
+fi
