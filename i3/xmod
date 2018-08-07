@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xmodmap -e "keysym Caps_Lock = Escape"
+xmodmap -e "clear lock"

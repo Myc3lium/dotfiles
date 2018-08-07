@@ -60,6 +60,17 @@ format() {
   perl -ne "$perl_filter"
 }
 
+pyFormat(){
+	python3 -c "
+from sys import stdin
+string = stdin.read()
+if string == 'MUTE\n':
+	vol = 0
+else:
+	vol = (round(int(string[:-2]), -1) + 10) // 10
+print('[%s]' % ('=' * vol + '|' + ('--' * (10 - vol))))"
+}
+
 #------------------------------------------------------------------------
 
 case $BLOCK_BUTTON in
@@ -68,6 +79,4 @@ case $BLOCK_BUTTON in
   5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
-volume | format | python3 $HOME/.config/i3/pyVolume.py
-
-#volume | format
+volume | format | pyFormat

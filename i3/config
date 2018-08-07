@@ -279,8 +279,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% #
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-exec_always xmodmap -e "keysym Caps_Lock = Escape"
-exec_always xmodmap -e "clear lock"
+# exec_always xmodmap -e "keysym Caps_Lock = Escape"
+# exec_always xmodmap -e "clear lock"
+exec_always --no-startup-id /home/myc3lium/.config/i3/xmod
 
 exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
 exec_always --no-startup-id redshift -O 4450k
