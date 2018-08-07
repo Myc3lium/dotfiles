@@ -64,11 +64,9 @@ pyFormat(){
 	python3 -c "
 from sys import stdin
 string = stdin.read()
-if string == 'MUTE\n':
-	vol = 0
-else:
-	vol = (round(int(string[:-2]), -1) + 10) // 10
-print('[%s]' % ('=' * vol + '|' + ('--' * (10 - vol))))"
+
+vol = 0 if string == 'MUTE\n' else (round(int(string[:-2]), -1) + 10) // 10
+print('[%s]' % (':::' * vol + '|' + ('--' * (10 - vol))))"
 }
 
 #------------------------------------------------------------------------
