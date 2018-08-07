@@ -129,7 +129,7 @@ alias rmdir="rm -r "                                              #removes direc
 alias ckrk="sudo rkhunter --check --nocf --sk && sudo chkrootkit | grep  'infected\|found' && cat /var/log/rkhunter.log | grep 'found\|warning'"
 #scans for rootkits etc.
 alias pks="apt list | grep " #find a package based on name
-alias pss="dcpt ~/.Private_Docs/pss.txt.asc | less"
+alias pss="gpg -d ~/.Private_Docs/pss.txt.asc | less"
 alias xid="xprop | awk '/PID/ {print $3}'"
 
 alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
