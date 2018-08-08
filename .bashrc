@@ -1,76 +1,28 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
+# History config
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100
 HISTFILESIZE=200
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# update line/col count after each command
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+# prompt formatting
+#if [ "$color_prompt" = yes ]; then
+#    PS1=''
+#else
+PS1='[\u @ \h] \w] -➢ '
+#fi
+#unset color_prompt force_color_prompt
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;35m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}[\u @ \h] \w] -➢ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -82,41 +34,16 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-#if ! shopt -oq posix; then
-#  if [ -f /usr/share/bash-completion/bash_completion ]; then
-#    . /usr/share/bash-completion/bash_completion
-#  elif [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#  fi
-#fi
-
 alias dir="ls --color=always -Altph"                  #List all files in dir.
-alias lsport="netstat -np | less"                                 #List ports and processes listening on them.
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
-alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"
+alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"     # list top cpu consuming processes
 alias hgrep="history | grep "                                   #Search the terminal history.
 alias agrep="alias -p | grep "                                  #Search bound aliases.
 
@@ -125,9 +52,6 @@ alias lsrdp="apt-cache --installed rdepends "                     #lists package
 alias lsdp="apt-cache --installed depends "                       #lists package dependencies
 alias install="sudo apt-get install --autoremove"                #installs packages
 alias uninstall="sudo apt-get purge --autoremove"               #removes and purges packages
-alias rmdir="rm -r "                                              #removes directories
-alias ckrk="sudo rkhunter --check --nocf --sk && sudo chkrootkit | grep  'infected\|found' && cat /var/log/rkhunter.log | grep 'found\|warning'"
-#scans for rootkits etc.
 alias pks="apt list | grep " #find a package based on name
 alias pss="gpg -d ~/.Private_Docs/pss.txt.asc | less"
 alias xid="xprop | awk '/PID/ {print $3}'"
@@ -139,13 +63,9 @@ alias ahist="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day"
 alias less="less -R"
 
 alias oyvey="bleachbit --preset -c && shutdown now"
-alias prolog-compile="gplc "
-alias pkgrep="apt list "
 alias vi="busybox vi "
 alias printer-kill="lprm -"
 alias pkfo="apt-cache show "
-alias prolog-man="less /usr/share/doc/gprolog-doc/gprolog.pdf"
-alias wdate='wal -n -q -i "$(cat ~/.config/i3/wallpaper)"'
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias ufetch='bash "$HOME/.config/i3/ufetch"'
 alias trix="cmatrix -as && clear"
@@ -153,14 +73,17 @@ alias net="nmcli dev wifi"
 alias cnct="nmcli device wifi connect"
 clip="$HOME/.clip"
 
+# find the size of an installed package
 function pkmg(){
 	apt-cache show $1 | grep Installed-Size | python3 -c "from sys import stdin;print(stdin.read().split()[1])"
 }
 
+# python3 help from outside python
 function pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
 }
 
+# hex viewer
 function 0xdmp(){
     python3 -c "
 whitespacechars = (10, 9, 11, 32)
@@ -179,17 +102,16 @@ while True:
 file.close()"
 }
 
+# list links in the current directory
 function links(){
     dir $1 | grep "\->"
 }
 
+# set the wallpaper 
 function set_paper(){
-	# echo "$PWD/$1" > "$HOME/.config/i3/wallpaper"
 	feh --bg-fill $1
 }
 
+# allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
-#xrdb ~/.Xresources ## merge with .Xresources to keep updated theming
-#(cat ~/.cache/wal/sequences &) ## apply wal to new terminals
-#wal -q --theme sexy-monokai
-wal -q --theme sexy-hund
+wal -q --theme sexy-hund # set the terminal theming
