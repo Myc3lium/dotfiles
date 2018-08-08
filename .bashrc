@@ -184,7 +184,7 @@ function links(){
 }
 
 function set_paper(){
-	echo "$PWD/$1" > "$HOME/.config/i3/wallpaper"
+	# echo "$PWD/$1" > "$HOME/.config/i3/wallpaper"
 	feh --bg-fill $1
 }
 
