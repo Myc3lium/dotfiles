@@ -254,10 +254,10 @@ for_window [instance="calendar"] move scratchpad
 exec_always --no-startup-id urxvt -name calendar  -uc -e calcurse
 bindsym $mod+o [instance="calendar"] scratchpad show; [instance="calendar"] move position center
 
-for_window [instance="ranger"] floating enable
-for_window [instance="ranger"] move scratchpad
-exec_always --no-startup-id urxvt -name ranger -uc -e ranger
-bindsym $mod+i [instance="ranger"] scratchpad show; [instance="ranger"] move position center
+#for_window [instance="ranger"] floating enable
+#for_window [instance="ranger"] move scratchpad
+#exec_always --no-startup-id urxvt -name ranger -uc -e ranger
+#bindsym $mod+i [instance="ranger"] scratchpad show; [instance="ranger"] move position center
 
 for_window [instance="urxvt"] floating enable
 for_window [instance="urxvt"] move position center
@@ -275,9 +275,9 @@ bindsym $mod+u exec urxvt -uc -name urxvt
 #bindsym $mod+y exec urxvt -uc -e bash -c tmux
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% # decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle        # mute sound
 
 # exec_always xmodmap -e "keysym Caps_Lock = Escape"
 # exec_always xmodmap -e "clear lock"
@@ -287,5 +287,6 @@ exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-di
 exec_always --no-startup-id redshift -O 4450k
 
 exec_always --no-startup-id python3 -c "from os import system;from time import sleep;while True:(system('tracker daemon -k'),sleep(4))"
-exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
+# exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
+exec_always /home/myc3lium/.fehbg
 
