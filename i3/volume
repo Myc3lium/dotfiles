@@ -60,7 +60,7 @@ format() {
   perl -ne "$perl_filter"
 }
 
-pyFormat(){
+pyFormatA(){
 	python3 -c "
 from sys import stdin
 string = stdin.read()
@@ -68,6 +68,15 @@ string = stdin.read()
 vol = 0 if string == 'MUTE\n' else (round(int(string[:-2]), -1) + 10) // 10
 print('[%s]' % ('=' * vol + '|' + ('--' * (10 - vol))))"
 }
+
+pyFormatB(){
+	python3 -c "
+from sys import stdin
+string = ('▁▂▃▄▅▆▇█' [:int(stdin.read()[:-2]) // 10])
+print(string + ('_' * (8 - len(string))))
+	"
+}
+
 
 #------------------------------------------------------------------------
 
@@ -77,4 +86,4 @@ case $BLOCK_BUTTON in
   5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
-volume | format #| pyFormat
+volume | format #| pyFormatB
