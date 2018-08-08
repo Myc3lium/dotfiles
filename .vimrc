@@ -4,4 +4,4 @@ syntax on
 set encoding=utf-8
 set number relativenumber
 filetype plugin indent on
-nnoremap <M-b> :buffers<CR>:buffer<Space>
+nnoremap <F12> :buffers<CR>:buffer<Space>
