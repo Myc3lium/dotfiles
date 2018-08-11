@@ -1,0 +1,10 @@
+#!/bin/bash
+
+nbg="#151515"
+nfg="#f1ebeb"
+sbg="#f1ebeb"
+sfg="#151515"
+
+option="$(python3 -c "print(chr(-1))" | dmenu -p "~$" -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
+
+bash --init-file $HOME/.bashrc -e "$option"
