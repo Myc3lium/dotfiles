@@ -186,7 +186,8 @@ bindsym $mod+r mode "resize"
 #set $ur_foreground #f1ebeb
 
 #set $ur_background #151515
-set $ur_background #09242b 
+#set $ur_background #09242b 
+set $ur_background #061b21
 set $ur_foreground #f1ebeb
 
 set $bg-color            #222222
