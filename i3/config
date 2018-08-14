@@ -185,7 +185,8 @@ bindsym $mod+r mode "resize"
 #set $ur_background #272822
 #set $ur_foreground #f1ebeb
 
-set $ur_background #151515
+#set $ur_background #151515
+set $ur_background #09242b 
 set $ur_foreground #f1ebeb
 
 set $bg-color            #222222
@@ -214,7 +215,7 @@ bar {
         #font pango:DejaVu Sans Mono 10
         font pango:FontAwesome 10
 	# status_command i3status
-        tray_output primary
+        tray_output none
         # separator_symbol "| "
  
         #mode hide toggle
@@ -226,7 +227,7 @@ bar {
                 background $ur_background
                 separator $ur_foreground
 
-                                   #  border             background         text
+                                   #  border      background     text
                 focused_workspace  $ur_background $ur_foreground $ur_background
                 inactive_workspace $ur_background $ur_background $ur_foreground
                 urgent_workspace   $ur_foreground $ur_background $ur_foreground
