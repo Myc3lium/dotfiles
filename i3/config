@@ -102,10 +102,15 @@ bindsym $mod+a focus parent
 
 
 
-set $workspace10 "10 ❭  _"
-set $workspace9 "9 ❭  "
-set $workspace8 "8 ❭  "
-set $workspace7 "7 ❭  "
+# set $workspace10 "10 ❭  _"
+# set $workspace9 "9 ❭  "
+# set $workspace8 "8 ❭  "
+# set $workspace7 "7 ❭  "
+
+set $workspace10 "10 ::  _"
+set $workspace9 "9 ::  "
+set $workspace8 "8 ::  "
+set $workspace7 "7 ::  "
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -185,9 +190,7 @@ bindsym $mod+r mode "resize"
 #set $ur_background #272822
 #set $ur_foreground #f1ebeb
 
-#set $ur_background #151515
-#set $ur_background #09242b 
-set $ur_background #061b21
+set $ur_background #151515
 set $ur_foreground #f1ebeb
 
 set $bg-color            #222222
