@@ -1,9 +1,10 @@
 #!/bin/bash
 
-nbg="#151515"
-nfg="#f1ebeb"
-sbg="#f1ebeb"
-sfg="#151515"
+#nbg="#151515"
+#nfg="#f1ebeb"
+#sbg="#f1ebeb"
+#sfg="#151515"
+source $HOME/.config/i3/dmenuColors
 
 option="$(echo -e 'run\nusb devices\nnetwork options\nrestart i3\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
 optionq="$option" # the option quoted for comparison
