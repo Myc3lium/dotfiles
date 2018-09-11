@@ -70,7 +70,14 @@ alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias ufetch='bash "$HOME/.config/i3/ufetch"'
 alias trix="cmatrix -as && clear"
 alias net="nmcli dev wifi"
-alias cnct="nmcli device wifi connect"
+alias vimm="vim"
+
+
+function cnct(){
+	nmcli -a device wifi connect $1
+}
+
+
 clip="$HOME/.clip"
 
 # find the size of an installed package
@@ -114,5 +121,5 @@ function set_paper(){
 
 # allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
-wal -q --theme sexy-hund # set the terminal theming
-#wal -R -q
+#wal -q --theme sexy-hund # set the terminal theming
+wal -R -q

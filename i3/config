@@ -147,7 +147,7 @@ for_window [class="Tor Browser"] floating enable
 for_window [class="Florence"] floating enable
 #for_window [class="URxvt"] floating enable
 
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -217,7 +217,7 @@ bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
         position top
         #font pango:DejaVu Sans Mono 10
-        font pango:FontAwesome 10
+        font pango:FontAwesome 8
 	# status_command i3status
         tray_output none
         # separator_symbol "| "
@@ -251,7 +251,7 @@ set $mod2 Mod1
 # Scratchpad windows
 for_window [instance="dropterm"] floating enable
 for_window [instance="dropterm"] move scratchpad
-exec_always --no-startup-id urxvt -name dropterm  -uc -e tmux
+exec_always --no-startup-id urxvt -sl 0 -name dropterm  -uc -e tmux
 bindsym $mod+p [instance="dropterm"] scratchpad show; [instance="dropterm"] move position center
 
 for_window [instance="calendar"] floating enable
@@ -273,7 +273,8 @@ bindsym $mod2+Shift+l exec /home/myc3lium/.config/i3/lock.sh
 bindsym $mod2+Shift+k exec /home/myc3lium/.config/i3/menuScript
 bindsym $mod+q kill
 bindsym $mod+b exec /home/myc3lium/.config/i3/dmenu
-bindsym $mod+u exec urxvt -uc -name urxvt
+bindsym $mod+u exec urxvt -sl 0 -uc -name urxvt
+
 #bindsym $mod+p exec python3 /home/myc3lium/.config/i3/cryptboard.py
 #bindsym $mod+o exec urxvt -e bash -c calcurse
 #bindsym $mod+i exec urxvt -e bash -c ranger
@@ -287,6 +288,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle        #
 # exec_always xmodmap -e "keysym Caps_Lock = Escape"
 # exec_always xmodmap -e "clear lock"
 exec_always --no-startup-id /home/myc3lium/.config/i3/xmod
+
+exec_always--not-startup-id uxterm -e bash
 
 exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
 exec_always --no-startup-id redshift -O 4450k

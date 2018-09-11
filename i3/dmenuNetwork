@@ -4,6 +4,7 @@
 #nfg="#f1ebeb"
 #sbg="#f1ebeb"
 #sfg="#151515"
+
 source $HOME/.config/i3/dmenuColors
 
 names(){
@@ -20,5 +21,5 @@ for line in file[2:-1]:
 option="$(names | dmenu -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
 if [ -n "$option" ]; then
 	pss="$(python3 -c 'print(chr(-1))' | dmenu -p "[Wifi PassWord for $option]" -i -l -b -nb $nbg -nf $nbg -sf $sfg -sb $sbg)"
-	nmcli device wifi connect $option $pss
+	echo "$pss" | nmcli -a device wifi connect $option
 fi
