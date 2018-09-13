@@ -17,7 +17,7 @@ shopt -s checkwinsize
 #if [ "$color_prompt" = yes ]; then
 #    PS1=''
 #else
-PS1='[\u @ \h] \w] -➢ '
+PS1='┌[\u @ \h] \w]\n└─➢ '
 #fi
 #unset color_prompt force_color_prompt
 

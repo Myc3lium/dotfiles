@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+workspace_layout stacking
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -217,7 +218,7 @@ bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
         position top
         #font pango:DejaVu Sans Mono 10
-        font pango:FontAwesome 8
+        font pango:FontAwesome 9
 	# status_command i3status
         tray_output none
         # separator_symbol "| "
@@ -264,7 +265,7 @@ bindsym $mod+o [instance="calendar"] scratchpad show; [instance="calendar"] move
 #exec_always --no-startup-id urxvt -name ranger -uc -e ranger
 #bindsym $mod+i [instance="ranger"] scratchpad show; [instance="ranger"] move position center
 
-for_window [instance="urxvt"] floating enable
+#for_window [instance="urxvt"] floating enable
 for_window [instance="urxvt"] move position center
 
 # my personal edits
@@ -297,4 +298,3 @@ exec_always --no-startup-id redshift -O 4450k
 exec_always --no-startup-id python3 -c "from os import system;from time import sleep;while True:(system('tracker daemon -k'),sleep(4))"
 # exec_always /home/myc3lium/.config/i3/set_default_wallpaper.py
 exec_always /home/myc3lium/.fehbg
-
