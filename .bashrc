@@ -83,11 +83,6 @@ function cnct(){
 	nmcli -a device wifi connect $1
 }
 
-CLIP()
-{
-	cat > $HOME/.clip
-}
-
 # find the size of an installed package
 function pkmg(){
 	apt-cache show $1 | grep Installed-Size | python3 -c "from sys import stdin;print(stdin.read().split()[1])"
