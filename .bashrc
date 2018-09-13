@@ -18,11 +18,11 @@ lastStatus()
 	if [[ $? = 0 ]] ; then
 		echo " "
 	else
-		echo "!!! : "
+		echo "!! "
 	fi	
 }
 
-PS1='\n┌⟨$(lastStatus) \u @ \h -> \w ⟩\n╰─➢ '
+PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
 #PS1='┌[\u @ \h -> \w] \n└─➢ '
 #PS1='╭:| \u @ \h > \w \n╰─➢ '
 
@@ -77,6 +77,7 @@ alias ufetch='bash "$HOME/.config/i3/ufetch"'
 alias trix="cmatrix -as && clear"
 alias net="nmcli dev wifi"
 alias vimm="vim"
+alias vm="vim"
 
 
 function cnct(){

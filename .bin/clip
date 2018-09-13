@@ -1,11 +1,18 @@
 #!/bin/bash
 
-if [[ $# = 0 ]] ; then
-		cat > $HOME/.clip
-	else 
-		if [[ $1 = "-" ]] ; then
-			cat $HOME/.clip
-	fi
+#if [[ $# = 0 ]] ; then
+#		cat > $HOME/.clip
+#	else 
+#		if [[ $1 = "-" ]] ; then
+#			cat $HOME/.clip
+#	fi
+#fi
+
+input="$(cat)"
+if [[ -n input ]] ; then
+	cat $HOME/.clip
+else
+	echo $input > $HOME/.clip
 fi
 
 
