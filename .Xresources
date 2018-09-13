@@ -1,18 +1,22 @@
 ## URxvt settings
 ##define FONT "Liberation Mono Regular"
-#define FONT "Ubuntu Mono Regular"
+##define FONT "Ubuntu Mono Regular"
+#define FONT Terminus
 
 ! text formatting
-URxvt.font: xft:Ubuntu Mono:size=11:Regular
+! URxvt.font: xft:Ubuntu Mono:size=11:Regular
+URxvt.font: xft:Terminus:size=11:Regular
 URxvt.boldFont: xft: FONT : size=10:Bold
 URxvt.italicFont: xft: FONT : size=10:Italic
 URxvt.boldItalicFont: xft: FONT : size=13:Italic : Bold
 URxvt.internalBorder:  32
 URxvt.depth: 32
 
+URxvt.transparent:   true
+URxvt.shading:       20
 
 ! extensions
-URxvt.perl-ext-common: default,matcher,keyboard-select,font-size
+URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline Bold fg5

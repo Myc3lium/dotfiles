@@ -18,7 +18,7 @@ shopt -s checkwinsize
 #    PS1=''
 #else
 #PS1='┌[\u @ \h -> \w] \n└─➢ '
-PS1='┌[\u @ \h -> \w] \n╰─➢ '
+PS1='\n┌⟨ \u @ \h -> \w ⟩\n╰─➢ '
 #PS1='╭:| \u @ \h > \w \n╰─➢ '
 #fi
 #unset color_prompt force_color_prompt
@@ -123,5 +123,5 @@ function set_paper(){
 
 # allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
-#wal -q --theme sexy-hund # set the terminal theming
-wal -R -q
+wal -q --theme sexy-hund # set the terminal theming
+#wal -R -q
