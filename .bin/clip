@@ -9,7 +9,7 @@
 #fi
 
 input="$(cat)"
-if [[ -n input ]] ; then
+if [[ -n $input ]] ; then
 	cat $HOME/.clip
 else
 	echo $input > $HOME/.clip
