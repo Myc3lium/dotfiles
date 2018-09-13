@@ -13,7 +13,7 @@ URxvt.internalBorder:  32
 URxvt.depth: 32
 
 URxvt.transparent:   true
-URxvt.shading:       20
+URxvt.shading:       15
 
 ! extensions
 URxvt.perl-ext-common: default,matcher

@@ -7,21 +7,25 @@ esac
 # History config
 HISTCONTROL=ignoreboth
 shopt -s histappend
-HISTSIZE=100
-HISTFILESIZE=200
+HISTSIZE=30
+HISTFILESIZE=100
 
 # update line/col count after each command
 shopt -s checkwinsize
 
-# prompt formatting
-#if [ "$color_prompt" = yes ]; then
-#    PS1=''
-#else
+lastStatus()
+{
+	if [[ $? = 0 ]] ; then
+		echo " "
+	else
+		echo "!!! : "
+	fi	
+}
+
+PS1='\n┌⟨$(lastStatus) \u @ \h -> \w ⟩\n╰─➢ '
 #PS1='┌[\u @ \h -> \w] \n└─➢ '
-PS1='\n┌⟨ \u @ \h -> \w ⟩\n╰─➢ '
 #PS1='╭:| \u @ \h > \w \n╰─➢ '
-#fi
-#unset color_prompt force_color_prompt
+
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -79,8 +83,10 @@ function cnct(){
 	nmcli -a device wifi connect $1
 }
 
-
-clip="$HOME/.clip"
+CLIP()
+{
+	cat > $HOME/.clip
+}
 
 # find the size of an installed package
 function pkmg(){
@@ -92,33 +98,9 @@ function pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
 }
 
-# hex viewer
-function 0xdmp(){
-    python3 -c "
-whitespacechars = (10, 9, 11, 32)
-if '$1' == 'stdin':
-    from sys import stdin;
-    file = stdin.buffer;
-else:
-    file = open('$1', 'rb')
-hx = lambda _bytes: '{0:<95}{2}\033[7m|{1:<32}|\033[0m'.format(' '.join([hex(byte)[2:].zfill(2) for byte in _bytes]), ''.join([chr(byte) if (byte not in whitespacechars) and (byte < 128) and (byte > 32) else '~' if (byte > 128) or (byte < 32) else '.' if byte in whitespacechars else '' for byte in _bytes]), ' '*4);
-
-while True:
-    k = file.read(32)
-    if not k:
-        break
-    print(hx(k))
-file.close()"
-}
-
 # list links in the current directory
 function links(){
     dir $1 | grep "\->"
-}
-
-# set the wallpaper 
-function set_paper(){
-	feh --bg-fill $1
 }
 
 # allow execution of stuff in .bin
