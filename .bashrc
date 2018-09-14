@@ -22,7 +22,9 @@ lastStatus()
 	fi	
 }
 
-PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
+PS1='\n┌⟨\! $(lastStatus)\u @ \h => \w ⟩\n└─➢ '
+#PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
+#PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
 #PS1='┌[\u @ \h -> \w] \n└─➢ '
 #PS1='╭:| \u @ \h > \w \n╰─➢ '
 
