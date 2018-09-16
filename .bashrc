@@ -103,5 +103,6 @@ function links(){
 
 # allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
-wal -q --theme sexy-hund # set the terminal theming
+#wal -q --theme sexy-hund # set the terminal theming
+wal -q --theme base16-gruvbox-hard # set the terminal theming
 #wal -R -q
