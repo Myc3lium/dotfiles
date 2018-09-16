@@ -12,8 +12,8 @@ URxvt.boldItalicFont: xft: FONT : size=13:Italic : Bold
 URxvt.internalBorder:  32
 URxvt.depth: 32
 
-URxvt.transparent:   true
-URxvt.shading:       15
+! URxvt.transparent:   true
+! URxvt.shading:       15
 
 ! extensions
 URxvt.perl-ext-common: default,matcher
