@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#nbg="#151515"
-#nfg="#f1ebeb"
-#sbg="#f1ebeb"
-#sfg="#151515"
-
 source $HOME/.config/i3/dmenuColors
 
 names(){
