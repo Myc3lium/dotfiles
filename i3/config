@@ -242,7 +242,7 @@ bar {
                                    #  border      background     text
                 focused_workspace  $ur_active     $ur_active     $ur_foreground
                 inactive_workspace $ur_background $ur_background $ur_foreground
-                urgent_workspace   $ur_foreground $ur_background $ur_foreground
+                urgent_workspace   $ur_active $ur_background $ur_foreground
 
                 ##                  border             background         text
                 #focused_workspace  $inactive-bg-color $inactive-bg-color $inactive-text-color
