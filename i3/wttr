@@ -3,7 +3,7 @@
 from subprocess import Popen as popen
 
 def main():
-    lines = [line[15:].rstrip().lstrip() for line in popen(['curl', 'wttr.in/Stafford?0T'], 
+    lines = [line[15:].rstrip().lstrip() for line in popen(['curl', 'wttr.in/Derby?0T'], 
                 stdout = -1, stderr = -1).communicate()[0].decode().split('\n')[2:-1]]
     return ' '.join(lines) if lines else 'Weather!'
 
