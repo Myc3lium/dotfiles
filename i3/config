@@ -106,10 +106,16 @@ bindsym $mod+a focus parent
 # set $workspace8 "8 ::  "
 # set $workspace7 "7 ::  "
 
-set $workspace10 "10"
-set $workspace9 "9"
-set $workspace8 "8"
-set $workspace7 "7"
+# set $workspace10 "10"
+# set $workspace9 "9"
+# set $workspace8 "8"
+# set $workspace7 "7"
+
+set $workspace10 "十"
+set $workspace9 "九"
+set $workspace8 "八"
+set $workspace7 "七"
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
