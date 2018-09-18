@@ -120,10 +120,10 @@ set $workspace5 "五"
 set $workspace4 "四"
 set $workspace3 "三"
 set $workspace2 "二"
-set $workspace1 "一"
+set $workspace01 "一"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
+bindsym $mod+1 workspace $workspace01
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
