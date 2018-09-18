@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mpv $1 -o "$2.mp3" --no-video

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-i3-msg workspace _
+i3-msg workspace \" \"
 
 scrot ~/Pictures/screen.png
 
