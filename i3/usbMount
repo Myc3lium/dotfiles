@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#nbg="#151515"
-#nfg="#f1ebeb"
-#sbg="#f1ebeb"
-#sfg="#151515"
 source $HOME/.config/i3/dmenuColors
 
 paths(){
@@ -14,4 +10,4 @@ for line in status:
 	print('[%s]' % (line[0] + ' | ' + line[-1]))"
 }
 
-option="$(paths | dmenu -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
+option="$(paths | dmenu -fn $font -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"

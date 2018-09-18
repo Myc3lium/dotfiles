@@ -2,4 +2,4 @@
 
 source $HOME/.config/i3/dmenuColors
 
-i3-dmenu-desktop --dmenu="dmenu -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg"
+i3-dmenu-desktop --dmenu="dmenu -fn $font -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg"

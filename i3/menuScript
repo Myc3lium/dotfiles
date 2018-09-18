@@ -2,7 +2,7 @@
 
 source $HOME/.config/i3/dmenuColors
 
-option="$(echo -e 'run\nusb devices\nnetwork options\nrestart i3\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
+option="$(echo -e 'run\nusb devices\nnetwork options\nrestart i3\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -fn $font -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
 optionq="$option" # the option quoted for comparison
 
 if [[ $optionq = "run" ]]; then
