@@ -45,7 +45,7 @@ fi
 # colored GCC warnings and errors / exports
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export EDITOR=vim
-export WWW_HOME="duckduckgo.com"
+export WWW_HOME="google.com"
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -84,6 +84,10 @@ alias net="nmcli dev wifi"
 alias vimm="vim"
 alias vm="vim"
 
+w3m(){
+	w3m -o auto_image=FALSE $1
+}
+
 
 function cnct(){
 	nmcli -a device wifi connect $1
@@ -97,11 +101,6 @@ function pkmg(){
 # python3 help from outside python
 function pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
-}
-
-# list links in the current directory
-function links(){
-    dir $1 | grep "\->"
 }
 
 # allow execution of stuff in .bin
