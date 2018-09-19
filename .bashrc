@@ -22,7 +22,7 @@ lastStatus()
 	fi	
 }
 
-PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
+PS1='\n┌⟨$(lastStatus)\u @ \h $(uptime --pretty) => \w ⟩\n└─➢ '
 
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '

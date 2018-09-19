@@ -228,7 +228,7 @@ bindsym $mod+o [instance="calendar"] scratchpad show
 
 for_window [instance="music"] floating enable
 for_window [instance="music"] move scratchpad
-exec_always --no-startup-id urxvt -name music  -uc -e ranger ~/Videos/yt/music
+exec_always --no-startup-id urxvt -geometry 78x17 -name music  -uc -e ranger ~/Videos/yt/music
 bindsym $mod+i [instance="music"] scratchpad show 
 #; [instance="calendar"] move position center
 
