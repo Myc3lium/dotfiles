@@ -84,9 +84,7 @@ alias net="nmcli dev wifi"
 alias vimm="vim"
 alias vm="vim"
 
-w3m(){
-	w3m -o auto_image=FALSE $1
-}
+alias w3m="w3m -o auto_image=FALSE "
 
 
 function cnct(){
