@@ -18,7 +18,7 @@ lastStatus()
 	if [[ $? = 0 ]] ; then
 		echo " "
 	else
-		echo "!! "
+		echo "* "
 	fi	
 }
 
@@ -42,8 +42,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-# colored GCC warnings and errors
+# colored GCC warnings and errors / exports
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export EDITOR=vim
+export WWW_HOME="duckduckgo.com"
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -81,7 +83,6 @@ alias trix="cmatrix -as && clear"
 alias net="nmcli dev wifi"
 alias vimm="vim"
 alias vm="vim"
-export EDITOR=vim
 
 
 function cnct(){

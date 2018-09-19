@@ -8,3 +8,4 @@ nnoremap <F12> :buffers<CR>:buffer<Space>
 set timeoutlen=0 ttimeoutlen=0
 
 :command Ecpt w !tee | gpg -ac --cipher-algo TWOFISH | clip
+:command Cc !gcc %:t -o %:t.out ; rm %:t.out
