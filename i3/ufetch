@@ -64,7 +64,7 @@ ${c0}        __      ${lc}${USER}${ic}@${lc}${host}${reset}
 ${c0}    . _/  \\     ${lc}OS:        ${ic}${os}${reset}
 ${c0} __/   \\ _/     ${lc}KERNEL:    ${ic}${kernel}${reset}
 ${c0}/  \\  _   \\     ${lc}UPTIME:    ${ic}${uptime}${reset}
-${c1}\\__/ { }   -    ${lc}PACKAGES:  ${ic}${packages}${reset}
+${c1}\\__/ { }   *    ${lc}PACKAGES:  ${ic}${packages}${reset}
 ${c1}  \\   -  _/     ${lc}SHELL:     ${ic}${shell}${reset}
 ${c0}   . __/  \\     ${lc}${envtype}:        ${ic}${WM}${reset}
 ${c0}       \\__/ 

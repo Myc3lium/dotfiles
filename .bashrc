@@ -22,7 +22,7 @@ lastStatus()
 	fi	
 }
 
-PS1='\n┌⟨$(lastStatus)\u @ \h $(uptime --pretty) => \w ⟩\n└─➢ '
+PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
 
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
@@ -104,4 +104,4 @@ function pyhelp(){
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 #wal -q --theme sexy-hund # set the terminal theming
 #wal -q --theme base16-gruvbox-hard # set the terminal theming
-wal -R -q
+wal -n -R -q
