@@ -39,13 +39,6 @@ bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run -b -i #i3-dmenu-desktop
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -101,16 +94,6 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# set $workspace10 "10 ::  _"
-# set $workspace9 "9 ::  "
-# set $workspace8 "8 ::  "
-# set $workspace7 "7 ::  "
-
-# set $workspace10 "10"
-# set $workspace9 "9"
-# set $workspace8 "8"
-# set $workspace7 "7"
-
 set $workspace10 10
 set $workspace9 9
 set $workspace8 8
@@ -150,8 +133,6 @@ for_window [class="feh"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Tor Browser"] floating enable
 for_window [class="Florence"] floating enable
-#for_window [class="URxvt"] floating enable
-
 for_window [class="^.*"] border pixel 5
 
 # reload the configuration file
@@ -187,14 +168,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# default colors
-#set $ur_background #312e39
-#set $ur_foreground #ae835a
-
-# gruvbox colors
-#set $ur_background #272822
-#set $ur_foreground #f1ebeb
-
 set $ur_background #151515
 set $ur_foreground #f1ebeb
 set $ur_active #383636
@@ -207,13 +180,6 @@ set $text-color          #f3f4f5
 set $inactive-text-color #d4d5d6
 set $urgent-bg-color     #D88200
 
-# window colors
-#                       border              background         text                 indicator
-
-# client.focused          $border_focused    $bg-color          $text-color           #00ff00
-# client.unfocused        $border_unfocused $inactive-bg-color $inactive-text-color  #00ff00
-# client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #00ff00
-# client.urgent $urgent-bg-color $urgent-bg-color $text-color                         #00ff00
 
 client.focused          $ur_background $ur_active     $ur_foreground #00ff00
 client.unfocused        $ur_background $ur_background $ur_foreground #00ff00
@@ -230,16 +196,9 @@ bar {
         #font pango:DejaVu Sans Mono 10
         font pango:FontAwesome 9
         #font pango:Terminus 9
-	# status_command i3status
         tray_output none
-        # separator_symbol "| "
- 
-        #mode hide toggle
-        #hidden_state hide
-        #modifier $mod+0
         
         colors { 
-                #background $bg-color
                 background $ur_background
                 separator $ur_foreground
 
@@ -248,10 +207,6 @@ bar {
                 inactive_workspace $ur_background $ur_background $ur_foreground
                 urgent_workspace   $ur_foreground $ur_background $ur_foreground
 
-                ##                  border             background         text
-                #focused_workspace  $inactive-bg-color $inactive-bg-color $inactive-text-color
-                #inactive_workspace $bg-color          $bg-color          $text-color
-                #urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
         }
 }
 
@@ -269,10 +224,10 @@ for_window [instance="calendar"] move scratchpad
 exec_always --no-startup-id urxvt -name calendar  -uc -e calcurse
 bindsym $mod+o [instance="calendar"] scratchpad show; [instance="calendar"] move position center
 
-#for_window [instance="ranger"] floating enable
-#for_window [instance="ranger"] move scratchpad
-#exec_always --no-startup-id urxvt -name ranger -uc -e ranger
-#bindsym $mod+i [instance="ranger"] scratchpad show; [instance="ranger"] move position center
+for_window [instance="music"] floating enable
+for_window [instance="music"] move scratchpad
+exec_always --no-startup-id urxvt -name music  -uc -e ranger ~/Videos/yt/music
+bindsym $mod+i [instance="music"] scratchpad show; [instance="calendar"] move position center
 
 for_window [instance="urxvt"] move position center
 
