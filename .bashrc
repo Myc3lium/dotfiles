@@ -83,8 +83,7 @@ alias trix="cmatrix -as && clear"
 alias net="nmcli dev wifi"
 alias vimm="vim"
 alias vm="vim"
-
-alias w3m="w3m -o auto_image=FALSE "
+alias w3m="w3m -no-mouse -o auto_image=FALSE "
 
 
 function cnct(){
