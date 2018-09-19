@@ -23,6 +23,7 @@ lastStatus()
 }
 
 PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n└─➢ '
+
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
 #PS1='┌[\u @ \h -> \w] \n└─➢ '
@@ -35,10 +36,10 @@ PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n└─➢ '
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias ls='ls --color=always'
+    alias grep='grep --color=always'
+    alias fgrep='fgrep --color=always'
+    alias egrep='egrep --color=always'
 fi
 
 # colored GCC warnings and errors
@@ -80,6 +81,7 @@ alias trix="cmatrix -as && clear"
 alias net="nmcli dev wifi"
 alias vimm="vim"
 alias vm="vim"
+export EDITOR=vim
 
 
 function cnct(){
