@@ -16,13 +16,13 @@ shopt -s checkwinsize
 lastStatus()
 {
 	if [[ $? = 0 ]] ; then
-		echo " "
+		echo "  "
 	else
 		echo "* "
 	fi	
 }
 
-PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n└─➢ '
+PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
 
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
