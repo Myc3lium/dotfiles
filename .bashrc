@@ -27,7 +27,8 @@ lastStatus()
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
 #PS1='┌[\u @ \h -> \w] \n└─➢ '
 
-PS1='\n╭─⟨ \u @ \h => \w ⟩\n╰─➢ '
+#PS1='\n╭─⟨ \u @ \h => \w ⟩\n╰─➢ '
+PS1='\n╭─[ \u ] [ \w ]\n╰─➢ '
 
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -64,7 +65,7 @@ alias lsrdp="apt-cache --installed rdepends "                     #lists package
 alias lsdp="apt-cache --installed depends "                       #lists package dependencies
 alias install="sudo apt-get install --autoremove"                #installs packages
 alias uninstall="sudo apt-get purge --autoremove"               #removes and purges packages
-alias pks="apt list | grep " #find a package based on name
+alias pks="apt search " #find a package based on name
 alias pss="gpg -d ~/.Private_Docs/pss.txt.asc | less"
 alias xid="xprop | awk '/PID/ {print $3}'"
 

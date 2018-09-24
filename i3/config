@@ -261,8 +261,19 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle        #
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id xmodmap -e "clear lock"
 
-#exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
-exec_always --no-startup-id compton -C -c -f -D 2
+# Compton options
+# -C no shadows on docks
+# -c shadows on windows
+# -D fade timing
+# -r shadow radius
+# -o shadow opacity
+
+# compton without shadows
+exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
+
+# compton *with* shadows
+# exec_always --no-startup-id compton -C -c -f -D 2 -r 3 -o 0.5 -l 5 -t 5
+
 exec_always --no-startup-id redshift -O 4450k
 
 exec_always --no-startup-id python3 -c "from os import system;from time import sleep;while True:(system('tracker daemon -k'),sleep(4))"
