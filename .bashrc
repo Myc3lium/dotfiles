@@ -22,12 +22,12 @@ lastStatus()
 	fi	
 }
 
-PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
-
+#PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
 #PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
 #PS1='┌[\u @ \h -> \w] \n└─➢ '
-#PS1='╭:| \u @ \h > \w \n╰─➢ '
+
+PS1='\n╭─⟨ \u @ \h => \w ⟩\n╰─➢ '
 
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -103,6 +103,6 @@ function pyhelp(){
 
 # allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
-#wal -q --theme sexy-hund # set the terminal theming
-#wal -q --theme base16-gruvbox-hard # set the terminal theming
+
+# wal restore
 wal -n -R -q
