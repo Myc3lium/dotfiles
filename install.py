@@ -5,6 +5,7 @@ from shutil import copyfile as cp;
 
 cp('i3/', home+'/.config/i3/')
 cp('.bin/', home+'/.bin')
+cp('.calcurse', home+'/.calcurse')
 
 cp('.vimrc', home+'/.vimrc')
 cp('.bashrc', home+'/.bashrc')

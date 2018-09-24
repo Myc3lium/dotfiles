@@ -13,6 +13,9 @@ cp -r $HOME/.config/i3 $current/i3/
 rm -r $current/.bin
 cp -r $HOME/.bin $current/.bin
 
+rm -r $current/.calcurse
+cp -r $HOME/.calcurse $current/.calcurse
+
 cp $HOME/.bashrc $current/.bashrc
 cp $HOME/.gitconfig $current/.gitconfig
 
