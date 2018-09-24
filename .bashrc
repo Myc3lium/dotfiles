@@ -46,6 +46,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export EDITOR=vim
 export WWW_HOME="google.com"
+export TERM="xterm-256color"
 
 # some more ls aliases
 alias ll='ls -alF'
