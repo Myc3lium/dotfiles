@@ -33,7 +33,7 @@ lastStatus()
 # PS1='\n╭─< \u > \h ) \w \n╰─ ﬦ : '
 
 
-PS1='\n╭─<$(tput rev) \u $(tput sgr0;tput setab 6)> \h $(tput setaf 6;tput setab 2)> \w $(tput setaf 2;tput setab 0)\n$(tput sgr0)╰─ ﬦ : '
+PS1='\n╭─<$(tput rev) \u $(tput sgr0;tput setab 6)>$(tput setaf 1) \h $(tput setaf 6;tput setab 2)> \w $(tput setaf 2;tput setab 0)\n$(tput sgr0)╰─ ﬦ : '
 
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -111,4 +111,4 @@ function pyhelp(){
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 
 # wal restore
-#wal -n -R -q
+wal -n -R -q

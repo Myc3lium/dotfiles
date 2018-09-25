@@ -11,9 +11,9 @@ URxvt.boldFont: xft: FONT : size=12:Bold
 URxvt.italicFont: xft: FONT : size=12:Italic
 URxvt.boldItalicFont: xft: FONT : size=12:Italic : Bold
 URxvt.internalBorder:  32
-URxvt.depth: 32 
 
-URxvt.background: #222222
+! URxvt.depth: 32 
+! URxvt.background: #222222
 
 ! URxvt.transparent:   true
 ! URxvt.shading:       15

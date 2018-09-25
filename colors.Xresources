@@ -9,13 +9,13 @@ emacs*background:   #101414
 URxvt*foreground:   #e5c8ac
 XTerm*foreground:   #e5c8ac
 UXTerm*foreground:  #e5c8ac
-URxvt*background:   [34]#101414
+URxvt*background:   [100]#101414
 XTerm*background:   #101414
 UXTerm*background:  #101414
 URxvt*cursorColor:  #e5c8ac
 XTerm*cursorColor:  #e5c8ac
 UXTerm*cursorColor: #e5c8ac
-URxvt*borderColor:  [34]#101414
+URxvt*borderColor:  [100]#101414
 
 ! Colors 0-15.
 *.color0: #101414
