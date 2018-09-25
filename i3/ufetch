@@ -5,7 +5,7 @@ clear
 ## INFO
 
 
-wttr="$($HOME/.config/i3/wttr)"
+#wttr="$($HOME/.config/i3/wttr)"
 
 # user is already defined
 host="$(hostname)"
