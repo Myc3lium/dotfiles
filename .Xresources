@@ -1,11 +1,12 @@
 ## URxvt settings
 ##define FONT "Liberation Mono Regular"
 ##define FONT "Ubuntu Mono Regular"
-#define FONT Terminus
+##define FONT Terminus
+#define FONT TerminessTTF Nerd Font Mono
 
 ! text formatting
 ! URxvt.font: xft:Ubuntu Mono:size=11:Regular
-URxvt.font: xft:Terminus:size=11:Regular
+URxvt.font: xft:FONT:size=11:Regular
 URxvt.boldFont: xft: FONT : size=10:Bold
 URxvt.italicFont: xft: FONT : size=10:Italic
 URxvt.boldItalicFont: xft: FONT : size=13:Italic : Bold

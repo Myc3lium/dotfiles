@@ -35,7 +35,7 @@ font pango:Terminus 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvt -sl 0 -uc -e tmux -2
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -195,8 +195,8 @@ bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/_i3blocks.conf
         position top
         #font pango:DejaVu Sans Mono 10
-        font pango:FontAwesome 9
-        #font pango:Terminus 9
+        #font pango:FontAwesome 9
+        font pango:TerminessTTF Nerd Font Mono 11
         tray_output none
 	# mode hide
 	# modifier $mod+$mod2
