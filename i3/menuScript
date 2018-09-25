@@ -5,6 +5,10 @@ source $HOME/.config/i3/dmenuColors
 option="$(echo -e 'run\nusb devices\nnetwork options\nrestart i3\nlogout\nshutdown\nbleachbit/shutdown' | dmenu -fn $font -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)" # the chosen option
 optionq="$option" # the option quoted for comparison
 
+if [[ $optionq = "usb devices" ]]; then
+	$HOME/.config/i3/usbMount
+fi
+
 if [[ $optionq = "run" ]]; then
 	$HOME/.config/i3/dmenuCmd
 fi

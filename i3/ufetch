@@ -4,9 +4,6 @@
 clear
 ## INFO
 
-
-#wttr="$($HOME/.config/i3/wttr)"
-
 # user is already defined
 host="$(hostname)"
 os='Ubuntu'
@@ -44,18 +41,11 @@ cyan="$(tput setaf 6)"
 white="$(tput setaf 7)"
 reset="$(tput sgr0)"
 
-# you can change these
-#lc="${reset}${bold}${red}"		# labels
-#nc="${reset}${bold}${red}"		# user and hostname
-#ic="${reset}${bold}${white}"	# info
-#c0="${reset}${bold}${red}"		# first color
-#c1="${reset}${red}"				# second color
-
-lc="${reset}${red}"		# labels
-nc="${reset}${red}"		# user and hostname
+lc="${reset}${red}"	# labels
+nc="${reset}${red}"	# user and hostname
 ic="${reset}${white}"	# info
-c0="${reset}${red}"		# first color
-c1="${reset}${red}"				# second color
+c0="${reset}${red}"	# first color
+c1="${reset}${red}"	# second color
 
 ## OUTPUT
 echo -e $wttr "\n"
@@ -70,6 +60,7 @@ ${c0}   . __/  \\     ${lc}${envtype}:        ${ic}${WM}${reset}
 ${c0}       \\__/ 
 EOF
 
-python3 -c "nl = lambda x: print('\n', ' '*x, end = '') ;col = lambda x, y: [print('\x1b[48;5;{}m  \x1b[0m'.format(i), end = '') for i in range(x, y)] ;nl(15) ;col(0, 8) ;nl(15) ;col(8, 16) ;print()"
+./colors.py
+#python3 -c "nl = lambda x: print('\n', ' '*x, end = '') ;col = lambda x, y: [print('\x1b[48;5;{}m  \x1b[0m'.format(i), end = '') for i in range(x, y)] ;nl(15) ;col(0, 8) ;nl(15) ;col(8, 16) ;print()"
 
 echo

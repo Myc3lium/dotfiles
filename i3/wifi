@@ -33,14 +33,3 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 
 echo $QUALITY% # full text
 echo $QUALITY% # short text
-
-# color
-#if [[ $QUALITY -ge 80 ]]; then
-#    echo "Good"
-#elif [[ $QUALITY -lt 80 ]]; then
-#    echo "Fair"
-#elif [[ $QUALITY -lt 60 ]]; then
-#    echo "Ok"
-#elif [[ $QUALITY -lt 40 ]]; then
-#    echo "Poor"
-#fi
