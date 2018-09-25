@@ -218,25 +218,21 @@ for_window [instance="dropterm"] floating enable
 for_window [instance="dropterm"] move scratchpad
 exec_always --no-startup-id urxvt -sl 0 -name dropterm  -uc -e tmux -2
 bindsym $mod+p [instance="dropterm"] scratchpad show 
-#; [instance="dropterm"] move position center
 
 for_window [instance="calendar"] floating enable
 for_window [instance="calendar"] move scratchpad
 exec_always --no-startup-id urxvt -name calendar  -uc -e calcurse
 bindsym $mod+o [instance="calendar"] scratchpad show 
-#; [instance="calendar"] move position center
 
 for_window [instance="music"] floating enable
 for_window [instance="music"] move scratchpad
 exec_always --no-startup-id urxvt -geometry 78x17 -name music  -uc -e ranger ~/Videos/yt/music
 bindsym $mod+i [instance="music"] scratchpad show 
-#; [instance="calendar"] move position center
 
 for_window [instance="monitor"] floating enable
 for_window [instance="monitor"] move scratchpad
 exec_always --no-startup-id urxvt -geometry 79x8 -name monitor -uc -e htop
 bindsym $mod+m [instance="monitor"] scratchpad show 
-#; [instance="calendar"] move position center
 
 #for_window [instance="urxvt"] move position center
 
