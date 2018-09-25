@@ -267,9 +267,11 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 # -D fade timing
 # -r shadow radius
 # -o shadow opacity
+# -f apply fade effects on window change
+# -b daemonise
 
 # compton without shadows
-exec_always --no-startup-id compton -f -b -D 1 -C -l 35 -t 35 -o 1 --inactive-dim
+exec_always --no-startup-id compton -f -b -D 2 -C --inactive-dim
 
 # compton *with* shadows
 # exec_always --no-startup-id compton -C -c -f -D 2 -r 3 -o 0.5 -l 5 -t 5

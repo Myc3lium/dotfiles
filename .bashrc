@@ -111,4 +111,4 @@ function pyhelp(){
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 
 # wal restore
-wal -n -R -q
+#wal -n -R -q
