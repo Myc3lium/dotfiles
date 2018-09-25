@@ -6,10 +6,10 @@
 
 ! text formatting
 ! URxvt.font: xft:Ubuntu Mono:size=11:Regular
-URxvt.font: xft:FONT:size=11:Regular
-URxvt.boldFont: xft: FONT : size=10:Bold
-URxvt.italicFont: xft: FONT : size=10:Italic
-URxvt.boldItalicFont: xft: FONT : size=13:Italic : Bold
+URxvt.font: xft:FONT:size=12:Regular
+URxvt.boldFont: xft: FONT : size=12:Bold
+URxvt.italicFont: xft: FONT : size=12:Italic
+URxvt.boldItalicFont: xft: FONT : size=12:Italic : Bold
 URxvt.internalBorder:  32
 URxvt.depth: 32 
 

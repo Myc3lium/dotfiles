@@ -22,13 +22,18 @@ lastStatus()
 	fi	
 }
 
-#PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
-#PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
-#PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
-#PS1='┌[\u @ \h -> \w] \n└─➢ '
+## PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
+## PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
+## PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
+## PS1='┌[\u @ \h -> \w] \n└─➢ '
+## PS1='\n╭─⟨ \u @ \h => \w ⟩\n╰─➢ '
+## PS1='\n╭─[ \u ] [ \w ]\n╰─➢ '
 
-#PS1='\n╭─⟨ \u @ \h => \w ⟩\n╰─➢ '
-PS1='\n╭─[ \u ] [ \w ]\n╰─➢ '
+# prompt reference
+# PS1='\n╭─< \u > \h ) \w \n╰─ ﬦ : '
+
+
+PS1='\n╭─<$(tput rev) \u $(tput sgr0;tput setab 6)> \h $(tput setaf 6;tput setab 2)> \w $(tput setaf 2;tput setab 0)\n$(tput sgr0)╰─ ﬦ : '
 
 
 # make less more friendly for non-text input files, see lesspipe(1)

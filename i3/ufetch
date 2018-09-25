@@ -1,5 +1,5 @@
 #!/bin/sh
-#
+
 # ufetch-debian - tiny system info for debian
 clear
 ## INFO
@@ -48,7 +48,6 @@ c0="${reset}${red}"	# first color
 c1="${reset}${red}"	# second color
 
 ## OUTPUT
-echo -e $wttr "\n"
 cat <<EOF
 ${c0}        __      ${lc}${USER}${ic}@${lc}${host}${reset}
 ${c0}    . _/  \\     ${lc}OS:        ${ic}${os}${reset}
@@ -60,7 +59,7 @@ ${c0}   . __/  \\     ${lc}${envtype}:        ${ic}${WM}${reset}
 ${c0}       \\__/ 
 EOF
 
-./colors.py
+python3 $HOME/.config/i3/colors.py
 #python3 -c "nl = lambda x: print('\n', ' '*x, end = '') ;col = lambda x, y: [print('\x1b[48;5;{}m  \x1b[0m'.format(i), end = '') for i in range(x, y)] ;nl(15) ;col(0, 8) ;nl(15) ;col(8, 16) ;print()"
 
 echo
