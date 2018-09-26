@@ -1,20 +1,12 @@
-#!/usr/bin/python3
+#!/bin/bash
 
-from os import environ, listdir;
-from shutil import copyfile as cp;
+cp i3/ $HOME/.config/i3
+cp .bin $HOME/.bin
+cp .calcurse $HOME/.calcurse
 
-cp('i3/', home+'/.config/i3/')
-cp('.bin/', home+'/.bin')
-cp('.calcurse', home+'/.calcurse')
-
-cp('.vimrc', home+'/.vimrc')
-cp('.bashrc', home+'/.bashrc')
-cp('.psrc', home+'/.psrc')
-
-cp('.Xresources', home+'/.Xresources')
-
-
-
-
-
-
+cp .vimrc $HOME/.vimrc
+cp .bashrc $HOME/.bashrc
+cp .psrc $HOME/.psrc
+cp .Xresources $HOME/.Xresources
+cp .xinitrc $HOME/.xinitrc
+cp .Xmodmap $HOME/.Xmodmap

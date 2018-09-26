@@ -20,6 +20,9 @@ cp -r $HOME/.calcurse $current/.calcurse
 cp $HOME/.bashrc $current/.bashrc
 cp $HOME/.gitconfig $current/.gitconfig
 
+cp $HOME/.xinitrc $current/.xinitrc
+cp $HOME/.Xmodmap $current/.Xmodmap
+
 cp $HOME/.Xresources $current/.Xresources
 cp $HOME/.cache/wal/colors.Xresources $current/colors.Xresources
 

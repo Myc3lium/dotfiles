@@ -13,16 +13,7 @@ HISTFILESIZE=100
 # update line/col count after each command
 shopt -s checkwinsize
 
-## PS1='\n┌⟨$(lastStatus)\u @ \h => \w ⟩\n└─➢ '
-## PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰-➢ '
-## PS1='\n┌⟨ $(lastStatus)\u @ \h => \w ⟩\n╰─➢ '
-## PS1='┌[\u @ \h -> \w] \n└─➢ '
-## PS1='\n╭─⟨ \u @ \h => \w ⟩\n╰─➢ '
-# PS1='\n╭─[ \u ] [ \w ]\n╰─➢ '
-# prompt reference
-# PS1='\n╭─< \u > \h ) \w \n╰─ ﬦ : '
-#PS1='\n╭─<$(tput rev) \u $(tput sgr0;tput setab 6)>$(tput setaf 1) \h $(tput setaf 6;tput setab 2)> \w $(tput setaf 2;tput setab 0)\n$(tput sgr0)╰─ ﬦ : '
-#PS1='\n$(tput rev) \u $(tput sgr0;tput setab 6)>$(tput setaf 1) \h $(tput setaf 6;tput setab 0)$(tput setab 0)> \w $(tput sgr0)\n   ﬦ : '
+# PS1='\n╭─[ \u ] [ \w ]\n╰── ﬦ :  '
 
 source ~/.psrc
 
@@ -81,7 +72,6 @@ alias net="nmcli dev wifi"
 alias vimm="vim"
 alias vm="vim"
 alias w3m="w3m -no-graph -no-mouse -o auto_image=FALSE "
-
 
 function cnct(){
 	nmcli -a device wifi connect $1
