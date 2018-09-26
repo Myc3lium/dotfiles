@@ -9,6 +9,7 @@ cp('.calcurse', home+'/.calcurse')
 
 cp('.vimrc', home+'/.vimrc')
 cp('.bashrc', home+'/.bashrc')
+cp('.psrc', home+'/.psrc')
 
 cp('.Xresources', home+'/.Xresources')
 

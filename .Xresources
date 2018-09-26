@@ -3,7 +3,7 @@
 #define FONT TerminessTTF Nerd Font Mono
 ##define FONT "Ubuntu Mono Regular"
 ##define FONT Terminus
-#define FSIZE 11
+#define FSIZE 10.2
 
 ! text formatting
 URxvt.font: xft:FONT:size=FSIZE:Regular

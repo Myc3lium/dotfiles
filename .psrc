@@ -1,0 +1,43 @@
+#!/bin/bash
+
+cols(){
+	echo "$COLUMNS - 1" | bc
+}
+
+gitStatus(){
+	git status &> /dev/null
+	if [ $? -eq 0 ]; then
+		echo -n ">"
+		tput rev
+		
+		branch=" $(git branch 2>/dev/null)"
+		untracked="? $( git ls-files --others --exclude-standard | wc -l)"
+		changed="✚ $(git ls-files -m | wc -l)"
+		staged="✔ $(git ls-files -s | wc -l)"
+
+		echo -n " $branch, $untracked, $changed, $staged";
+
+		tput sgr0
+		echo -n  ""
+	fi
+}
+
+rootIndicator(){
+	if [[ "$USER" = "root" ]];
+	then
+		echo "! "
+	fi
+}
+
+utime(){
+	echo "[ $(uptime --pretty) ]"
+}
+
+userHost(){
+	tput rev
+	echo -n " $USER @ $HOSTNAME "
+	tput sgr0
+}
+
+PS1='\n$(userHost)> \w $(gitStatus)\n└── $(rootIndicator)ﬦ : '
+PS2='└─── $(rootIndicator)? : '

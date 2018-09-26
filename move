@@ -6,6 +6,7 @@ cp $HOME/.vimrc $current/.vimrc
 cp $HOME/.tmux.conf $current/.tmux.conf
 
 cp $HOME/.config/ranger/rc.conf $current/
+cp $HOME/.psrc $current/
 
 rm -r $current/i3/
 cp -r $HOME/.config/i3 $current/i3/
