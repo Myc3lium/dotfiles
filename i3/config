@@ -34,8 +34,6 @@ font pango:Terminus 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec urxvt -sl 0 -uc -e tmux -2
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -193,9 +191,9 @@ hide_edge_borders both
 # finds out, if available)
 bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
-        position bottom
-        #font pango:FontAwesome 9
-        font pango:TerminessTTF Nerd Font Mono 10.8
+        position top
+        font pango:FontAwesome 9
+        #font pango:TerminessTTF Nerd Font Mono 10.8
         #font pango:Terminus Regular 10
         tray_output none
         
@@ -212,6 +210,8 @@ bar {
 }
 
 # assign escape key
+
+## exec_always xrdb /home/myc3lium/.Xresources
 
 # Scratchpad windows
 for_window [instance="dropterm"] floating enable
@@ -242,9 +242,11 @@ bindsym $mod2+Shift+l exec /home/myc3lium/.config/i3/lock.sh
 bindsym $mod2+Shift+k exec /home/myc3lium/.config/i3/menuScript
 bindsym $mod+q kill
 bindsym $mod+b exec /home/myc3lium/.config/i3/dmenu
-bindsym $mod+u exec urxvt -sl 0 -uc -name urxvt
+bindsym $mod+u exec urxvt -sl 0 -uc -name urxvt 
 bindsym $mod+y move position center
 
+# start a terminal
+bindsym $mod+Return exec urxvt -sl 0 -uc -e tmux -2
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% # increase sound volume
