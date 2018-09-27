@@ -250,7 +250,7 @@ bindsym $mod+q kill
 bindsym $mod+b exec /home/myc3lium/.config/i3/dmenu
 bindsym $mod+u exec urxvt -sl 0 -uc -name urxvt 
 bindsym $mod+y move position center
-bindsym Ctrl+t exec firefox /home/myc3lium/Documents/code/repos/personal/homepage/index.html
+# bindsym Ctrl+t exec firefox /home/myc3lium/Documents/code/repos/personal/homepage/index.html
 
 # start a terminal
 bindsym $mod+Return exec urxvt -sl 0 -uc -e tmux -2

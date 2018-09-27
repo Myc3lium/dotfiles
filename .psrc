@@ -1,9 +1,5 @@
 #!/bin/bash
 
-cols(){
-	echo "$COLUMNS - 1" | bc
-}
-
 gitStatus(){
 	git status &> /dev/null
 	if [ $? -eq 0 ]; then
@@ -39,5 +35,29 @@ userHost(){
 	tput sgr0
 }
 
-PS1='\n$(userHost)> \w $(gitStatus)\n└── $(rootIndicator)ﬦ : '
+getDir(){
+	tput setab 21
+	echo -n ">"
+	tput setaf 78
+	wd="$(pwd)"
+	if [[ wd = $HOME ]]; then
+		echo -n "~"
+	else
+		echo -n "~"
+		python3 -c "print('$wd'[len('$HOME'):], end = '')"
+	fi
+}
+
+upTime(){
+	tput sc
+	utime="$(uptime --pretty)"
+	string="$COLUMNS - (len('$utime') + 3)"
+	fset=$(python3 -c "print($string)")
+	tput cuf $fset
+	echo -n "<"$(tput rev)$utime
+	tput sgr0
+	tput rc
+}
+
+PS1='\n$(upTime)$(userHost)> \w $(gitStatus)\n└── $(rootIndicator)ﬦ : '
 PS2='└─── $(rootIndicator)? : '
