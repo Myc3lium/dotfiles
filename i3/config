@@ -128,12 +128,11 @@ assign [class="Tor Browser"] $workspace8
 assign [class="Nautilus"] $workspace7
 assign [class="VirtualBox"] $workspace8
 
-for_window [class="Firefox"] fullscreen toggle
 for_window [class="feh"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Tor Browser"] floating enable
 for_window [class="Florence"] floating enable
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border pixel 7
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -251,6 +250,7 @@ bindsym $mod+q kill
 bindsym $mod+b exec /home/myc3lium/.config/i3/dmenu
 bindsym $mod+u exec urxvt -sl 0 -uc -name urxvt 
 bindsym $mod+y move position center
+bindsym Ctrl+t exec firefox /home/myc3lium/Documents/code/repos/personal/homepage/index.html
 
 # start a terminal
 bindsym $mod+Return exec urxvt -sl 0 -uc -e tmux -2
@@ -276,10 +276,10 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 # -b daemonise
 
 # compton without shadows
-exec_always --no-startup-id compton -f -b -D 2 -C --inactive-dim
+# exec_always --no-startup-id compton -f -b -D 2 -C --inactive-dim
 
 # compton *with* shadows
-# exec_always --no-startup-id compton -C -c -f -D 2 -r 3 -o 0.5 -l 5 -t 5
+exec_always --no-startup-id compton -C -c -f -D 2 -r 3 -o 0.2 -l 5 -t 5
 
 exec_always --no-startup-id redshift -O 4450k
 

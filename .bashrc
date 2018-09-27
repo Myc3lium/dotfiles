@@ -91,4 +91,18 @@ function pyhelp(){
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 
 # wal restore
-wal -n -R -q
+# wal -n -R -q
+
+# good themes
+# ------------
+# sexy-vacuous2
+# sexy-invisibone
+# sexy-jasonwryan
+# sexy-monokai
+# base16-gruvbox-pale
+# sexy-navy-and-ivory
+# base16tooth
+# darktooth
+# sexy-user-77-mashup-colors
+# spacemacs
+wal -q --theme base16-spacemacs
