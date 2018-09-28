@@ -39,7 +39,7 @@ export TERM="xterm-256color"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias L='ls -alF'
+alias L='ls -AlF'
 
 alias dir="ls --color=always -Altph"                  #List all files in dir.
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
