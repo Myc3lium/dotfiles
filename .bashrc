@@ -39,6 +39,7 @@ export TERM="xterm-256color"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias L='ls -alF'
 
 alias dir="ls --color=always -Altph"                  #List all files in dir.
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
@@ -52,7 +53,7 @@ alias lsdp="apt-cache --installed depends "                       #lists package
 alias install="sudo apt-get install --autoremove"                #installs packages
 alias uninstall="sudo apt-get purge --autoremove"               #removes and purges packages
 alias pks="apt search " #find a package based on name
-alias pss="gpg -d ~/.Private_Docs/pss.txt.asc | less"
+alias pss="gpg -d ~/.Private_Docs/pss.new.asc.asc | less"
 alias xid="xprop | awk '/PID/ {print $3}'"
 
 alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"

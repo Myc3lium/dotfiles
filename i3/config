@@ -214,10 +214,10 @@ bar {
 ## exec_always xrdb /home/myc3lium/.Xresources
 
 # Scratchpad windows
-for_window [instance="dropterm"] floating enable
-for_window [instance="dropterm"] move scratchpad
-exec_always --no-startup-id urxvt -sl 0 -name dropterm  -uc -e tmux -2
-bindsym $mod+p [instance="dropterm"] scratchpad show 
+# for_window [instance="dropterm"] floating enable
+# for_window [instance="dropterm"] move scratchpad
+# exec_always --no-startup-id urxvt -sl 0 -name dropterm  -uc -e tmux -2
+# bindsym $mod+p [instance="dropterm"] scratchpad show 
 
 for_window [instance="calendar"] floating enable
 for_window [instance="calendar"] move scratchpad
