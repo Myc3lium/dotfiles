@@ -94,8 +94,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 set $workspace10 "10:[10]"
-set $workspace9 "8:[9]"
-set $workspace8 "7:[8]"
+set $workspace9 "9:[9]"
+set $workspace8 "8:[8]"
 set $workspace7 7
 
 # switch to workspace
@@ -202,9 +202,9 @@ bar {
 		strip_workspace_numbers yes
 
         # font pango:TerminessTTF Nerd Font Mono 14
-        # font pango:FontAwesome 14
-        # font pango:Terminus Regular 9.8
-        font pango:TerminessTTF Nerd Font 9
+		# font pango:FontAwesome 14
+        font pango:Terminus Regular 9.8
+        # font pango:TerminessTTF Nerd Font 11
         
         colors { 
                 background $ur_background
@@ -238,7 +238,7 @@ bindsym $mod+m [instance="monitor"] scratchpad show
 exec_always --no-startup-id firefox
 
 exec_always --no-startup-id urxvt -uc -name workspace10-terminal
-for_window [instance="workspace10-terminal"] move workspace "10"
+for_window [instance="workspace10-terminal"] move workspace $workspace10
 
 
 bindsym $mod2+Shift+l exec /home/myc3lium/.config/i3/lock.sh
