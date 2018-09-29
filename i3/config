@@ -181,9 +181,9 @@ set $ur_active #383636
 # set $inactive-text-color #d4d5d6
 # set $urgent-bg-color     #D88200
 
-# set_from_resource $ur_background i3wm.background #f0f0f0
-# set_from_resource $ur_foreground i3wm.foreground #f0f0f0
-# set_from_resource $ur_active     i3wm. #f0f0f0
+# set_from_resource $ur_background i3wm.background #151515
+# set_from_resource $ur_foreground i3wm.foreground #f1ebeb
+# set_from_resource $ur_active     i3wm. #383636
 
 client.focused          $ur_background $ur_active     $ur_foreground #00ff00
 client.unfocused        $ur_background $ur_background $ur_foreground #00ff00
