@@ -93,9 +93,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace10 10
-set $workspace9 9
-set $workspace8 8
+set $workspace10 "10:[10]"
+set $workspace9 "8:[9]"
+set $workspace8 "7:[8]"
 set $workspace7 7
 
 # switch to workspace
@@ -151,6 +151,7 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
+        
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
@@ -198,11 +199,12 @@ bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
         position top
         tray_output none
-		# strip_workspace_numbers yes
+		strip_workspace_numbers yes
 
         # font pango:TerminessTTF Nerd Font Mono 14
         # font pango:FontAwesome 14
-        font pango:Terminus Regular 9.8
+        # font pango:Terminus Regular 9.8
+        font pango:TerminessTTF Nerd Font 9
         
         colors { 
                 background $ur_background
