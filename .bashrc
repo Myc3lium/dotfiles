@@ -107,4 +107,4 @@ export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 # sexy-user-77-mashup-colors
 # spacemacs
 
-#wal -q --theme base16-spacemacs
+wal -q --theme base16tooth

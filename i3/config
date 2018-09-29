@@ -169,18 +169,21 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $ur_background #151515
-set $ur_foreground #f1ebeb
-set $ur_active #383636
+# set $ur_background #151515
+# set $ur_foreground #f1ebeb
+# set $ur_active #383636
 
-set $bg-color            #222222
-set $border_focused      #030303
-set $border_unfocused    #383838
-set $inactive-bg-color   #4f4f4f
-set $text-color          #f3f4f5
-set $inactive-text-color #d4d5d6
-set $urgent-bg-color     #D88200
+# set $bg-color            #222222
+# set $border_focused      #030303
+# set $border_unfocused    #383838
+# set $inactive-bg-color   #4f4f4f
+# set $text-color          #f3f4f5
+# set $inactive-text-color #d4d5d6
+# set $urgent-bg-color     #D88200
 
+set_from_resource $ur_background i3wm.background #f0f0f0
+set_from_resource $ur_foreground i3wm.foreground #f0f0f0
+set_from_resource $ur_active     i3wm.color8 #f0f0f0
 
 client.focused          $ur_background $ur_active     $ur_foreground #00ff00
 client.unfocused        $ur_background $ur_background $ur_foreground #00ff00
