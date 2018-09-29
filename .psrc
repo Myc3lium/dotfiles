@@ -6,7 +6,7 @@ gitStatus(){
 		echo -n ">"
 		tput rev
 		
-		branch=" $(git branch)"
+		branch="שׂ $(git branch)"
 		untracked="? $( git ls-files --others --exclude-standard | wc -l)"
 		changed="✚ $(git ls-files -m | wc -l)"
 		staged="✔ $(git ls-files -s | wc -l)"
