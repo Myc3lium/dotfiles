@@ -180,7 +180,7 @@ bindsym $mod+r mode "resize"
 # set $ur_active #383636
 
 set $ur_background #263238
-set $ur_foreground #eceff1
+set $ur_foreground #d1cbc6
 set $ur_active     #3c4c54
 
 # set $bg-color            #222222
@@ -278,7 +278,7 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 # exec_always --no-startup-id compton -f -b -D 2 -C --inactive-dim
 
 # compton *with* shadows
-exec_always --no-startup-id compton -C -c -f -D 2 -r 3 -o 0.2 -l 5 -t 5
+exec_always --no-startup-id compton -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5
 
 exec_always --no-startup-id redshift -O 4450k
 

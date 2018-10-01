@@ -1,7 +1,13 @@
 #!/bin/bash
 
-nbg="#151515"
-nfg="#f1ebeb"
-sbg="#383636"
-sfg="#f1ebeb"
+# nbg="#151515"
+# nfg="#f1ebeb"
+# sbg="#383636"
+# sfg="#f1ebeb"
+
+nbg="#263238"
+nfg="#d1cbc6"
+sbg="#3c4c54"
+sfg=$nfg
+
 font="Terminus"
