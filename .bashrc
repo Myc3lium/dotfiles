@@ -47,8 +47,6 @@ alias L='ls -AlF'
 alias dir="ls --color=always -Altph"                  #List all files in dir.
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
 alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"     # list top cpu consuming processes
-alias hgrep="history | grep "                                   #Search the terminal history.
-alias agrep="alias -p | grep "                                  #Search bound aliases.
 
 alias lspkg="apt list --installed | grep "                        #searches installed packages
 alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
@@ -64,15 +62,10 @@ alias oyvey="bleachbit --preset -c && shutdown now"
 alias printer-kill="lprm -"
 alias pkfo="apt-cache show"
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
-alias trix="cmatrix -as && clear"
 alias net="nmcli dev wifi"
-alias vimm="vim"
-alias vm="vim"
+alias cnct="nmcli -a device wifi connect"
 alias w3m="w3m -no-graph -no-mouse -o auto_image=FALSE "
 
-function cnct(){
-	nmcli -a device wifi connect $1
-}
 
 # find the size of an installed package
 function pkmg(){
@@ -102,4 +95,4 @@ export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 # darktooth
 # sexy-user-77-mashup-colors
 # spacemacs
-wal -q --theme base16tooth
+wal -q --theme darktooth
