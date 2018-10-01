@@ -95,4 +95,6 @@ export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 # darktooth
 # sexy-user-77-mashup-colors
 # spacemacs
-wal -q --theme darktooth
+# sexy-material
+
+wal -q --theme sexy-material
