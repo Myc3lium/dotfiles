@@ -6,6 +6,8 @@ set shiftwidth=4
 set timeoutlen=0 ttimeoutlen=0
 set term=screen-256color
 
+colorscheme delek
+
 let mapleader = "<Space>"
 syntax on
 filetype plugin indent on

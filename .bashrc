@@ -6,9 +6,12 @@ esac
 
 # History config
 HISTCONTROL=ignoreboth
-shopt -s histappend
 HISTSIZE=30
 HISTFILESIZE=100
+shopt -s histappend
+
+# automatically change directories
+shopt -s autocd
 
 # update line/col count after each command
 shopt -s checkwinsize
@@ -23,7 +26,7 @@ source ~/.psrc
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=always'
+    alias ls='ls --color=always --group-directories-first'
     alias grep='grep --color=always'
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
@@ -50,24 +53,17 @@ alias agrep="alias -p | grep "                                  #Search bound al
 alias lspkg="apt list --installed | grep "                        #searches installed packages
 alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
 alias lsdp="apt-cache --installed depends "                       #lists package dependencies
-alias install="sudo apt-get install --autoremove"                #installs packages
-alias uninstall="sudo apt-get purge --autoremove"               #removes and purges packages
 alias pks="apt search " #find a package based on name
 alias pss="gpg -d ~/.Private_Docs/pss.new.asc.asc | less"
-alias xid="xprop | awk '/PID/ {print $3}'"
 
 alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
-alias adate="sudo apt-get update"
-alias agrade="sudo apt-get upgrade"
 alias ahist="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day" +"%F")" -e "$(date -d "-2 day" +"%F")" -e "$(date -d "-3 day" +"%F")" /var/log/apt/history.log | less -R"
 alias less="less -R"
 
 alias oyvey="bleachbit --preset -c && shutdown now"
-alias vi="busybox vi "
 alias printer-kill="lprm -"
 alias pkfo="apt-cache show"
 alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
-alias ufetch='bash "$HOME/.config/i3/ufetch"'
 alias trix="cmatrix -as && clear"
 alias net="nmcli dev wifi"
 alias vimm="vim"
@@ -106,5 +102,4 @@ export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 # darktooth
 # sexy-user-77-mashup-colors
 # spacemacs
-
 wal -q --theme base16tooth
