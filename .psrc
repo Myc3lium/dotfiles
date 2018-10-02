@@ -30,5 +30,5 @@ getDir(){
 	python3 -c "print('$wd'[len('$HOME'):], end = '')"
 }
 
-PS1='\n$(userHost)> => $(getDir) $(gitStatus)\n ── ﬦ : '
-PS2='└─── ? : '
+PS1='\n$(userHost)> => $(getDir) $(gitStatus)\n ── ﬦ :  '
+PS2='└─── ? :  '

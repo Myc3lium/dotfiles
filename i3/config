@@ -91,12 +91,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
-
-# set $workspace10 "10:<span font='14'></span>"
-# set $workspace9  "9:<span font='14'></span>"
-# set $workspace8  "8:<span font='14'></span>"
-# set $workspace7  "8:<span font='14'></span>"
+# bindsym $mod+d focus child
 
 set $workspace10 "10:[10]"
 set $workspace9  "9:[9]"
@@ -143,8 +138,10 @@ for_window [class="^.*"] border pixel 7
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -241,7 +238,7 @@ for_window [instance="monitor"] move scratchpad
 exec_always --no-startup-id urxvt -geometry 79x8 -name monitor -uc -e htop
 bindsym $mod+m [instance="monitor"] scratchpad show 
 
-exec_always --no-startup-id firefox
+# exec_always --no-startup-id firefox
 
 exec_always --no-startup-id urxvt -uc -name workspace10-terminal
 for_window [instance="workspace10-terminal"] move workspace $workspace10
@@ -275,10 +272,10 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 # -b daemonise
 
 # compton without shadows
-# exec_always --no-startup-id compton -f -b -D 2 -C --inactive-dim
+exec_always --no-startup-id compton -f -b -D 3 -C
 
 # compton *with* shadows
-exec_always --no-startup-id compton -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5
+# exec_always --no-startup-id compton -z -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5
 
 exec_always --no-startup-id redshift -O 4450k
 
