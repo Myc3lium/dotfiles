@@ -272,7 +272,7 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 # -b daemonise
 
 # compton without shadows
-exec_always --no-startup-id compton -f -b -D 3 -C
+exec_always --no-startup-id compton -f -b -D 2 -C
 
 # compton *with* shadows
 # exec_always --no-startup-id compton -z -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5

@@ -1,3 +1,6 @@
 #!/bin/bash
 
-mpv "$1" -o "$1.mp3" --no-video
+for var in "$@"
+do
+	mpv "$var" -o "$var.mp3" --no-video
+done

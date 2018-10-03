@@ -1,13 +1,3 @@
-shell touch tes
-DELETE
-search ran
-search kkk
-shell 
-shell vim %s.10
-search ykd
-shell vim %s.1
-search B9k
-search Qq845zJy
 shell vim Qq845zJy
 search Qq8
 find 
@@ -16,7 +6,6 @@ find rang
 find b
 shell echo %s
 wq
-cut
 shell chmod +x %s
 search .conf
 search .config
@@ -26,7 +15,6 @@ find walhh
 open_with t
 open_with vim
 copy
-paste
 shell  %s
 shell vim %s
 find .confi
@@ -46,5 +34,17 @@ shell feh --bg-fill %s
 find w3m
 find google
 find mil
-
+shell re %s
+RENAME
+rename data_list.pl
+rename 1538108165960.jpg
 delete
+shell extract %s
+cut
+shell mkdir x
+paste
+
+search mp3
+find .mp3
+bulkrename
+shell mpv %s
