@@ -1,4 +1,3 @@
-find w3m
 find google
 find mil
 shell re %s
@@ -14,8 +13,6 @@ shell vim kek.pl
 
 shell vim test.c
 shell gcc %s
-copy
-paste
 rename conf
 shell vim %s
 delete
@@ -24,13 +21,11 @@ shell wal -a 32 -n -i %s
 shell wal -n -a 32-i %s
 shell wal -n -a 32 -i %s
 shell wal -n -a 64 -i %s
-open_with vim
 shell wal -n -a 88 -i %s
 shell wal -n -a 74 -i %s
 shell wal -n -a 72 -i %s
 find mo
 shell wal -n -a 78 -i %s
-open_with 
 shell wal -n -i %s
 find ne
 find net
@@ -48,3 +43,8 @@ shell  %s
 bulkrename
 shell mpv %s
 shell feh %s
+find .cjj
+open_with 
+open_with vim
+copy
+paste
