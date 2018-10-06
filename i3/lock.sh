@@ -1,7 +1,5 @@
 #!/bin/bash
 
-i3-msg workspace \" \"
-
 scrot ~/Pictures/screen.png
 
 convert ~/Pictures/screen.png -scale 10% -scale 1000% ~/Pictures/screen.png
@@ -12,6 +10,3 @@ i3lock -e -f -d -n -i ~/Pictures/screen.png ## -n options stops forking, so comm
                                                ## aren't executed until unlock
 pactl set-sink-mute 0 0
 rm ~/Pictures/screen.png
-
-i3-msg workspace back_and_forth
-

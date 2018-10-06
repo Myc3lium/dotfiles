@@ -65,6 +65,7 @@ alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
 alias net="nmcli dev wifi"
 alias cnct="nmcli -a device wifi connect"
 alias w3m="w3m -no-graph -no-mouse -o auto_image=FALSE "
+alias feh="~/.bin/feh_scale"
 
 
 # find the size of an installed package

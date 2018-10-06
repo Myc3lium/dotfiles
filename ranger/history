@@ -1,36 +1,3 @@
-shell vim Qq845zJy
-search Qq8
-find 
-find lonel
-find rang
-find b
-shell echo %s
-wq
-shell chmod +x %s
-search .conf
-search .config
-search 
-find .conf
-find walhh
-open_with t
-open_with vim
-copy
-shell  %s
-shell vim %s
-find .confi
-find i3
-find .lo
-find sexy-majj
-open_with 
-search bXwsp
-shell vim s318iR1P
-search s318iR1P
-search t1LnyMtL
-search FpNXRMrn
-search VQVDqYeN
-search 9w1GsWE6
-shell vim 9w1GsWE6.
-shell feh --bg-fill %s
 find w3m
 find google
 find mil
@@ -38,13 +5,46 @@ shell re %s
 RENAME
 rename data_list.pl
 rename 1538108165960.jpg
-delete
 shell extract %s
 cut
 shell mkdir x
-paste
-
 search mp3
 find .mp3
+shell vim kek.pl
+
+shell vim test.c
+shell gcc %s
+copy
+paste
+rename conf
+shell vim %s
+delete
+shell wal -a 64 -n -i %s
+shell wal -a 32 -n -i %s
+shell wal -n -a 32-i %s
+shell wal -n -a 32 -i %s
+shell wal -n -a 64 -i %s
+open_with vim
+shell wal -n -a 88 -i %s
+shell wal -n -a 74 -i %s
+shell wal -n -a 72 -i %s
+find mo
+shell wal -n -a 78 -i %s
+open_with 
+shell wal -n -i %s
+find ne
+find net
+find applicajl
+search network
+shell wal -a 89 -i %s
+shell wal -a 67 -i %s
+shell wal -a 78 -i %s
+shell wal -a 45 -i %s
+shell wal -a 74 -i %s
+find .com
+shell feh --bg-fill %s
+shell 
+shell  %s
 bulkrename
 shell mpv %s
+shell feh %s

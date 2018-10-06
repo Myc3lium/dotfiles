@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Open feh with images scaled to a 
+# sensible size based on the original,
+# by specifying the image width and
+# calculating the height accordingly.
+# Requires python3.
+
+width=700
+
+geometry(){
+	for x in $(identify $1)
+	do
+		echo $x | grep "[0-9]*x[0-9]*" > /dev/null
+		if [ $? -eq 0 ]
+		then
+			echo -n $x
+			break
+		fi
+	done
+}
+
+scale(){
+	python3 -c "x, y = [ int(_) for _ in '$1'.split('x') ];ratio = x / y;print ($2 ,'x', int($2 / ratio), sep = '')"
+}
+
+if [ $# -eq 0 ]
+then
+	echo "* Need one or more images."
+else
+	dimensions="$(geometry $1)"
+	feh -g "$(scale $dimensions $width)" $1
+fi
