@@ -30,8 +30,6 @@ if [[ $optionq = "bleachbit & shutdown" ]]; then
 fi
 
 if [[ $optionq = "restart i3" ]]; then
-	pkill calcurse
-	pkill tmux
 	pkill urxvt
 	i3-msg "restart"
 fi

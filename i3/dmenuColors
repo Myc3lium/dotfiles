@@ -5,9 +5,23 @@
 # sbg="#383636"
 # sfg="#f1ebeb"
 
-nbg="#263238"
-nfg="#d1cbc6"
-sbg="#3c4c54"
+# base16-material
+# nbg="#263238"
+# nfg="#d1cbc6"
+# sbg="#3c4c54"
+# sfg=$nfg
+
+# base16-gruvbox-hard
+#nbg="#1d2021"
+#nfg="#d5c4a1"
+#sbg="#3f4f57"
+#sfg=$nfg
+
+# sexy-mikado
+nbg="#000000"
+nfg="#ffffff"
+sbg="#757978"
 sfg=$nfg
 
-font="Terminus"
+
+font="terminus"

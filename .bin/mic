@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Add more literate control of mic volume.
+# examples:
+#	$ mic [off|on]				# Turn the microphone on or off
+#	$ mic vol sub|add [amount]  # Set volume
+#	$ mic status				# Get on/off status and volume
+
+
+on(){
+	amixer set Capture cap > /dev/null
+}
+
+off(){
+	amixer set Capture nocap > /dev/null
+}
+
+vol(){
+	if [[ $# = 1 ]]
+	then
+		amount=5
+	else
+		amount=$2
+	fi
+
+	case $1 in
+		add) amixer set Capture ${amount}%+ > /dev/null ;;
+		sub) amixer set Capture ${amount}%- > /dev/null ;;
+	esac
+}
+
+status(){
+	amixer get Capture | awk '/Front Left: Capture/{print $(NF - 2) " " $NF; }'
+}
+
+$@ 

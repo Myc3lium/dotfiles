@@ -10,8 +10,10 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $mod2 Mod1
-workspace_layout stacking
+#set $mod Mod1
+
+workspace_layout default
+focus_follows_mouse no
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -34,44 +36,43 @@ font pango:Terminus 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
+bindsym $mod+j 		   focus left
+bindsym $mod+k 		   focus down
+bindsym $mod+l 		   focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left 	focus left
+bindsym $mod+Down 	focus down
+bindsym $mod+Up 	focus up
+bindsym $mod+Right  focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
+bindsym $mod+Shift+j 		 move left
+bindsym $mod+Shift+k 		 move down
+bindsym $mod+Shift+l 		 move up
 bindsym $mod+Shift+semicolon move right
 
-bindsym $mod+Shift+Control+j move left 20px
-bindsym $mod+Shift+Control+k move down 20px
-bindsym $mod+Shift+Control+l move up 20px
+bindsym $mod+Shift+Control+j 		 move left 	20px
+bindsym $mod+Shift+Control+k 		 move down 	20px
+bindsym $mod+Shift+Control+l 		 move up 	20px
 bindsym $mod+Shift+Control+semicolon move right 20px
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left 	move left
+bindsym $mod+Shift+Down 	move down
+bindsym $mod+Shift+Up 		move up
+bindsym $mod+Shift+Right 	move right
 
-# split in horizontal orientation
-bindsym $mod+Shift+h split h
+# split *current container* in horizontal orientation
+bindsym $mod+h split h
 
-# split in vertical orientation
-bindsym $mod+Shift+v split v
+# split *current container* in vertical orientation
+bindsym $mod+n split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -79,7 +80,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+e layout toggle
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -88,56 +89,58 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
-# bindsym $mod+d focus child
+bindsym $mod+d focus child
 
-set $workspace10 "10:[ 10 ]"
-set $workspace9   "9:[ 9 ]"
-set $workspace8   "8:[ 8 ]"
-set $workspace7   "7:[ 7 ]"
-set $workspace_hyph "11:[ - ]"
+set $workspace7 "1:[α]"
+set $workspace8 "2:[β]"
+set $workspace9 "3:[γ]"
+set $workspace10 "4:[δ]"
+set $workspace_hyph "5:[ε]"
+set $workspace_eq "6:[ζ]"
+
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+#+bindsym $mod+1 workspace 1
+#+bindsym $mod+2 workspace 2
+#+bindsym $mod+3 workspace 3
+#+bindsym $mod+4 workspace 4
+#+bindsym $mod+5 workspace 5
+#+bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
-# bindsym $mod+minus workspace " "
 bindsym $mod+minus workspace $workspace_hyph
+bindsym $mod+equal workspace $workspace_eq
 bindsym $mod+bracketleft workspace prev
 bindsym $mod+bracketright workspace next
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+#+bindsym $mod+Shift+1 	  move container to workspace 1
+#+bindsym $mod+Shift+2 	  move container to workspace 2
+#+bindsym $mod+Shift+3 	  move container to workspace 3
+#+bindsym $mod+Shift+4 	  move container to workspace 4
+#+bindsym $mod+Shift+5 	  move container to workspace 5
+#+bindsym $mod+Shift+6 	  move container to workspace 6
+bindsym $mod+Shift+7 	  move container to workspace $workspace7
+bindsym $mod+Shift+8 	  move container to workspace $workspace8
+bindsym $mod+Shift+9 	  move container to workspace $workspace9
+bindsym $mod+Shift+0 	  move container to workspace $workspace10
+bindsym $mod+Shift+minus  move container to workspace $workspace_hyph
+bindsym $mod+Shift+equal  move container to workspace $workspace_eq
 
-assign [class="Firefox"] $workspace9
+assign [class="Firefox"] 	 $workspace9
 assign [class="Tor Browser"] $workspace8
-assign [class="Nautilus"] $workspace7
-assign [class="VirtualBox"] $workspace8
+assign [class="VirtualBox"]  $workspace7
 
-for_window [class="feh"] floating enable
-for_window [class="mpv"] floating enable
+# for_window [class="mpv"] floating enable
+for_window [class="feh"] 		 floating enable
 for_window [class="Tor Browser"] floating enable
-for_window [class="Florence"] floating enable
-for_window [class="^.*"] border pixel 2
-# for_window [class="^.*"] border pixel 0
+for_window [class="Florence"] 	 floating enable
+for_window [class="^.*"] 		 border   pixel  1
 
 
 # reload the configuration file
@@ -151,23 +154,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym j 		  resize shrink width  9 px or 9 ppt
+        bindsym k 		  resize grow   height 9 px or 9 ppt
+        bindsym l 		  resize shrink height 9 px or 9 ppt
+        bindsym semicolon resize grow 	width  9 px or 9 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left  resize shrink width  10 px or 10 ppt
+        bindsym Down  resize grow 	height 10 px or 10 ppt
+        bindsym Up 	  resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow 	width  10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -180,73 +176,128 @@ bindsym $mod+r mode "resize"
 # set $ur_foreground #f1ebeb
 # set $ur_active #383636
 
-set $ur_background #263238
-set $ur_foreground #d1cbc6
-set $ur_active     #3c4c54
-set $ur_inactive   #21292d
+# base16-material
+# set $ur_background #263238    ## foreground
+# set $ur_foreground #d1cbc6	## background
+# set $ur_active     #3f4f57	## active workspace background
+# set $ur_pale       #283840	## inactive workspace background
+# set $ur_inactive   #21292d	## inactive workspace border
+# set $ur_indicator  #3f4f57    ## ???
 
-client.focused          $ur_background $ur_active     $ur_foreground #00ff00
-client.unfocused        $ur_background $ur_background $ur_foreground #00ff00
-client.focused_inactive $ur_background $ur_inactive   $ur_foreground #00ff00
+# base16-gruvbox-hard
+#set $ur_background #1d2021
+#set $ur_foreground #d5c4a1
+#set $ur_active     #3f4f57
+#set $ur_pale       #21292d
+#set $ur_inactive   #21292d
+#set $ur_indicator  #3f4f57
 
-hide_edge_borders both
+# sexy-mikado
+set $ur_background #000000
+set $ur_foreground #bcbcaf
+set $ur_active     #757978
+set $ur_pale       #111111
+set $ur_inactive   #322a2c
+set $ur_indicator  #3f4f57
+
+
+# set_from_resources $ur_background URxvt.foreground #000000
+# set_from_resources $ur_foreground i3wm.color0 #d5c4a1
+# set_from_resources $ur_active     i3wm.color0 #3f4f57
+# set_from_resources $ur_pale       i3wm.color0 #21292d
+# set_from_resources $ur_inactive   i3wm.color0 #21292d
+# set_from_resources $ur_indicator  i3wm.color0 #3f4f57
+
+									   # Border		  # 
+client.focused          $ur_background $ur_active     $ur_foreground $ur_indicator
+client.unfocused        $ur_background $ur_inactive   $ur_foreground $ur_indicator
+client.focused_inactive $ur_background $ur_inactive   $ur_foreground $ur_indicator
+
+# hide_edge_borders both
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
+        #status_command /home/myc3lium/.bin/bar.sh 
         position top
         tray_output none
 		strip_workspace_numbers yes
         
-        font pango:Terminus Regular 9.8
+        # font pango:Terminus Regular 9.8
+        #font pango:TerminessTTF Nerd Font Mono Regular 10.5
+		font pango:GohuFont Nerd Font 10.5
         
         colors { 
+				statusline $ur_foreground
                 background $ur_background
-                separator $ur_foreground
+                separator  $ur_foreground
 
-                                   #  border      background     text
                 focused_workspace  $ur_active     $ur_active     $ur_foreground
-                inactive_workspace $ur_background $ur_background $ur_foreground
+                inactive_workspace $ur_inactive   $ur_pale       $ur_foreground
                 urgent_workspace   $ur_foreground $ur_background $ur_foreground
+                                   #  border      background     text
         }
 }
 
 # my personal edits
 
-for_window [instance="calendar"] floating enable
-for_window [instance="calendar"] move scratchpad
-exec_always --no-startup-id urxvt -name calendar  -uc -e calcurse
-bindsym $mod+o [instance="calendar"] scratchpad show 
+# Add a calcurse window to the scratchpad
+for_window	   [instance="calendar"] floating    enable
+for_window	   [instance="calendar"] move 	     scratchpad
+bindsym $mod+o [instance="calendar"] scratchpad  show 
+exec_always --no-startup-id urxvt -name calendar  -geometry 100x22 -uc -e calcurse 
 
-for_window [instance="music"] floating enable
-for_window [instance="music"] move scratchpad
-exec_always --no-startup-id urxvt -geometry 78x11 -name music  -uc -e ranger ~/Videos/yt/
-bindsym $mod+i [instance="music"] scratchpad show 
+# Add a ranger instance focused on the music directory
+for_window	   [instance="music"] floating 		 enable
+for_window	   [instance="music"] move 			 scratchpad
+bindsym $mod+i [instance="music"] scratchpad 	 show 
+exec_always --no-startup-id urxvt -geometry 79x8 -name music  -uc -e ranger ~/Videos/yt/
 
-for_window [instance="monitor"] floating enable
-for_window [instance="monitor"] move scratchpad
-exec_always --no-startup-id urxvt -geometry 79x8 -name monitor -uc -e htop
-bindsym $mod+m [instance="monitor"] scratchpad show 
+# Adds a process monitor in the lower left hand corner of the screen
+for_window	   [instance="monitor"] floating 	  enable
+for_window	   [instance="monitor"] sticky 	  	  toggle 
+for_window	   [instance="monitor"] move 		  position 610 px 642 px
+for_window	   [instance="monitor"] move 		  scratchpad
+bindsym $mod+m [instance="monitor"] scratchpad    show 
+exec_always --no-startup-id urxvt -geometry 79x6 -name monitor -uc -e htop
 
-exec_always --no-startup-id urxvt -uc -name workspace10-terminal
+# Adds a sticky window to the scratchpad, which can be called with $mod+y
+for_window		    [instance="scratch"] floating 	  enable
+for_window		    [instance="scratch"] sticky 	  toggle 
+for_window	   		[instance="scratch"] move 		  position 630 px 30 px
+for_window		    [instance="scratch"] move 		  scratchpad
+bindsym $mod+Return [instance="scratch"] scratchpad   show 
+exec_always --no-startup-id urxvt -geometry 77x25 -name scratch -uc -e bash 
+
+exec_always --no-startup-id urxvt -cd ~/Desktop -uc -name workspace10-terminal -e bash 
 for_window [instance="workspace10-terminal"] move workspace $workspace10
 
+for_window		    [instance="networkConfig"] floating 	  enable
 
-bindsym $mod2+Shift+l exec /home/myc3lium/.config/i3/lock.sh
-bindsym $mod2+Shift+k exec /home/myc3lium/.config/i3/menuScript
+
+bindsym $mod+Control+l exec /home/myc3lium/.config/i3/lock.sh
+bindsym $mod+Shift+Return exec /home/myc3lium/.config/i3/menuScript
+
 bindsym $mod+q kill
 bindsym $mod+b exec /home/myc3lium/.config/i3/dmenu
-bindsym $mod+u exec urxvt -geometry 64x16 -sl 0 -uc -name urxvt 
+bindsym $mod+u exec urxvt -geometry 64x16 -sl 0 -uc -name urxvt -e bash
 bindsym $mod+y move position center
+# bindsym $mod+Shift+h floating toggle;floating toggle 
 
-# start a terminal
-bindsym $mod+Return exec urxvt -geometry 64x16 -sl 0 -uc -e tmux -2
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% # increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% # decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle        # mute sound
+
+# Make screenshots
+bindsym Print exec --no-startup-id scrot            # Normal
+bindsym Shift+Print exec --no-startup-id scrot -d 3 # Delay
+
+# Toggle touchpad on/off
+bindsym XF86TouchpadToggle exec --no-startup-id /home/myc3lium/.bin/toggle_pad
+bindsym $mod+g exec --no-startup-id /home/myc3lium/.bin/toggle_pad
 
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id xmodmap -e "clear lock"
@@ -262,12 +313,11 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 # --blur-background  blur background of transparent windows
 
 # compton without shadows
-exec_always --no-startup-id compton -z -f -b -D 2
+# exec_always --no-startup-id compton -z -f -b -D 2
 
 # compton *with* shadows
-# exec_always --no-startup-id compton -z -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5
+exec_always --no-startup-id compton -z -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5
 
 exec_always --no-startup-id redshift -O 4450k
-
-exec_always --no-startup-id python3 -c "from os import system;from time import sleep;while True:(system('tracker daemon -k'),sleep(4))"
 exec_always /home/myc3lium/.fehbg
+exec_always "wal -R"

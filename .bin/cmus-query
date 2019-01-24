@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Extract and print the current track information in a human
+# palatable format using 'cmus-remote -Q'. Suitable for use with
+# i3-blocks, etc. Allow autoplay and next track with mouse clicks.
+
+cmus-remote
+if [[ $? != 0 ]]; then
+	return
+fi
+
+case $BLOCK_BUTTON in
+	1) cmus-remote --pause    ;; # Left click
+	4) cmus-remote --next  	  ;; # Scroll up
+	5) cmus-remote --prev 	  ;; # Scroll down
+
+esac
+
+if [[ "$(cmus-remote -Q | grep "status p")" = "status paused" ]]; then
+	echo -n "  "
+else
+	echo -n "  "
+fi
+
+cmus-remote -C "format_print %a\ ::\ %t"

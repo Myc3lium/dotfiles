@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Open mpv with images scaled to a 
+# sensible size based on the original,
+# by specifying the desired image width 
+# and calculating the height accordingly.
+# Requires python3.
+
+width=700
+
+lineSplit(){
+	echo $1
+	for x in "$1"
+	do
+		echo $x
+	done
+}
+
+filter(){
+	lineSplit "$1"
+}
+
+geometry(){
+	echo "$(exiftool -ImageSize "$1")"
+}
+
+scale(){
+	python3 -c "x, y = [ int(_) for _ in '$1'.split('x') ];ratio = x / y;print ($2 ,'x', int($2 / ratio), sep = '')"
+}
+
+if [ $# -eq 0 ]
+then
+	echo "* Need one or more files."
+else
+	dimensions="$(geometry "$1")"
+	mpv --geometry="$(scale $dimensions $width)" $1
+fi

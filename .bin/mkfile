@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-cp $HOME/Templates/$1 $2.$1
+cp $HOME/Templates/$1 $2$1

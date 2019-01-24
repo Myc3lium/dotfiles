@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright (C) 2012 Stefan Breunig <stefan+measure-net-speed@mathphys.fsk.uni-heidelberg.de>
 # Copyright (C) 2014 kaueraal
-# Copyright (C) 2015 Thiago Perrotta <perrotta dot thiago at poli dot ufrj dot br>
+# Copyright (C) 2015 Thiago Perrotta <perrotta.thiago@poli.ufrj.br>
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,22 +69,24 @@ tx_rate=$(( $tx_diff / $time_diff ))
 # shift by 10 bytes to get KiB/s. If the value is larger than
 # 1024^2 = 1048576, then display MiB/s instead
 
+
+#echo -n "<span size='large'> </span>"
 # incoming
-#echo -n " "
+echo -n "↑ "
 rx_kib=$(( $rx_rate >> 10 ))
 if [[ "$rx_rate" -gt 1048576 ]]; then
   printf '%sM' "`echo "scale=1; $rx_kib / 1024" | bc`"
 else
-  echo -n "${rx_kib}K"
+  echo -n "${rx_kib}Kb"
 fi
 
 echo -n " "
 
 # outgoing
-#echo -n " "
+echo -n "↓ "
 tx_kib=$(( $tx_rate >> 10 ))
 if [[ "$tx_rate" -gt 1048576 ]]; then
   printf '%sM' "`echo "scale=1; $tx_kib / 1024" | bc`"
 else
-  echo -n "${tx_kib}K"
+  echo -n "${tx_kib}Kb"
 fi

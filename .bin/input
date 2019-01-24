@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ $# -gt 0 ]; then
-	echo -n $1
-fi
-
-echo "$(python3 -c print\(input\(\)\))"

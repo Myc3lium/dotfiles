@@ -31,4 +31,4 @@ getDir(){
 }
 
 PS1='\n$(userHost)> => $(getDir) $(gitStatus)\n ── ﬦ :  '
-PS2='└─── ? :  '
+

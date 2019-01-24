@@ -1,3 +1,14 @@
+#
+#         ████████╵     ███████      ████████╷   ██╷    ██╷   ████████     ████████╷
+#         ██┌─── ██╷   ██┌─── ██╷   ██┌──────┘   ██│    ██│   ██┌─── ██╷   ██┌─────┘
+#         ██│    ██│   ██│    ██│   ██╵          ██│    ██│   ██│    ██│   ██│
+#         ██╵    ██│   ██╵    ██│    ███████╵    ██╵    ██│   ██╵    ██│   ██│
+#         ████████ ┘   █████████│    ╶────╴██╷   █████████│   ███████ ─┘   ██│
+#         ██┌─── ██│   ██┌─── ██│          ██│   ██┌─── ██│   ██┌─── ██╷   ██│
+#  ███╷   ██╵    ██╵   ██│    ██│          ██│   ██│    ██│   ██│    ██│   ██╵
+#  ███│   ████████╷    ██│    ██│    ███████┌┘   ██│    ██│   ██│    ██│   ████████╷
+#  ╶──┘   ╶───────┘    ╶─┘    ╶─┘    ╶──────┘    ╶─┘    ╶─┘   ╶─┘    ╶─┘   ╶───────┘
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -9,21 +20,32 @@ HISTCONTROL=ignoreboth
 HISTSIZE=30
 HISTFILESIZE=100
 shopt -s histappend
+export PROMPT_COMMAND="history -a; history -n" # auto-sync history
 
-# automatically change directories
+# Automatically change directories
 shopt -s autocd
 
-# update line/col count after each command
+# Update line/col count after each command
 shopt -s checkwinsize
 
-# PS1='\n╭─[ \u ] [ \w ]\n╰── ﬦ :  '
+# Find minor errors in directory spellings
+shopt -s cdspell
 
-source ~/.psrc
+# Prompt config
+green="$(tput setaf 10)"
+purple="$(tput setaf 5)"
+blue="$(tput setaf 12)"
+normal="$(tput sgr0)"
 
-# make less more friendly for non-text input files, see lesspipe(1)
+PS2='|: '
+PS1='\n  [\[$blue\]\u\[$green\] ∘ \[$purple\]\w\[$normal\]] \[$green\]→\[$normal\] '  ## Patched fonts
+#PS1='\n  ┍ $blue \u$normal + $green\w$normal\n  └╼ Λ  ∘  '  ## Patched fonts
+
+
+# Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# enable color support of ls and also add handy aliases
+# Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=always --group-directories-first'
@@ -32,70 +54,57 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-# colored GCC warnings and errors / exports
+# Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Useful exports
 export EDITOR=vim
+export VISUAL=vim # Calcurse notes
 export WWW_HOME="google.com"
 export TERM="xterm-256color"
+export PYTHONSTARTUP="$HOME/.pyrc"
 
-# some more ls aliases
+# Some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias L='ls -AlF'
 
-alias dir="ls --color=always -Altph"                  #List all files in dir.
-alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
-alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"     # list top cpu consuming processes
-
-alias lspkg="apt list --installed | grep "                        #searches installed packages
-alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
-alias lsdp="apt-cache --installed depends "                       #lists package dependencies
-alias pks="apt search " #find a package based on name
-alias pss="gpg -d ~/.Private_Docs/pss.new.asc.asc | less"
-
-alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
-alias ahist="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day" +"%F")" -e "$(date -d "-2 day" +"%F")" -e "$(date -d "-3 day" +"%F")" /var/log/apt/history.log | less -R"
-alias less="less -R"
-
-alias oyvey="bleachbit --preset -c && shutdown now"
-alias printer-kill="lprm -"
-alias pkfo="apt-cache show"
-alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
-alias net="nmcli dev wifi"
-alias cnct="nmcli -a device wifi connect"
-alias w3m="w3m -no-graph -no-mouse -o auto_image=FALSE "
-alias feh="~/.bin/feh_scale"
-
-
-# find the size of an installed package
-function pkmg(){
-	apt-cache show $1 | grep Installed-Size | python3 -c "from sys import stdin;print(stdin.read().split()[1])"
-}
-
-# python3 help from outside python
-function pyhelp(){
-    python3 -c "exec('help(\'$1\')')" | less
-}
-
-# allow execution of stuff in .bin
+# Allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
+
+# Source aliases
+source ~/.bin/aliases.sh
 
 # wal restore
 # wal -n -R -q
+# wal -q --theme sexy-numixdarkest
+# wal -q --theme sexy-dotshare
+# wal -q --theme sexy-gjm
+# wal -q --theme sexy-invisibone
+# wal -q --theme sexy-monokai
+# wal -q --theme sexy-vacuous2
+# wal -q --theme sexy-visibone-alt-2
+# wal -q --theme sexy-jasonwryan
+# wal -q --theme sexy-hund
+# wal -q --theme sexy-material
+# wal -q --theme sexy-user-77-mashup-colors
+# wal -q --theme sexy-monokai
+# wal -q --theme sexy-navy-and-ivory
+# wal -q --theme sexy-tartan
+# wal -q --theme base16-gruvbox-pale
+#wal -q --theme base16-gruvbox-hard
+# wal -q --theme base16-material
+# wal -q --theme base16-onedark
+# wal -q --theme base16-tomorrow-night
+# wal -q --theme base16tooth
+# wal -q --theme base16-codeschool
+# wal -q --theme tempus_rift
+# wal -q --theme tempus_warp
+# wal -q --theme darktooth
+# wal -q --theme dkeg-bluetype
+# wal -q --theme dkeg-blend
+# wal -q --theme hybrid-material
+# wal -q --theme spacemacs
+# wal -q --theme vscode
 
-# good themes
-# ------------
-# sexy-vacuous2
-# sexy-invisibone
-# sexy-jasonwryan
-# sexy-monokai
-# base16-gruvbox-pale
-# sexy-navy-and-ivory
-# base16tooth
-# darktooth
-# sexy-user-77-mashup-colors
-# spacemacs
-# sexy-material
-
-wal -q --theme sexy-material

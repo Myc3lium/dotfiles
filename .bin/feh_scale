@@ -2,9 +2,10 @@
 
 # Open feh with images scaled to a 
 # sensible size based on the original,
-# by specifying the image width and
+# by specifying the (max) image width and
 # calculating the height accordingly.
-# Requires python3.
+# Requires python[3] because I'm too lazy 
+# to learn sed or awk.
 
 width=700
 

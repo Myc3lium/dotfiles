@@ -1,0 +1,123 @@
+@import "/home/myc3lium/.cache/wal/colors.css";
+
+body {
+	font: "GohuFont Nerd font" !important;
+	font-size: 10px !important;
+}
+
+#tabbrowser-tabs {
+  --tab-min-height: 25px !important;
+  margin-left: 		5px  !important;
+  height: 			25px !important;
+}
+
+.tab-text {
+     font-size: 14px 			!important;
+	 color: 	var(--color15) 	!important; 
+}
+
+#TabsToolbar { 
+	height: 15px !important; 
+	background-color: 	var(--background) !important;
+	color: 				var(--foreground) !important; 
+} 
+
+.tab-background {
+	background-color: var(--background) !important; 		
+}
+
+.tab-line {
+	background-color: var(--foreground); 	
+}
+
+.tab-background[selected=true] {
+	/*
+	 * background-color: var(--background-color) !important; 
+	 * background-image: none 			!important;
+	 * border-radius:  8px 8px 0px 0px !important;
+	 */
+	
+	border-color: 	  #000000 !important; 
+}
+
+.tab-line[selected=true] {
+	border:			  20px			  !important;
+  	background-image: none 			  !important;
+	background-color: var(--color4)   !important; 	
+	color: 			  var(--color4)   !important; 	
+}
+
+/*
+.tab-icon-image {
+	display: none !important;
+}
+*/
+
+.tab-close-button {
+	display: none !important;
+}
+
+.tabbrowser-tab {
+	max-width: 10 !important;
+}
+
+
+#urlbar {
+	text-align:   		center !important;
+  	height:       		25px 			    !important;
+	background-color: 	var(--background) !important;
+	color: 				var(--color15) 	  !important; 
+	border-width: 		0.5px 			  !important;
+	border-radius:  	3px 3px 3px 3px   !important;
+	font-size: 			14px 			  !important;
+
+	margin-top:			-8px 			  !important;
+	margin-bottom:		-8px 			  !important;
+
+	margin-left:		16px 			  !important;
+	margin-right:		8px 			  !important;
+}
+
+#urlbar[focused=true] {
+	color: 			var(--color15) 	!important; 
+	border-color: 	var(--color4) 	!important;
+
+	-webkit-transition: border-color,color 0.05s ease-in-out;
+	transition: border-color,color 0.05s ease-in-out;
+}
+
+#nav-bar {
+  	height:        32px 			       !important;
+	font-size: 	   14px 	  			   !important;
+	border-color:  0.5px var(--foreground) !important;
+	border-bottom: 0.5px var(--foreground) !important;
+}
+
+/*
+#back-button[focused=true] {
+	color: 			   var(--color15) !important;
+	background-image:  none 		  !important;
+	transform: scale(-2, -2);
+}
+
+#forward-button[focused=true] {
+	color: 			   var(--color15) !important;
+	background-image:  none 		  !important;
+	transform: scale(-2, -2);
+}
+*/
+
+#back-button, #forward-button { 
+	display: none !important; 
+}
+
+#nav-bar-overflow-button { 
+	display: none !important; 
+}
+
+#urlbar ::-moz-selection, .searchbar-textbox ::-moz-selection {
+	background-color: var(--color15) !important;
+	color: var(--background) !important;
+}
+
+

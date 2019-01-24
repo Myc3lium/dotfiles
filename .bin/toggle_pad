@@ -1,0 +1,13 @@
+#!/bin/bash
+
+slice(){
+	python3 -c "print(input()[$@])"
+}
+
+option=$(synclient -l | grep TouchpadOff --color=no | slice "-1")
+
+if [ $option = 0 ]; then
+	synclient TouchpadOff=1
+else
+	synclient TouchpadOff=0
+fi

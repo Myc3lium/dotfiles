@@ -1,0 +1,3 @@
+"\C-h":next-history
+"\C-k":previous-history
+"\C-o":backward-delete-char

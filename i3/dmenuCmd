@@ -2,6 +2,8 @@
 
 source $HOME/.config/i3/dmenuColors
 
-option="$(python3 -c "print(chr(-1))" | dmenu -p "~$" -fn $font -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
+option="$(python3 -c "print(chr(-1))" | dmenu -p "~] " -fn $font -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
 
-urxvt -e bash --init-file $HOME/.bashrc -e "$option"
+urxvt -e bash --init-file $HOME/.bashrc -c "$option"
+
+

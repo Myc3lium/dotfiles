@@ -1,0 +1,21 @@
+@import "/home/myc3lium/.cache/wal/colors.css";
+
+@-moz-document url("about:home") {
+	body {
+		font: "TerminessTTF Nerd Font Mono";
+		background-color: #1d2021 !important;
+		color: 		   	  #d5c4a1 !important;
+	}
+}
+
+@-moz-document url("about:blank") {
+	body {
+		background-color: #1d2021 !important;
+		color: 		   	  #d5c4a1 !important;
+	}
+}
+
+/* Hide scrollbar */
+:root{
+  scrollbar-width: none !important;
+}
