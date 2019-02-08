@@ -1,50 +1,50 @@
-shell wal -a 75 -i %s
-shell wal -a 80 -i %s
-shell wal --saturate 1.0 -i %s
-shell wal --saturate 0.49 -i %s
-shell wal -l --saturate 0.8 -i %s
-shell wal -l --saturate 0.1 -i %s
-kk
-find f
-shell wal --saturate 0.9 -i %s
-shell wal --saturate 0.1 -i %s
-shell wal --saturate0.8 -i %s
-shell w %s
-shell wal --saturate 0.6 -i %s
-shell wal --saturate 0.3 -i %s
-shell wal --saturate 0.35 -i %s
-shell wal --saturate 0.48 -i %s
-feh --bg-fill
-shell wal --saturate 0.8 -i %s
-shell wal --saturate 0.2 -i %s
-set preview_images
-shell feh -- %s
-shell -p #
-paste
-heh
-mark
-find .png
 shell wal --saturation 1 -i %s
 find q:
 shell wal --saturate 0.5 -i %s
 shell wal --saturate 0.4 -i %s
-shell wal -n -i %s
 shell wal  -i %s
 shell wal  --saturate 0.8 -i %s
 shell wal  --saturate 0.5 -i %s
 shell wal  --saturate 0.4 -i %s
-shell wal -i %s
-shell  %s
 shell wal --saturate 1 -i %s
 shell wal --saturate 0.7 -i %s
-shell feh %s
 open_with 
 shell urxvt -pixmap %s
-shell vim %s
 open_with vim
 set
-set preview_images True
+shell mpv --no-video %s
+shell feh --bg-scale %s
+shell feh --bg-mac %s
+shell feh --bg-max %s
+shell feh --bg-center %s
+shell feh --bg-tile %s
+shell feh --bg-tile %s --zoom 40
+shell wal --saturate 0.5 -n -i %s
+shell wal --saturate 0.8 -n -i %s
+shell wal -n -i %s
+shell wal %s
+shell wal -i %s
+find .fe
+find f
+deletej
+shell mpv %s
+shell mpv %s --no-video
+shell  %s
+shell feh %s
+del
+shell rm %s
+shell vim %s
+shell mv %s menu.sh
+shell mv %s menu
 shell feh --bg-fill %s
+shell mpv --shuffle  %s
+shell mpv --shuffle  %s --no-video
+bulkrename
+copy
+shell mid3v2 --artist="P.E.P.E" --song="Shadilay" %s
+shell ffmpeg -i %s Shadilay.flac
 delete
 cut
+paste
 
+set preview_images True

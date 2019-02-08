@@ -1,0 +1,8 @@
+#!/bin/bash
+
+notify-send \
+	-h string:fgcolor:#ffffff\
+	-h string:frame_color:#ffffff\
+   	-h string:bgcolor:#000000\
+	-h string:font:"GohuFont Nerd Font 11"\
+   	"$1"

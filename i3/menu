@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo -n "<span font='14.5' font_weight='heavy'><sub>⭘</sub></span> "
+
+if [[ $BLOCK_BUTTON = 1 ]]
+then
+	$HOME/i3/menuScript;
+fi

@@ -13,13 +13,11 @@ case $BLOCK_BUTTON in
 	1) cmus-remote --pause    ;; # Left click
 	4) cmus-remote --next  	  ;; # Scroll up
 	5) cmus-remote --prev 	  ;; # Scroll down
-
 esac
 
-if [[ "$(cmus-remote -Q | grep "status p")" = "status paused" ]]; then
-	echo -n "  "
-else
-	echo -n "  "
-fi
+case "$(cmus-remote -Q | grep "status p")" in
+	"status paused")   echo -n "  " ;;
+	"status playing")  echo -n "  " ;;
+esac
 
-cmus-remote -C "format_print %a\ ::\ %t"
+cmus-remote -C "format_print  %a\ ~\ %t"

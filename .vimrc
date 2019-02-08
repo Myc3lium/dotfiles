@@ -17,9 +17,6 @@ set showcmd
 " Hide file explorer banner
 let g:netrw_banner = 0
 
-" Edit without needing to write
-nnoremap <S-e> :edit! <Space>
-
 " split in sensible directions.
 set splitbelow
 set splitright
@@ -36,8 +33,8 @@ set tabstop=4
 " set .
 set shiftwidth=4
 
-" set timeout on <esc> ! vital for not being extra fucking slow on exiting
-" insert mode ffs.
+" set timeout on <esc>. This is vital for not being extra fucking slow on exiting
+" insert mode.
 set timeoutlen=0 ttimeoutlen=0
 
 " set color representation.
@@ -52,11 +49,25 @@ filetype plugin indent on
 " Easier command mode.
 nnoremap , :
 
-" Stop arrow key navigation in normal mode.
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
+"Easier search mode
+nnoremap \ /
+
+" Edit without needing to write
+nnoremap <S-e> :edit! <Space>
+
+" Stop arrow key navigation. 
+nnoremap <Up> 		<Nop>
+nnoremap <Down> 	<Nop>
+nnoremap <Left> 	<Nop>
+nnoremap <Right> 	<Nop>
+inoremap <Up> 		<Nop>
+inoremap <Down> 	<Nop>
+inoremap <Left> 	<Nop>
+inoremap <Right> 	<Nop>
+
+" Stop backspace and enter keys in insert.
+inoremap <Backspace> <Nop>
+inoremap <Return>    <Nop>
 
 " Remove ex mode entry. 
 nnoremap Q <Nop>
@@ -64,15 +75,17 @@ nnoremap Q <Nop>
 " Unmap annoying justify text thing.
 nnoremap J <Nop>
 
-" view buffers.
+" View buffers.
 nnoremap <C-b> :buffers<CR>:buffer!<Space>
 
 " More comfortable start and end of line shortcuts
 " in normal and visual modes.
 nnoremap <C-a> ^
 nnoremap <C-e> $
+onoremap <C-a> ^
+onoremap <C-e> $
 
-vnoremap <C-a> ^
+vnoremap <C-a> ^ 
 vnoremap <C-e> $
 
 " Home, end, backspace, delete and forward backward navigation 
@@ -109,10 +122,6 @@ vnoremap <C-X> "+d
 vnoremap r c
 nnoremap r c
 
-" Cycle buffers in normal mode.
-" nnoremap <C-k> :bnext 	  <CR>
-" nnoremap <C-j> :bprevious <CR>
-
 " Navigation.
 nnoremap <L>   l
 nnoremap <H>   h
@@ -122,12 +131,25 @@ vnoremap f   <C-f>
 vnoremap K   <C-b>
 
 " Misc commands.
-command Gr w !tee | groff -ms -Tpdf > %.pdf; pkill zathura; zathura %.pdf &
-command D  read ! date
-command Ge !groff -ms -e % -Tpdf > %.pdf; pkill zathura; zathura %.pdf &
-command Ecpt w !tee | gpg -ac --cipher-algo TWOFISH | clip
-command Dcpt w !tee | gpg -d
-command Cc !gcc %:t -o %:t.out ; rm %:t.out
+command D  read !date
 command W w
 command Q q
 command WQ wq
+
+
+" Reload i3 config and Xresources on write.
+autocmd BufWritePost config silent! execute "!i3-msg reload" | redraw!
+autocmd BufWritePost .Xresources silent! execute "!xrdb ~/.Xresources" | redraw!
+autocmd BufWritePost config.h,config.def.h silent! execute "!make install" | redraw!
+
+
+" Rewrite ms documents on write
+autocmd BufwritePost *.ms silent! execute "!groff -ms -Tpdf % > %.pdf" | redraw!
+
+" Strip whitespace on write with
+" - Haskell
+" - C
+" - Python
+" - Prolog
+" - Bash
+autocmd BufWritePre *.c,*.py,*.pl,*.sh,*.hs :%s/\s\+$//e

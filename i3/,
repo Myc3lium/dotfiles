@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ -z $LOCATION ]]
+then
+	LOCATION=Derby
+fi
+
+main(){
+	query="$(curl -s wttr.in/${LOCATION}?0T)"
+
+	echo "$query" | awk '/dy/{ print $NF }'
+	echo "$query" | awk '/°C/{ print $(NF-1),$NF }'
+	echo "$query" | awk '/km\/h/{ print $(NF-2),$(NF-1),"km/h" }'
+}
+
+main

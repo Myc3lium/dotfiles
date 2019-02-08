@@ -1,22 +1,3 @@
 #!/bin/bash
 
-# source $HOME/.config/i3/dmenuColors
-# 
-# names(){
-# 	nmcli dev wifi | python3 -c "
-# from sys import stdin;
-# file = [line.split() for line in stdin]
-# for line in file[2:-1]:
-# 	if line[0] == '*':
-# 		print('[%s]' % (line[1] + ' ' + line[-2]))
-# 	else:
-# 		print(line[0] + ' ' + line[-2])"
-# }
-# 
-# option="$(names | dmenu -fn $font -i -nb $nbg -nf $nfg -sf $sfg -sb $sbg)"
-# if [ -n "$option" ]; then
-# 	pss="$(python3 -c 'print(chr(-1))' | dmenu -p "[Wifi PassWord for $option]" -fn $font -i -l -b -nb $nbg -nf $nbg -sf $sfg -sb $sbg)"
-# 	echo "$pss" | nmcli -a device wifi connect $option
-# fi
-
 urxvt -name "networkConfig" -e nmtui

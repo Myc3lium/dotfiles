@@ -7,4 +7,6 @@ def main():
                 stdout = -1, stderr = -1).communicate()[0].decode().split('\n')[2:-1]]
     return ' '.join(lines) if lines else 'Weather!'
 
-print('<span size=\'large\'> </span>', main())
+print('<span size=\'large\'> </span>', main())
+
+

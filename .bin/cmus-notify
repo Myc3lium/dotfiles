@@ -1,27 +1,21 @@
 #!/bin/bash
 
-# Simple script to notify using notify-send when the currently
-# playing track changes in cmus.
+# Simple script to notify the user using notify-send 
+# when the currently playing track changes in cmus.
 
-qry(){
-	while read -r line; do
-		if [[ $line =~ 'tag title'* ]]; then
-			echo -n ${line:10} 
-		fi
-
-	done <<< "$(cmus-remote -Q)"
+get(){
+	cmus-remote -C "format_print %a\ -\ %t"
 }
 
-lastStatus="$(qry)"
-
-while true; do
-	new="$(qry)"
-
-	if [[ "$new" != "$lastStatus" ]]; then
-		notify-send "Now playing:\n$new"
-		lastStatus="$new"
+ttl="$(get)"
+while true
+do
+	test="$(get)"
+	if [[ "$ttl" != "$test" ]]
+	then
+		notify " [Now playing]\n$test"
+		ttl="$test"
 	fi
-
-	sleep 2
-
+	sleep 1
 done
+

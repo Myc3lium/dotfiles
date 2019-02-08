@@ -38,8 +38,10 @@ blue="$(tput setaf 12)"
 normal="$(tput sgr0)"
 
 PS2='|: '
-PS1='\n  [\[$blue\]\u\[$green\] ∘ \[$purple\]\w\[$normal\]] \[$green\]→\[$normal\] '  ## Patched fonts
+#PS1='\n  [\[$blue\]\u\[$green\] ∘ \[$purple\]\w\[$normal\]] \[$green\]→\[$normal\] '  ## Patched fonts
 #PS1='\n  ┍ $blue \u$normal + $green\w$normal\n  └╼ Λ  ∘  '  ## Patched fonts
+
+PS1='\n  【\[$blue\]\u\[$green\] ∘ \[$purple\]\w\[$normal\]】 \[$green\]→\[$normal\] '  ## Patched fonts
 
 
 # Make less more friendly for non-text input files, see lesspipe(1)
@@ -63,6 +65,7 @@ export VISUAL=vim # Calcurse notes
 export WWW_HOME="google.com"
 export TERM="xterm-256color"
 export PYTHONSTARTUP="$HOME/.pyrc"
+export LOCATION=Derby # Weather blocklet 
 
 # Some more ls aliases
 alias ll='ls -alF'

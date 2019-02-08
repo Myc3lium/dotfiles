@@ -3,7 +3,7 @@
 !#define FONT TerminessTTF Nerd Font Mono
 
 !#include ".cache/wal/colors.Xresources"
-#define FONT GohuFont Nerd Font
+#define FONT GohuFont\ Nerd\ Font\ Mono
 #define FSIZE 10.5
 
 ! text formatting
@@ -12,7 +12,7 @@ URxvt.font: xft:FONT:size=FSIZE:Regular
 URxvt.boldFont: xft: FONT : size=FSIZE:Regular
 URxvt.italicFont: xft: FONT : size=FSIZE Italic
 URxvt.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
-
+!URxvt.letterSpace: 2.5
 ! misc coloring
 ! URxvt.highlightColor: rgb:83/a5/98
 ! URxvt.highlightTextColor: rgb:1d/20/21
@@ -54,9 +54,6 @@ URxvt.iso14755_52: false
 ! Cursor settings
 ! URxvt.cursorColor:rgb:b8/bb/26
 URxvt.cursorUnderline:True
-
-
-
 
 
 ! Xft settings
