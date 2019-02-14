@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ufetch-debian - tiny system info for debian
-clear
+#clear
 ## INFO
 
 # user is already defined
@@ -58,8 +58,6 @@ ${c1}  \\   -  _/     ${lc}SHELL:     ${ic}${shell}${reset}
 ${c0}   . __/  \\     ${lc}${envtype}:        ${ic}${WM}${reset}
 ${c0}       \\__/ 
 EOF
-
-#python3 -c "nl = lambda x: print('\n', ' '*x, end = '') ;col = lambda x, y: [print('\x1b[48;5;{}m  \x1b[0m'.format(i), end = '') for i in range(x, y)] ;nl(15) ;col(0, 8) ;nl(15) ;col(8, 16) ;print()"
 
 tput setaf 7
 echo

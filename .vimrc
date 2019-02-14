@@ -33,8 +33,8 @@ set tabstop=4
 " set .
 set shiftwidth=4
 
-" set timeout on <esc>. This is vital for not being extra fucking slow on exiting
-" insert mode.
+" set timeout on <esc>. This is vital for not 
+" being extra fucking slow on exiting insert mode.
 set timeoutlen=0 ttimeoutlen=0
 
 " set color representation.
@@ -43,6 +43,7 @@ set term=screen-256color
 colorscheme wal 
 
 " enable sytax and filetype plugins.
+filetype off
 syntax on
 filetype plugin indent on
 
@@ -72,6 +73,16 @@ inoremap <Return>    <Nop>
 " Remove ex mode entry. 
 nnoremap Q <Nop>
 
+" More comfortable quit!.
+" nnoremap <C-q> :q! <Cr>
+
+" Write in insert and normal mode.
+" inoremap <C-s> :w <Cr>
+" nnoremap <C-s> :w <Cr>
+
+" More comfortable visual block mode.
+nnoremap <C-n> <C-v>
+
 " Unmap annoying justify text thing.
 nnoremap J <Nop>
 
@@ -79,7 +90,7 @@ nnoremap J <Nop>
 nnoremap <C-b> :buffers<CR>:buffer!<Space>
 
 " More comfortable start and end of line shortcuts
-" in normal and visual modes.
+" in normal, pending and visual modes.
 nnoremap <C-a> ^
 nnoremap <C-e> $
 onoremap <C-a> ^
@@ -107,6 +118,9 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-h> <Down>
 cnoremap <C-k> <Up>
+cnoremap <C-n> <C-Left>
+cnoremap <C-m> <C-Right>
+
 
 " Copy/Paste to X clipboard
 " in normal and visual modes.
@@ -152,4 +166,7 @@ autocmd BufwritePost *.ms silent! execute "!groff -ms -Tpdf % > %.pdf" | redraw!
 " - Python
 " - Prolog
 " - Bash
-autocmd BufWritePre *.c,*.py,*.pl,*.sh,*.hs :%s/\s\+$//e
+autocmd BufWritePre *.c,*.py,*.pl,*.sh,*.hs,*.md :%s/\s\+$//e
+
+" Compile g-markdown to html5 on write.
+autocmd BufWritePost *.md silent! execute "!pandoc % -f markdown_github -t html5 --css ~/Templates/github.css -o %.html" | redraw!

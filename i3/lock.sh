@@ -1,14 +1,24 @@
 #!/bin/bash
 
-scrot ~/Pictures/screen.png
-
-convert -gaussian-blur 4x4 ~/Pictures/screen.png ~/Pictures/screen.png
 cmus-remote -u
 pactl set-sink-mute 0 1
 
-i3lock --tiling -e -f -d -n -i ~/Pictures/screen.png # ~/Pictures/screen.png ## -n options stops forking, so commands afterwards
-                                               		 # aren't executed until unlock. This is important for pausing music etc.
+img="$(cat ~/.fehbg | awk '/feh/{ printf $NF }' | sed "s/'/ /g" )"
+case "$img" in
+	*.png) ;;
+	*)
+		dimensions="$(xdpyinfo | awk '/dimensions/{ printf $2 }')"
+		convert $img -resize $dimensions! ~/Pictures/lockscreen.png
+		img=~/Pictures/lockscreen.png
+		;;
+esac
 
+# -n options stops forking, so commands afterwards aren't executed until unlock.
+# This is important for pausing music etc.
+i3lock -e -f -d -n -i $img -I 8
+
+## Undo operations
 cmus-remote -u
 pactl set-sink-mute 0 0
-rm ~/Pictures/screen.png
+
+rm ~/Pictures/lockscreen.png

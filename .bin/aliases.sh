@@ -1,3 +1,12 @@
+# Enable color support of ls and also add handy aliases.
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=always --group-directories-first'
+    alias grep='grep --color=always'
+    alias fgrep='fgrep --color=always'
+    alias egrep='egrep --color=always'
+fi
+
 alias dir="ls --color=always -Altph"                  #List all files in dir.
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
 alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"     # list top cpu consuming processes
@@ -22,6 +31,7 @@ alias w3m="w3m -no-graph -no-mouse -o auto_image=FALSE "
 alias py="python3"
 alias pylocalinst="pip3 install --user "
 alias rld="source ~/.bashrc"
+alias fth="gforth"
 
 clippy(){
 	## Echo data to vim and yank to

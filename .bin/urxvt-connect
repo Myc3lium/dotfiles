@@ -1,7 +1,12 @@
 #!/bin/bash
 
-if ! urxvtc "$@"
+# URxvtd:
+# 	-q : quiet.
+# 	-o : open display.
+# 	-f : fork (exit script without hanging).
+
+if ! urxvtc "$@" # Attempt to connect. On failure:
 then
-	urxvtd -q -o -f
+	urxvtd -q -o -f 
 	urxvtc "$@"
 fi

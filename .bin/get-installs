@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Print out the dependencies for an uninstalled package,
+# filtering those that are already installed.
+# Depends on apt-cache.
+
+all="$(apt-cache depends $1 | awk '/Depends:|\|Depends:/{ print $NF }' | sed '/^$/d')"
+
+for package in $all
+do
+	if [[ "$(apt-cache policy $package | awk '/Installed:/{ print $NF }')" = "(none)" ]]
+	then
+		echo $package
+	fi
+done
+

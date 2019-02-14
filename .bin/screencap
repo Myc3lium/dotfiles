@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ufetch
+wal --preview | tail -2
+scrot -c -d 3 "$HOME/Pictures/capture_$(date '+%d-%m-%y').png"

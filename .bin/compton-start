@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Start compton. Use -s to specify shadowing.
+
+# Compton options
+# -C				 no shadows on docks
+# -c				 shadows on windows
+# -D				 fade timing
+# -r				 shadow radius
+# -o				 shadow opacity
+# -f				 apply fade effects on window change
+# -b				 daemonise
+# --blur-background  blur background of transparent windows
+
+case "$1" in 
+	"-s")
+		compton -z -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5 ;;
+	*) 
+		compton -z -f -b -D 2 ;;
+esac

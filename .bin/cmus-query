@@ -20,4 +20,4 @@ case "$(cmus-remote -Q | grep "status p")" in
 	"status playing")  echo -n "  " ;;
 esac
 
-cmus-remote -C "format_print  %a\ ~\ %t"
+cmus-remote -C "format_print %a\ ~\ %t"

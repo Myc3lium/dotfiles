@@ -4,31 +4,28 @@
 # sensible size based on the original,
 # by specifying the (max) image width and
 # calculating the height accordingly.
-# Requires python[3] because I'm too lazy 
-# to learn sed or awk.
 
-width=700
-
+[[ -z $img_width ]] && img_width=900
 geometry(){
-	for x in $(identify $1)
-	do
-		echo $x | grep "[0-9]*x[0-9]*" > /dev/null
-		if [ $? -eq 0 ]
-		then
-			echo -n $x
-			break
-		fi
-	done
+	identify -format "%[fx:w]x%[fx:h]" "$1"
 }
 
 scale(){
-	python3 -c "x, y = [ int(_) for _ in '$1'.split('x') ];ratio = x / y;print ($2 ,'x', int($2 / ratio), sep = '')"
+	python3 -c "x, y = [ int(_) for _ in '$1'.split('x') ];\
+ratio = x / y;\
+print ($2 ,'x', int($2 / ratio), sep = '')"
 }
 
-if [ $# -eq 0 ]
-then
-	echo "* Need one or more images."
-else
-	dimensions="$(geometry $1)"
-	feh -g "$(scale $dimensions $width)" $1
-fi
+case $# in
+	0) echo "[ Need one or more images. ]" 
+		exit 1
+		;;
+	*) 
+		dimensions="$(geometry "$1")"; 
+		dimensions="$(scale $dimensions $img_width)" 
+		feh -g "$dimensions" "$1"
+		exit 0
+		;;
+esac
+
+

@@ -1,5 +1,37 @@
 #!/bin/bash
 
+# wal restore
+# wal -n -R -q
+# wal -q --theme sexy-numixdarkest
+# wal -q --theme sexy-dotshare
+# wal -q --theme sexy-gjm
+# wal -q --theme sexy-invisibone
+# wal -q --theme sexy-monokai
+# wal -q --theme sexy-vacuous2
+# wal -q --theme sexy-visibone-alt-2
+# wal -q --theme sexy-jasonwryan
+# wal -q --theme sexy-hund
+# wal -q --theme sexy-material
+# wal -q --theme sexy-user-77-mashup-colors
+# wal -q --theme sexy-monokai
+# wal -q --theme sexy-navy-and-ivory
+# wal -q --theme sexy-tartan
+# wal -q --theme base16-gruvbox-pale
+#wal -q --theme base16-gruvbox-hard
+# wal -q --theme base16-material
+# wal -q --theme base16-onedark
+# wal -q --theme base16-tomorrow-night
+# wal -q --theme base16tooth
+# wal -q --theme base16-codeschool
+# wal -q --theme tempus_rift
+# wal -q --theme tempus_warp
+# wal -q --theme darktooth
+# wal -q --theme dkeg-bluetype
+# wal -q --theme dkeg-blend
+# wal -q --theme hybrid-material
+# wal -q --theme spacemacs
+# wal -q --theme vscode
+
 # nbg="#151515"
 # nfg="#f1ebeb"
 # sbg="#383636"
@@ -22,6 +54,5 @@ sfg=$nfg
 #nfg="#ffffff"
 #sbg="#757978"
 #sfg=$nfg
-
 
 font="terminus"

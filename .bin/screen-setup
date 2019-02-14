@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Attempt to connect $display_ using xrandr.
+# Quit if $display_ is not specified.
+
+
+[[ -z "$display_" ]] && return;
+
+case "$(xrandr | awk "/$display_/{ print $2 }")" in
+	connected)	
+		xrandr --output $display_ --left-of LVDS-1 --auto ;;
+
+	disconnected) 
+		return ;;
+esac

@@ -10,7 +10,6 @@ cp $HOME/.pyrc $current/.pyrc
 
 rm -r $current/ranger/
 cp -r $HOME/.config/ranger $current/ranger
-cp $HOME/.psrc $current/
 
 rm -r $current/i3/
 cp -r $HOME/.config/i3 $current/i3/

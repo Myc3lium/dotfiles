@@ -1,6 +1,7 @@
 #!/bin/bash
 
 notify-send \
+	-t 20\
 	-h string:fgcolor:#ffffff\
 	-h string:frame_color:#ffffff\
    	-h string:bgcolor:#000000\
