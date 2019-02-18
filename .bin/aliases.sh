@@ -50,7 +50,10 @@ function pyhelp(){
 }
 
 # Man with zathura
+zman_ (){
+	man -Tpdf $@ | zathura -
+}
 zman (){
-	man -Tpdf $@ | zathura -  &
+	zman_ "$@" &
 }
 

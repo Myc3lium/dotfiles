@@ -40,6 +40,10 @@ set timeoutlen=0 ttimeoutlen=0
 " set color representation.
 set term=screen-256color
 
+" Persistant undo/redo
+set undofile
+set undodir=~/.vim/undodir
+
 colorscheme wal 
 
 " enable sytax and filetype plugins.
@@ -52,6 +56,9 @@ nnoremap , :
 
 "Easier search mode
 nnoremap \ /
+
+" Find and replace in normal.
+nnoremap <C-c> :%s/
 
 " Edit without needing to write
 nnoremap <S-e> :edit! <Space>

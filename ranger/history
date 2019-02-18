@@ -1,3 +1,8 @@
+shell wal --saturate 0.7 -i %s
+open_with 
+shell urxvt -pixmap %s
+open_with vim
+set
 shell mpv --no-video %s
 shell feh --bg-scale %s
 shell feh --bg-mac %s
@@ -11,7 +16,6 @@ shell wal -n -i %s
 shell wal %s
 shell wal -i %s
 find .fe
-find f
 deletej
 shell mpv %s
 shell mpv %s --no-video
@@ -21,30 +25,26 @@ shell rm %s
 shell vim %s
 shell mv %s menu.sh
 shell mv %s menu
-shell mpv --shuffle  %s
 shell mpv --shuffle  %s --no-video
 bulkrename
 copy
 shell mid3v2 --artist="P.E.P.E" --song="Shadilay" %s
 shell ffmpeg -i %s Shadilay.flac
 delete
+
 @
 shell FEH %s
 find `````
-set preview_images True
 shell feh --bg-fill %s
+shell  %s
 shell mpv --shuffle --no-video %s
 shell mkdir downloads %s
 paste
+delete 
+cu
 cut
 paste 
-shell bleachbit -o %s
-shell  %s
-shell bleachbit -s %s
-delete 
-colorscheme 
-set colorscheme=jungle
-
-set colorscheme=snow
-set colorscheme=solarized
-set colorscheme=default
+set preview_images True
+shell echo %s
+find f
+shell mpv --shuffle  %s

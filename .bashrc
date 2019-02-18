@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 #
 #         ████████╵     ███████      ████████╷   ██╷    ██╷   ████████     ████████╷
 #         ██┌─── ██╷   ██┌─── ██╷   ██┌──────┘   ██│    ██│   ██┌─── ██╷   ██┌─────┘
@@ -52,7 +43,7 @@ GPWD(){
 	esac
 }
 
-PS1='\n[\[$purple\]$(GPWD)\[$normal\]] \[$green\]→\[$normal\]  '  ## Patched fonts.
+PS1='\n[\[$purple\]$(GPWD)\[$normal\]]\[$green\] ╼\[$normal\]  '  ## Patched fonts.
 PS2='\[$blue\]↳\[$normal\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
@@ -66,7 +57,7 @@ export EDITOR=vim
 export VISUAL=vim 	   # Calcurse notes.
 export WWW_HOME="google.com"
 export TERM="xterm-256color"
-export PYTHONSTARTUP="$HOME/.pyrc"
+export PYTHONSTARTUP="$HOME/.pyrc.py"
 export LOCATION=Derby  # Weather blocklet.
 export display_=VGA-1  # Xrandr scripts.
 export img_width=700   # feh_scale max width
@@ -78,7 +69,7 @@ export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 source ~/.bin/aliases.sh
 
 # Launch fff and keep current dir on exit.
-ff(){ 
-	~/repos/other/fff/fff "$@"
-	cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+ff() {
+    ~/repos/other/fff/fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
 }
