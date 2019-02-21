@@ -6,13 +6,14 @@
 
 cmus-remote
 if [[ $? != 0 ]]; then
+	echo -n "[]"
 	return
 fi
 
 case $BLOCK_BUTTON in
-	1) cmus-remote --pause    ;; # Left click
-	4) cmus-remote --next  	  ;; # Scroll up
-	5) cmus-remote --prev 	  ;; # Scroll down
+	1) cmus-remote --pause    	 ;; # Left click
+	4) cmus-remote --volume +10% ;; # Scroll up
+	5) cmus-remote --volume -10% ;; # Scroll down
 esac
 
 case "$(cmus-remote -Q | grep "status p")" in

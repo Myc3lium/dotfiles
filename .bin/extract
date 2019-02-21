@@ -2,5 +2,5 @@
 
 for var in "$@"
 do
-	mpv "$var" -o "$var.mp3" --no-video
+	mpv "$var" -o "${var::-4}.mp3" --no-video
 done

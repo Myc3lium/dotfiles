@@ -1,6 +1,3 @@
-shell wal --saturate 0.7 -i %s
-open_with 
-shell urxvt -pixmap %s
 open_with vim
 set
 shell mpv --no-video %s
@@ -39,12 +36,15 @@ shell feh --bg-fill %s
 shell  %s
 shell mpv --shuffle --no-video %s
 shell mkdir downloads %s
-paste
-delete 
 cu
-cut
 paste 
 set preview_images True
 shell echo %s
 find f
 shell mpv --shuffle  %s
+cut
+shell mkdir PL AN ES Band
+past
+paste
+delete 
+shell mv %s "PL AN ES Band"

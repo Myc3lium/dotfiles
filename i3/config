@@ -148,6 +148,7 @@ set $ur_pale       #21292d
 set $ur_inactive   #21292d
 set $ur_indicator  #3f4f57
 
+
 # sexy-mikado
 #set $ur_background #000000
 #set $ur_foreground #bcbcaf
@@ -179,7 +180,7 @@ bar {
                 focused_workspace  $ur_active     $ur_active     $ur_foreground
                 inactive_workspace $ur_inactive   $ur_pale       $ur_foreground
                 urgent_workspace   $ur_foreground $ur_background $ur_foreground
-                                   #  border      background     text
+                                   #    border      background     text
         }
 }
 
@@ -227,25 +228,30 @@ for_window [class="Florence"] 	 	  floating enable
 for_window [class="^.*"] 		 	  border   pixel  1
 for_window [instance="networkConfig"] floating enable
 
-bindsym $mod+Control+l exec /home/myc3lium/.config/i3/lock.sh
-bindsym $mod+Shift+i exec /home/myc3lium/.config/i3/menuScript
+bindsym $mod+Control+l 	exec bash /home/myc3lium/.config/i3/lock.sh
+bindsym $mod+Shift+i 	exec bash /home/myc3lium/.config/i3/menuScript
 
 bindsym $mod+q kill
-bindsym $mod+b exec /home/myc3lium/.config/i3/dmenu
+bindsym $mod+b exec bash /home/myc3lium/.config/i3/dmenu
 bindsym $mod+u exec urxvt -geometry 64x16 -sl 0 -uc -name urxvt -e bash
 bindsym $mod+y move position center
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle        # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% # Increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% # Decrease sound volume
+bindsym XF86AudioMute 		 exec --no-startup-id pactl set-sink-mute 0 toggle # Mute sound
+
+# CMUS remote control
+bindsym XF86AudioPlay exec --no-startup-id cmus-remote --pause # Pause cmus
+bindsym XF86AudioNext exec --no-startup-id cmus-remote --next  # Play next track in library
+bindsym XF86AudioPrev exec --no-startup-id cmus-remote --prev  # Play previous track in library
 
 # Make screenshots
 bindsym Print exec --no-startup-id scrot            # Normal
 bindsym Shift+Print exec --no-startup-id scrot -d 3 # Delay
 
 # Toggle touchpad on/off
-bindsym XF86TouchpadToggle exec --no-startup-id /home/myc3lium/.bin/toggle_pad
+bindsym XF86TouchpadToggle exec --no-startup-id bash /home/myc3lium/.bin/toggle_pad
 bindsym $mod+g exec --no-startup-id /home/myc3lium/.bin/toggle_pad
 
 exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
@@ -256,4 +262,3 @@ exec_always --no-startup-id "/home/myc3lium/.bin/compton-start -s"
 
 exec_always --no-startup-id redshift -O 4450k
 exec_always /home/myc3lium/.fehbg
-exec --no-startup-id bash -c "~/.bin/.wal"

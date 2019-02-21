@@ -11,6 +11,7 @@ alias dir="ls --color=always -Altph"                  #List all files in dir.
 alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
 alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"     # list top cpu consuming processes
 
+alias lsm="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem"
 alias lspkg="apt list --installed | grep "                        #searches installed packages
 alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
 alias lsdp="apt-cache --installed depends "                       #lists package dependencies

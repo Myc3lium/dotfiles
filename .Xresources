@@ -72,3 +72,8 @@ XTerm.font: xft:FONT:size=FSIZE:Regular
 XTerm.boldFont: xft: FONT : size=FSIZE:Regular
 XTerm.italicFont: xft: FONT : size=FSIZE Italic
 XTerm.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
+
+UXTerm.font: xft:FONT:size=14:Regular
+UXTerm.boldFont: xft:FONT:size=14:Regular
+UXTerm.italicFont: xft:FONT:size=14:Italic
+UXTerm.boldItalicFont: xft:FONT:size=14:Italic:Bold

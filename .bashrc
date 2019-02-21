@@ -32,7 +32,7 @@ stty -ixon 				# Disable C-s C-q
 # Prompt config 
 green="$(tput setaf 10)"
 purple="$(tput setaf 5)"
-blue="$(tput setaf 12)"
+blue="$(tput setaf 6)"
 normal="$(tput sgr0)"
 
 # Print nice indicator for cwd.
@@ -43,8 +43,8 @@ GPWD(){
 	esac
 }
 
-PS1='\n[\[$purple\]$(GPWD)\[$normal\]]\[$green\] ╼\[$normal\]  '  ## Patched fonts.
-PS2='\[$blue\]↳\[$normal\] '
+PS1='\n\[${blue}\][\[${purple}\]$(GPWD)\[${normal}\]\[${blue}\]]\[${green}\] ╼\[${normal}\]  '  ## Patched fonts.
+PS2='\[${green}\]↳\[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"

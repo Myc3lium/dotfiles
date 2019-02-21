@@ -3,10 +3,10 @@
 " set background=dark
 colorscheme gruvbox
 
-" set guifont=Terminus\ 12
+set guifont=Terminus\ 14
 " set guifont=Ubuntu\ Mono\ Nerd\ Font\ 11
 " set guifont=Ubuntu\ Mono\ Nerd\ Font\ 11
-set guifont=GohuFont\ Nerd\ Font\ 12
+" set guifont=GohuFont\ Nerd\ Font\ 12
 
 " Toolbar
 set guioptions -=T
