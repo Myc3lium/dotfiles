@@ -46,7 +46,8 @@
 # base16-gruvbox-hard
 nbg="#1d2021"
 nfg="#d5c4a1"
-sbg="#3f4f57"
+#sbg="#3f4f57"
+sbg="#757978"
 sfg=$nfg
 
 # sexy-mikado

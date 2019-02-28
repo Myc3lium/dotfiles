@@ -1,10 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/myc3lium'
-let g:netrw_dirhist_2='/home/myc3lium/.bin'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/myc3lium/Documents/code/repos/other/vim-haskellConceal/after/syntax'
+let g:netrw_dirhist_2='/home/myc3lium/.vim/colors'
 let g:netrw_dirhist_3='/home/myc3lium'
-let g:netrw_dirhist_4='/home/myc3lium/Documents/code/repos/personal/F-Lisp/src/__pycache__'
-let g:netrw_dirhist_5='/home/myc3lium/Documents/code/repos/other/dwm-6.0'
-let g:netrw_dirhist_6='/home/myc3lium'
-let g:netrw_dirhist_7='/home/myc3lium/Downloads'
-let g:netrw_dirhist_8='/home/myc3lium/Working'
+let g:netrw_dirhist_4='/home/myc3lium/.vim'

@@ -1,13 +1,12 @@
-#
-#         ████████╵     ███████      ████████╷   ██╷    ██╷   ████████     ████████╷
-#         ██┌─── ██╷   ██┌─── ██╷   ██┌──────┘   ██│    ██│   ██┌─── ██╷   ██┌─────┘
-#         ██│    ██│   ██│    ██│   ██╵          ██│    ██│   ██│    ██│   ██│
-#         ██╵    ██│   ██╵    ██│    ███████╵    ██╵    ██│   ██╵    ██│   ██│
-#         ████████ ┘   █████████│    ╶────╴██╷   █████████│   ███████ ─┘   ██│
-#         ██┌─── ██│   ██┌─── ██│          ██│   ██┌─── ██│   ██┌─── ██╷   ██│
-#  ███╷   ██╵    ██╵   ██│    ██│          ██│   ██│    ██│   ██│    ██│   ██╵
-#  ███│   ████████╷    ██│    ██│    ███████┌┘   ██│    ██│   ██│    ██│   ████████╷
-#  ╶──┘   ╶───────┘    ╶─┘    ╶─┘    ╶──────┘    ╶─┘    ╶─┘   ╶─┘    ╶─┘   ╶───────┘
+#   
+#    █████                       █████     
+#   ▒▒███                       ▒▒███      
+#    ▒███████   ██████    █████  ▒███████  
+#    ▒███▒▒███ ▒▒▒▒▒███  ███▒▒   ▒███▒▒███ 
+#    ▒███ ▒███  ███████ ▒▒█████  ▒███ ▒███ 
+#    ▒███ ▒███ ███▒▒███  ▒▒▒▒███ ▒███ ▒███ 
+#    ████████ ▒▒████████ ██████  ████ █████
+#   ▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ 
 
 # If not running interactively, don't do anything.
 case $- in
@@ -27,12 +26,12 @@ shopt -s checkwinsize 	# Update line/col count after each command
 shopt -s cdspell 		# Find minor errors in directory spellings
 shopt -s extglob 		# Enable exclusive globbing of filenames
 
-stty -ixon 				# Disable C-s C-q
+stty -ixon 				# Disable C-s C-q.
 
 # Prompt config 
 green="$(tput setaf 10)"
 purple="$(tput setaf 5)"
-blue="$(tput setaf 6)"
+blue="$(tput setaf 8)"
 normal="$(tput sgr0)"
 
 # Print nice indicator for cwd.
@@ -43,8 +42,9 @@ GPWD(){
 	esac
 }
 
-PS1='\n\[${blue}\][\[${purple}\]$(GPWD)\[${normal}\]\[${blue}\]]\[${green}\] ╼\[${normal}\]  '  ## Patched fonts.
-PS2='\[${green}\]↳\[${normal}\] '
+# PS1='\n\[${blue}\][\[${green}\]$(GPWD)\[${normal}\]\[${blue}\]]\[${green}\] →\[${normal}\]  '  ## Patched fonts.
+PS1='\n\[${blue}\][ \[${green}\]$(GPWD)\[${normal}\]\[${blue}\] ]─\[${green}\]%\[${normal}\]  '  ## Patched fonts.
+PS2='\[${blue}\]| \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -57,7 +57,7 @@ export EDITOR=vim
 export VISUAL=vim 	   # Calcurse notes.
 export WWW_HOME="google.com"
 export TERM="xterm-256color"
-export PYTHONSTARTUP="$HOME/.pyrc.py"
+export PYTHONSTARTUP="$HOME/.pyrc"
 export LOCATION=Derby  # Weather blocklet.
 export display_=VGA-1  # Xrandr scripts.
 export img_width=700   # feh_scale max width

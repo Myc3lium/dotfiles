@@ -17,8 +17,13 @@ case $BLOCK_BUTTON in
 esac
 
 case "$(cmus-remote -Q | grep "status p")" in
-	"status paused")   echo -n "  " ;;
-	"status playing")  echo -n "  " ;;
+	"status paused")   
+		echo -n "  " 
+	;;
+	
+	"status playing")  
+		echo -n "  " 
+	;;
 esac
 
 cmus-remote -C "format_print %a\ ~\ %t"
