@@ -86,19 +86,19 @@ bindsym $mod+p focus parent
 # focus the child container
 bindsym $mod+d focus child
 
-set $workspace7 "1:[]"
+set $workspace7 "1:[Other <b></b>]"
 set $workspace8 "2:[Anon <b>﨩</b>]"
 set $workspace9 "3:[Web 爵]"
 set $workspace10 "4:[Term ]"
-set $workspace_hyph "5:[Media ]"
-set $workspace_eq "6:[]"
+set $workspace11 "5:[Media ]"
+# set $workspace_eq "6:[]"
 
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
-bindsym $mod+minus workspace $workspace_hyph
-bindsym $mod+equal workspace $workspace_eq
+bindsym $mod+minus workspace $workspace11
+# bindsym $mod+equal workspace $workspace_eq
 
 bindsym $mod+bracketleft workspace prev
 bindsym $mod+bracketright workspace next
@@ -109,8 +109,8 @@ bindsym $mod+Shift+7 	  move container to workspace $workspace7
 bindsym $mod+Shift+8 	  move container to workspace $workspace8
 bindsym $mod+Shift+9 	  move container to workspace $workspace9
 bindsym $mod+Shift+0 	  move container to workspace $workspace10
-bindsym $mod+Shift+minus  move container to workspace $workspace_hyph
-bindsym $mod+Shift+equal  move container to workspace $workspace_eq
+bindsym $mod+Shift+minus  move container to workspace $workspace11
+# bindsym $mod+Shift+equal  move container to workspace $workspace_eq
 bindsym $mod+Shift+bracketleft  move container to workspace prev
 bindsym $mod+Shift+bracketright move container to workspace next
 
@@ -152,15 +152,6 @@ bindsym $mod+r mode "resize"
 #set $ur_inactive   #21292d	
 #set $ur_indicator  #3f4f57   
 
-# base16-gruvbox-hard
-set $ur_background #1d2021
-set $ur_foreground #d5c4a1
-#set $ur_active     #3f4f57
-set $ur_active     #757978
-set $ur_pale       #21292d
-set $ur_inactive   #21292d
-set $ur_indicator  #3f4f57
-
 # sexy-mikado
 #set $ur_background #000000
 #set $ur_foreground #bcbcaf
@@ -169,13 +160,23 @@ set $ur_indicator  #3f4f57
 #set $ur_inactive   #322a2c
 #set $ur_indicator  #3f4f57
 
-# my-soul
-#set $ur_background #111111
-#set $ur_foreground #cecece
-#set $ur_active     #757978
-#set $ur_pale       #111111
-#set $ur_inactive   #4B4B4B 
+# colors.Xresources
+#set $ur_background #1d1f21
+#set $ur_foreground #d5d8d6
+#set $ur_active     #384754
+#set $ur_pale       #282a2e
+#set $ur_inactive   #282a2e
 #set $ur_indicator  #3f4f57
+
+# base16-gruvbox-hard
+set $ur_background #1d2021
+set $ur_foreground #d5c4a1
+set $ur_active     #3f4f57
+set $ur_active     #757978
+set $ur_pale       #21292d
+set $ur_inactive   #21292d
+set $ur_indicator  #3f4f57
+
 
 									   # Border		  # 
 client.focused          $ur_background $ur_active     $ur_foreground $ur_indicator
@@ -207,8 +208,8 @@ bar {
 # Most of my custom config
 
 # Add cmus and ranger instances on workspace =
-for_window	   [instance="music-mpv"]  move workspace	$workspace_hyph
-for_window	   [instance="music-cmus"] move workspace 	$workspace_hyph
+for_window	   [instance="music-mpv"]  move workspace	$workspace11
+for_window	   [instance="music-cmus"] move workspace 	$workspace11
 exec_always --no-startup-id urxvt -name "music-cmus"  -uc -e cmus
 exec_always --no-startup-id urxvt -name "music-mpv"   -uc -e ranger ~/Videos/yt/greentexts
 

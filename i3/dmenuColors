@@ -12,12 +12,13 @@
 # wal -q --theme sexy-jasonwryan
 # wal -q --theme sexy-hund
 # wal -q --theme sexy-material
+# wal -q --theme sexy-dwmrob
 # wal -q --theme sexy-user-77-mashup-colors
 # wal -q --theme sexy-monokai
 # wal -q --theme sexy-navy-and-ivory
 # wal -q --theme sexy-tartan
 # wal -q --theme base16-gruvbox-pale
-#wal -q --theme base16-gruvbox-hard
+# wal -q --theme base16-gruvbox-hard
 # wal -q --theme base16-material
 # wal -q --theme base16-onedark
 # wal -q --theme base16-tomorrow-night

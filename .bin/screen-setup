@@ -6,7 +6,7 @@
 
 [[ -z "$display_" ]] && return;
 
-case "$(xrandr | awk "/$display_/{ print $2 }")" in
+case "$(xrandr | awk "/$display_/{ print \$2 }")" in
 	connected)	
 		xrandr --output $display_ --left-of LVDS-1 --auto ;;
 

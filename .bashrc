@@ -29,7 +29,7 @@ shopt -s extglob 		# Enable exclusive globbing of filenames
 stty -ixon 				# Disable C-s C-q.
 
 # Prompt config 
-green="$(tput setaf 10)"
+green="$(tput setaf 2)"
 purple="$(tput setaf 5)"
 blue="$(tput setaf 8)"
 normal="$(tput sgr0)"

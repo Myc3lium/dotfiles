@@ -9,23 +9,26 @@
 "    ▒▒▒▒▒    ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒
 
 if has("win32")
-	nnoremap <C-x> <Esc>
+	inoremap <C-x> <Esc>
 endif
 
-" *Always* show statusline and tabs.
+" *Always* show status line, tabs and command.
 set laststatus=2
 set showtabline=2
+set showcmd
 
 " Highlight control chars. Toggle show with
 " <s> while in normal mode.
 set listchars=tab:╎\ ,eol:§,nbsp:␣,trail:·,extends:⟩,precedes:⟨
 nnoremap s :set list!<Cr>
 
-" Highlight search results.
+" Highlight search results. Use C-l to un-highlight.
 set hlsearch
+nnoremap <silent><C-l> :noh<Cr>
 
-" Show the current command in the status line.
-set showcmd
+" Set spell check options.
+set spelllang=en_gb
+command Spell setlocal spell
 
 " Hide file explorer banner.
 let g:netrw_banner = 0
@@ -36,35 +39,35 @@ set encoding=utf-8
 " Set line numbering options.
 set number relativenumber
 
-" Set tab representation.
+" Set tab representation and shift width.
 set tabstop=4
-
-" Set shift width.
 set shiftwidth=4
 
-" Set timeout on <esc>. This is vital for not
+" Set timeout on Escape. This is vital for not
 " being extra fucking slow on exiting insert mode.
 set timeoutlen=0 ttimeoutlen=0
 
-" Set color representation.
+" Set colour representation.
 set term=screen-256color
+set background=light
 colorscheme wal
 
-" Persistent undo/redo. Very useful.
+" Backup swap files in a more useful place.
+" Move viminfo file somewhere more appropriate.
+" Set persistent undo/redo. Very useful.
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+set viminfo+=n~/.vim/viminfo
 set undofile
 set undodir=~/.vim/undodir/
 
-" Backup swap files in a more useful place.
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-
-" Let vim interpret modelines.
+" Let vim interpret mode lines.
 set modeline
 
-" Enable sytax and filetype plugins.
-filetype off
-syntax   on
-filetype plugin indent on
+" Enable syntax and file-type plugins.
+filetype  off
+syntax    on
+filetype  plugin indent on
 
 " Easier command mode.
 nnoremap , :
@@ -73,7 +76,10 @@ nnoremap : <Nop>
 " Find and replace in normal.
 nnoremap <C-c> :%s/
 
-" Edit without needing to write
+" View buffers.
+nnoremap <C-b> :buffers<CR>:buffer!<Space>
+
+" Edit new files/buffers without needing to write the current one.
 nnoremap <S-e>   :tabedit! <Space>
 nnoremap <Tab>   :tabnext<Cr>
 nnoremap <S-Tab> :tabprev<Cr>
@@ -93,9 +99,6 @@ nnoremap J  <Nop>
 nnoremap r  c
 onoremap r  c
 vnoremap r  c
-
-" View buffers.
-nnoremap <C-b> :buffers<CR>:buffer!<Space>
 
 " More comfortable start and end of line shortcuts
 " in normal, (operator) pending and visual modes.
@@ -150,7 +153,7 @@ onoremap <Right> 	  <Nop>
 onoremap <Backspace>  <Nop>
 onoremap <Return>     <Nop>
 
-" Copy/Paste to X clipboard
+" Delete/Copy/Paste to X clipboard
 " in normal and visual modes.
 nnoremap <C-P>  o<Esc>"+p
 nnoremap <C-Y>  "+y
@@ -159,14 +162,9 @@ vnoremap <C-Y>  "+y
 vnoremap <C-P>  "+p
 vnoremap <C-D>  "+d
 
-" Navigation. Set C-f to work like f, so 
-" the behaviour is effectively swapped.
-onoremap <C-f>  f
-nnoremap <C-f>  f
-nnoremap f      <C-f>
-nnoremap K      <C-b>
-vnoremap f      <C-f>
-vnoremap K      <C-b>
+" Navigation. Shift-j goes down a page, Shift-k goes up.
+nnoremap <S-j> <C-f>
+nnoremap <S-k> <C-b>
 
 " Reload i3 config, header and Xresources on write.
 autocmd BufWritePost config                 silent! execute "!i3-msg reload"       | redraw!
@@ -174,7 +172,7 @@ autocmd BufWritePost .Xresources            silent! execute "!xrdb ~/.Xresources
 autocmd BufWritePost config.h,config.def.h  silent! execute "!make install"        | redraw!
 
 " Rewrite ms documents on write.
-autocmd BufwritePost *.ms silent! execute "!groff -ms -Tpdf % > %:r.pdf" | redraw!
+autocmd BufwritePost *.ms silent! execute "!groff -e -ms -Tpdf % > %:r.pdf" | redraw!
 
 " Strip whitespace on write with Haskell, C, Python, Prolog, Bash.
 autocmd BufWritePre *.c,*.h,*.py,*.pl,*.sh,*.hs,*.md :%s/\s\+$//e
@@ -183,12 +181,12 @@ autocmd BufWritePre *.c,*.h,*.py,*.pl,*.sh,*.hs,*.md :%s/\s\+$//e
 " style sheet in ~/Templates.
 autocmd BufWritePost *.md silent! execute "!pandoc % -f markdown_github -t html5 --css ~/Templates/github.css -o %:r.html" | redraw!
 
-" Start scratchpad buffer if no file args.
+" Start scratchpad buffer if no file arguments.
 function ScratchPad()
 	setlocal buftype=nofile
 	setlocal bufhidden=hide
 	setlocal noswapfile
-	file 	 ScratchPad
+	file 	 Scratchpad\ 
 endfunction
 
 autocmd VimEnter * if eval("@%") == "" | call ScratchPad() | endif

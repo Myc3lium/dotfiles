@@ -1,3 +1,13 @@
+
+!     █████ █████                                                         
+!    ▒▒███ ▒▒███                                                          
+!     ▒▒███ ███   ████████   ██████   █████   ██████  █████ ████ ████████   ██████   ██████   █████ 
+!      ▒▒█████   ▒▒███▒▒███ ███▒▒███ ███▒▒   ███▒▒███▒▒███ ▒███ ▒▒███▒▒███ ███▒▒███ ███▒▒███ ███▒▒  
+!       ███▒███   ▒███ ▒▒▒ ▒███████ ▒▒█████ ▒███ ▒███ ▒███ ▒███  ▒███ ▒▒▒ ▒███ ▒▒▒ ▒███████ ▒▒█████ 
+!      ███ ▒▒███  ▒███     ▒███▒▒▒   ▒▒▒▒███▒███ ▒███ ▒███ ▒███  ▒███     ▒███  ███▒███▒▒▒   ▒▒▒▒███
+!  ██ █████ █████ █████    ▒▒██████  ██████ ▒▒██████  ▒▒████████ █████    ▒▒██████ ▒▒██████  ██████ 
+! ▒▒ ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒  ▒▒▒▒▒▒   ▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒   ▒▒▒▒▒▒  ▒▒▒▒▒▒  
+                                                                        
 ! URxvt settings
 !#define FONT Terminus
 !#define FONT TerminessTTF Nerd Font Mono
@@ -12,7 +22,7 @@ URxvt.font: xft:FONT:size=FSIZE:Regular
 URxvt.boldFont: xft: FONT : size=FSIZE:Regular
 URxvt.italicFont: xft: FONT : size=FSIZE Italic
 URxvt.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
-!URxvt.letterSpace: 2.5
+! URxvt.letterSpace: 0.5
 ! misc coloring
 ! URxvt.highlightColor: rgb:83/a5/98
 ! URxvt.highlightTextColor: rgb:1d/20/21
@@ -29,9 +39,12 @@ URxvt.depth: 0
 ! URxvt.blurRadius: 10
 ! URxvt.transparent: true
 
+! colors.Xresources
+! #import "Working/lighter.Xresources"
+
 ! Xterm escapes, word by word movement
-URxvt.keysym.Control-Left: \033[1;5D
-URxvt.keysym.Control-Right: \033[1;5C
+! URxvt.keysym.Control-Left: \033[1;5D
+! URxvt.keysym.Control-Right: \033[1;5C
 
 ! extensions
 URxvt.perl-ext-common: default,matcher,resize-font

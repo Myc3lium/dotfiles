@@ -33,6 +33,8 @@ alias py="python3"
 alias pylocalinst="pip3 install --user "
 alias rld="source ~/.bashrc"
 alias fth="gforth"
+alias colors="wal --preview | tail -3"
+alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 
 clippy(){
 	## Echo data to vim and yank to
