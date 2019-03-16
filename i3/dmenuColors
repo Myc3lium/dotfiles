@@ -45,16 +45,22 @@
 # sfg=$nfg
 
 # base16-gruvbox-hard
-nbg="#1d2021"
-nfg="#d5c4a1"
-#sbg="#3f4f57"
-sbg="#757978"
-sfg=$nfg
+# nbg="#1d2021"
+# nfg="#d5c4a1"
+# #sbg="#3f4f57"
+# sbg="#757978"
+# sfg=$nfg
 
 # sexy-mikado
 #nbg="#000000"
 #nfg="#ffffff"
 #sbg="#757978"
 #sfg=$nfg
+
+# neon
+nbg="#160a12"
+nfg="#e8c0c3"
+sbg="#A06b78"
+sfg=$nfg
 
 font="terminus"

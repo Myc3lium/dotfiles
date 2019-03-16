@@ -26,4 +26,11 @@ case "$(cmus-remote -Q | grep "status p")" in
 	;;
 esac
 
-cmus-remote -C "format_print %a\ ~\ %t"
+out=$(cmus-remote -C "format_print %a\ ~\ %t")
+
+if [[ ${#out} > 42 ]]; then
+	echo "${out::42}..."
+else
+	echo ${out}
+fi
+

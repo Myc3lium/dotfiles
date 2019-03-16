@@ -1,0 +1,20 @@
+#!/bin/bash
+
+remove(){
+	pushd $HOME/.vim/bundle
+	rm $1
+	popd
+}
+
+add(){
+	pushd $HOME/.vim/bundle
+	git clone $1
+	popd
+}
+
+upgrade(){
+	remove $1
+	add $1
+}
+
+$@

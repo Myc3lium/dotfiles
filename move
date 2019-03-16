@@ -20,8 +20,16 @@ cp -r $HOME/.bin $current/.bin
 rm -r $current/.urxvt
 cp -r $HOME/.urxvt $current/.urxvt
 
-rm -r $current/.vim/
-cp -r $HOME/.vim/ $current/.vim
+rm -rf $current/.vim/
+cp -r  $HOME/.vim/ $current/.vim
+
+pushd $current/.vim
+rm -r swaps/
+rm -r undodir/
+rm -r backups/
+rm    viminfo
+popd
+
 
 cp $HOME/.bashrc $current/.bashrc
 cp $HOME/.gitconfig $current/.gitconfig

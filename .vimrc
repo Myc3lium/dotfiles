@@ -30,6 +30,9 @@ nnoremap <silent><C-l> :noh<Cr>
 set spelllang=en_gb
 command Spell setlocal spell
 
+" Set auto-increment options
+nnoremap <C-v> <C-a>
+
 " Hide file explorer banner.
 let g:netrw_banner = 0
 
@@ -65,9 +68,18 @@ set undodir=~/.vim/undodir/
 set modeline
 
 " Enable syntax and file-type plugins.
+execute pathogen#infect()
 filetype  off
 syntax    on
 filetype  plugin indent on
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
 
 " Easier command mode.
 nnoremap , :
@@ -80,11 +92,11 @@ nnoremap <C-c> :%s/
 nnoremap <C-b> :buffers<CR>:buffer!<Space>
 
 " Edit new files/buffers without needing to write the current one.
-nnoremap <S-e>   :tabedit! <Space>
+nnoremap <S-e>   :tabedit!<Space>
 nnoremap <Tab>   :tabnext<Cr>
 nnoremap <S-Tab> :tabprev<Cr>
 nnoremap <C-w>   :tabclose<Cr>
-cabbrev  h       tab h
+cabbrev  h       tab help
 
 " Remove ex mode entry and remap to
 " visual block mode.
@@ -96,9 +108,9 @@ nnoremap J  <Nop>
 
 " Make r be replace in normal,
 " operator and visual modes.
-nnoremap r  c
-onoremap r  c
-vnoremap r  c
+" nnoremap r  c
+" onoremap r  c
+" vnoremap r  c
 
 " More comfortable start and end of line shortcuts
 " in normal, (operator) pending and visual modes.
@@ -165,6 +177,8 @@ vnoremap <C-D>  "+d
 " Navigation. Shift-j goes down a page, Shift-k goes up.
 nnoremap <S-j> <C-f>
 nnoremap <S-k> <C-b>
+vnoremap <S-j> <C-f>
+vnoremap <S-k> <C-b>
 
 " Reload i3 config, header and Xresources on write.
 autocmd BufWritePost config                 silent! execute "!i3-msg reload"       | redraw!
@@ -188,7 +202,6 @@ function ScratchPad()
 	setlocal noswapfile
 	file 	 Scratchpad\ 
 endfunction
-
 autocmd VimEnter * if eval("@%") == "" | call ScratchPad() | endif
 
 hi ModeMsg ctermfg=2 ctermbg=8

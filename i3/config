@@ -48,6 +48,10 @@ bindsym $mod+k 		   focus down
 bindsym $mod+l 		   focus up
 bindsym $mod+semicolon focus right
 
+# Change focused display
+bindsym $mod+Control+j 		   focus output left
+bindsym $mod+Control+semicolon focus output right
+
 # move focused window
 bindsym $mod+Shift+j 		 move left
 bindsym $mod+Shift+k 		 move down
@@ -169,14 +173,21 @@ bindsym $mod+r mode "resize"
 #set $ur_indicator  #3f4f57
 
 # base16-gruvbox-hard
-set $ur_background #1d2021
-set $ur_foreground #d5c4a1
-set $ur_active     #3f4f57
-set $ur_active     #757978
-set $ur_pale       #21292d
-set $ur_inactive   #21292d
-set $ur_indicator  #3f4f57
+# set $ur_background #1d2021
+# set $ur_foreground #d5c4a1
+# set $ur_active     #3f4f57
+# set $ur_active     #757978
+# set $ur_pale       #21292d
+# set $ur_inactive   #21292d
+# set $ur_indicator  #3f4f57
 
+# base16-gruvbox-hard
+set $ur_background  #160a12
+set $ur_foreground  #e8c0c3
+set $ur_active      #A06b78 
+set $ur_pale        #160a12
+set $ur_inactive    #21292d
+set $ur_indicator   #3f4f57
 
 									   # Border		  # 
 client.focused          $ur_background $ur_active     $ur_foreground $ur_indicator
@@ -235,8 +246,8 @@ for_window		    [instance="scratch"] move 		  scratchpad
 bindsym $mod+i		[instance="scratch"] scratchpad   show 
 exec_always --no-startup-id urxvt -geometry 77x25 -name scratch -uc -e bash 
 
-exec_always --no-startup-id urxvt -uc -name workspace10-terminal -e bash 
 for_window [instance="workspace10-terminal"] move workspace $workspace10
+exec_always --no-startup-id urxvt -uc -name workspace10-terminal -e bash 
 
 # Non-startup Window Rules
 assign [class="Firefox"] 	 $workspace9

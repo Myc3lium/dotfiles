@@ -35,6 +35,7 @@ alias rld="source ~/.bashrc"
 alias fth="gforth"
 alias colors="wal --preview | tail -3"
 alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
+alias fm="ranger "
 
 clippy(){
 	## Echo data to vim and yank to
@@ -48,7 +49,7 @@ function pkmg(){
 }
 
 # Python3 help from outside python
-function pyhelp(){
+pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
 }
 
