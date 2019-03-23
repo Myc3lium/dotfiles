@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+IFS='\n'
+for pid in $(ps -eo pid,cmd | awk '/urxvt\s*(-name|)/{ print $1 }')
+do
+	kill $pid
+done

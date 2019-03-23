@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source $HOME/.config/i3/dmenuColors
+source $HOME/.cache/wal/colors.sh
 
-i3-dmenu-desktop --dmenu="dmenu -fn $font -i -l -b -nb $nbg -nf $nfg -sf $sfg -sb $sbg"
+i3-dmenu-desktop --dmenu="dmenu -fn terminus -i -l -b -nb $background -nf $foreground -sf $foreground -sb $color1"

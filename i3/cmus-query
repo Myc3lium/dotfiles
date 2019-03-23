@@ -6,7 +6,7 @@
 
 cmus-remote
 if [[ $? != 0 ]]; then
-	echo -n "[]"
+	bash $HOME/.config/i3/wrapper 5 "[cmus down]"
 	return
 fi
 
@@ -16,7 +16,7 @@ case $BLOCK_BUTTON in
 	5) cmus-remote --volume -10% ;; # Scroll down
 esac
 
-case "$(cmus-remote -Q | grep "status p")" in
+icon="$(case "$(cmus-remote -Q | grep "status p")" in
 	"status paused")   
 		echo -n "  " 
 	;;
@@ -24,13 +24,6 @@ case "$(cmus-remote -Q | grep "status p")" in
 	"status playing")  
 		echo -n "  " 
 	;;
-esac
+esac)"
 
-out=$(cmus-remote -C "format_print %a\ ~\ %t")
-
-if [[ ${#out} > 42 ]]; then
-	echo "${out::42}..."
-else
-	echo ${out}
-fi
-
+bash $HOME/.config/i3/wrapper 3 $icon$(cmus-remote -C "format_print %a\ ~\ %t") 

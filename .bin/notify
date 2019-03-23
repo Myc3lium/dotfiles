@@ -1,9 +1,10 @@
 #!/bin/bash
 
+source ~/.cache/wal/colors.sh
+
 notify-send \
-	-t 20\
-	-h string:fgcolor:#ffffff\
+	-h string:fgcolor:${foreground}\
 	-h string:frame_color:#ffffff\
-   	-h string:bgcolor:#000000\
+   	-h string:bgcolor:${background}\
 	-h string:font:"GohuFont Nerd Font 11"\
    	"$1"

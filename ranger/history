@@ -1,50 +1,50 @@
-bulkrename
-shell bleachbit -s %s
-find The fa
-find fac
-shell  %s
-find .m
-paste
-find 
-del
-dew
-delete j
-de
-shell mpv --shuffle %s
-shell wal --saturate 0.8 -i %s
-shell wal --saturate 0.2 -i %s
-shell wal --saturate 0.3 -i %s
-shell wal --saturate 0.4 -i %s
-shell wal --saturate 0.7 -i %s
-shell wal --saturate 0.5 -i %s
-shell lowriter %s
-shell wal %s
-shell wal -a 80 -i %s
-set preview_images 
-shell wal -a 50 -i %s
-wq
-shell feh --bg-fil %s
-set preview_images False
-set preview_images True
-shell wal  -a 100 -i %s
-set preview_images false
-set preview_images true
-shell feh --bg-fill %s
-open_with 
-shell mkdir team_project
-cut
-paste 
-shell wal  -i %s
-shell wal --satu -i %s
-shell wal --saturate 0.1 -i %s
-shell wal --saturate 0.6 -i %s
-shell wal --saturate  -i %s
-shell wal --  -i %s
-shell wal   -i %s
 shell wal-i %s
-shell wal -i %s
-
 shell rm %s
-delete 
+shell vim %s
+shell mat --display %s > logfile.txt
+search screenshot
+rename org.gnome.Screenshot.desktop
+cut
+paste
+shell fh %s
+shell feh %s
+open_with archive-manager
+shell bleachbit --shred %s
+shell bleachbit --shred  %s
 open_with vim
+shell feh  %s
+shell wal -l -i %s
+shell wal -l --saturate 0.7 -a 100 -i %s
+shell wal -l  -a 100 -i %s
+k
+set preview_images False
+shell wal -a 100 -i %s
+shell wal --saturate 0.8 -a 100 -i %s
+shell wal --saturate 0.5 -a 100 -i %s
+shell wal --saturate 0.4 -a 100 -i %s
+shell wal ---a 100 -i %s
+shell wal --a 100 -i %s
+shell wal --saturate 0.2 -i %s
+shell wal --saturate 0.8 -i %s
+shell wal --saturate 0.4 -i %s
+shell wal --saturate 05 -i %s
+shell wal -n -i %s
+del
+shell extract %s
+delete 
 bulkrename 
+rename Shadilay - PEPE.mp3
+shell wal 0i %s
+shell wal -o %s
+shell wal --saturate 0.3 -i %s
+shell wal --saturate 0.9 -i %s
+shell wal --saturate 0.5 -i %s
+shell wal --saturate 0.5 -i k%s
+shell wal  -i k%s
+shell wal  -i %s
+
+shell wal --saturate 0.6 -i %s
+open_with 
+shell  %s
+shell feh --bg-fill %s
+shell wal -i %s

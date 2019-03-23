@@ -84,9 +84,16 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Easier command mode.
 nnoremap , :
 nnoremap : <Nop>
+vnoremap , :
+vnoremap : <Nop>
 
 " Find and replace in normal.
 nnoremap <C-c> :%s/
+
+" \%V searches only in the current selection- This will behave the 
+" same as :s/ in visual line mode, but will make sure no unintended
+" replacements are made in visual block mode.
+vnoremap <C-c> :s/\%V
 
 " View buffers.
 nnoremap <C-b> :buffers<CR>:buffer!<Space>
@@ -175,6 +182,9 @@ vnoremap <C-P>  "+p
 vnoremap <C-D>  "+d
 
 " Navigation. Shift-j goes down a page, Shift-k goes up.
+" nostartofline stops moving to the start of the line,
+" allowing for keeping the current column position.
+set nostartofline
 nnoremap <S-j> <C-f>
 nnoremap <S-k> <C-b>
 vnoremap <S-j> <C-f>

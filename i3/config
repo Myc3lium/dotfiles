@@ -90,35 +90,32 @@ bindsym $mod+p focus parent
 # focus the child container
 bindsym $mod+d focus child
 
-set $workspace7 "1:[Other <b></b>]"
-set $workspace8 "2:[Anon <b>﨩</b>]"
-set $workspace9 "3:[Web 爵]"
-set $workspace10 "4:[Term ]"
-set $workspace11 "5:[Media ]"
-# set $workspace_eq "6:[]"
+set $workspace1  "1:Other"
+set $workspace2  "2:Anon"
+set $workspace3  "3:Web"
+set $workspace4 "4:Term"
+set $workspace5 "5:Media"
 
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
-bindsym $mod+minus workspace $workspace11
-# bindsym $mod+equal workspace $workspace_eq
+bindsym $mod+7 		workspace $workspace1
+bindsym $mod+8 		workspace $workspace2
+bindsym $mod+9 		workspace $workspace3
+bindsym $mod+0 		workspace $workspace4
+bindsym $mod+minus 	workspace $workspace5
 
-bindsym $mod+bracketleft workspace prev
-bindsym $mod+bracketright workspace next
-bindsym $mod2+Tab workspace next
-bindsym $mod2+Shift+Tab workspace prev
+bindsym $mod+bracketleft 	workspace prev
+bindsym $mod+bracketright 	workspace next
+bindsym $mod2+Tab 			workspace next
+bindsym $mod2+Shift+Tab 	workspace prev
 
-bindsym $mod+Shift+7 	  move container to workspace $workspace7
-bindsym $mod+Shift+8 	  move container to workspace $workspace8
-bindsym $mod+Shift+9 	  move container to workspace $workspace9
-bindsym $mod+Shift+0 	  move container to workspace $workspace10
-bindsym $mod+Shift+minus  move container to workspace $workspace11
-# bindsym $mod+Shift+equal  move container to workspace $workspace_eq
+bindsym $mod+Shift+7 	  		move container to workspace $workspace1
+bindsym $mod+Shift+8 	  		move container to workspace $workspace2
+bindsym $mod+Shift+9 	  		move container to workspace $workspace3
+bindsym $mod+Shift+0 	  		move container to workspace $workspace4
+bindsym $mod+Shift+minus  		move container to workspace $workspace5
 bindsym $mod+Shift+bracketleft  move container to workspace prev
 bindsym $mod+Shift+bracketright move container to workspace next
 
-bindsym $mod+Control+bracketleft move workspace to output left
+bindsym $mod+Control+bracketleft  move workspace to output left
 bindsym $mod+Control+bracketright move workspace to output right
 
 # reload the configuration file
@@ -182,11 +179,20 @@ bindsym $mod+r mode "resize"
 # set $ur_indicator  #3f4f57
 
 # base16-gruvbox-hard
-set $ur_background  #160a12
-set $ur_foreground  #e8c0c3
-set $ur_active      #A06b78 
-set $ur_pale        #160a12
-set $ur_inactive    #21292d
+# set $ur_background  #160a12
+# set $ur_foreground  #e8c0c3
+# set $ur_active      #A06b78 
+# set $ur_pale        #160a12
+# set $ur_inactive    #21292d
+# set $ur_indicator   #3f4f57
+
+# neon ['/home/myc3lium/Downloads/wp_001.jpg']
+set $ur_background  #0d1010 
+set $ur_foreground  #e5c8ac
+set $ur_active      #2C4A54 
+set $ur_pale        #21292d #A09571
+set $ur_pale        #0d1010 
+set $ur_inactive    #0d1010 
 set $ur_indicator   #3f4f57
 
 									   # Border		  # 
@@ -202,7 +208,7 @@ bar {
         tray_output none
 		strip_workspace_numbers yes
         
-		font pango:GohuFont Nerd Font 10.5
+		font pango:GohuFont Nerd Font 10.8
         
         colors { 
 				statusline $ur_foreground
@@ -218,9 +224,9 @@ bar {
 
 # Most of my custom config
 
-# Add cmus and ranger instances on workspace =
-for_window	   [instance="music-mpv"]  move workspace	$workspace11
-for_window	   [instance="music-cmus"] move workspace 	$workspace11
+# Add cmus and ranger instances on workspace
+for_window	   [instance="music-mpv"]  move workspace	$workspace5
+for_window	   [instance="music-cmus"] move workspace 	$workspace5
 exec_always --no-startup-id urxvt -name "music-cmus"  -uc -e cmus
 exec_always --no-startup-id urxvt -name "music-mpv"   -uc -e ranger ~/Videos/yt/greentexts
 
@@ -246,13 +252,13 @@ for_window		    [instance="scratch"] move 		  scratchpad
 bindsym $mod+i		[instance="scratch"] scratchpad   show 
 exec_always --no-startup-id urxvt -geometry 77x25 -name scratch -uc -e bash 
 
-for_window [instance="workspace10-terminal"] move workspace $workspace10
-exec_always --no-startup-id urxvt -uc -name workspace10-terminal -e bash 
+for_window [instance="workspace4-terminal"] move workspace $workspace4
+exec_always --no-startup-id urxvt -uc -name workspace4-terminal -e bash 
 
 # Non-startup Window Rules
-assign [class="Firefox"] 	 $workspace9
-assign [class="Tor Browser"] $workspace8
-assign [class="VirtualBox"]  $workspace7
+assign [class="Firefox"] 	 $workspace3
+assign [class="Tor Browser"] $workspace2
+assign [class="VirtualBox"]  $workspace1
 
 for_window [class="feh"] 		 	  floating enable
 for_window [class="Tor Browser"] 	  floating enable
@@ -269,6 +275,7 @@ bindsym $mod+u exec /home/myc3lium/.bin/urxvt-connect -geometry 64x16 -sl 0 -uc 
 bindsym $mod+y move position center
 
 # Pulse Audio controls
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% # Increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% # Decrease sound volume
 bindsym XF86AudioMute 		 exec --no-startup-id pactl set-sink-mute 0 toggle # Mute sound

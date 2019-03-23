@@ -1,0 +1,18 @@
+#!/bin/bash
+#vim:ft=bash:
+
+source $HOME/.cache/wal/colors.sh
+bgcolor=$(eval echo "\$color${1}")
+
+#char=
+#char=""
+#char=""
+lpad=" "
+rpad=" "
+
+echo "\
+<span fgcolor='${bgcolor}'>$char</span>\
+<span bgcolor='${bgcolor}' fgcolor='${background}'>\
+${lpad}${@:2}${rpad}\
+<span fgcolor='${background}'>$char</span>\
+</span>"

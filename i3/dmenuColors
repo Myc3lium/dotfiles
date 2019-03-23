@@ -58,9 +58,9 @@
 #sfg=$nfg
 
 # neon
-nbg="#160a12"
-nfg="#e8c0c3"
-sbg="#A06b78"
+nbg="#0d1010"
+nfg="#e5c8ac"
+sbg="#2C4A54"
 sfg=$nfg
 
 font="terminus"

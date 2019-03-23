@@ -1,0 +1,14 @@
+#!/bin/bash
+# vim:filetype=sh:
+
+bash $HOME/.config/i3/wrapper 7 "$(date '+%H:%M:%S ')"
+
+case $BLOCK_BUTTON in
+	1) 
+		source $HOME/.cache/wal/colors.sh
+		day=$(date '+%d')
+		replace="\\<span bgcolor='${color3}' fgcolor='${background}'\\>$day\\<\\/span\\>"
+		$HOME/.bin/notify "${day}$(cal -h | sed "s/$day/$replace/g;"; )"
+	;;
+	*) ;;
+esac

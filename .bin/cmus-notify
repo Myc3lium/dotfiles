@@ -13,7 +13,7 @@ do
 	test="$(get)"
 	if [[ "$ttl" != "$test" ]]
 	then
-		notify-send " [Now playing]\n$test"
+		bash notify " [Now playing]\n$test" -t 5
 		ttl="$test"
 	fi
 	sleep 1
