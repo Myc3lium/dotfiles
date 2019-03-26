@@ -14,6 +14,9 @@ cp -r $HOME/.config/ranger $current/ranger
 rm -r $current/i3/
 cp -r $HOME/.config/i3 $current/i3/
 
+rm -r $current/dunst/
+cp -r $HOME/.config/dunst $current/dunst/
+
 rm -r $current/.bin
 cp -r $HOME/.bin $current/.bin
 

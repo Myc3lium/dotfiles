@@ -53,20 +53,20 @@ volume() {
 
 format() {
   perl_filter='if (/.*\[(\d+%)\] (\[(-?\d+.\d+dB)\] )?\[(on|off)\]/)'
-  perl_filter+='{CORE::say $4 eq "off" ? "MUTE" : "'
+  perl_filter+='{CORE::say $4 eq "off" ? "婢 mute" : "墳 '
   # If dB was selected, print that instead
   perl_filter+=$([[ $STEP = *dB ]] && echo '$3' || echo '$1')
   perl_filter+='"; exit}'
   perl -ne "$perl_filter"
 }
 
+
 #------------------------------------------------------------------------
 
 case $BLOCK_BUTTON in
   1) pactl set-sink-mute 0 toggle ;; # Mute sound
-  #3) amixer -q -D $MIXER sset $SCONTROL $(capability) toggle ;;  # right click, mute/unmute
   4) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;; # scroll up, increase
   5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
-bash $HOME/.config/i3/wrapper 3 墳 $(volume | format)
+bash $HOME/.config/i3/wrapper 3  $(volume | format)

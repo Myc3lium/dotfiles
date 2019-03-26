@@ -203,7 +203,8 @@ client.focused_inactive $ur_background $ur_inactive   $ur_foreground $ur_indicat
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
+        status_command /home/myc3lium/.bin/bar 
+		#status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
         position top
         tray_output none
 		strip_workspace_numbers yes
@@ -233,10 +234,11 @@ exec_always --no-startup-id urxvt -name "music-mpv"   -uc -e ranger ~/Videos/yt/
 # Adds a process monitor in the lower left hand corner of the screen scratchpad
 for_window	   [instance="monitor"] floating 	  enable
 for_window	   [instance="monitor"] sticky 	  	  toggle 
-for_window	   [instance="monitor"] move 		  position 10 px 622 px #610 px 642 px
+for_window	   [instance="monitor"] move 		  position 10 px 592 px 
+#610 px 642 px
 for_window	   [instance="monitor"] move 		  scratchpad
 bindsym $mod+m [instance="monitor"] scratchpad    show 
-exec_always --no-startup-id urxvt -geometry 79x6 -name monitor -uc -e htop
+exec_always --no-startup-id urxvt -geometry 80x6 -name monitor -uc -e htop
 
 # Add a calcurse window to the scratchpad
 for_window	   [instance="calendar"] floating    enable
@@ -247,7 +249,7 @@ exec_always --no-startup-id urxvt -name calendar  -geometry 100x22 -uc -e calcur
 # Adds a sticky window to the scratchpad, which can be called with $mod+i
 for_window		    [instance="scratch"] floating 	  enable
 for_window		    [instance="scratch"] sticky 	  toggle 
-for_window	   		[instance="scratch"] move 		  position 630 px 12 px
+for_window	   		[instance="scratch"] move 		  position 600 px 12 px
 for_window		    [instance="scratch"] move 		  scratchpad
 bindsym $mod+i		[instance="scratch"] scratchpad   show 
 exec_always --no-startup-id urxvt -geometry 77x25 -name scratch -uc -e bash 
@@ -276,14 +278,15 @@ bindsym $mod+y move position center
 
 # Pulse Audio controls
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10% # Increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10% # Decrease sound volume
-bindsym XF86AudioMute 		 exec --no-startup-id pactl set-sink-mute 0 toggle # Mute sound
+# Increase / Decrease / Mute sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +10% && pkill -RTMIN+5 i3blocks"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -10% && pkill -RTMIN+5 i3blocks"
+bindsym XF86AudioMute 		 exec --no-startup-id "pactl set-sink-mute 0 toggle && pkill -RTMIN+5 i3blocks"
 
 # CMUS remote control
-bindsym XF86AudioPlay exec --no-startup-id cmus-remote --pause # Pause cmus
-bindsym XF86AudioNext exec --no-startup-id cmus-remote --next  # Play next track in library
-bindsym XF86AudioPrev exec --no-startup-id cmus-remote --prev  # Play previous track in library
+bindsym XF86AudioPlay exec --no-startup-id "cmus-remote --pause && pkill -RTMIN+10 i3blocks" 
+bindsym XF86AudioNext exec --no-startup-id "cmus-remote --next  && pkill -RTMIN+10 i3blocks" 
+bindsym XF86AudioPrev exec --no-startup-id "cmus-remote --prev  && pkill -RTMIN+10 i3blocks" 
 
 # Make screenshots
 bindsym Print exec --no-startup-id scrot            # Normal
@@ -297,6 +300,9 @@ exec_always --no-startup-id xmodmap -e "clear lock"
 
 # compton with shadows.
 exec_always --no-startup-id "/home/myc3lium/.bin/compton-start -s"
+
+# Start cmus-notify
+exec_always --no-startup-id "/home/myc3lium/.bin/cmus-notify"
 
 exec_always --no-startup-id redshift -O 4450k
 exec_always /home/myc3lium/.fehbg

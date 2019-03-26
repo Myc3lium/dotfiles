@@ -1,8 +1,10 @@
 #!/bin/bash
 
 cp -r i3/ $HOME/.config/i3
-cp -r .bin $HOME/.bin
+cp -r dunst/ $HOME/.config/dunst
 cp -r ranger $HOME/.config/ranger
+
+cp -r .bin $HOME/.bin
 cp -r .urxvt $HOME/.urxvt
 cp -r .vim $HOME/.vim
 

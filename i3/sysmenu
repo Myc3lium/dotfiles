@@ -1,9 +1,13 @@
 #!/bin/sh
 # vim:ft=sh:
 
-bash $HOME/.config/i3/wrapper 2 
+bash $HOME/.config/i3/wrapper 2 ""
 
 case $BLOCK_BUTTON in
-	1) bash $HOME/.config/i3/menuScript
+	1) bash $HOME/.config/i3/menuScript ;;
+	3)
+		notify "CPU Temp:\n"  "$(acpi -t)"
+		notify "Memory Usage:\n" "$(ps -eo cmd,%mem --sort=-%mem | head -8)"
+		notify "CPU Usage:\n" "$(ps -eo cmd,%cpu --sort=-%cpu | head -8)"
 	;;
 esac

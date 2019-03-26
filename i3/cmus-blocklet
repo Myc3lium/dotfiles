@@ -1,0 +1,35 @@
+#!/bin/bash
+#vim:ft=sh:
+
+status_icon(){
+	case "$(cmus-remote -Q | awk '/status p/{ print $2 }')" in
+		playing) echo -n " " ;;
+		paused)  echo -n " " ;;
+	esac
+}
+
+current(){
+	cmus-remote -C "format_print %a\ -\ %t"
+}
+
+if [[ -n $BLOCK_BUTTON ]]; then
+	case $BLOCK_BUTTON in
+		1) cmus-remote --pause
+		   bash $HOME/.config/i3/wrapper 2 "$(status_icon) $(current)"
+		   pkill -RTMIN+10 i3blocks
+		   ;; # Left click and update
+
+		4) cmus-remote --volume +10%; 
+		   ;; # Scroll up
+
+		5) cmus-remote --volume -10%; 
+		   ;; # Scroll down
+		3)
+			notify "Playing\n" "$(cmus-remote -Q | awk '/\<tag title\>|\<tag artist\>|\<tag album\>|\<tag date\>/{$1=$2=""; print $0 }')"
+		;;
+	esac
+	source
+fi
+
+bash $HOME/.config/i3/wrapper 2 "$(status_icon) "$(current)""
+pkill -RTMIN+10 i3blocks

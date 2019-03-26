@@ -4,7 +4,7 @@ source ~/.cache/wal/colors.sh
 
 notify-send \
 	-h string:fgcolor:${foreground}\
-	-h string:frame_color:#ffffff\
+	-h string:frame_color:"#ffffff"\
    	-h string:bgcolor:${background}\
 	-h string:font:"GohuFont Nerd Font 11"\
-   	"$1"
+   	"$@"

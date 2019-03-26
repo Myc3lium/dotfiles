@@ -26,7 +26,7 @@ fi
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
 then
-    echo "$INTERFACE ded"
+    bash $HOME/.config/i3/wrapper 15 "睊 [wifi down]"
     #echo "$INTERFACE down"
     #echo "#FF0000"
     exit 0

@@ -36,11 +36,13 @@ alias fth="gforth"
 alias colors="wal --preview | tail -3"
 alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
+alias his=history
+alias hg="history | grep"
 
 clippy(){
 	## Echo data to vim and yank to
 	## system clipboard.
-	vim -s <(printf 'vG$"+yy') -
+	vim -s <(printf 'ggVG"+yy') -
 }
 
 # Find the size of an installed package

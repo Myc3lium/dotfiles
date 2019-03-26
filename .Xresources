@@ -24,10 +24,11 @@ URxvt.italicFont: xft: FONT : size=FSIZE Italic
 URxvt.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
 
 ! URxvt.background: rgb:00/00/00
-! URxvt.depth: 32
-URxvt.shading: 80
+URxvt.depth: 100
+! URxvt.depth: 100 ; this fixes issues with w3m images.
+URxvt.shading: 200
 URxvt.fading: 7
-URxvt.internalBorder: 20
+URxvt.internalBorder: 32
 
 ! URxvt.blurRadius: 4
 ! URxvt.transparent: true

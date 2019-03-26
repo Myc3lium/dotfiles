@@ -1,21 +1,40 @@
 #!/bin/bash
 
-# Simple script to notify the user using notify-send 
-# when the currently playing track changes in cmus.
+# Simple script to notify i3blocks when cmus changes 
+# status in such a way that an update signal cannot be 
+# sent by the action that caused the update - i.e. when 
+# cmus reaches the end of a track instead of being sent
+# a new-track signal by pressing keys configured to
+# do so in the i3 config file.
 
-get(){
+get_title(){
 	cmus-remote -C "format_print %a\ -\ %t"
 }
 
-ttl="$(get)"
+status_icon(){
+	case "$(cmus-remote -Q | awk '/status p/{ print $2 }')" in
+		playing) echo -n " " ;;
+		paused)  echo -n " " ;;
+	esac
+}
+
+get_status(){
+	echo "$(status_icon) $(get_title)"
+}
+
+last_status="$(status_icon) $(get_title)"
 while true
 do
-	test="$(get)"
-	if [[ "$ttl" != "$test" ]]
+	test="$(get_status)"
+	if [[ "$last_status" != "$test" ]]
 	then
-		bash notify " [Now playing]\n$test" -t 5
-		ttl="$test"
+		#if [[ ${last_status:1} != ${test:1} ]]; then
+		#	notify "Playing\n" "$(cmus-remote -Q | awk '/\<tag title\>|\<tag artist\>|\<tag album\>|\<tag date\>/{$1=$2=""; print $0 }')"
+		#fi
+
+		last_status="$test"
+		pkill -RTMIN+10 i3blocks
 	fi
-	sleep 1
+	sleep 1.5
 done
 

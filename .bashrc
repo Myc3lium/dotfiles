@@ -11,7 +11,9 @@
 # If not running interactively, don't do anything.
 case $- in
     *i*) ;;
-      *) return;;
+      *) export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
+		 return
+	;;
 esac
 
 # History config.
@@ -44,15 +46,12 @@ white="$(tput setaf 15)"
 GPWD(){ 
 	case "$PWD" in
 		$HOME*) echo "λ${PWD:14}" ;;
-		*) 		echo "+/${PWD:1}"  ;;
+		*) 		echo "Σ/${PWD:1}"  ;;
 	esac
 }
 
-# PS1='\n\[${grey}\][\[${green}\]$(GPWD)\[${normal}\]\[${grey}\]]\[${green}\] →\[${normal}\]  '  ## Patched fonts.
-# PS1='\n\[${grey}\][ \[${green}\]$(GPWD)\[${normal}\]\[${grey}\] ]─\[${green}\]%\[${normal}\]  '  ## Patched fonts.
-
-PS1='\[${green}\]$(GPWD) \[${dark_grey}\]→\[${normal}\]  '
-PS2='\[${dark_grey}\]| \[${normal}\] '
+PS1='\[${green}\]$(GPWD) \[${dark_grey}\]\[${red}\]~\[${normal}\]  '
+PS2='\[${red}\]| \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -76,7 +75,7 @@ alias ~other="$HOME/repos/other"
 alias ~assi="$HOME/Documents/assignments/"
 
 # Allow execution of stuff in .bin
-export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
+#export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 
 # Load aliases.
 source ~/.bin/aliases.sh

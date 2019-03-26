@@ -15,7 +15,7 @@
 
 case "$1" in 
 	"-s")
-		compton -z -C -c -f -D 2 -r 3 -o 0.3 -l 5 -t 5 ;; 
+		compton -z -C -c -f -D 2 -r 3 -o 0.5 -l 5 -t 5 --blur-background-fixed ;; 
 	*) 
 		compton -z -f -b -D 2 ;;
 esac

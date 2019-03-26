@@ -1,5 +1,11 @@
 #!/bin/bash
 
+case $BLOCK_BUTTON in
+	1) 
+		notify "$(acpi -i | head -1 | awk '{ print $5,$6,$7 }')" ;;
+	*) return ;;
+esac
+
 all=$(acpi -b | awk '{ print $3, substr($4,0,length($4)-1) }')
 
 bash $HOME/.config/i3/wrapper 4 "$all"

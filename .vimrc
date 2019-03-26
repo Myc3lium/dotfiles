@@ -113,12 +113,6 @@ nnoremap Q  <C-v>
 " Unmap annoying justify text thing.
 nnoremap J  <Nop>
 
-" Make r be replace in normal,
-" operator and visual modes.
-" nnoremap r  c
-" onoremap r  c
-" vnoremap r  c
-
 " More comfortable start and end of line shortcuts
 " in normal, (operator) pending and visual modes.
 nnoremap <C-a>  ^
@@ -185,15 +179,22 @@ vnoremap <C-D>  "+d
 " nostartofline stops moving to the start of the line,
 " allowing for keeping the current column position.
 set nostartofline
-nnoremap <S-j> <C-f>
-nnoremap <S-k> <C-b>
-vnoremap <S-j> <C-f>
-vnoremap <S-k> <C-b>
+" set scrolloff=9999
+nnoremap <S-j> <C-e>
+nnoremap <S-k> <C-y>
+nnoremap <C-S-j> <C-f>
+nnoremap <C-S-k> <C-b>
+
+vnoremap <S-j> <C-e>
+vnoremap <S-k> <C-y>
+vnoremap <C-S-j> <C-f>
+vnoremap <C-S-k> <C-b>
 
 " Reload i3 config, header and Xresources on write.
-autocmd BufWritePost config                 silent! execute "!i3-msg reload"       | redraw!
-autocmd BufWritePost .Xresources            silent! execute "!xrdb ~/.Xresources"  | redraw!
-autocmd BufWritePost config.h,config.def.h  silent! execute "!make install"        | redraw!
+autocmd BufWritePost config                 silent! execute "!i3-msg reload"          | redraw!
+autocmd BufWritePost .Xresources            silent! execute "!xrdb ~/.Xresources"     | redraw!
+autocmd BufWritePost config.h,config.def.h  silent! execute "!make install"           | redraw!
+autocmd BufWritePost dunstrc 				silent! execute "!killall dunst; dunst &" | redraw!
 
 " Rewrite ms documents on write.
 autocmd BufwritePost *.ms silent! execute "!groff -e -ms -Tpdf % > %:r.pdf" | redraw!
