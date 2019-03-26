@@ -22,6 +22,10 @@ set showcmd
 set listchars=tab:╎\ ,eol:§,nbsp:␣,trail:·,extends:⟩,precedes:⟨
 nnoremap s :set list!<Cr>
 
+" Enable mouse toggling on/off.
+set mouse=
+nnoremap m :exec &mouse != "" ? "set mouse=" : "set mouse=a"<Cr>
+
 " Highlight search results. Use C-l to un-highlight.
 set hlsearch
 nnoremap <silent><C-l> :noh<Cr>

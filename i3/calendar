@@ -10,5 +10,8 @@ case $BLOCK_BUTTON in
 		replace="\\<span bgcolor='${color4}' fgcolor='${background}'\\>$day\\<\\/span\\>"
 		notify "Up$(uptime -p | sed 's/up//g')\n\n   ${day}$(cal -h | tail -c +5 | sed "s/$day/$replace/g;"; )"
 	;;
+
+	3)
+		notify "$(curl wttr.in/$LOCATION?0T)" ;;
 	*) ;;
 esac

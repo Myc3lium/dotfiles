@@ -4,10 +4,8 @@
 source $HOME/.cache/wal/colors.sh
 bgcolor=$(eval echo "\$color${1}")
 
-#char=
-#char=""
-rchar=""
-lchar=""
+rchar=
+lchar=
 lpad=" "
 rpad=" "
 

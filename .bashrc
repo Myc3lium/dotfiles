@@ -11,17 +11,19 @@
 # If not running interactively, don't do anything.
 case $- in
     *i*) ;;
-      *) export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
+      *) 
+		 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin" 
+		 # Export path to allow use of .bin/ files even when in interactive.
 		 return
 	;;
 esac
 
 # History config.
 HISTCONTROL=ignoreboth
-HISTSIZE= 										# 64 Infinite history.
-HISTFILESIZE= 									# 100 Infinite history.
-shopt -s histappend 							# Append new history items.
-export PROMPT_COMMAND="history -a; history -n; echo;" 	# Auto-sync history.
+HISTSIZE= 											  # 64 Infinite history.
+HISTFILESIZE= 										  # 100 Infinite history.
+shopt -s histappend 								  # Append new history items.
+export PROMPT_COMMAND="history -a; history -n; echo;" # Auto-sync history.
 
 shopt -s autocd 		# Automatically change directories
 shopt -s checkwinsize 	# Update line/col count after each command
@@ -56,14 +58,14 @@ PS2='\[${red}\]| \[${normal}\] '
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Colored GCC warnings and errors.
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 
 # Useful exports.
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # Colored GCC warnings and errors.
 export EDITOR=vim
 export VISUAL=vim 	   # Calcurse notes.
-export WWW_HOME="google.com"
-export TERM="xterm-256color"
+export WWW_HOME="google.com" # w3m w/out arguments startpage
+export TERM="xterm-256color" # Terminal escapes info
 export PYTHONSTARTUP="$HOME/.pyrc"
 export LOCATION=Derby  # Weather blocklet.
 export display_=VGA-1  # Xrandr scripts.
@@ -75,7 +77,7 @@ alias ~other="$HOME/repos/other"
 alias ~assi="$HOME/Documents/assignments/"
 
 # Allow execution of stuff in .bin
-#export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
+export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 
 # Load aliases.
 source ~/.bin/aliases.sh
