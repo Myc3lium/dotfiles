@@ -1,37 +1,38 @@
 #!/bin/bash
 
-# wal restore
-# wal -n -R -q
-# wal -q --theme sexy-numixdarkest
-# wal -q --theme sexy-dotshare
-# wal -q --theme sexy-gjm
-# wal -q --theme sexy-invisibone
-# wal -q --theme sexy-monokai
-# wal -q --theme sexy-vacuous2
-# wal -q --theme sexy-visibone-alt-2
-# wal -q --theme sexy-jasonwryan
-# wal -q --theme sexy-hund
-# wal -q --theme sexy-material
-# wal -q --theme sexy-dwmrob
-# wal -q --theme sexy-user-77-mashup-colors
-# wal -q --theme sexy-monokai
-# wal -q --theme sexy-navy-and-ivory
-# wal -q --theme sexy-tartan
-# wal -q --theme base16-gruvbox-pale
-# wal -q --theme base16-gruvbox-hard
-# wal -q --theme base16-material
-# wal -q --theme base16-onedark
-# wal -q --theme base16-tomorrow-night
-# wal -q --theme base16tooth
-# wal -q --theme base16-codeschool
-# wal -q --theme tempus_rift
-# wal -q --theme tempus_warp
-# wal -q --theme darktooth
-# wal -q --theme dkeg-bluetype
-# wal -q --theme dkeg-blend
-# wal -q --theme hybrid-material
-# wal -q --theme spacemacs
-# wal -q --theme vscode
+# sexy-numixdarkest
+# sexy-dotshare
+# sexy-gjm
+# sexy-invisibone
+# sexy-monokai
+# sexy-vacuous2
+# sexy-visibone-alt-2
+# sexy-jasonwryan
+# sexy-hund
+# sexy-material
+# sexy-dwmrob
+# sexy-user-77-mashup-colors
+# sexy-monokai
+# sexy-navy-and-ivory
+# sexy-tartan
+# base16-gruvbox-pale
+# base16-gruvbox-hard
+# base16-material
+# base16-onedark
+# base16-tomorrow-night
+# base16tooth
+# base16-codeschool
+# tempus_rift
+# tempus_warp
+# darktooth
+# dkeg-bluetype
+# dkeg-blend
+# hybrid-material
+# spacemacs
+# vscode
+# sexy-swayr
+# base16-atelier-estuary
+# base16-circus
 
 # nbg="#151515"
 # nfg="#f1ebeb"

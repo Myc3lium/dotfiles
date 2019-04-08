@@ -34,34 +34,38 @@ stty -ixon 				# Disable C-s C-q.
 
 # Prompt config 
 normal="$(tput sgr0)"
-red="$(tput setaf 1)"
-green="$(tput setaf 2)"
-yellow="$(tput setaf 3)"
-blue="$(tput setaf 4)"
-purple="$(tput setaf 5)"
-cyan="$(tput setaf 6)"
-light_grey="$(tput setaf 7)"
-dark_grey="$(tput setaf 8)"
-white="$(tput setaf 15)"
+reverse="$(tput rev)"
+color1="$(tput setaf 1)"
+color2="$(tput setaf 2)"
+color3="$(tput setaf 3)"
+color4="$(tput setaf 4)"
+color5="$(tput setaf 5)"
+color6="$(tput setaf 6)"
+color7="$(tput setaf 7)"
+color8="$(tput setaf 8)"
+color9="$(tput setaf 9)"
+color10="$(tput setaf 10)"
+color11="$(tput setaf 11)"
+color12="$(tput setaf 12)"
+color13="$(tput setaf 13)"
+color14="$(tput setaf 14)"
+color15="$(tput setaf 15)"
 
 # Print nice indicator for cwd.
 GPWD(){ 
 	case "$PWD" in
-		$HOME*) echo "λ${PWD:14}" ;;
+		$HOME*) echo "λ${PWD:14}"  ;;
 		*) 		echo "Σ/${PWD:1}"  ;;
 	esac
 }
 
-PS1='\[${green}\]$(GPWD) \[${dark_grey}\]\[${red}\]~\[${normal}\]  '
-PS2='\[${red}\]| \[${normal}\] '
+PS1='\[${color2}\]$(GPWD) \[${color15}\]\[${color1}\]~\[${normal}\]  '
+PS2='\[${color1}\]| \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-
-
 # Useful exports.
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # Colored GCC warnings and errors.
 export EDITOR=vim
 export VISUAL=vim 	   # Calcurse notes.
 export WWW_HOME="google.com" # w3m w/out arguments startpage
@@ -70,11 +74,16 @@ export PYTHONSTARTUP="$HOME/.pyrc"
 export LOCATION=Derby  # Weather blocklet.
 export display_=VGA-1  # Xrandr scripts.
 export img_width=700   # feh_scale max width
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # Colored GCC warnings and errors.
 
-# Alias some dir-names.
-alias ~pers="$HOME/repos/personal"
-alias ~other="$HOME/repos/other"
-alias ~assi="$HOME/Documents/assignments/"
+# Less colors.
+export LESS_TERMCAP_mb="$color4"   # Blinking.
+export LESS_TERMCAP_md="$color6"   # Bold.
+export LESS_TERMCAP_me="$noremal"  # End bold, blink and underline.
+export LESS_TERMCAP_se="$normal"   # Standout end.
+export LESS_TERMCAP_so="$reverse"  # Start standout/ reverse.
+export LESS_TERMCAP_ue="$normal"   # Underline end.
+export LESS_TERMCAP_us="$color2"   # Underline start.
 
 # Allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
@@ -83,7 +92,7 @@ export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 source ~/.bin/aliases.sh
 
 # Launch fff and keep current dir on exit.
-ff() {
+ff(){
     ~/repos/other/fff/fff "$@"
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
 }

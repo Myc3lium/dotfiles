@@ -1,18 +1,27 @@
 #!/bin/bash
 #vim:ft=bash:
 
+#rchar=
+#lchar=
+#echo "\
+#<span fgcolor='${bgcolor}'>$rchar</span>\
+#<span bgcolor='${bgcolor}' fgcolor='${fgcolor}'>\
+#${lpad}${@:3}${rpad}\
+#<span fgcolor='${background}'>$lchar</span>\
+#</span>\
+#"
+
 source $HOME/.cache/wal/colors.sh
 bgcolor=$(eval echo "\$color${1}")
+fgcolor=$(eval echo "\$background")
 
-rchar=
-lchar=
 lpad=" "
 rpad=" "
 
 echo "\
-<span fgcolor='${bgcolor}'>$rchar</span>\
-<span bgcolor='${bgcolor}' fgcolor='${background}'>\
-${lpad}${@:2}${rpad}\
-<span fgcolor='${background}'>$lchar</span>\
+<span font='10.5' bgcolor='${bgcolor}' fgcolor='${fgcolor}'>\
+<big>$lpad</big>\
+${@:3}\
+<big>$rpad</big>\
 </span>\
 "

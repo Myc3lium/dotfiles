@@ -36,8 +36,13 @@ alias fth="gforth"
 alias colors="wal --preview | tail -3"
 alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
-alias his=history
+alias hs=history
 alias hg="history | grep"
+
+# Alias some dir-names.
+alias ~pers="$HOME/repos/personal"
+alias ~other="$HOME/repos/other"
+alias ~assi="$HOME/Documents/assignments/"
 
 clippy(){
 	## Echo data to vim and yank to

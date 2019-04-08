@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/myc3lium'
-let g:netrw_dirhist_2='/home/myc3lium/Working'
-let g:netrw_dirhist_3='/usr/share/xsessions'
-let g:netrw_dirhist_4='/home/myc3lium/.config/i3/i3blocks'
-let g:netrw_dirhist_5='/home/myc3lium/.bin'
-let g:netrw_dirhist_6='/usr/share/dbus-1/services'
-let g:netrw_dirhist_7='/home/myc3lium/.config/dunst'
-let g:netrw_dirhist_8='/home/myc3lium/Working'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/myc3lium/Documents/assignments/team_project/code'

@@ -26,9 +26,7 @@ fi
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
 then
-    bash $HOME/.config/i3/wrapper 15 "睊 [wifi down]"
-    #echo "$INTERFACE down"
-    #echo "#FF0000"
+    bash $HOME/.config/i3/wrapper 15 0 "睊 [wifi down]"
     exit 0
 fi
 
@@ -89,4 +87,4 @@ else
   out+="[${tx_kib}Kb]"
 fi
 
-bash $HOME/.config/i3/wrapper 1 $out
+bash $HOME/.config/i3/wrapper 5 0 $out

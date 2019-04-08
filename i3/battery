@@ -6,6 +6,6 @@ case $BLOCK_BUTTON in
 	*) return ;;
 esac
 
-all=$(acpi -b | awk '{ print $3, substr($4,0,length($4)-1) }')
+all=$(acpi -b | awk '{ print "[", substr($3,0,length($3)-1), "]", substr($4,0,length($4)-1) }')
 
-bash $HOME/.config/i3/wrapper 4 "$all"
+bash $HOME/.config/i3/wrapper 1 0 "$all"

@@ -90,11 +90,12 @@ bindsym $mod+p focus parent
 # focus the child container
 bindsym $mod+d focus child
 
-set $workspace1  "1:Other"
-set $workspace2  "2:Anon"
-set $workspace3  "3:Web"
-set $workspace4 "4:Term"
-set $workspace5 "5:Media"
+set $workspace1  "1:⠁ Other "
+set $workspace2  "2:⠃ Anon "
+set $workspace3  "3:⠙ Web "
+set $workspace4  "4:⠛ Term "
+set $workspace5  "5:⠟ Media "
+
 
 bindsym $mod+7 		workspace $workspace1
 bindsym $mod+8 		workspace $workspace2
@@ -186,13 +187,28 @@ bindsym $mod+r mode "resize"
 # set $ur_inactive    #21292d
 # set $ur_indicator   #3f4f57
 
-# neon ['/home/myc3lium/Downloads/wp_001.jpg']
-set $ur_background  #0d1010 
+# base16-atelier-estuary
+#set $ur_background  #22221b
+#set $ur_foreground  #e5c8ac
+#set $ur_active     #5f9182
+#set $ur_pale        #22221b
+#set $ur_inactive    #22221b 
+#set $ur_indicator   #3f4f57
+
+# base16-solarized-light
+# set $ur_background  #fbf1c7
+# set $ur_foreground  #e5c8ac
+# set $ur_active      #8f3f71
+# set $ur_pale        #fbf1c7
+# set $ur_inactive    #fbf1c7
+# set $ur_indicator   #3f4f57
+
+# sexy-monokai
+set $ur_background  #272822
 set $ur_foreground  #e5c8ac
-set $ur_active      #2C4A54 
-set $ur_pale        #21292d #A09571
-set $ur_pale        #0d1010 
-set $ur_inactive    #0d1010 
+set $ur_active      #8f3f71
+set $ur_pale        #272822
+set $ur_inactive    #272822
 set $ur_indicator   #3f4f57
 
 									   # Border		  # 
@@ -225,6 +241,7 @@ bar {
 }
 
 # Most of my custom config
+#for_window [class=".*"] title_format "<span size="smaller">%title</span>"
 
 # Add cmus and ranger instances on workspace
 for_window	   [instance="music-mpv"]  move workspace	$workspace5

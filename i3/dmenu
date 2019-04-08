@@ -2,4 +2,4 @@
 
 source $HOME/.cache/wal/colors.sh
 
-i3-dmenu-desktop --dmenu="dmenu -fn terminus -i -l -b -nb $background -nf $foreground -sf $foreground -sb $color1"
+i3-dmenu-desktop --dmenu="dmenu -fn Terminus -i -l -b -nb $background -nf $foreground -sf $foreground -sb #8f3f71"

@@ -1,1 +1,5 @@
-#vim:ft=python:
+#!/bin/bash
+
+#bash $HOME/.config/i3/wrapper 3 "$(python3 $HOME/.config/i3/workspace_)"
+
+python3 $HOME/.config/i3/workspace_

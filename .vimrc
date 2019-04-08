@@ -161,7 +161,7 @@ vnoremap <Up> 		  <Nop>
 vnoremap <Down> 	  <Nop>
 vnoremap <Left> 	  <Nop>
 vnoremap <Right> 	  <Nop>
-vnoremap <Backspace>  <Nop>
+vnoremap <Backspace>  d
 vnoremap <Return>     <Nop>
 onoremap <Up> 		  <Nop>
 onoremap <Down> 	  <Nop>

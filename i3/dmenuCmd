@@ -2,6 +2,6 @@
 
 source $HOME/.cache/wal/colors.sh
 
-option="$(python3 -c "print(chr(-1))" | dmenu -p "> " -fn terminus -i -nb $background -nf $foreground -sf $foreground -sb $color1)"
+option="$(echo -e "\x00" | dmenu -p "> " -fn terminus -i -nb $background -nf $foreground -sf $color15 -sb $color5)"
 
 urxvt -e bash --init-file $HOME/.bashrc -c "$option"

@@ -1,6 +1,9 @@
 #!/bin/bash
 #vim:ft=sh:
 
+bg=2
+fg=0
+
 status_icon(){
 	case "$(cmus-remote -Q | awk '/status p/{ print $2 }')" in
 		playing) echo -n " " ;;
@@ -9,14 +12,23 @@ status_icon(){
 }
 
 current(){
-	cmus-remote -C "format_print %a\ -\ %t"
+	all="$(cmus-remote -C "format_print %a\ -\ %t")"
+	[[ ${#all} > 32 ]] && all="${all::32}..."
+	echo $all
+}
+
+get_vol(){
+	cmus-remote -Q | awk '/\<set vol_left\>/{ print $NF }'
+}
+
+get_all(){
+	echo "$(status_icon) $(current) | $(get_vol)%"
 }
 
 if [[ -n $BLOCK_BUTTON ]]; then
 	case $BLOCK_BUTTON in
 		1) cmus-remote --pause
-		   bash $HOME/.config/i3/wrapper 2 "$(status_icon) $(current)"
-		   pkill -RTMIN+10 i3blocks
+			bash $HOME/.config/i3/wrapper $bg $fg "$(get_all)"
 		   ;; # Left click and update
 
 		4) cmus-remote --volume +10%; 
@@ -31,5 +43,5 @@ if [[ -n $BLOCK_BUTTON ]]; then
 	source
 fi
 
-bash $HOME/.config/i3/wrapper 2 "$(status_icon) "$(current)""
+bash $HOME/.config/i3/wrapper $bg $fg "$(get_all)"
 pkill -RTMIN+10 i3blocks

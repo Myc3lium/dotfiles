@@ -18,23 +18,22 @@ status_icon(){
 	esac
 }
 
-get_status(){
-	echo "$(status_icon) $(get_title)"
+get_vol(){
+	cmus-remote -Q | awk '/\<set vol_left\>/{ print $NF }'
 }
 
-last_status="$(status_icon) $(get_title)"
+get_status(){
+	echo "$(status_icon) $(get_title) $(get_vol)"
+}
+
+last_status="$(get_status)"
 while true
 do
 	test="$(get_status)"
 	if [[ "$last_status" != "$test" ]]
 	then
-		#if [[ ${last_status:1} != ${test:1} ]]; then
-		#	notify "Playing\n" "$(cmus-remote -Q | awk '/\<tag title\>|\<tag artist\>|\<tag album\>|\<tag date\>/{$1=$2=""; print $0 }')"
-		#fi
-
 		last_status="$test"
 		pkill -RTMIN+10 i3blocks
 	fi
 	sleep 1.5
 done
-

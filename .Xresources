@@ -23,18 +23,10 @@ URxvt.boldFont: xft: FONT : size=FSIZE:Regular
 URxvt.italicFont: xft: FONT : size=FSIZE Italic
 URxvt.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
 
-! URxvt.background: rgb:00/00/00
 URxvt.depth: 100
-! URxvt.depth: 100 ; this fixes issues with w3m images.
 URxvt.shading: 200
-URxvt.fading: 7
+URxvt.fading: 4
 URxvt.internalBorder: 32
-
-! URxvt.blurRadius: 4
-! URxvt.transparent: true
-
-! colors.Xresources
-! #import "Working/lighter.Xresources"
 
 ! Xterm escapes, word by word movement
 URxvt.keysym.Control-Left: \033[1;5D
