@@ -3,5 +3,9 @@
 source $HOME/.cache/wal/colors.sh
 
 option="$(echo -e "\x00" | dmenu -p "> " -fn terminus -i -nb $background -nf $foreground -sf $color15 -sb $color5)"
+if [[ $option = urxvt* ]]; then
+	$option
+else
+	urxvt -e bash --init-file $HOME/.bashrc -c "$option"
+fi
 
-urxvt -e bash --init-file $HOME/.bashrc -c "$option"

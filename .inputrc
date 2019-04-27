@@ -1,4 +1,6 @@
+set bind-tty-special-chars off
 "\C-h":next-history
 "\C-k":previous-history
 "\C-o":backward-delete-char
 "\e-j":forward-word
+"\C-w":unix-filename-rubout

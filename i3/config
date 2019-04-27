@@ -90,11 +90,11 @@ bindsym $mod+p focus parent
 # focus the child container
 bindsym $mod+d focus child
 
-set $workspace1  "1:⠁ Other "
-set $workspace2  "2:⠃ Anon "
-set $workspace3  "3:⠙ Web "
-set $workspace4  "4:⠛ Term "
-set $workspace5  "5:⠟ Media "
+set $workspace1  "1:⠁  "
+set $workspace2  "2:⠃ ﴣ "
+set $workspace3  "3:⠙  "
+set $workspace4  "4:⠛  "
+set $workspace5  "5:⠟  "
 
 
 bindsym $mod+7 		workspace $workspace1
@@ -226,7 +226,8 @@ bar {
         tray_output none
 		strip_workspace_numbers yes
         
-		font pango:GohuFont Nerd Font 10.8
+		font pango:GohuFont Nerd Font 10.5
+		#font pango:Terminus 11
         
         colors { 
 				statusline $ur_foreground
@@ -252,11 +253,11 @@ exec_always --no-startup-id urxvt -name "music-mpv"   -uc -e ranger ~/Videos/yt/
 # Adds a process monitor in the lower left hand corner of the screen scratchpad
 for_window	   [instance="monitor"] floating 	  enable
 for_window	   [instance="monitor"] sticky 	  	  toggle 
-for_window	   [instance="monitor"] move 		  position 10 px 592 px 
+for_window	   [instance="monitor"] move 		  position 10 px 595 px 
 #610 px 642 px
 for_window	   [instance="monitor"] move 		  scratchpad
 bindsym $mod+m [instance="monitor"] scratchpad    show 
-exec_always --no-startup-id urxvt -geometry 80x6 -name monitor -uc -e htop
+exec_always --no-startup-id urxvt -geometry 52x6 -name monitor -uc -e htop
 
 # Add a calcurse window to the scratchpad
 for_window	   [instance="calendar"] floating    enable
@@ -267,10 +268,10 @@ exec_always --no-startup-id urxvt -name calendar  -geometry 100x22 -uc -e calcur
 # Adds a sticky window to the scratchpad, which can be called with $mod+i
 for_window		    [instance="scratch"] floating 	  enable
 for_window		    [instance="scratch"] sticky 	  toggle 
-for_window	   		[instance="scratch"] move 		  position 600 px 12 px
+for_window	   		[instance="scratch"] move 		  position 760 px 385 px
 for_window		    [instance="scratch"] move 		  scratchpad
 bindsym $mod+i		[instance="scratch"] scratchpad   show 
-exec_always --no-startup-id urxvt -geometry 77x25 -name scratch -uc -e bash 
+exec_always --no-startup-id urxvt -geometry 59x21 -name scratch -uc -e bash 
 
 for_window [instance="workspace4-terminal"] move workspace $workspace4
 exec_always --no-startup-id urxvt -uc -name workspace4-terminal -e bash 
@@ -317,7 +318,7 @@ exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id xmodmap -e "clear lock"
 
 # compton with shadows.
-exec_always --no-startup-id "/home/myc3lium/.bin/compton-start -s"
+exec_always --no-startup-id "/home/myc3lium/.bin/compton-start"
 
 # Start cmus-notify
 exec_always --no-startup-id "/home/myc3lium/.bin/cmus-notify"

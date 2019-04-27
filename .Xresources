@@ -19,9 +19,9 @@
 ! text formatting
 URxvt.lineSpace: 0
 URxvt.font: xft:FONT:size=FSIZE:Regular
-URxvt.boldFont: xft: FONT : size=FSIZE:Regular
-URxvt.italicFont: xft: FONT : size=FSIZE Italic
-URxvt.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
+URxvt.boldFont: xft: FONT: size=FSIZE:Italic
+URxvt.italicFont: xft: FONT : size=FSIZE:Italic
+URxvt.boldItalicFont: xft: FONT : size=FSIZE:Italic:Bold
 
 URxvt.depth: 100
 URxvt.shading: 200

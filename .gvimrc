@@ -11,7 +11,7 @@
 "       ▒▒██████                                                      
 "        ▒▒▒▒▒▒                                                       
 
-" set background=light
+set background=dark
 colorscheme gruvbox
 
 " set guifont=Terminus\ 12

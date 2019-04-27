@@ -3,3 +3,9 @@
 import sys
 sys.ps1='→  '
 sys.ps2='↳  '
+
+from os import system
+from subprocess import Popen
+
+from requests import post, get
+from json import loads, load, dumps, dump

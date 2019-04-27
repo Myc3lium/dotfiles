@@ -35,6 +35,7 @@ stty -ixon 				# Disable C-s C-q.
 # Prompt config 
 normal="$(tput sgr0)"
 reverse="$(tput rev)"
+bold="$(tput bold)"
 color1="$(tput setaf 1)"
 color2="$(tput setaf 2)"
 color3="$(tput setaf 3)"
@@ -54,20 +55,21 @@ color15="$(tput setaf 15)"
 # Print nice indicator for cwd.
 GPWD(){ 
 	case "$PWD" in
-		$HOME*) echo "λ${PWD:14}"  ;;
-		*) 		echo "Σ/${PWD:1}"  ;;
+		$HOME)   ;;
+		$HOME/*) echo "(${PWD:15}) " ;;
+		*) 		 echo "/${PWD:1} "   ;;
 	esac
 }
 
-PS1='\[${color2}\]$(GPWD) \[${color15}\]\[${color1}\]~\[${normal}\]  '
-PS2='\[${color1}\]| \[${normal}\] '
+PS1='\[${color2}\]$(GPWD)→ \[${normal}\] '
+PS2='\[${color2}\]↳ \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Useful exports.
 export EDITOR=vim
-export VISUAL=vim 	   # Calcurse notes.
+export VISUAL=vim 	         # Calcurse notes.
 export WWW_HOME="google.com" # w3m w/out arguments startpage
 export TERM="xterm-256color" # Terminal escapes info
 export PYTHONSTARTUP="$HOME/.pyrc"
@@ -85,6 +87,20 @@ export LESS_TERMCAP_so="$reverse"  # Start standout/ reverse.
 export LESS_TERMCAP_ue="$normal"   # Underline end.
 export LESS_TERMCAP_us="$color2"   # Underline start.
 
+# Directory: di
+# File: fi
+# Symbolic Link: ln
+# Named Pipe: pi
+# Socket: so
+# Block Device: bd
+# Character Device: cd
+# Orphan Symbolic Link: or
+# Missing File: mi
+# Executable File: ex
+# *.extension: files ending in ".extension"
+# LS_COLORS=""
+# export LS_COLORS="di=03;32:ex=03;32:ln=03;36:fi=37"
+
 # Allow execution of stuff in .bin
 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 
@@ -95,4 +111,11 @@ source ~/.bin/aliases.sh
 ff(){
     ~/repos/other/fff/fff "$@"
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
+
+computing(){
+	while true; do
+		ssh pru0_soteria@computing.derby.ac.uk
+		clear
+	done
 }

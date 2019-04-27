@@ -18,7 +18,15 @@ alias lsdp="apt-cache --installed depends "                       #lists package
 alias pks="apt search " #find a package based on name
 alias pss="gpg -d ~/.Private_Docs/pss.new.asc.asc | less"
 
-alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
+# alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
+mkpss(){
+	if [[ $# -eq 0 ]]; then
+		apg -a 1 -m 20 -n 20 | sed '1q'
+	else
+		apg -a 1 -m $1 -n 20 | sed '1q'
+	fi
+}
+
 alias ahist="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day" +"%F")" -e "$(date -d "-2 day" +"%F")" -e "$(date -d "-3 day" +"%F")" /var/log/apt/history.log | less -R"
 alias less="less -R"
 
@@ -38,6 +46,8 @@ alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
 alias hs=history
 alias hg="history | grep"
+alias ,w="echo ur not using vim idiot"
+alias ,q="echo ur not using vim idiot"
 
 # Alias some dir-names.
 alias ~pers="$HOME/repos/personal"
