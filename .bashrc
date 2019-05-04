@@ -56,7 +56,7 @@ color15="$(tput setaf 15)"
 GPWD(){ 
 	case "$PWD" in
 		$HOME)   ;;
-		$HOME/*) echo "(${PWD:15}) " ;;
+		$HOME/*) echo "[${PWD:15}] " ;;
 		*) 		 echo "/${PWD:1} "   ;;
 	esac
 }

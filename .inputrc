@@ -4,3 +4,6 @@ set bind-tty-special-chars off
 "\C-o":backward-delete-char
 "\e-j":forward-word
 "\C-w":unix-filename-rubout
+"\t":menu-complete
+"\e[Z":menu-complete-backward
+

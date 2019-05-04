@@ -1,9 +1,3 @@
-shell wal  -n -i %s
-shell wal  -i %s
-shell mkdir kekke_the_op %s
-shell wal -n -i %s
-shell urxvt -e "mpv --shuffle %s" &
-AliasCommand 
 shell mid3v2  %s --artist="Stevi
 shell mid3v2  %s --artist="Stevia Sphere" --title="Packing your things" 
 find The Tru
@@ -28,23 +22,29 @@ shell wal -i %s
 mp
 shell mpv --shuffle %s
 shell  %s
-cut
 cut 
 pager_close 
-paste 
 bulkrename
 shell fe %s
-open_with 
 vim
 open_with vim
-delete 
 shell feh --bg-tile %s
 shell feh --b %s
 shell feh --bg %s
-
 shell feh --bg-max %s
 shell feh --bg-fill %s
 shell feh --bg-scale %s
-shell gvim %s
 shell feh --bg-center %s
 shell bleachbit --shred %s
+delete 
+gvi
+shell gvi, %s
+shell gvim -p %s
+open_with 
+open_with gvim
+shell gvim %s
+find .pp
+
+cut
+as
+paste 

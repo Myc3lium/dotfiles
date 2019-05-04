@@ -8,40 +8,26 @@
 "   ▒▒█████    █████ █████▒███ █████ █████    ▒▒██████
 "    ▒▒▒▒▒    ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒
 
+
+" ~~~~# Windows Option/s #~~~~
 if has("win32")
-    inoremap <C-x> <Esc>
+	inoremap jk    <Esc>
 endif
 
+" ~~~~# Main Options #~~~~
 " *Always* show status line, tabs and command.
 set laststatus=2
 set showtabline=2
 set showcmd
-
-" Highlight control chars. Toggle show with
-" <s> while in normal mode.
-set listchars=tab:╎\ ,eol:§,nbsp:␣,trail:·,extends:⟩,precedes:⟨
-nnoremap <silent>s :set list!<Cr>
-inoremap <Tab> <Space><Space><Space><Space>
-
-" Enable mouse toggling on/off.
-set mouse=
-nnoremap <silent>m :exec &mouse != "" ? "set mouse=" : "set mouse=a"<Cr>
 
 " Highlight search results. Use C-l to un-highlight.
 set hlsearch
 nnoremap <silent><C-l> :noh<Cr>
 
 " Set spell check options.
-set spelllang=en_gb
-nnoremap <silent><C-s> :setlocal spell!<Cr>
+set spelllang=en_gb,en_us
 
-" Set auto-increment options
-nnoremap <C-v> <C-a>
-
-" Hide file explorer banner.
-let g:netrw_banner = 0
-
-" Set file encoding.
+" Set default file encoding.
 set encoding=utf-8
 
 " Set line numbering options.
@@ -49,12 +35,24 @@ set number relativenumber
 
 " Set tab representation and shift width.
 " set expandtab " will set tabs to be spaces.
+" However this will not work with auto-indent 
+" produced tabs.
 set tabstop=4
 set shiftwidth=4
 
+" Highlight control chars. Toggle show with
+" <s> while in normal mode.
+set listchars=tab:╎\ ,eol:§,nbsp:␣,trail:·,extends:⟩,precedes:⟨
+nnoremap <silent>s :set list!<Cr>
+inoremap <Tab> <Space><Space><Space><Space>
+
 " Set timeout on Escape. This is vital for not
-" being extra fucking slow on exiting insert mode.
-set timeoutlen=0 ttimeoutlen=0
+" being extra slow on exiting insert mode. 
+" If this is zero it interferes with leader mappings.
+set timeout timeoutlen=70 ttimeoutlen=70
+nnoremap <Space> <Nop>
+let mapleader=";"
+inoremap jk <Esc>
 
 " Set colour representation.
 colorscheme wal
@@ -73,8 +71,24 @@ set undodir=~/.vim/undodir/
 " Let vim interpret mode lines.
 set modeline
 
-" Enable syntax and file-type plugins.
-execute pathogen#infect()
+" ~~~~# Plugin Options #~~~~
+" Enable plugins and set relevant options.
+
+" Set gui/terminal specific options.
+let g:pathogen_disabled = []
+if !has('gui_running')
+    call add(g:pathogen_disabled, 'lightline.vim')
+
+	" Vim move settings. You need to set <A-*>
+	" for alt to work in the terminal.
+	execute "set <A-h>=\eh"
+	execute "set <A-j>=\ej"
+	execute "set <A-k>=\ek"
+	execute "set <A-l>=\el"
+endif
+call pathogen#infect()
+
+" haskell-vim settings
 filetype  off
 syntax    on
 filetype  plugin indent on
@@ -86,12 +100,34 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
+" lightline.vim settings.
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+	  \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype'] ]
+      \ },
+      \ 'component': {
+      \ },
+      \ 'component_function': {
+      \ },
+      \ }
 
+" Hide file explorer banner.
+let g:netrw_banner = 0
+
+" ~~~~# Key Mappings #~~~~
 " Easier command mode.
 nnoremap , :
 nnoremap : <Nop>
 vnoremap , :
 vnoremap : <Nop>
+
+" Set auto-increment options
+nnoremap <C-v> <C-a>
 
 " Find and replace in normal.
 nnoremap <C-c> :%s/
@@ -108,7 +144,6 @@ nnoremap <C-b> :buffers<CR>:buffer!<Space>
 nnoremap <S-e>   :tabedit!<Space>
 nnoremap <Tab>   :tabnext<Cr>
 nnoremap <S-Tab> :tabprev<Cr>
-nnoremap <C-w>   :tabclose<Cr>
 cabbrev  h       tab help
 
 " Remove ex mode entry and remap to
@@ -184,11 +219,18 @@ vnoremap <C-Y>  "+y
 vnoremap <C-P>  "+p
 vnoremap <C-D>  "+d
 
+" Define movements inside some common text objects.
+onoremap P i)
+onoremap T i>
+onoremap B i]
+onoremap C i}
+onoremap A t,
+onoremap E f,
+
 " Navigation. Shift-j goes down a page, Shift-k goes up.
 " nostartofline stops moving to the start of the line,
 " allowing for keeping the current column position.
 set nostartofline
-" set scrolloff=9999
 
 " Unmap annoying justify text feature in insert mode.
 " Change to autocomplete toggle instead.
@@ -203,6 +245,7 @@ vnoremap <S-k> <C-y>
 vnoremap <C-S-j> <C-f>
 vnoremap <C-S-k> <C-b>
 
+" ~~~~# AutoCommands/ AuGroups #~~~~
 " Reload i3 config, header and Xresources on write.
 autocmd BufWritePost config                  silent! execute "!i3-msg reload"                           | redraw!
 autocmd BufWritePost .Xresources             silent! execute "!xrdb ~/.Xresources"                      | redraw!
@@ -211,12 +254,10 @@ autocmd BufWritePost i3blocks.conf           silent! execute "!pkill i3bar && i3
 autocmd BufWritePost dunstrc                 silent! execute "!killall dunst; dunst &"                  | redraw!
 
 " Set spelling on plain-language files.
-autocmd BufReadPost  *.md,*.MD                silent! setlocal spell
-
 " Compile ms documents on write.
-autocmd BufwritePost *.ms silent! execute "!groff -e -ms -Tpdf % > %:r.pdf" | redraw!
-
 " Strip whitespace on write with Haskell, C, Python, Prolog, Bash.
+autocmd BufReadPost  *.md,*.MD,*.ms                silent! setlocal spell
+autocmd BufwritePost *.ms silent! execute "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
 autocmd BufWritePre *.c,*.h,*.py,*.pl,*.sh,*.hs,*.md :%s/\s\+$//e
 
 " Change tabs to spaces for Haskell files. This fixes a lot 
@@ -229,12 +270,13 @@ autocmd BufWritePre *.hs :%s/\t/    /ge
 autocmd BufWritePost *.md silent! execute "!pandoc % -f markdown_github -t html5 --css ~/Templates/github.css -o %:r.html" | redraw!
 
 " Start scratchpad buffer if no file arguments.
+autocmd VimEnter * call ScratchPad() | hi ModeMsg ctermfg=2 ctermbg=8
 function ScratchPad()
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal noswapfile
-    file      Scratchpad\ 
+	if argc() == 0
+		setlocal buftype=nofile
+		setlocal bufhidden=hide
+		setlocal noswapfile
+		file      Scratchpad\ 
+	endif
 endfunction
-autocmd VimEnter * if eval("@%") == "" | call ScratchPad() | endif
 
-hi ModeMsg ctermfg=2 ctermbg=8

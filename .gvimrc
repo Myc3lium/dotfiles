@@ -29,5 +29,8 @@ set guioptions -=m
 set guioptions -=r
 set guioptions -=L
 
+" disable tabs as well !
+set guioptions=
+
 " Mouse compat.
 set mouse=a

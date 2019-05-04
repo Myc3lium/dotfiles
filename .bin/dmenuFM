@@ -1,0 +1,49 @@
+#!/bin/bash
+# vim: filetype=sh:
+
+# File manager using dmenu to select files and
+# directories. Supports custom commands and 
+# sourcing pywal colors.
+
+run_cmd(){
+	case $1 in
+		exit) echo break    ;; ## Exit.
+		!)    echo "${@:2}" ;; ## Run rest of args as bash command.
+		set)  ;;
+		show-hidden)  echo lsopt="-AF" ;;
+		hide)         echo lsopt="-F"  ;;
+	esac
+}
+
+dm(){
+	echo -e "[parent]\n$(cat)\n${commands}" | dmenu -fn 'GohuFont Nerd Font-10.8' -p $PWD -i -l 20 -nb $background -nf $foreground -sf $foreground -sb "#8f3f71"
+}
+
+mainloop(){
+	while true; do
+		target="$(ls $lsopt $PWD --color=never | dm)"
+		case $target in
+			:*) eval $(run_cmd ${target:1}) ;; ## Run rest of string if starting with ":".
+			"") exit ;;                        ## Exit on no choice.
+
+			"[parent]") cd .. ;;
+			*/)     cd $target ;; ## Directory.
+			*@)     cd $target ;; ## Link.
+
+			*)  xdg-open $target ;;
+		esac
+	done
+}
+
+source ~/.cache/wal/colors.sh
+cd $HOME
+
+lsopt="-F"
+commands="\
+:exit\n\
+:set\n\
+:show-hidden\n\
+:hide\n\
+:!\n\
+"
+mainloop
