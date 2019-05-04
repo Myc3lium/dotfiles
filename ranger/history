@@ -1,4 +1,3 @@
-shell mid3v2  %s --artist="Stevi
 shell mid3v2  %s --artist="Stevia Sphere" --title="Packing your things" 
 find The Tru
 set colorscheme snow
@@ -17,7 +16,6 @@ shell wget https://pastebin.com/raw/KcFg2D5D
 pa
 paste
 find The Car
-bulkrename 
 shell wal -i %s
 mp
 shell mpv --shuffle %s
@@ -44,7 +42,9 @@ open_with
 open_with gvim
 shell gvim %s
 find .pp
-
-cut
 as
+cut
 paste 
+
+shell bul %s
+bulkrename 
