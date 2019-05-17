@@ -45,8 +45,8 @@ alias fth="gforth"
 alias colors="wal --preview | tail -3"
 alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
-alias hs=history
-alias hg="history | grep"
+alias hs="history | awk '{ \$1=\"\"; print }'"
+alias hg="hs | grep"
 alias ,w="echo ur not using vim idiot"
 alias ,q="echo ur not using vim idiot"
 
@@ -55,27 +55,7 @@ alias ~pers="$HOME/repos/personal"
 alias ~other="$HOME/repos/other"
 alias ~assi="$HOME/Documents/assignments/"
 
-clippy(){
-	## Echo data to vim and yank to
-	## system clipboard.
-	vim -s <(printf 'ggVG"+yy') -
-}
-
-# Find the size of an installed package
-function pkmg(){
-	apt-cache show $1 | grep Installed-Size | python3 -c "from sys import stdin;print(stdin.read().split()[1])"
-}
-
 # Python3 help from outside python
 pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
 }
-
-# Man with zathura
-zman_ (){
-	man -Tpdf $@ | zathura -
-}
-zman (){
-	zman_ "$@" &
-}
-

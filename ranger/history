@@ -1,22 +1,7 @@
-shell mid3v2  %s --artist="Stevia Sphere" --title="Packing your things" 
-find The Tru
-set colorscheme snow
-set colorscheme jungle
-set colorscheme solarized
-set colorscheme default
-delete j
-d
-w
-mkdi
-shell mkdir week_3
-shell vim prompt
-shell wget  https://raw.pastebin.com/MZpX0eYh 
 shell wget  https://pastebin.com/raw/MZpX0eYh 
 shell wget https://pastebin.com/raw/KcFg2D5D
 pa
-paste
 find The Car
-shell wal -i %s
 mp
 shell mpv --shuffle %s
 shell  %s
@@ -25,7 +10,6 @@ pager_close
 bulkrename
 shell fe %s
 vim
-open_with vim
 shell feh --bg-tile %s
 shell feh --b %s
 shell feh --bg %s
@@ -34,17 +18,33 @@ shell feh --bg-fill %s
 shell feh --bg-scale %s
 shell feh --bg-center %s
 shell bleachbit --shred %s
-delete 
 gvi
 shell gvi, %s
 shell gvim -p %s
-open_with 
 open_with gvim
-shell gvim %s
 find .pp
 as
+shell bul %s
+shell vim vertfull.diff
+c
+shell vim embark_profiles.txt
+copy
+bulkrename 
+find creature_st
+paste
+dut
 cut
 paste 
+open_with zathura
+find 
+open_with 
+open_with mpv
+delete
 
-shell bul %s
-bulkrename 
+open_with vim
+rename Industrial Week Findings.docx
+shell gvim %s
+del
+delete 
+q
+shell wal -i %s

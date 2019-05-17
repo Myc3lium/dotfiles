@@ -1,6 +1,0 @@
-#!/bin/bash
-# vim: filetype=sh:
-
-source ~/.cache/wal/colors.sh
-
-$2 "$(ls --color=never $1 | dmenu -fn Terminus -i -l -b -nb $background -nf $foreground -sf $foreground -sb "#8f3f71")" ${@:3}

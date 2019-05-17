@@ -13,29 +13,34 @@ options="\
    Shutdown\n\
   Bleachbit+shutdown\n\
 "
+dm(){
+	dmenuw $@
+}
 
 system(){
 	options="\
          Search packages\n\
          Man-pages\n\
+         Set pywal theme\n\
          Run"
 
-    option="$(echo -e $options | dmenu -fn 'GohuFont Nerd Font-10.8' -i -nb $background -nf $foreground -sf $foreground -sb '#8f3f71')" # the chosen option
+	option="$(echo -e $options | dm -i)" #'#8f3f71')" # the chosen option
 
 	case "$option" in
-		*Search\ packages) pksearch                       ;;
-		*Man-pages)        mansplain                      ;;
-		*Run)              bash $HOME/.config/i3/dmenuCmd ;;
+		*Search\ packages)  pksearch                       ;;
+		*Man-pages)         mansplain                      ;;
+		*Set\ pywal\ theme) wal-theme                      ;;
+		*Run)               bash $HOME/.config/i3/dmenuCmd ;;
 	esac
 }
 
-option="$(echo -e $options | dmenu -fn 'GohuFont Nerd Font-10.8' -i -nb $background -nf $foreground -sf $foreground -sb '#8f3f71')" # the chosen option
+option="$(echo -e $options | dm -i)" #'#8f3f71')" # the chosen option
 
 ## Glob for actual option w/out icon ? yep, works.
 case "$option" in
 	*System)				system                                ;;
 	*Lock\ machine) 		bash $HOME/.config/i3/lock.sh 		  ;;
-	*Usb\ devices) 			$HOME/.config/i3/usbMount 			  ;;
+	*Usb\ devices) 			$HOME/.bin/mount-usb 			      ;;
 	*Network\ options) 		bash $HOME/.config/i3/dmenuNetwork    ;;
 	*Restart\ i3) 			pkill urxvt; i3-msg "restart" 		  ;;
 	*Logout) 				i3-msg exit 						  ;;

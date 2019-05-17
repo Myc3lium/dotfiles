@@ -1,10 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 
-source ~/.cache/wal/colors.sh
+. ~/.cache/wal/colors.sh
 
 notify-send \
-	-h string:fgcolor:${foreground}\
+	-h string:fgcolor:"${foreground}"\
 	-h string:frame_color:"#ffffff"\
-   	-h string:bgcolor:${background}\
+	-h string:frame_width:5px\
+   	-h string:bgcolor:"${background}"\
 	-h string:font:"GohuFont Nerd Font 11"\
    	"$@"
+
+#paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga --volume=30000
+#paplay /usr/share/sounds/freedesktop/stereo/complete.oga --volume=20000

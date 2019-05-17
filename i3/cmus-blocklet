@@ -12,7 +12,7 @@ status_icon(){
 }
 
 current(){
-	all="$(cmus-remote -C "format_print %a\ -\ %t")"
+	all="$(cmus-remote -C "format_print %a\ |\ %t")"
 	[[ ${#all} > 32 ]] && all="${all::32}..."
 	echo $all
 }

@@ -1,13 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
-slice(){
-	python3 -c "print(input()[$@])"
-}
+# Turn the touchpad on and off.
 
-option=$(synclient -l | grep TouchpadOff --color=no | slice "-1")
+option=$(synclient -l | grep TouchpadOff --color=no | awk '{ print substr($0,length($0)) }') 
 
-if [ $option = 0 ]; then
-	synclient TouchpadOff=1
-else
-	synclient TouchpadOff=0
-fi
+[ $option = 0 ] && synclient TouchpadOff=1 && exit
+synclient TouchpadOff=0

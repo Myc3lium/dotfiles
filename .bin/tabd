@@ -1,0 +1,30 @@
+#!/bin/sh
+#vim:ft=sh:
+
+# A simple tool for interacting with suckless-tabbed as a pseudo 
+# daemon process. When spawning a program instance with a set of 
+# provided arguments, check to see if a tabbed instance with a 
+# name of the form tabd_<name> exists, where name is either the
+# name of the program or another provided string. If the specified
+# instance exists, fork the program, embedding it in said instance.
+# otherwise, first start tabbed in detached mode, then run the 
+# program.
+#
+# Usage:
+#    tabd [-name <name>] <program> <embed option> <other commands>*
+#
+# Examples:
+#    tabd urxvt -embed
+#    tabd -name editors urxvt -embed -e bash -c vim
+
+[ $# -lt 2 ] && exit ## Exit on empty arguments.
+[ $# -eq 2 ] && [ "$1" = -name ] && exit
+
+[ "$1"  != -name ] && name=tabd_$1 && program=$1 && embed_command=$2  && shift 2 
+[ "$1"  =  -name ] && name=tabd_$2 && program=$3 && embed_command=$4  && shift 4 
+
+xid=$(xdotool search --classname "$name")
+[ -z "$xid" ] && xid=$(tabbedw -d -c -n "$name")
+export tabdname=$name
+export xid
+eval "$program $embed_command $xid $*" 2> /dev/null &

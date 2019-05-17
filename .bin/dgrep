@@ -1,2 +1,5 @@
-#!/usr/bin/env bash
-ls -Altph $1 | grep $2 --color=always
+#!/bin/sh
+
+[ $# = 2 ] && dir=$1 && pattern=$2
+[ $# = 1 ] && dir="." && pattern=$1
+ls -Altph "$dir" | grep "$pattern" --color=always

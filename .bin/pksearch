@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 # vim: filetype=sh:
 
 # Search though cached package info graphically with dmenu.
-# Once an item is selected, open it in dmenu
+# Once an item is selected, display it in dmenu
 
-source ~/.cache/wal/colors.sh
+. ~/.cache/wal/colors.sh
 
 dm(){
-	dmenu -fn Terminus-10 -i -l 20 -nb $background -nf $foreground -sf $foreground -sb "#8f3f71"
+	dmenuw -fn Terminus-10 -i -l 8
 }
 
 opt="$(apt-cache search . | dm | awk '{ print $1 }')"
-[[ -n $opt ]] && apt-cache show $opt | awk '/^\s+/{ print }' | dm 
+[ -n "$opt" ] && apt-cache show "$opt" | awk '/^\s+/{ print }' | dm 

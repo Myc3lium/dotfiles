@@ -1,5 +1,3 @@
 #!/bin/bash
-
-source $HOME/.cache/wal/colors.sh
-
-i3-dmenu-desktop --dmenu="dmenu -fn Terminus -i -l -b -nb $background -nf $foreground -sf $foreground -sb #8f3f71"
+. $HOME/.cache/wal/colors.sh
+i3-dmenu-desktop --dmenu="dmenu -fn Terminus -i -l -b -nb $background -nf $foreground -sf $background -sb $color7" #8f3f71"

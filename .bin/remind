@@ -1,5 +1,0 @@
-#!/bin/sh
-
-echo "[Setting reminder in $1 seconds]" 
-sleep $1
-notify "$2"

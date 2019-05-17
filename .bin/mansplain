@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # vim: filetype=sh:
 
 # Get a listing of man pages and run through dmenu to get
@@ -6,14 +6,7 @@
 # then print the corresponding page to stdout then into
 # zathura.
 
-source $HOME/.cache/wal/colors.sh
+. "$HOME"/.cache/wal/colors.sh
 
-opt="$(man -k . | dmenu -l 20 -fn Terminus-10 -i -nb $background -nf $foreground -sf $foreground -sb "#8f3f71")"
-
-if [[ -n "$opt" ]]; then # An option was selected.
-	name="$(echo $opt | awk '{ print $1 }')"
-	section="$(echo $opt | awk '{ substr($2,2,length($2)-2) }')"
-
-    man -Tpdf $page $name | zathura -
-fi
-
+opt="$(man -k . | dmenuw -l 8 -i -fn Terminus-10 | awk '{ print substr($2,2,length($2)-2),$1 }')"
+[ -n "$opt" ] && eval "man -Tpdf $opt" | zathura -

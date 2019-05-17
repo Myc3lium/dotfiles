@@ -1,20 +1,22 @@
-#!/bin/bash
+#!/bin/sh
 
 remove(){
-	pushd $HOME/.vim/bundle
-	rm $1
-	popd
+	var="$PWD"
+	cd "$HOME"/.vim/bundle
+	rm "$1"
+	cd "$var"
 }
 
 add(){
-	pushd $HOME/.vim/bundle
-	git clone $1
-	popd
+	var="$PWD"
+	cd "$HOME"/.vim/bundle
+	git clone "$1"
+	cd "$var"
 }
 
 upgrade(){
-	remove $1
-	add $1
+	remove "$1"
+	add "$1"
 }
 
-$@
+eval "$@"

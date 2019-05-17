@@ -1,13 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
 remove(){
-	sudo apt-get purge $1
-	sudo apt-get autoremove $1
+	sudo apt-get purge "$1"
+	sudo apt-get autoremove "$1"
 }
 
 add(){
 	sudo apt-get update
-	sudo apt-get install $1
+	sudo apt-get install "$1"
 }
 
 update(){
@@ -20,15 +20,15 @@ upgrade(){
 }
 
 search(){
-	apt search $1
+	apt search "$1"
 }
 
 info(){
-	apt-cache show $1
+	apt-cache show "$1"
 }
 
 src(){
 	apt-get source
 }
 
-$@
+eval "$@"

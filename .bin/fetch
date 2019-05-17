@@ -2,7 +2,6 @@
 # vim:set filetype=sh:
 
 normal="$(tput sgr0)"
-reverse="$(tput rev)"
 bold="$(tput bold)"
 color1="$(tput setaf 1)"
 color2="$(tput setaf 2)"
@@ -17,7 +16,7 @@ color8="$(tput setaf 8)"
 uptime="$(uptime -p | sed 's/up //')"
 mem=$(free -h | sed '2q;1d' | awk '{ print $3,"/",$2 }')
 temp=$(acpi -t | sed 's/Thermal 0: \w\+,\s*//')
-cpu=$(cat /proc/cpuinfo | grep "model name" | uniq | sed 's/model name\s*\:\s*//')
+cpu=$( (grep "model name" | uniq | sed 's/model name\s*\:\s*//') < /proc/cpuinfo)
 packages="$(dpkg -l | wc -l)"
 
 cat << EOF

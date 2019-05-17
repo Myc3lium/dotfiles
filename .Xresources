@@ -37,11 +37,14 @@ URxvt.perl-ext-common: default,matcher,resize-font
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline Bold fg6
+! URxvt.bell-command: notify "Beep, Beep"
 
 ! Urxvt resize key escapes
 URxvt.keysym.C-bracketleft:  resize-font:smaller
 URxvt.keysym.C-bracketright:  resize-font:bigger
 URxvt.keysym.C-equal:  		resize-font:reset
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
 URxvt.scrollBar: false
 URxvt.geometry: 81x23
@@ -54,12 +57,10 @@ URxvt.iso14755_52: false
 URxvt.cursorColor:rgb:b8/bb/26
 URxvt.cursorUnderline:True
 
-
 ! Xft settings
 Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: full
-
 
 ! XTerm settings
 XTerm.termName: xterm-256color
@@ -68,7 +69,7 @@ XTerm.vt100.saveLines: 4096
 XTerm.vt100.faceName: FONT :size=FSIZE:antialias=false
 
 XTerm.font: xft:FONT:size=FSIZE:Regular
-XTerm.boldFont: xft: FONT : size=FSIZE:Regular
+XTerm.boldFont: xft: FONT : size=FSIZE:Italic
 XTerm.italicFont: xft: FONT : size=FSIZE Italic
 XTerm.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
 
@@ -76,3 +77,36 @@ UXTerm.font: xft:FONT:size=14:Regular
 UXTerm.boldFont: xft:FONT:size=14:Regular
 UXTerm.italicFont: xft:FONT:size=14:Italic
 UXTerm.boldItalicFont: xft:FONT:size=14:Italic:Bold
+
+*.color0: #282828
+*.color0:  #282828
+*.color1: #fb4934
+*.color1:  #fb4934
+*.color2: #b8bb26
+*.color2:  #b8bb26
+*.color3: #fabd2f
+*.color3:  #fabd2f
+*.color4: #83a598
+*.color4:  #83a598
+*.color5: #d3869b
+*.color5:  #d3869b
+*.color6: #8ec07c
+*.color6:  #8ec07c
+*.color7: #d5c4a1
+*.color7:  #d5c4a1
+*.color8: #665c54
+*.color8:  #665c54
+*.color9: #fb4934
+*.color9:  #fb4934
+*.color10: #b8bb26
+*.color10:  #b8bb26
+*.color11: #fabd2f
+*.color11:  #fabd2f
+*.color12: #83a598
+*.color12:  #83a598
+*.color13: #d3869b
+*.color13:  #d3869b
+*.color14: #8ec07c
+*.color14:  #8ec07c
+*.color15: #fbf1c7
+*.color15:  #fbf1c7

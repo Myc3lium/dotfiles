@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Dmenu with colors sourced from pywal.
+. "$HOME"/.cache/wal/colors.sh
+"$HOME"/repos/personal/dmenu/dmenu -nb "$background" -nf "$foreground" -sf "$background" -sb "$color4" -h 20 "$@"

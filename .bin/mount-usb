@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Provide a list of usb devices using dmenu.
+# Get a selection from the user and then mount
+# under $HOME/Media/<temp dir>
+
+mountable=$(lsblk -lp | awk '/part $/{ print $1,"("$4")"}')
+[ -z "$mountable" ] && exit
+
+drive=$(echo "$mountable" | $HOME/.bin/dmenuw -p "Mount: " -i -l 20)
+[ -z "$drive" ] && exit
+
+drive=$(echo "$drive" | awk '{ print $1 }')
+dir=$(mktemp -d -p $HOME/Media/)
+$HOME/.bin/dPass | sudo -S mount $drive $HOME/Media/$dir

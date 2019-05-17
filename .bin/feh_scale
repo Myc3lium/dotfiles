@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 # Open feh with images scaled to a 
 # sensible size based on the original,
 # by specifying the (max) image width and
 # calculating the height accordingly.
 
-[[ -z $img_width ]] && img_width=900
+[ -z "$img_width" ] && img_width=900
 geometry(){
 	identify -format "%[fx:w]x%[fx:h]" "$1"
 }
@@ -22,7 +22,7 @@ case $# in
 		;;
 	*) 
 		dimensions="$(geometry "$1")"; 
-		dimensions="$(scale $dimensions $img_width)" 
+		dimensions="$(scale "$dimensions" $img_width)" 
 		feh -g "$dimensions" "$1"
 		exit 0
 		;;

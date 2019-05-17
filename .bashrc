@@ -8,14 +8,13 @@
 #    ████████ ▒▒████████ ██████  ████ █████
 #   ▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ 
 
+# Allow execution of stuff in .bin regardless of interactive use.
+export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
+
 # If not running interactively, don't do anything.
 case $- in
     *i*) ;;
-      *) 
-		 export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin" 
-		 # Export path to allow use of .bin/ files even when in interactive.
-		 return
-	;;
+      *) return ;;
 esac
 
 # History config.
@@ -52,16 +51,7 @@ color13="$(tput setaf 13)"
 color14="$(tput setaf 14)"
 color15="$(tput setaf 15)"
 
-# Print nice indicator for cwd.
-GPWD(){ 
-	case "$PWD" in
-		$HOME)   ;;
-		$HOME/*) echo "[${PWD:15}] " ;;
-		*) 		 echo "/${PWD:1} "   ;;
-	esac
-}
-
-PS1='\[${color2}\]$(GPWD)→ \[${normal}\] '
+PS1='[\[${color2}\]\w »\[${normal}\]] '
 PS2='\[${color2}\]↳ \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
@@ -101,8 +91,6 @@ export LESS_TERMCAP_us="$color2"   # Underline start.
 # LS_COLORS=""
 # export LS_COLORS="di=03;32:ex=03;32:ln=03;36:fi=37"
 
-# Allow execution of stuff in .bin
-export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
 
 # Load aliases.
 source ~/.bin/aliases.sh
@@ -111,11 +99,4 @@ source ~/.bin/aliases.sh
 ff(){
     ~/repos/other/fff/fff "$@"
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
-}
-
-computing(){
-	while true; do
-		ssh pru0_soteria@computing.derby.ac.uk
-		clear
-	done
 }

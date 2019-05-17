@@ -8,12 +8,6 @@
 "   ▒▒█████    █████ █████▒███ █████ █████    ▒▒██████
 "    ▒▒▒▒▒    ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒      ▒▒▒▒▒▒
 
-
-" ~~~~# Windows Option/s #~~~~
-if has("win32")
-	inoremap jk    <Esc>
-endif
-
 " ~~~~# Main Options #~~~~
 " *Always* show status line, tabs and command.
 set laststatus=2
@@ -24,8 +18,9 @@ set showcmd
 set hlsearch
 nnoremap <silent><C-l> :noh<Cr>
 
-" Set spell check options.
+" Set spell check options. Spell check is disabled within quote marks.
 set spelllang=en_gb,en_us
+syntax match quoteblock /"[^"]\+"/ contains=@NoSpell
 
 " Set default file encoding.
 set encoding=utf-8
@@ -34,7 +29,7 @@ set encoding=utf-8
 set number relativenumber
 
 " Set tab representation and shift width.
-" set expandtab " will set tabs to be spaces.
+" 'set expandtab' will set tabs to be spaces.
 " However this will not work with auto-indent 
 " produced tabs.
 set tabstop=4
@@ -49,7 +44,7 @@ inoremap <Tab> <Space><Space><Space><Space>
 " Set timeout on Escape. This is vital for not
 " being extra slow on exiting insert mode. 
 " If this is zero it interferes with leader mappings.
-set timeout timeoutlen=70 ttimeoutlen=70
+set timeout timeoutlen=64 ttimeoutlen=64
 nnoremap <Space> <Nop>
 let mapleader=";"
 inoremap jk <Esc>
@@ -62,10 +57,10 @@ set background=light
 " Backup swap files in a more useful place.
 " Move viminfo file somewhere more appropriate.
 " Set persistent undo/redo. Very useful.
+set undofile
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set viminfo+=n~/.vim/viminfo
-set undofile
 set undodir=~/.vim/undodir/
 
 " Let vim interpret mode lines.
@@ -74,7 +69,7 @@ set modeline
 " ~~~~# Plugin Options #~~~~
 " Enable plugins and set relevant options.
 
-" Set gui/terminal specific options.
+" Set GUI/terminal specific options.
 let g:pathogen_disabled = []
 if !has('gui_running')
     call add(g:pathogen_disabled, 'lightline.vim')
@@ -88,10 +83,11 @@ if !has('gui_running')
 endif
 call pathogen#infect()
 
-" haskell-vim settings
+" Haskell-vim settings
 filetype  off
 syntax    on
 filetype  plugin indent on
+set omnifunc=syntaxcomplete#Complete
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -114,6 +110,8 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \ },
+	  \ 'separator': { 'left': '|', 'right': '|' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
 
 " Hide file explorer banner.
@@ -136,6 +134,7 @@ nnoremap <C-c> :%s/
 " same as :s/ in visual line mode, but will make sure no unintended
 " replacements are made in visual block mode.
 vnoremap <C-c> :s/\%V
+vnoremap <S-w> :s/\%V./ /g<Cr>
 
 " View buffers.
 nnoremap <C-b> :buffers<CR>:buffer!<Space>
@@ -209,6 +208,19 @@ inoremap <C-p> <Nop>
 inoremap <C-n> <Nop>
 inoremap <C-h> <C-n>
 inoremap <C-k> <C-p>
+set completeopt=longest,menuone
+inoremap <Leader>k <C-x><C-k>
+inoremap <Leader>f <C-x><C-f>
+inoremap <Leader>o <C-x><C-o>
+
+" Dmenu integration for searching spelling correction. Replaces `z=`.
+function DmenuCorrect()
+	let word=system("$HOME/.bin/dmenuw -i -l 8 2>/dev/null", spellsuggest(expand("<cword>")))
+	if len(word) != 0 
+		exe "normal ciw". word[0:-2]
+	endif
+endfunction
+nnoremap <silent>z= :call DmenuCorrect()<Cr>
 
 " Delete/Copy/Paste to X clipboard
 " in normal and visual modes.
@@ -218,14 +230,6 @@ nnoremap <C-D>  "+d
 vnoremap <C-Y>  "+y
 vnoremap <C-P>  "+p
 vnoremap <C-D>  "+d
-
-" Define movements inside some common text objects.
-onoremap P i)
-onoremap T i>
-onoremap B i]
-onoremap C i}
-onoremap A t,
-onoremap E f,
 
 " Navigation. Shift-j goes down a page, Shift-k goes up.
 " nostartofline stops moving to the start of the line,
@@ -258,7 +262,7 @@ autocmd BufWritePost dunstrc                 silent! execute "!killall dunst; du
 " Strip whitespace on write with Haskell, C, Python, Prolog, Bash.
 autocmd BufReadPost  *.md,*.MD,*.ms                silent! setlocal spell
 autocmd BufwritePost *.ms silent! execute "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
-autocmd BufWritePre *.c,*.h,*.py,*.pl,*.sh,*.hs,*.md :%s/\s\+$//e
+autocmd BufWritePre  *.c,*.h,*.py,*.pl,*.sh,*.hs,*.md :%s/\s\+$//e
 
 " Change tabs to spaces for Haskell files. This fixes a lot 
 " of issues with parse errors due to vim's handling of indent
@@ -279,4 +283,3 @@ function ScratchPad()
 		file      Scratchpad\ 
 	endif
 endfunction
-

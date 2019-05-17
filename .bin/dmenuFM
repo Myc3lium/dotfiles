@@ -16,7 +16,8 @@ run_cmd(){
 }
 
 dm(){
-	echo -e "[parent]\n$(cat)\n${commands}" | dmenu -fn 'GohuFont Nerd Font-10.8' -p $PWD -i -l 20 -nb $background -nf $foreground -sf $foreground -sb "#8f3f71"
+	echo -e "[parent]\n$(cat)\n${commands}" | dmenuw  -p "$PWD" -i -l 20
+	#-fn 'GohuFont Nerd Font-10.8:Regular'
 }
 
 mainloop(){

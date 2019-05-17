@@ -1,19 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-$HOME/Documents/code/repos/personal/dotfiles/move && echo "[Updated cached dotfiles]"
+"$HOME"/Documents/code/repos/personal/dotfiles/move && echo "[Updated cached dotfiles]"
 
-cd $HOME/Documents/code/repos/personal/dotfiles/
+cd "$HOME"/Documents/code/repos/personal/dotfiles/
 git add . && echo "[Staged files for commit]"
 
-echo -n "Make commit [y/n] ?: "
+printf "Make commit [y/n] ?: "
 read -r commit
 case $commit in 
 	y|yes) 
-		echo -n 'Commit message: '; 
+		printf 'Commit message: '; 
 		read -r message
 		git commit -m "$message" 
 		
-		echo -n 'Push to github [y/n] ?: '; 
+		printf 'Push to github [y/n] ?: '; 
 		read -r push 
 		
 		case $push in

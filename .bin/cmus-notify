@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Simple script to notify i3blocks when cmus changes 
 # status in such a way that an update signal cannot be 
@@ -13,8 +13,8 @@ get_title(){
 
 status_icon(){
 	case "$(cmus-remote -Q | awk '/status p/{ print $2 }')" in
-		playing) echo -n " " ;;
-		paused)  echo -n " " ;;
+		playing) printf " " ;;
+		paused)  printf " " ;;
 	esac
 }
 
@@ -30,7 +30,7 @@ last_status="$(get_status)"
 while true
 do
 	test="$(get_status)"
-	if [[ "$last_status" != "$test" ]]
+	if [ "$last_status" != "$test" ]
 	then
 		last_status="$test"
 		pkill -RTMIN+10 i3blocks
