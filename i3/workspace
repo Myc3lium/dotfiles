@@ -1,0 +1,21 @@
+#!/bin/sh
+
+. "$HOME"/.cache/wal/colors.sh
+lindicator="["
+rindicator="]"
+
+bash "$HOME"/.config/i3/wrapper 2 1 "$(wmctrl -d | awk\
+	-v lindicator="$lindicator"\
+	-v rindicator="$rindicator" '
+BEGIN { 
+    printf " "
+}
+{
+	if($2 == "*"){ 
+		printf lindicator $1 rindicator " " 
+	} 
+
+	else { 
+		printf $1 " " 
+	}
+}')"

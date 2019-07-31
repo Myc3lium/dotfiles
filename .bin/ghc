@@ -1,0 +1,74 @@
+#!/bin/sh
+
+normal="$(tput sgr0)"
+objects="$(tput setaf 2)"
+error="$(tput setaf 3)"
+names="$(tput setaf 4)"
+suggestions="$(tput setab 1; tput setaf 8)"
+operators="$(tput setaf 6)"
+
+join(){
+	awk '{printf $0}' <<ENDSED
+	    s/^/${normal}/g;
+	    s/$/${normal}/g;
+
+        s/interactive/${error}interactive${normal}/g;
+        s/no location info/${error}no location info${normal}/g;
+        s/Infinity/${error}Infinity${normal}/g;
+        s/Non type-variable argument/${error}Non type-variable argument${normal}/g;
+        s/Not in scope/${error}Not in scope${normal}/g;
+        s/No instance/${error}No instance${normal}/g;
+        s/No explicit implementation/${error}No explicit implementation${normal}/g;
+        s/Cannot derive well-kinded instance/${error}Cannot derive well-kinded instance${normal}/g;
+        s/Can't make a derived instance/${error}Can't make a derived instance${normal}/g;
+        s/Couldn't match expected type/${error}Couldn't match expected type${normal}/g;
+        s/parse error/${error}parse error${normal}/g;
+
+        s/In an equation for/${objects}In an equation for${normal}/g;
+        s/In the data declaration/${objects}In the data declaration${normal}/g;
+        s/In the instance declaration/${objects}In the instance declaration${normal}/g;
+
+        s/data constructor/${objects}data constructor${normal}/g;
+        s/type constructor/${objects}type constructor${normal}/g;
+        s/type signature/${objects}type constructor${normal}/g;
+        s/type variable/${objects}type variable${normal}/g;
+
+        s/‘/${names}‘/g;
+        s/’/’${normal}/g;
+
+        s/(maybe you /(${suggestions}maybe you /g;
+        s/?)/?${normal})/g;
+        s/(Use /(Use ${suggestions}/g;
+        s/ to permit this)/${normal} to permit this)/g;
+        s/Could not find module/${suggestions}Could not find module${normal}/g;
+        s/lacks an accompanying binding/${suggestions}lacks an accompanying binding${normal}/g;
+        s/expects an argument/${suggestions}expects an argument${normal}/g;
+        s/is not a derivable class/${suggestions}is not a derivable class${normal}/g;
+        s/In the expression: /${objects}In the expression: ${suggestions}/g;
+        s/in the constraint: /in the constraint: ${suggestions}/g;
+        s/it :: /it :: ${suggestions}/g;
+        s/Relevant bindings include/${suggestions}Relevant bindings include${normal}/g;
+
+ENDSED
+}
+# s/:? for help/${suggestions}:? for help${normal}/g;
+# s/(Num/(${classes}Num${normal}/g;
+# s/(Ord/(${classes}Ord${normal}/g;
+# s/(Eq/(${classes}Eq${normal}/g;
+# s/(Enum/(${classes}Enum${normal}/g;
+# s/(Bounded/(${classes}Bounded${normal}/g;
+# s/(Show/(${classes}Show${normal}/g;
+# s/(Read/(${classes}Read${normal}/g;
+# s/(Functor/(${classes}Functor${normal}/g;
+# s/(Foldable/(${classes}Foldable${normal}/g;
+# s/(Applicative/(${classes}Applicative${normal}/g;
+# s/(Monad/(${classes}Monad${normal}/g;
+# s/(Category/(${classes}Category${normal}/g;
+# s/class/${objects}class${normal}/g;
+
+case $# in
+	0) cmd="ghci"   ;; 
+	*) cmd="ghc $*" ;; 
+esac
+
+"$cmd" 2>&1 | sed "$(join)"

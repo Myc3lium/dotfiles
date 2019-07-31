@@ -1,3 +1,15 @@
+#!/bin/bash
+
+#alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
+#alias lspkg="apt list --installed | grep "                        #searches installed packages
+#alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
+#alias lsdp="apt-cache --installed depends "                       #lists package dependencies
+#alias cnct="nmcli -a device wifi connect"
+#alias printer-kill="lprm -"
+#alias net="nmcli dev wifi"
+#alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
+#alias ahist="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day" +"%F")" -e "$(date -d "-2 day" +"%F")" -e "$(date -d "-3 day" +"%F")" /var/log/apt/history.log | less -R"
+
 # Enable color support of ls and also add handy aliases.
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -7,48 +19,27 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=always'
 fi
 
-alias sl=ls
-alias dir="ls --color=always -Altph"                  #List all files in dir.
-alias memhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16"   #List top memory consuming processes.
-alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16"     # list top cpu consuming processes
-
+alias dir="ls --color=always -Altph"                              # List all files in dir.
+alias mhd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -16" # List top memory consuming processes.
+alias chd="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -16" # List top cpu consuming processes
 alias lsm="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem"
-alias lspkg="apt list --installed | grep "                        #searches installed packages
-alias lsrdp="apt-cache --installed rdepends "                     #lists packages that depend on <package>
-alias lsdp="apt-cache --installed depends "                       #lists package dependencies
 alias pks="apt search " #find a package based on name
-alias pss="gpg -d ~/.Private_Docs/pss.new.asc.asc | less"
-
-# alias mkpss="apg -a 1 -m 20 -n 20 | tail -1"
-mkpss(){
-	if [[ $# -eq 0 ]]; then
-		apg -a 1 -m 20 -n 20 | sed '1q'
-	else
-		apg -a 1 -m $1 -n 20 | sed '1q'
-	fi
-}
-
-alias ahist="grep --color=always -A 30 -e "$(date +"%F")" -e "$(date -d "-1 day" +"%F")" -e "$(date -d "-2 day" +"%F")" -e "$(date -d "-3 day" +"%F")" /var/log/apt/history.log | less -R"
-alias less="less -R"
-
-alias oyvey="bleachbit --preset -c && shutdown now"
-alias printer-kill="lprm -"
 alias pkfo="apt-cache show"
-alias lsiw="sudo iw dev wlp2s0 scan | egrep 'signal|SSID'"
-alias net="nmcli dev wifi"
-alias cnct="nmcli -a device wifi connect"
+alias pss="gpg -d ~/.Private_Docs/pss.new.asc.asc | less"
+alias less="less -R"
+alias oyvey="bleachbit --preset -c && shutdown now"
 alias w3m="w3m -no-graph -no-mouse -o auto_image=FALSE "
 alias py="python3"
-alias pylocalinst="pip3 install --user "
 alias rld="source ~/.bashrc"
 alias fth="gforth"
-alias colors="wal --preview | tail -3"
+alias hr="~/.bin/ghc"
+alias swi="swipl"
 alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
-alias hs="history | awk '{ \$1=\"\"; print }'"
+alias hs=$'history | awk \'{ $1=""; print }\''
 alias hg="hs | grep"
-alias ,w="echo ur not using vim idiot"
-alias ,q="echo ur not using vim idiot"
+alias svi="sudeoedit"
+alias gv="gvim"
 
 # Alias some dir-names.
 alias ~pers="$HOME/repos/personal"
@@ -58,4 +49,12 @@ alias ~assi="$HOME/Documents/assignments/"
 # Python3 help from outside python
 pyhelp(){
     python3 -c "exec('help(\'$1\')')" | less
+}
+
+mkpss(){
+	if [[ $# -eq 0 ]]; then
+		apg -a 1 -m 20 -n 20 | sed '1q'
+	else
+		apg -a 1 -m $1 -n 20 | sed '1q'
+	fi
 }

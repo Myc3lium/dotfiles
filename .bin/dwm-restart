@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo restart > "$dwm_msg_file"
+pkill dwm

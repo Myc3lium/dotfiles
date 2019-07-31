@@ -1,2 +1,3 @@
 #!/bin/sh
+
 wal --theme $(wal --theme | awk '{ $1=""; print }' | dmenuw -l 8)

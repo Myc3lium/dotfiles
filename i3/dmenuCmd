@@ -2,8 +2,10 @@
 
 # Get user input and run.
 
-. $HOME/.cache/wal/colors.sh
-option="$(echo -e "\x00" | $HOME/.bin/dmenuw -p "» ")"
+. "$HOME"/.cache/wal/colors.sh
+option="$(printf "\x00" | dmenuw -p "» ")"
 [ -z "$option" ] && exit
-[ "$option" = urxvt* ] && eval $option && exit
-urxvt -e bash --init-file $HOME/.bashrc -c "$option"
+case "$option" in
+	urxvt*) eval "$option" && exit ;;
+esac
+urxvt -e bash --init-file "$HOME"/.bashrc -c "$option"

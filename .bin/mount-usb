@@ -7,9 +7,9 @@
 mountable=$(lsblk -lp | awk '/part $/{ print $1,"("$4")"}')
 [ -z "$mountable" ] && exit
 
-drive=$(echo "$mountable" | $HOME/.bin/dmenuw -p "Mount: " -i -l 20)
+drive=$(echo "$mountable" | dmenuw -p "Mount: " -i -l 20)
 [ -z "$drive" ] && exit
 
 drive=$(echo "$drive" | awk '{ print $1 }')
 dir=$(mktemp -d -p $HOME/Media/)
-$HOME/.bin/dPass | sudo -S mount $drive $HOME/Media/$dir
+dPass | sudo -S mount $drive $HOME/Media/$dir

@@ -1,14 +1,15 @@
 #!/bin/sh
 # vim:filetype=sh:
 
-bash "$HOME"/.config/i3/wrapper 6 0 "[ $(date '+%H:%M:%S') ]"
+bash "$HOME"/.config/i3/wrapper 3 0 "$(date '+%H:%M:%S')"
+
 
 case $BLOCK_BUTTON in
 	1) 
 		. "$HOME"/.cache/wal/colors.sh
 		day=$(date '+%d')
 		replace="\\<span bgcolor='${color4}' fgcolor='${background}'\\>$day\\<\\/span\\>"
-		notify "$(date '+%-I O`clock %p')\n\n$(uptime -p | sed 's/\<up\>/Up/g')\n\n  $(date '+%A') ${day}$(cal -h | tail -c +5 | sed "s/$day/$replace/g;"; )"
+		notify "$(date '+%-I O`clock %p')\n\n$(uptime -p | sed 's/\<up\>/Up/g')\n\n  $(date '+%A') ${day}$(cal -h | tail -c +5 | sed "s/\<$day\>/$replace/g;"; )"
 	;;
 
 	3)

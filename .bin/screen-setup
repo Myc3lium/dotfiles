@@ -1,14 +1,19 @@
 #!/bin/sh
 
-# Attempt to connect $display_ using xrandr.
-# Quit if $display_ is not specified. If no
-# external display is connected, revert to
-# just using the default.
+#| Attempt to connect $display_ using xrandr.
+#| Quit if $display_ is not specified. If no
+#| external display is connected, revert to
+#| just using the default.
 
 [ -z "$display_" ] && display_=VGA-1
-[ -z "$1" ] && side="--left-of" || side="--${1}-of"
 
-case $(xrandr | awk "/$display_/{ print \$2 }") in
+case "$1" in
+    left|right) side="--${1}-of" ;;
+	mirror)     side="--same-as" ;; 
+	"")         side="--same-as" ;;
+esac
+
+case $(xrandr | awk -v display="$display_" '{ if (match($0, display)){ print $2 } }') in
 	connected)	
 		xrandr --output $display_ "$side" LVDS-1 --auto 
 		"$HOME"/.fehbg
@@ -16,5 +21,6 @@ case $(xrandr | awk "/$display_/{ print \$2 }") in
 
 	disconnected) 
 		xrandr --auto
+		"$HOME"/.fehbg
 		;;
 esac

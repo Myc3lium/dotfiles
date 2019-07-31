@@ -24,14 +24,14 @@ ${color2}o  ${color4}┏┓┓  ${color5}┳━┓  ${color8}┏━┓
 ${color2}┃  ${color4}┃┃┃  ${color5}┣━   ${color8}┃ ┃
 ${color2}┇  ${color4}┇┗┛  ${color5}┇    ${color8}┛━┛ ${normal}
 
-${bold}[*] ${color1}temp     ${normal}: $temp                 
-${bold}[*] ${color2}mem      ${normal}: $mem                  
-${bold}[*] ${color3}cpu      ${normal}: $cpu
-${bold}[*] ${color4}up       ${normal}: $uptime               
-                                                              
-${bold}[*] ${color5}shell    ${normal}: $SHELL                
-${bold}[*] ${color6}os       ${normal}: $NAME $VERSION_ID     
-${bold}[*] ${color7}wm       ${normal}: $XDG_CURRENT_DESKTOP  
-${bold}[*] ${color8}packages ${normal}: $packages             
+${bold}- ${color1}temp     ${normal}- $temp                 
+${bold}- ${color2}mem      ${normal}- $mem                  
+${bold}- ${color3}cpu      ${normal}- $cpu
+${bold}- ${color4}up       ${normal}- $uptime               
+       
+${bold}- ${color5}shell    ${normal}- $SHELL                
+${bold}- ${color6}os       ${normal}- $NAME $VERSION_ID     
+${bold}- ${color7}wm       ${normal}- $XDG_CURRENT_DESKTOP  
+${bold}- ${color8}packages ${normal}- $packages             
 
 EOF

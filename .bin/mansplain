@@ -4,9 +4,27 @@
 # Get a listing of man pages and run through dmenu to get
 # a choice from the user. Awk out the section and pagename,
 # then print the corresponding page to stdout then into
-# zathura.
+# zathura. Uses tabd to avoid screen clutter by grouping
+# windows.
 
 . "$HOME"/.cache/wal/colors.sh
 
-opt="$(man -k . | dmenuw -l 8 -i -fn Terminus-10 | awk '{ print substr($2,2,length($2)-2),$1 }')"
-[ -n "$opt" ] && eval "man -Tpdf $opt" | zathura -
+LESS_TERMCAP_mb="$(tput setaf 4)"           # Blinking.
+LESS_TERMCAP_md="$(tput setaf 6)"   # Bold.
+LESS_TERMCAP_me="$(tput sgr0)"   # End bold, blink and underline.
+LESS_TERMCAP_se="$(tput sgr0)"   # Standout end.
+LESS_TERMCAP_so="$(tput rev)"  # Start standout/ reverse.
+LESS_TERMCAP_ue="$(tput sgr0)"   # Underline end.
+LESS_TERMCAP_us="$(tput setaf 2)"   # Underline start.
+
+export LESS_TERMCAP_mb
+export LESS_TERMCAP_md
+export LESS_TERMCAP_me
+export LESS_TERMCAP_se
+export LESS_TERMCAP_so
+export LESS_TERMCAP_ue
+export LESS_TERMCAP_us
+
+opt="$(man -k . | dmenuw -l 8 -i | awk '{ print substr($2,2,length($2)-2),$1 }')"
+[ -n "$opt" ] && tabd -name manpages urxvt -embed -e "man $opt"
+# [ -n "$opt" ] && fname=$(mktemp) && eval "man -Tpdf $opt > $fname" && tabd -name manpages zathura -e "$fname"

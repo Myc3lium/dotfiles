@@ -3,5 +3,6 @@
 # Tabbed with colors sourced from pywal's cache
 # directory.
 
-. $HOME/.cache/wal/colors.sh
-$HOME/repos/personal/tabbed/tabbed -t $color7 -T $background -u $background -U $color7 $@
+. "$HOME"/.cache/wal/colors.sh
+"$HOME"/repos/personal/tabbed/tabbed -t "$color3" -T "$background" -u "$color0" -U "$foreground" $@
+# -g 1108x568 

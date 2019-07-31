@@ -26,7 +26,7 @@ fi
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
 then
-    bash $HOME/.config/i3/wrapper 15 0 "睊 [wifi down]"
+	bash $HOME/.config/i3/wrapper 15 0 "睊 wifi down"
     exit 0
 fi
 
@@ -84,7 +84,7 @@ tx_kib=$(( $tx_rate >> 10 ))
 if [[ "$tx_rate" -gt 1048576 ]]; then
   printf '%sM' "`echo "scale=1; $tx_kib / 1024" | bc`"
 else
-  out+="[${tx_kib}Kb]"
+  out+="→ ${tx_kib}Kb"
 fi
 
-bash $HOME/.config/i3/wrapper 5 0 $out
+bash $HOME/.config/i3/wrapper 4 0 $out

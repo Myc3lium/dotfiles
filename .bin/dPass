@@ -6,7 +6,5 @@
 #    dPass | sudo -S synaptic
 
 . "$HOME"/.cache/wal/colors.sh
-caller="$(ps -o comm= -p "$(ps -o ppid= -p $$)")"
-prompt="${1:-[$caller]}"
-font="GohuFont Nerd Font-10.5:Regular"
-"$HOME"/repos/personal/dmenu/dmenu -h 20 -p "$prompt" -fn "$font" -nf "$background" -nb "$background" -sf "$background" -sb "$foreground" <&- | cat
+[ -z "$1" ] && prompt="Password for $USER:" || prompt="$1"
+dmenu -p "$prompt" -nf "$background" -nb "$background" -sf "$background" -sb "$color2" <&- 2>/dev/null | cat

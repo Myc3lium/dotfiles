@@ -69,4 +69,4 @@ case $BLOCK_BUTTON in
   5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
-bash $HOME/.config/i3/wrapper 6 0 $(volume | format)
+bash $HOME/.config/i3/wrapper 4 0 $(volume | format)

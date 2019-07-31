@@ -14,7 +14,7 @@ options="\
   Bleachbit+shutdown\n\
 "
 dm(){
-	dmenuw $@
+	dmenuw "$@"
 }
 
 system(){
@@ -43,29 +43,7 @@ case "$option" in
 	*Usb\ devices) 			$HOME/.bin/mount-usb 			      ;;
 	*Network\ options) 		bash $HOME/.config/i3/dmenuNetwork    ;;
 	*Restart\ i3) 			pkill urxvt; i3-msg "restart" 		  ;;
-	*Logout) 				i3-msg exit 						  ;;
+	*Logout) 				i3-msg exit || pkill dwm 						  ;;
 	*Shutdown) 				shutdown now 						  ;;
 	*Bleachbit+shutdown) 	bleachbit --preset -c && shutdown now ;;
 esac
-
-
-
-#options="lock machine\n\
-#run\n\
-#usb devices\n\
-#network options\n\
-#restart i3\n\
-#logout\n\
-#shutdown\n\
-#bleachbit+shutdown"
-
-#case "$option" in
-#	"run") 					bash $HOME/.config/i3/dmenuCmd ;;
-#	"usb devices") 			$HOME/.config/i3/usbMount ;;
-#	"network options") 		bash $HOME/.config/i3/dmenuNetwork ;;
-#	"restart i3") 			pkill urxvt; i3-msg "restart" ;;
-#	"lock machine") 		bash $HOME/.config/i3/lock.sh ;;
-#	"logout") 				i3-msg exit ;;
-#	"shutdown") 			shutdown now ;;
-#	"bleachbit+shutdown") 	bleachbit --preset -c && shutdown now ;;
-#esac

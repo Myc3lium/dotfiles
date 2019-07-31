@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 #vim:ft=sh:
 
-bg=2
+bg=4
 fg=0
 
 status_icon(){
@@ -12,9 +12,9 @@ status_icon(){
 }
 
 current(){
-	all="$(cmus-remote -C "format_print %a\ |\ %t")"
-	[[ ${#all} > 32 ]] && all="${all::32}..."
-	echo $all
+	all="$(cmus-remote -C "format_print %a/%t")"
+	[ "${#all}" -gt 32 ] && echo -n "$all" | awk '{ printf substr($0,0,32)" …" }' && return
+    echo -n "$all"
 }
 
 get_vol(){
@@ -22,13 +22,13 @@ get_vol(){
 }
 
 get_all(){
-	echo "$(status_icon) $(current) | $(get_vol)%"
+	echo "$(status_icon) $(current) ($(get_vol)%)"
 }
 
-if [[ -n $BLOCK_BUTTON ]]; then
-	case $BLOCK_BUTTON in
+if [ -n "$BLOCK_BUTTON" ]; then
+	case "$BLOCK_BUTTON" in
 		1) cmus-remote --pause
-			bash $HOME/.config/i3/wrapper $bg $fg "$(get_all)"
+			bash "$HOME"/.config/i3/wrapper $bg $fg "$(get_all)"
 		   ;; # Left click and update
 
 		4) cmus-remote --volume +10%; 
@@ -40,8 +40,7 @@ if [[ -n $BLOCK_BUTTON ]]; then
 			notify "Playing\n" "$(cmus-remote -Q | awk '/\<tag title\>|\<tag artist\>|\<tag album\>|\<tag date\>/{$1=$2=""; print $0 }')"
 		;;
 	esac
-	source
 fi
 
-bash $HOME/.config/i3/wrapper $bg $fg "$(get_all)"
+bash "$HOME"/.config/i3/wrapper $bg $fg "$(get_all)"
 pkill -RTMIN+10 i3blocks

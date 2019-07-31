@@ -2,7 +2,9 @@
 
 . ~/.cache/wal/colors.sh
 
-notify-send \
+[ "$1" = -sound ] && sound=1 && shift
+
+notify-send\
 	-h string:fgcolor:"${foreground}"\
 	-h string:frame_color:"#ffffff"\
 	-h string:frame_width:5px\
@@ -10,5 +12,4 @@ notify-send \
 	-h string:font:"GohuFont Nerd Font 11"\
    	"$@"
 
-#paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga --volume=30000
-#paplay /usr/share/sounds/freedesktop/stereo/complete.oga --volume=20000
+[ -n "$sound"  ] && paplay /usr/share/sounds/freedesktop/stereo/dialog-warning.oga --volume=30000

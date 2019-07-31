@@ -1,17 +1,60 @@
 #!/bin/sh
 
-# relaunch DWM if the binary changes, otherwise bail
-csum=$(sha1sum $(which dwm))
-new_csum=""
-while true
-do
-    if [ "$csum" != "$new_csum" ]
-    then
-        csum=$new_csum
-        dwm
-    else
-        exit 0
-    fi
-    new_csum=$(sha1sum $(which dwm))
-    sleep 0.5
+dwm_path="/home/myc3lium/repos/personal/dwm-revised/dwm"
+export PATH="${PATH}:${HOME}/local/bin/:${HOME}/.bin"
+dwm_msg_file=$(mktemp)
+export dwm_msg_file
+
+# Remap CapsLock to Esc.
+(xmodmap -e "keysym Caps_Lock = Escape"; xmodmap -e "clear lock") &
+
+# # make CapsLock behave like Ctrl:
+# # make short-pressed Ctrl behave like Escape:
+# (setxkbmap -option ctrl:nocaps; xcape -e 'Control_L=Escape') &
+
+# Set wallpaper and colors
+(wal -Rn; "$HOME"/.fehbg) &
+
+# Battery notifications
+battery-notify &
+
+# Start compton and redshift
+compton-start -s &
+redshift -O 4450k &
+
+# Start cmus and ranger in the videos directory.
+(urxvt -title "music-cmus" -name "music-cmus"  -uc -e cmus) 2>/dev/null &
+(urxvt -title "music-mpv"  -name "music-mpv"   -uc -e ranger "$HOME"/Videos/yt/greentexts) 2>/dev/null &
+# cmus-notify &
+
+# Start basic terminal.
+(urxvt -uc -title "workspace4-terminal" -name "workspace4-terminal" -e bash) 2>/dev/null &
+
+# Start calendar and process monitor.
+(urxvt -name "calendar" -geometry 100x22 -uc -e calcurse) 2>/dev/null &
+(urxvt -name "monitor" -geometry 52x6 -uc -e htop) 2>/dev/null &
+
+# Start scratchpad terminal.
+(urxvt -geometry 59x21 -name "scratchpad" -e bash) 2>/dev/null &
+
+# Start bar script.
+(bar) &
+
+# Start dwm.
+while true; do
+	. "$HOME"/.cache/wal/colors.sh
+	echo > "$dwm_msg_file" ## Reset messages
+
+    $dwm_path  -nb "$background" -nf "$foreground" -sf "$background" -sb "$color2" -nbr "$color8" -sbr "$color7"
+	[ $? -ne 0 ] && continue ## Restart DWM if it crashes !
+	[ "$(cat "$dwm_msg_file")" = "restart" ] && continue 
+	break
 done
+
+killall cmus
+killall calcurse
+killall htop
+killall ranger
+killall urxvt
+killall bar
+killall mpv

@@ -1,0 +1,9 @@
+[→] ~/.vimrc
+[→] ~/.gvimrc
+[→] ~/.bashrc
+[→] ~/repos/personal/dwm-revised/dwm.c
+[→] ~/.bin/dwm
+[→] ~/i3/config
+[→] ~/.tmux.conf
+[→] ~/Working/todo.md
+[→] ~/.vim/bundle/borkmark.vim/plugin/bookmarks.txt

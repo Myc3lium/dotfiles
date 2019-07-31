@@ -1,0 +1,2 @@
+#!/bin/sh
+dPass | sudo -S $@

@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# Get effective lines of code for different 
+# common file types. If the argument is a 
+# directory, enumerate the contents and sum them.
+# Falls through to using the file command if the 
+# filename has no extension.
+
+[ $# = 0 ]   && for file in *;    do LOC "$file"; done | awk 'BEGIN{ s=0 }; { s+=$1 } END { print s }' && exit
+[ -d "$1"  ] && for file in $1/*; do LOC "$file"; done | awk 'BEGIN{ s=0 }; { s+=$1 } END { print s }' && exit
+
+do_pattern(){
+	sed "$1" < "$2" | wc -l
+}
+
+shell_python(){
+	do_pattern '/^\s*$/d; /^\s*#.*$/d;' "$1"
+}
+
+case $1 in 
+	*.c|*.h)
+	    do_pattern '/^\s*$/d; /^\s*\/\/.*$/d; /^\s*\/\*/d; /^\s*\*\//d; /^\s*\*.*$/d;' "$1" 
+	;;
+
+	*.sh|*.py)
+		do_pattern '/^\s*$/d; /^\s*#.*$/d;' "$1"
+	;;
+	
+    .bashrc)
+		do_pattern '/^\s*$/d; /^\s*#.*$/d;' "$1"
+	;;
+
+	.vimrc|*.vim)
+	    do_pattern '/^\s*$/d; /^\s*".*$./d;' "$1"
+	;;
+
+	*.hs)
+	    do_pattern '/^\s*$/d; /^\s*--.*$/d' "$1"
+	;;
+	
+    *.pl)
+	    do_pattern '/^\s*$/d; /^\s*%.*$/d; /^\s*\/\*/d; /^\s*\*\//d; /^\s*\*.*$/d;' "$1"
+	;;
+
+	*)  # Fallthrough to `file` command in the case of no extension.
+		case "$(file "$1")" in
+			*Python\ Script*|*shell\ script*) shell_python "$1"
+		esac
+	;;
+esac

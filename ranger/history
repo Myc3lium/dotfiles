@@ -1,50 +1,50 @@
-shell wget  https://pastebin.com/raw/MZpX0eYh 
-shell wget https://pastebin.com/raw/KcFg2D5D
-pa
-find The Car
-mp
-shell mpv --shuffle %s
-shell  %s
-cut 
-pager_close 
-bulkrename
-shell fe %s
-vim
-shell feh --bg-tile %s
-shell feh --b %s
-shell feh --bg %s
-shell feh --bg-max %s
-shell feh --bg-fill %s
-shell feh --bg-scale %s
-shell feh --bg-center %s
-shell bleachbit --shred %s
-gvi
-shell gvi, %s
-shell gvim -p %s
-open_with gvim
-find .pp
-as
-shell bul %s
-shell vim vertfull.diff
-c
-shell vim embark_profiles.txt
-copy
-bulkrename 
-find creature_st
-paste
-dut
-cut
-paste 
-open_with zathura
-find 
 open_with 
-open_with mpv
+shell vi %s
+open_with zathura
 delete
-
-open_with vim
-rename Industrial Week Findings.docx
+de
+shell tabbed mpv -embed %s
+find special
+find Special
+find Sum
+find discord
+find Submission
+find submission
+shell k
+shell wal -n -l -i %s
+find wal
+delete pp
+shell wal --saturate 0.0 -n -i %s
+shell wal --saturate 0.3 -n -i %s
+shell wal --saturate 0.2 -n -i %s
+shell wal -l -n -i %s
+shell wal --n -i %s
+p
+shell wal -l -i %s
+shell feh --bg-fill
+shell feh --bg-
+shell wal --backend haishoku -n -i %s
+shell wal ---n -i %s
+
+shell wal --saturate -n -i %s
+shell feh --bg-fill %s
+shell feh %s
 shell gvim %s
-del
-delete 
-q
+shell bleachbit --shred 
+shell extract %s
+search siege
+shell rm %s
+shell feh  %s
 shell wal -i %s
+shell wal -n -i %s
+open_with vi
+shell mpv %s
+bulkrename 
+
+shell 
+shell  %s
+cut
+find .the
+paste 
+delete 
+shell bleachbit --shred %s

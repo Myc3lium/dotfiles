@@ -13,9 +13,13 @@
 # --blur-background  		blur background of transparent windows
 # --blur-background-fixed	blur background with fixed blur radius.
 
+# export XDG_CONFIG_HOME="$HOME/.config/compton/"
+config="$HOME/.config/compton/"
 case "$1" in 
 	"-s")
-		compton -z -C -c -f -D 2 -r 3 -o 0.5 -l 5 -t 5 --blur-background-fixed ;; 
+		compton -z -C -c -f -D 2 -r 3 -o 0.2\
+		  	--config "$config/compton.conf"
+		;; 
 	*) 
 		compton -z -f -b -D 2 ;;
 esac

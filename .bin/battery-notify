@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Warn the user when the battery level reaches < 10% 
+# and the battery is also discharging.
+
+warn(){
+	# Only produce notification if not already present.
+	xid=$(xdotool search --classname "Dunst")
+	[ -z "$xid" ] && notify -sound "Warning" "Low battery"
+}
+
+while true; do
+	stat=$(acpi -i | sed 1q | awk '{ print substr($3,0,length($3)-1),substr($4,0,length($4)-2) }')
+	percent=$(echo "$stat" | awk '{print $2}')
+	stat=$(echo "$stat" | awk '{ print $1 }')
+	[ $percent -le 10 ] && [ $stat = Discharging ] && warn 
+	sleep 5
+done

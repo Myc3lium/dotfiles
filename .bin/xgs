@@ -1,2 +1,2 @@
 #!/bin/sh
-eval $(printf "$@" $(cat))
+eval "$(printf "$@" $(cat))"

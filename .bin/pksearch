@@ -7,8 +7,8 @@
 . ~/.cache/wal/colors.sh
 
 dm(){
-	dmenuw -fn Terminus-10 -i -l 8
+	dmenuw -i -l 8
 }
 
 opt="$(apt-cache search . | dm | awk '{ print $1 }')"
-[ -n "$opt" ] && apt-cache show "$opt" | awk '/^\s+/{ print }' | dm 
+[ -n "$opt" ] && apt-cache show "$opt" | awk '/^\s+/' | gvim -

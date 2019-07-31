@@ -29,7 +29,7 @@ workspace_layout default
 focus_follows_mouse no
 
 # Intelligent hiding of window borders.
-# hide_edge_borders yes
+# hide_edge_borders smart
 
 # Marks on window decoration
 show_marks yes
@@ -85,7 +85,7 @@ bindsym $mod+e layout default
 bindsym $mod+a layout toggle
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle; move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -96,11 +96,11 @@ bindsym $mod+p focus parent
 # focus the child container
 bindsym $mod+d focus child
 
-set $workspace1  "1:⠁  "
-set $workspace2  "2:⠃ ﴣ "
-set $workspace3  "3:⠙  "
-set $workspace4  "4:⠛  "
-set $workspace5  "5:⠟  "
+set $workspace1  "1:  "
+set $workspace2  "2: ﴣ "
+set $workspace3  "3:  "
+set $workspace4  "4:  "
+set $workspace5  "5:  "
 
 bindsym $mod+7 		workspace $workspace1
 bindsym $mod+8 		workspace $workspace2
@@ -141,112 +141,62 @@ mode "resize" {
         bindsym semicolon resize grow 	width  9 px or 9 ppt
 
         # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+        bindsym Return mode "default"; move position center;
+        bindsym Escape mode "default"; move position center;
 }
-
 bindsym $mod+r mode "resize"
 
-# set $ur_background #151515
-# set $ur_foreground #f1ebeb
-# set $ur_active #383636
+bindsym $mod+Tab floating toggle; focus right; floating toggle;
 
-# base16-material
-# set $ur_background #263238  
-# set $ur_foreground #d1cbc6	
-# set $ur_active     #3f4f57	
-# set $ur_pale       #283840	
-# set $ur_inactive   #21292d	
-# set $ur_indicator  #3f4f57   
+# set $background #0B100F
+# set $foreground #e5c8ac
+# set $highlight  #7A8113
+# set $distinct   #556B5E
+# set $grey       #556B5E
+# 
+# # background border foreground 
+# client.focused   $background $highlight $foreground
+# client.unfocused $background $distinct  $foreground
 
-# sexy-mikado
-# set $ur_background #000000
-# set $ur_foreground #bcbcaf
-# set $ur_active     #757978
-# set $ur_pale       #111111
-# set $ur_inactive   #322a2c
-# set $ur_indicator  #3f4f57
+# set $norm_fg     #b4bbb8
+# set $norm_bg     #0d0f0d
+# set $norm_border #7d8280
+# set $sel_fg      #b4bbb8
+# set $sel_bg      #4E544A
+# set $sel_border  #b4bbb8
 
-# colors.Xresources
-# set $ur_background #1d1f21
-# set $ur_foreground #d5d8d6
-# set $ur_active     #384754
-# set $ur_pale       #282a2e
-# set $ur_inactive   #282a2e
-# set $ur_indicator  #3f4f57
+set $norm_fg     #c3cbc1
+set $norm_bg     #0B100F
+set $norm_border #888e87
+set $sel_fg      #c3cbc1
+set $sel_bg      #7A8113
+set $sel_border  #c3cbc1
 
-# base16-gruvbox-hard
-# set $ur_background #1d2021
-# set $ur_foreground #d5c4a1
-# set $ur_active     #3f4f57
-# set $ur_active     #757978
-# set $ur_pale       #21292d
-# set $ur_inactive   #21292d
-# set $ur_indicator  #3f4f57
-
-# base16-gruvbox-hard
-# set $ur_background  #160a12
-# set $ur_foreground  #e8c0c3
-# set $ur_active      #A06b78 
-# set $ur_pale        #160a12
-# set $ur_inactive    #21292d
-# set $ur_indicator   #3f4f57
-
-# base16-atelier-estuary
-# set $ur_background  #22221b
-# set $ur_foreground  #e5c8ac
-# set $ur_active     #5f9182
-# set $ur_pale        #22221b
-# set $ur_inactive    #22221b 
-# set $ur_indicator   #3f4f57
-
-# base16-solarized-light
-# set $ur_background  #fbf1c7
-# set $ur_foreground  #e5c8ac
-# set $ur_active      #8f3f71
-# set $ur_pale        #fbf1c7
-# set $ur_inactive    #fbf1c7
-# set $ur_indicator   #3f4f57
-
-# sexy-monokai
-set $ur_background  #272822
-set $ur_foreground  #e5c8ac
-#set $ur_active      #8f3f71
-set $ur_active      #d5c4a1
-set $ur_pale        #272822
-set $ur_inactive    #272822
-set $ur_indicator   #3f4f57
-
-									   # Border		  # foreground   background
-client.focused          $ur_background $ur_active     $ur_background $ur_indicator
-client.unfocused        $ur_background #3b3c46        $ur_foreground $ur_indicator
-client.focused_inactive $ur_background $ur_inactive   $ur_foreground $ur_indicator
+#                border       background text     indicator child-border
+client.focused   $sel_border  $sel_bg    $sel_fg
+client.unfocused $norm_border $norm_bg   $norm_fg
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bindsym $mod+Shift+b bar mode toggle
+bindsym F11 bar mode toggle
 bar {
-        #status_command /home/myc3lium/.bin/bar 
 	    status_command i3blocks -c /home/myc3lium/.config/i3/i3blocks.conf
 		
-        position top
-        tray_output none
-		strip_workspace_numbers yes
-        modifier Mod2 
-        mode hide
-        
-		font pango:GohuFont Nerd Font 10.5
-		#font pango:Terminus 11
+        position                 top
+        tray_output              none
+		strip_workspace_numbers  yes
+        modifier                 Mod2 
+		font                     pango:GohuFont Nerd Font 10.5
+        binding_mode_indicator no
         
         colors { 
-				#statusline $ur_foreground
-                #background $ur_background
-                #separator  $ur_foreground
+                background $norm_bg
 
-                #focused_workspace  $ur_active     $ur_active     $ur_background
-                #inactive_workspace $ur_inactive   $ur_pale       $ur_foreground
-                #urgent_workspace   $ur_foreground $ur_background $ur_foreground
-                                   #    border      background     text
+                # focused_workspace  $highlight  $highlight $background 
+                # inactive_workspace $grey $grey #dfcfcb
+                focused_workspace   $sel_border $sel_bg $sel_fg
+                inactive_workspace  $sel_bg $sel_bg $norm_fg
+                # border background text
         }
 }
 
@@ -295,18 +245,21 @@ for_window [class="Tor Browser"] 	  floating enable
 for_window [class="Florence"] 	 	  floating enable
 for_window [class="^.*"] 		 	  border   pixel  2
 for_window [instance="networkConfig"] floating enable
+for_window [instance="networkConfig"] floating enable
+# Workaround for setting geometry options without auto-floating on tabbed.
+for_window [class="tabbed"] floating disable
 
 bindsym $mod+Control+l 	exec bash /home/myc3lium/.config/i3/lock.sh
 bindsym $mod+Shift+i 	exec bash /home/myc3lium/.config/i3/menuScript
 
 bindsym $mod+q kill
 bindsym $mod+b exec bash /home/myc3lium/.config/i3/dmenu
-bindsym $mod+u exec /home/myc3lium/.bin/urxvt-connect -geometry 64x16 -sl 0 -uc -name urxvt -e bash
-bindsym $mod+Shift+u exec /home/myc3lium/.bin/tabd -name terminal urxvt -embed
+bindsym $mod+u exec /home/myc3lium/.bin/urxvt-connect -geometry 116x36 -sl 0 -uc -name urxvt -e bash 
+bindsym $mod+g exec gvim
+bindsym $mod+Shift+u exec /home/myc3lium/.bin/tabd -name terminal urxvt -embed 
 bindsym $mod+y move position center
 
 # Pulse Audio controls
-
 # Increase / Decrease / Mute sound volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +10% && pkill -RTMIN+5 i3blocks"
 bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -10% && pkill -RTMIN+5 i3blocks"
@@ -328,7 +281,8 @@ exec_always --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 exec_always --no-startup-id xmodmap -e "clear lock"
 
 # compton with shadows.
+exec_always --no-startup-id "/home/myc3lium/.bin/battery-notify"
 exec_always --no-startup-id "/home/myc3lium/.bin/compton-start -s"
-
 exec_always --no-startup-id redshift -O 4450k
-exec_always /home/myc3lium/.fehbg
+exec_always "/home/myc3lium/.fehbg"
+exec_always "/home/myc3lium/.local/bin/wal -n -R"

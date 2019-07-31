@@ -1,9 +1,12 @@
 #!/bin/sh
-#vim:ft=bash:
+#vim:ft=sh:
 
 . "$HOME"/.cache/wal/colors.sh
 bgcolor=$(eval echo "\$color${1}")
-fgcolor=$(eval echo "\$background")
+fgcolor="${foreground}"
+
+#fgcolor=$(eval echo "\$background")
+#bgcolor='#556B5E'
 
 lpad=" "
 rpad=" "
