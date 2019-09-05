@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/myc3lium/Documents/code/repos/personal/dwm-revised/config'
 let g:netrw_dirhist_2='/home/myc3lium/Documents/code/repos/personal/dwm-revised/util'
 let g:netrw_dirhist_3='/home/myc3lium/Documents/code/repos/other/i3lock-2.7'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/myc3lium/Documents/code/repos/personal/dwm-revised/
 let g:netrw_dirhist_6='/home/myc3lium'
 let g:netrw_dirhist_7='/home/myc3lium/Documents/assignments/problem_of_proof'
 let g:netrw_dirhist_8='/home/myc3lium/.local/lib/python3.5/site-packages/pywal'
+let g:netrw_dirhist_9='/home/myc3lium/.ghc'

@@ -1,50 +1,50 @@
-open_with 
-shell vi %s
-open_with zathura
-delete
-de
-shell tabbed mpv -embed %s
-find special
-find Special
-find Sum
-find discord
-find Submission
-find submission
-shell k
-shell wal -n -l -i %s
-find wal
-delete pp
-shell wal --saturate 0.0 -n -i %s
-shell wal --saturate 0.3 -n -i %s
-shell wal --saturate 0.2 -n -i %s
-shell wal -l -n -i %s
-shell wal --n -i %s
-p
-shell wal -l -i %s
-shell feh --bg-fill
-shell feh --bg-
-shell wal --backend haishoku -n -i %s
-shell wal ---n -i %s
-
-shell wal --saturate -n -i %s
-shell feh --bg-fill %s
-shell feh %s
-shell gvim %s
-shell bleachbit --shred 
-shell extract %s
-search siege
-shell rm %s
-shell feh  %s
-shell wal -i %s
-shell wal -n -i %s
-open_with vi
-shell mpv %s
-bulkrename 
-
+find :
+find Joe
+shell wal =n %s
+shell wal -n -o %s
+shell wal - %s
+find h
+shell h %s
 shell 
+shell feh --bg- %s
+shell feh --bg-tile %s
+paste
+find kh
+open_with 
+shell wal ---n -i %s
+P
+shell wal -n -i %s
+shell wal -n -l -i %s
+shell wal -n  -i %s
+find cst
+copy
+shell mkdir  cstatus %s
+shell touch config.h
+shell vi %s
+shell wal -i %s
+
+shell feh --bg-scale %s
+shell wal -n --saturate 0.0 -i %s
+shell wal -n --saturate 0.1 -i %s
+shell wal -n --saturate 0.2 -i %s
+shell wal -n --saturate 0.3 -i %s
+shell wal -n --saturate 0kk.3 -i %s
+bulkrename 
+search Out
+shell wal  -i %s
+shell bleachbit --shred %s
 shell  %s
+shell find %s | sxiv -
+shell feh %s
+shell feh %s &
+`
+shell feh --bg-max %s
+shell feh --bg-center %s
+
+shell feh --bg-fill %s
+shell vim -p %s
 cut
-find .the
+[as
 paste 
 delete 
-shell bleachbit --shred %s
+shell mv  %s forth

@@ -1,8 +1,13 @@
 #!/bin/sh
 
-i3status | while true 
-do
-	read line
-	xsetroot -name "  $line"
-	sleep 1
+while true; do
+	"$HOME/repos/personal/atomstatus/atomstatus" 2>/dev/null | xargs -I{} xsetroot -name " {}" 2>&1 >/dev/null
+	[ $? -eq 0 ] && return # Exit if bar exited normally.
 done
+
+
+# do ## Using bash creates too much latency.
+# 	read line
+# 	xsetroot -name " $line"
+# 	sleep 1
+# done

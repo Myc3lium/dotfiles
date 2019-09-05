@@ -7,4 +7,4 @@
 
 . "$HOME"/.cache/wal/colors.sh
 [ -z "$1" ] && prompt="Password for $USER:" || prompt="$1"
-dmenu -p "$prompt" -nf "$background" -nb "$background" -sf "$background" -sb "$color2" <&- 2>/dev/null | cat
+dmenu -p "$prompt" -nf "$background" -nb "$background" -sf "$background" -sb "$color2" -c -w 850 <&- 2>/dev/null | cat

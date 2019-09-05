@@ -17,7 +17,7 @@
 config="$HOME/.config/compton/"
 case "$1" in 
 	"-s")
-		compton -z -C -c -f -D 2 -r 3 -o 0.2\
+		compton -z -C -c -f -D 2 -r 3 -o 0.4\
 		  	--config "$config/compton.conf"
 		;; 
 	*) 

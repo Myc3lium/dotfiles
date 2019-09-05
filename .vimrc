@@ -35,7 +35,8 @@ set shiftwidth=4
 
 " Highlight control chars. Toggle show with
 " <s> while in normal mode.
-set listchars=tab:╎\ ,eol:§,nbsp:␣,trail:·,extends:⟩,precedes:⟨
+set listchars=tab:⇒\ ,eol:§,nbsp:␣,trail:·
+" ,space:┄
 nnoremap <silent>s :set list!<Cr>
 inoremap <Tab> <Space><Space><Space><Space>
 
@@ -100,24 +101,24 @@ endfunction
 let g:lightline = {
       \ 'colorscheme': has('gui_running') ? 'gruvbox' : 'wal',
       \ 'active': {
-      \   'left':  [[ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ]],
+      \   'left':  [[ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified', 'wordCount' ]],
 	  \   'right': [[ 'lineinfo'      ], [ 'percent' ],
-      \             [ 'fileformat', 'fileencoding', 'filetype', 'spell', 'wordCount']]
+      \             [ 'fileformat', 'fileencoding', 'filetype', 'spell' ]]
       \ },
-	  \ 'separator':    { 'left': '▓▒░',  'right' : '░▒▓' },
+	  \ 'separator':    { 'left': ':', 'right' : ':' },
       \ 'subseparator': { 'left': '|',    'right' : '|'   },
-	  \ 'tabline_separator':    { 'left': '|', 'right' : '|' },
-      \ 'tabline_subseparator': { 'left': '|', 'right' : '|' },
+	  \ 'tabline_separator':    { 'left': '', 'right' : '' },
+      \ 'tabline_subseparator': { 'left': ':', 'right' : ':' },
 	  \ 'mode_map' : {
 	  \     'no'     : '[?]',
-	  \     'n'      : 'NORMAL',
-	  \     'i'      : 'INSERT',
-	  \     'v'      : 'VISUAL',
-	  \     'V'      : 'V-LINE',
-	  \     "\<C-v>" : 'V-BLOCK',
+	  \     'n'      : ' NORMAL',
+	  \     'i'      : ' INSERT',
+	  \     'v'      : '濾VISUAL',
+	  \     'V'      : ' V-LINE',
+	  \     "\<C-v>" : '燐 V-BLOCK',
 	  \     'R'      : 'REPLACE',
 	  \     'r'      : 'REPLACE',
-	  \     'c'      : 'COMMAND',
+	  \     'c'      : ' COMMAND',
 	  \     's'      : 'SELECT',
 	  \     'S'      : 'S-LINE',
 	  \     "\<C-s>" : 'S-BLOCK',
@@ -127,9 +128,12 @@ let g:lightline = {
       \ }
       \ }
 
+  " \ 'separator':    { 'left': '▓▒░',  'right' : '░▒▓' },
+  " \ 'subseparator': { 'left': '|',    'right' : '|'   },
+
 " Syntastic settings
 let g:syntastic_c_check_header = 1
-let g:syntastic_c_compiler_options = "-Wall -Wextra -pedantic -Wno-comment"
+let g:syntastic_c_compiler_options = "-Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare"
 
 " Borkmark settings
 let g:borkmark = { 
@@ -223,17 +227,31 @@ function DmenuManSearch()
 		call system("tabd -name manpages zathura -e " . temp_path)
 	endif
 endfunction
-
 nnoremap <silent>z= :call DmenuCorrect()<Cr>
 nnoremap <silent>zm :call DmenuManSearch()<Cr>
 
 " Run macro on visual selection
 function! MacroRange()
-  echo "@" 
+  echo "register» " 
   execute ":'<,'>normal! @" . nr2char(getchar())
   normal! :
 endfunction
 xnoremap @ :<C-u>call MacroRange()<Cr>
+
+" Copy selection|word under cursor, then 
+" prompt for a replacement.
+function! ReplaceSelection(md)
+	let replacement = input('replace» ')
+	if a:md == 'v'
+		normal! y
+		let pattern = @"
+	elseif a:md == 'n'
+		let pattern = expand('<cword>')
+	endif
+	execute ':%s/\V' . escape(pattern, '/\') . '/' . replacement . '/g'
+endfunction
+xnoremap <Leader>c :call ReplaceSelection(mode())<Cr>
+nnoremap <Leader>c :call ReplaceSelection(mode())<Cr>
 
 " Delete/Copy/Paste to X clipboard
 " in normal and visual modes.

@@ -6,7 +6,7 @@ dwm_msg_file=$(mktemp)
 export dwm_msg_file
 
 # Remap CapsLock to Esc.
-(xmodmap -e "keysym Caps_Lock = Escape"; xmodmap -e "clear lock") &
+# (xmodmap -e "keysym Caps_Lock = Escape"; xmodmap -e "clear lock") &
 
 # # make CapsLock behave like Ctrl:
 # # make short-pressed Ctrl behave like Escape:
@@ -39,18 +39,21 @@ redshift -O 4450k &
 
 # Start bar script.
 (bar) &
+# Start cmus notifer
+(~/.config/dwm/cmus-notify)&
 
 # Start dwm.
 while true; do
 	. "$HOME"/.cache/wal/colors.sh
 	echo > "$dwm_msg_file" ## Reset messages
 
-    $dwm_path  -nb "$background" -nf "$foreground" -sf "$background" -sb "$color2" -nbr "$color8" -sbr "$color7"
+    $dwm_path  -nb "$background" -nf "$foreground" -sf "$background" -sb "$color3" -nbr "$color8" -sbr "$color7"
 	[ $? -ne 0 ] && continue ## Restart DWM if it crashes !
 	[ "$(cat "$dwm_msg_file")" = "restart" ] && continue 
 	break
 done
 
+killall atomstatus
 killall cmus
 killall calcurse
 killall htop

@@ -33,7 +33,8 @@ endfor
 
 " Setup trigger for main function on entry.
 augroup BorkTriggers
-    au VimEnter * call BorkMarkSetup()
+	au StdinReadPre * let s:is_stdin = 1
+    au VimEnter     * call BorkMarkSetup()
 augroup END
 
 
@@ -84,7 +85,7 @@ endfunction
 
 function BorkMarkSetup()
     " Start with scratchpad buffer if no file arguments.
-	if argc() == 0
+	if argc() == 0 && ! exists('s:is_stdin')
 		setlocal buftype=nofile
 		setlocal bufhidden=hide
 		setlocal filetype=markdown

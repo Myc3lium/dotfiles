@@ -36,10 +36,12 @@ alias hr="~/.bin/ghc"
 alias swi="swipl"
 alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
-alias hs=$'history | awk \'{ $1=""; print }\''
+alias hs=$'history'
 alias hg="hs | grep"
 alias svi="sudeoedit"
 alias gv="gvim"
+alias vc="vi ~/.vimrc"
+alias scc="gcc -Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare -Werror=implicit-function-declaration"
 
 # Alias some dir-names.
 alias ~pers="$HOME/repos/personal"
