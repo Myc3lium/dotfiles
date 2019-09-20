@@ -86,6 +86,7 @@ export img_width=700               # feh_scale max width
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # Colored GCC warnings and errors.
 
 # Less colors.
+export LESS="--RAW-CONTROL-CHARS"
 export LESS_TERMCAP_mb="$color4"   # Blinking.
 export LESS_TERMCAP_md="$color6"   # Bold.
 export LESS_TERMCAP_me="$normal"   # End bold, blink and underline.

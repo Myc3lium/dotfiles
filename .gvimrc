@@ -11,8 +11,11 @@
 "       ▒▒██████                                                      
 "        ▒▒▒▒▒▒                                                       
 
-set background=light
-colorscheme gruvbox
+" set background=light
+" colorscheme gruvbox
+set background=dark
+colo apprentice
+
 
 " set guifont=Terminus\ 12
 " set guifont=Ubuntu\ Mono\ Nerd\ Font\ 11

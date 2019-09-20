@@ -4,5 +4,5 @@
 # directory.
 
 . "$HOME"/.cache/wal/colors.sh
-"$HOME"/repos/personal/tabbed/tabbed -t "$color3" -T "$background" -u "$color0" -U "$foreground" $@
+"$HOME"/repos/personal/tabbed/tabbed -t "$color4" -T "$background" -u "$color0" -U "$foreground" $@
 # -g 1108x568 

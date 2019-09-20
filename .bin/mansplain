@@ -9,6 +9,8 @@
 
 . "$HOME"/.cache/wal/colors.sh
 
+# Get color support for 'less'
+export LESS="--RAW-CONTROL-CHARS"
 LESS_TERMCAP_mb="$(tput setaf 4)"           # Blinking.
 LESS_TERMCAP_md="$(tput setaf 6)"   # Bold.
 LESS_TERMCAP_me="$(tput sgr0)"   # End bold, blink and underline.
@@ -25,6 +27,7 @@ export LESS_TERMCAP_so
 export LESS_TERMCAP_ue
 export LESS_TERMCAP_us
 
-opt="$(man -k . | dmenuw -l 8 -i | awk '{ print substr($2,2,length($2)-2),$1 }')"
-[ -n "$opt" ] && tabd -name manpages urxvt -embed -e "man $opt"
+opt="$(man -k . | dmenuw -l 8 -i | awk -F'[()]' '{ print $2,$1 }')"
+[ -n "$opt" ] && tabd -name manpages st -w -e "bash -c 'man $opt'"
+
 # [ -n "$opt" ] && fname=$(mktemp) && eval "man -Tpdf $opt > $fname" && tabd -name manpages zathura -e "$fname"

@@ -17,18 +17,20 @@ function! s:auto_list()
 
     " End the list and clear the empty item
     call setline(line(".") - 1, "")
-  elseif l:preceding_line[0] == "-" && l:preceding_line[1] == " "
+  elseif index(["-", "*"], l:preceding_line[0]) >= 0 && l:preceding_line[1] == " "
     " The previous line is an unordered list item
     if strlen(l:preceding_line) == 2
       " ...which is empty: end the list and clear the empty item
       call setline(line(".") - 1, "")
     else
       " ...which is not empty: continue the list
-      call setline(".", "- ")
+      call setline(".", l:preceding_line[0] . " ")
     endif
   endif
 endfunction
 
 " N.B. Currently only enabled for return key in insert mode, not for normal
 " mode 'o' or 'O'
-inoremap <buffer> <CR> <CR><Esc>:call <SID>auto_list()<CR>A
+inoremap <silent><buffer> <CR>  <CR><Esc>:call <SID>auto_list()<CR>A
+inoremap <silent><buffer> <C-j> <CR><Esc>:call <SID>auto_list()<CR>A
+nnoremap <silent><buffer> o     o<Esc>:call <SID>auto_list()<CR>A

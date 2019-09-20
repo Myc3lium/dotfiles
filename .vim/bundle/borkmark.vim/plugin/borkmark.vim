@@ -20,7 +20,7 @@ let s:borkdefaults = {
     \ 'fileopenmethod' : 'tabedit!',
     \ 'bookmarkprefix' : '()',
     \ 'historyprefix'  : '[]',
-    \ 'stickyfiles'   : s:GetStickyFiles(),
+    \ 'stickyfiles'    : s:GetStickyFiles(),
 	\ }
 
 

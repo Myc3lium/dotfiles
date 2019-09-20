@@ -43,10 +43,8 @@ alias gv="gvim"
 alias vc="vi ~/.vimrc"
 alias scc="gcc -Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare -Werror=implicit-function-declaration"
 
-# Alias some dir-names.
-alias ~pers="$HOME/repos/personal"
-alias ~other="$HOME/repos/other"
-alias ~assi="$HOME/Documents/assignments/"
+# Add manpage completion
+complete -W "$(man -k . | awk $'{ printf $1" "}')" man
 
 # Python3 help from outside python
 pyhelp(){

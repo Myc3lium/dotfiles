@@ -85,51 +85,37 @@ function! WordCount()
 	return wordcount()['words'] . ' words'
 endfunction
 
-function! ToggleProse()
-	setlocal formatoptions=ant
-	setlocal textwidth=80
-	setlocal wrapmargin=0
-	setlocal foldcolumn=10
-	setlocal columns=100
-    setlocal nonumber norelativenumber
-
-    :set wm=2
-    :set wrap linebreak nolist
-endfunction
 
 " lightline.vim settings.
 let g:lightline = {
-      \ 'colorscheme': has('gui_running') ? 'gruvbox' : 'wal',
-      \ 'active': {
-      \   'left':  [[ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified', 'wordCount' ]],
-	  \   'right': [[ 'lineinfo'      ], [ 'percent' ],
-      \             [ 'fileformat', 'fileencoding', 'filetype', 'spell' ]]
-      \ },
-	  \ 'separator':    { 'left': ':', 'right' : ':' },
-      \ 'subseparator': { 'left': '|',    'right' : '|'   },
-	  \ 'tabline_separator':    { 'left': '', 'right' : '' },
-      \ 'tabline_subseparator': { 'left': ':', 'right' : ':' },
-	  \ 'mode_map' : {
-	  \     'no'     : '[?]',
-	  \     'n'      : ' NORMAL',
-	  \     'i'      : ' INSERT',
-	  \     'v'      : '濾VISUAL',
-	  \     'V'      : ' V-LINE',
-	  \     "\<C-v>" : '燐 V-BLOCK',
-	  \     'R'      : 'REPLACE',
-	  \     'r'      : 'REPLACE',
-	  \     'c'      : ' COMMAND',
-	  \     's'      : 'SELECT',
-	  \     'S'      : 'S-LINE',
-	  \     "\<C-s>" : 'S-BLOCK',
-	  \ },
-      \ 'component_function' : {
-      \     'wordCount' : 'WordCount',
+      \ 'colorscheme': has('gui_running') ? 'default' : 'wal',
+          \ 'active': {
+          \   'left':  [[ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified', 'wordCount' ]],
+	      \   'right': [[ 'lineinfo'      ], [ 'percent' ],
+          \             [ 'fileformat', 'fileencoding', 'filetype', 'spell' ]]
+          \ },
+	      \ 'separator':    { 'left': '', 'right' : '' },
+          \ 'subseparator': { 'left': '|',    'right' : '|'   },
+	      \ 'tabline_separator':    { 'left': '', 'right' : '' },
+          \ 'tabline_subseparator': { 'left': '', 'right' : '' },
+	      \ 'mode_map' : {
+	      \     'no'     : '[?]',
+	      \     'n'      : ' NORMAL',
+	      \     'i'      : ' INSERT',
+	      \     'v'      : '濾VISUAL',
+	      \     'V'      : ' V-LINE',
+	      \     "\<C-v>" : '  V-BLOCK',
+	      \     'R'      : 'REPLACE',
+	      \     'r'      : 'REPLACE',
+	      \     'c'      : ' COMMAND',
+	      \     's'      : 'SELECT',
+	      \     'S'      : 'S-LINE',
+	      \     "\<C-s>" : 'S-BLOCK',
+	      \ },
+          \ 'component_function' : {
+          \     'wordCount' : 'WordCount',
+          \ }
       \ }
-      \ }
-
-  " \ 'separator':    { 'left': '▓▒░',  'right' : '░▒▓' },
-  " \ 'subseparator': { 'left': '|',    'right' : '|'   },
 
 " Syntastic settings
 let g:syntastic_c_check_header = 1
@@ -137,10 +123,20 @@ let g:syntastic_c_compiler_options = "-Wall -Wextra -pedantic -Wno-comment -Wfor
 
 " Borkmark settings
 let g:borkmark = { 
-    \ 'windowname' : '\ Startup\ ',
+    \ 'windowname'    : '\ Startup\ ',
     \ 'defaultstatus' : 2,
-    \ 'shownum' : 7,
+    \ 'shownum'       : 7,
 	\ }
+
+let g:dmenu = {
+    \ 'path'         : '~/bin/dmenuw',
+    \ 'global-opts'  : '-l 8 -i',
+    \ 'open-command' : 'tabd -name manpages zathura -e',
+    \ 'man-flags'    : '-Tpdf',
+	\ }
+
+nnoremap <silent>z= :call DmenuCorrect()<Cr>
+nnoremap <silent>zm :call DmenuManSearch()<Cr>
 
 " ~~~~# Key Mappings #~~~~
 " Easier command mode. Applies to normal, visual and select.
@@ -154,6 +150,10 @@ nnoremap <C-v> <C-a>
 " Find and replace in normal.
 nnoremap <C-c> :%s/
 
+" Why is C-[ not back a tag by default? Need to change URxvt-font size mapping
+" tho.
+" nnoremap <C-t> <C-t>
+
 " \%V searches only in the current selection- this will behave the 
 " same as :s/ in visual line mode, but will make sure no unintended
 " replacements are made in visual block mode.
@@ -161,10 +161,10 @@ vnoremap <C-c> :s/\%V
 
 " Edit new files/buffers without needing to write the current one.
 " nnoremap <S-e>   :tabedit!<Space>
-nnoremap <Tab>   :silent tabnext<Cr>
-nnoremap <S-Tab> :silent tabprev<Cr>
-nnoremap <C-S-Tab> :silent tabmove -1<Cr>
-nnoremap <C-Tab>   :silent tabmove +1<Cr>
+nnoremap <silent><Tab>   :tabnext<Cr>
+nnoremap <silent><S-Tab> :tabprev<Cr>
+nnoremap <silent><C-S-Tab> :tabmove -1<Cr>
+nnoremap <silent><C-Tab>   :tabmove +1<Cr>
 cabbrev  h       tab help
 cabbrev t tabedit!
 
@@ -209,27 +209,6 @@ inoremap <Leader>d <C-x><C-o>
 noremap <Leader>o <C-o>
 noremap <Leader>i <C-i>
 
-" Dmenu integration for searching spelling correction. Replaces `z=`.
-function DmenuCorrect()
-	let word=system("dmenuw -i -l 8 2>/dev/null", spellsuggest(expand("<cword>")))
-	if len(word) != 0 
-		exe "normal ciw". word[0:-2]
-	endif
-endfunction
-
-" Apropos the word under the cursor with man.
-function DmenuManSearch()
-	let result=system("eval \"$(printf 'man -k %s' \"$(cat)\")\" | dmenuw -i -l 8 2>/dev/null", expand("<cword>"))
-	if len(result) != 0
-		let result=system("awk '{ print substr($2,2,length($2)-2),$1 }'", result)
-		let temp_path=system("mktemp")
-		call system("eval \"$(printf 'man -Tpdf %s %s' \"$(cat)\")\" > " . temp_path, result)
-		call system("tabd -name manpages zathura -e " . temp_path)
-	endif
-endfunction
-nnoremap <silent>z= :call DmenuCorrect()<Cr>
-nnoremap <silent>zm :call DmenuManSearch()<Cr>
-
 " Run macro on visual selection
 function! MacroRange()
   echo "register» " 
@@ -238,20 +217,29 @@ function! MacroRange()
 endfunction
 xnoremap @ :<C-u>call MacroRange()<Cr>
 
-" Copy selection|word under cursor, then 
-" prompt for a replacement.
-function! ReplaceSelection(md)
-	let replacement = input('replace» ')
-	if a:md == 'v'
-		normal! y
-		let pattern = @"
-	elseif a:md == 'n'
-		let pattern = expand('<cword>')
+" Awk a file. <Leader>s now opens a prompt to
+" run the file through.
+function! Awk(md)
+	let command = input('Awk » ')
+	if command == ''
+		return
 	endif
-	execute ':%s/\V' . escape(pattern, '/\') . '/' . replacement . '/g'
+	if a:md == 'n'
+	    execute ":%! awk " . shellescape(command)
+	elseif a:md == 'v'
+	    execute ":'<,'>! awk " . shellescape(command)
+	endif
 endfunction
-xnoremap <Leader>c :call ReplaceSelection(mode())<Cr>
-nnoremap <Leader>c :call ReplaceSelection(mode())<Cr>
+noremap <Leader>a :call Awk(mode())<Cr>
+
+" Format the whole file or selection
+" with an external command.
+nnoremap <Leader>s :%! 
+xnoremap <Leader>s :! 
+
+" Highlight lines longer than 81 chars
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Delete/Copy/Paste to X clipboard
 " in normal and visual modes.
@@ -275,8 +263,9 @@ noremap <C-S-k> <C-b>
 
 " ~~~~# AutoCommands/ AuGroups #~~~~
 augroup AutoCompile
-	au BufwritePost *.ms silent! exe "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
-    au BufWritePost *.md silent! exe "!pandoc % --highlight-style tango -f markdown -t html5 --css ~/Templates/killercup.css -o %:r.html" | redraw!
+	au BufwritePost *.ms  silent! exe "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
+	au BufwritePost *.mom silent! exe "!pdfmom % > %:r.pdf" | redraw!
+    au BufWritePost *.md  silent! exe "!pandoc % --highlight-style tango -f markdown -t html5 --css ~/Templates/killercup.css -o %:r.html" | redraw!
 	au BufWritePost ~/i3/config               silent! exe "!i3-msg reload 2>/dev/null" | redraw!
 	au BufWritePost ~/.Xresources             silent! exe "!xrdb ~/.Xresources"        | redraw!
 	au BufWritePost config.h,config.def.h     silent! exe "!make install"              | redraw!

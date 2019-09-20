@@ -6,7 +6,7 @@ dwm_msg_file=$(mktemp)
 export dwm_msg_file
 
 # Remap CapsLock to Esc.
-# (xmodmap -e "keysym Caps_Lock = Escape"; xmodmap -e "clear lock") &
+(xmodmap -e "keysym Caps_Lock = Escape"; xmodmap -e "clear lock") &
 
 # # make CapsLock behave like Ctrl:
 # # make short-pressed Ctrl behave like Escape:
@@ -23,19 +23,25 @@ compton-start -s &
 redshift -O 4450k &
 
 # Start cmus and ranger in the videos directory.
-(urxvt -title "music-cmus" -name "music-cmus"  -uc -e cmus) 2>/dev/null &
-(urxvt -title "music-mpv"  -name "music-mpv"   -uc -e ranger "$HOME"/Videos/yt/greentexts) 2>/dev/null &
+#(urxvt -title "music-cmus" -name "music-cmus"  -uc -e cmus) 2>/dev/null &
+#(urxvt -title "music-mpv"  -name "music-mpv"   -uc -e ranger "$HOME"/Videos/yt/greentexts) 2>/dev/null &
+(st -T "music-cmus" -n "music-cmus" -e cmus) 2>/dev/null &
+(st -T "music-mpv"  -n "music-mpv"  -e ranger "$HOME"/Videos/yt/greentexts) 2>/dev/null &
 # cmus-notify &
 
 # Start basic terminal.
-(urxvt -uc -title "workspace4-terminal" -name "workspace4-terminal" -e bash) 2>/dev/null &
+#(urxvt -uc -title "workspace4-terminal" -name "workspace4-terminal" -e bash) 2>/dev/null &
+(st -T "workspace4-terminal" -n "workspace4-terminal") 2>/dev/null &
 
 # Start calendar and process monitor.
-(urxvt -name "calendar" -geometry 100x22 -uc -e calcurse) 2>/dev/null &
-(urxvt -name "monitor" -geometry 52x6 -uc -e htop) 2>/dev/null &
+#(urxvt -name "calendar" -geometry 100x22 -uc -e calcurse) 2>/dev/null &
+#(urxvt -name "monitor" -geometry 52x6 -uc -e htop) 2>/dev/null &
+(st -n "calendar" -g 100x22 -e calcurse) 2>/dev/null &
+(st -n "monitor" -g 52x6    -e htop) 2>/dev/null &
 
 # Start scratchpad terminal.
-(urxvt -geometry 59x21 -name "scratchpad" -e bash) 2>/dev/null &
+#(urxvt -geometry 59x21 -name "scratchpad" -e bash) 2>/dev/null &
+(st -g 59x21 -n "scratchpad") 2>/dev/null &
 
 # Start bar script.
 (bar) &
@@ -47,7 +53,7 @@ while true; do
 	. "$HOME"/.cache/wal/colors.sh
 	echo > "$dwm_msg_file" ## Reset messages
 
-    $dwm_path  -nb "$background" -nf "$foreground" -sf "$background" -sb "$color3" -nbr "$color8" -sbr "$color7"
+    $dwm_path  -nb "$background" -nf "$foreground" -sf "$background" -sb "$color4" -nbr "$color8" -sbr "$color7"
 	[ $? -ne 0 ] && continue ## Restart DWM if it crashes !
 	[ "$(cat "$dwm_msg_file")" = "restart" ] && continue 
 	break

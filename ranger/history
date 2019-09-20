@@ -1,19 +1,6 @@
-find :
-find Joe
-shell wal =n %s
-shell wal -n -o %s
-shell wal - %s
-find h
-shell h %s
-shell 
-shell feh --bg- %s
-shell feh --bg-tile %s
-paste
-find kh
 open_with 
 shell wal ---n -i %s
 P
-shell wal -n -i %s
 shell wal -n -l -i %s
 shell wal -n  -i %s
 find cst
@@ -23,28 +10,41 @@ shell touch config.h
 shell vi %s
 shell wal -i %s
 
-shell feh --bg-scale %s
 shell wal -n --saturate 0.0 -i %s
 shell wal -n --saturate 0.1 -i %s
 shell wal -n --saturate 0.2 -i %s
 shell wal -n --saturate 0.3 -i %s
 shell wal -n --saturate 0kk.3 -i %s
-bulkrename 
 search Out
 shell wal  -i %s
-shell bleachbit --shred %s
-shell  %s
 shell find %s | sxiv -
 shell feh %s
 shell feh %s &
 `
+[as
+shell mv  %s forth
+shell  %s
+shell  feh %s
+default_linemode l
+shell feh --bg-tile %s
+shell wal -n -i %s
+shell feh --bf-max %s
 shell feh --bg-max %s
 shell feh --bg-center %s
-
+shell feh --bg-scale %s
+find Mod
+shell bleachbit --shred %s
 shell feh --bg-fill %s
-shell vim -p %s
+q
+shell mkdir html
+shell mkdir pdf
+shell 
+shell mkdir text
+shell mkdir  paste
 cut
-[as
 paste 
+
+shell vim -p %s
+open_with vi
 delete 
-shell mv  %s forth
+bulkrename 
