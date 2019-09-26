@@ -30,23 +30,20 @@ set encoding=utf-8
 " Set line numbering options.
 set number relativenumber
 
-" Set tab representation and shift width.
-" 'set expandtab' will set tabs to be spaces.
-" However this will not work with auto-indent 
-" produced tabs.
+" Set tab representation and shift width. 'set expandtab' will set tabs to be
+" spaces set tabs to be spaces. However this will not work with auto-indent
+" produced tabs from ftplugin.
 set tabstop=4
 set shiftwidth=4
 
-" Highlight control chars. Toggle show with
-" <s> while in normal mode.
+" Highlight control chars. Toggle show with <s> while in normal mode.
 set listchars=tab:⇒\ ,nbsp:␣,trail:·
 " ,space:┄,eol:§,
 nnoremap <silent>s :set list!<Cr>
 inoremap <Tab> <Space><Space><Space><Space>
 
-" Set timeout on Escape. This is vital for not
-" being extra slow on exiting insert mode, but
-" if this is zero it interferes with leader mappings.
+" Set timeout on Escape. This is vital for not being extra slow on exiting 
+" insert mode, but if this is zero it interferes with leader mappings.
 set timeout timeoutlen=64 ttimeoutlen=64
 let mapleader=";"
 
@@ -55,9 +52,8 @@ colorscheme wal
 set term=screen-256color
 set background=light
 
-" Backup swap files in a more useful place.
-" Move viminfo file somewhere more appropriate.
-" Set persistent undo/redo. Very useful.
+" Backup swap files in a more useful place. Move viminfo file somewhere more 
+" appropriate. Set persistent undo/redo. Very useful.
 set undofile
 set undodir=~/.vim/undodir/
 set backupdir=~/.vim/backups
@@ -121,7 +117,7 @@ let g:lightline = {
 
 " Syntastic settings
 let g:syntastic_c_check_header = 1
-let g:syntastic_c_compiler_options = "-Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare"
+let g:syntastic_c_compiler_options="-Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare"
 
 " Borkmark settings
 let g:borkmark = { 
@@ -151,9 +147,6 @@ let g:carp = {
 noremap : <Nop>
 noremap , :
 
-" Maybe a's behaviour is more intuitive?
-inoremap <Esc> <Esc>l
-
 " Set auto-increment keys. This means another key combination
 " needs to be set in order to access visual-block mode.
 nnoremap <C-v> <C-a>
@@ -177,18 +170,17 @@ nnoremap  <silent><C-Tab>    :tabmove +1<Cr>
 cabbrev  h tab help
 cabbrev  t tabedit!
 
-" Remove ex mode entry and remap to
-" visual block mode in visual/normal modes.
+" Remove ex mode entry and remap to visual block mode in visual/normal modes.
 noremap Q  <Nop>
 noremap Q  <C-v>
 
-" More comfortable start and end of line shortcuts
-" in normal, (operator) pending and visual modes.
+" More comfortable start and end of line shortcuts in normal, (operator) 
+" pending and visual modes.
 noremap <C-a>  ^
 noremap <C-e>  $
 
-" Home, end, backspace, delete and forward backward navigation
-" in insert/command mode (noremap!)
+" Home, end, backspace, delete and forward backward navigation in insert/
+" command mode (noremap!)
 noremap! <C-a>  <Home>
 noremap! <C-e>  <End>
 noremap! <C-o>  <BackSpace>
@@ -204,9 +196,9 @@ cnoremap <C-m>  <C-Right>
 vnoremap <Backspace>  d
 vnoremap <Return>     c<Return>
 
-" Autocomplete navigation, similar to command mode / readline.
-" Nicer autocomplete.
-set completeopt=longest,menuone
+" Autocomplete navigation, similar to command mode / readline. Nicer 
+" autocomplete.
+set completeopt=longest,menuone,preview
 inoremap <C-p>     <Nop>
 inoremap <C-n>     <Nop>
 inoremap <C-h>     <C-n>
@@ -223,8 +215,7 @@ function! MacroRange()
 endfunction
 xnoremap @ :<C-u>call MacroRange()<Cr>
 
-" Run commands on a range of lines.
-" Uses shellescape to allow passing code to 
+" Run commands on a range of lines. Uses shellescape to allow passing code to 
 " other commands (awk/perl etc).
 function! DoCommand(range, interpreter)
 	let l:string = shellescape(input(split(a:interpreter, ' ')[0] . '» '))
@@ -245,8 +236,8 @@ xnoremap <leader>v y:@"<CR>
 highlight ColorColumn ctermbg=blue
 call matchadd('ColorColumn', '\%81v', 100)
 
-" Delete/Copy/Paste to X clipboard
-" in normal and visual modes.
+" Delete/Copy/Paste to X clipboard in normal and visual modes. Change so paste
+" puts the line after the current one.
 nnoremap <C-P>  o<Esc>"+p
 nnoremap <C-Y>  "+y
 nnoremap <C-D>  "+d
@@ -254,10 +245,9 @@ vnoremap <C-Y>  "+y
 vnoremap <C-P>  "+p
 vnoremap <C-D>  "+d
 
-" Unmap annoying justify text feature mode.
-" Navigation. Shift-j goes down a page, Shift-k goes up.
-" nostartofline stops moving to the start of the line,
-" allowing for keeping the current column position.
+" Shift-j goes down a page, Shift-k goes up. Nostartofline stops moving to the
+" start moving to the start of the start of the line, allowing for keeping the 
+" current column position.
 set nostartofline
 noremap <S-j> <Nop>
 noremap <S-j> <C-e>
@@ -270,17 +260,12 @@ augroup AutoCompile
 	au BufwritePost *.ms  silent! exe "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
 	au BufwritePost *.mom silent! exe "!pdfmom % > %:r.pdf" | redraw!
     au BufWritePost *.md  silent! exe "!pandoc % --highlight-style tango -f markdown -t html5 --css ~/Templates/markdown.css -o %:r.html" | redraw!
-	au BufWritePost ~/i3/config               silent! exe "!i3-msg reload 2>/dev/null" | redraw!
-	au BufWritePost ~/.Xresources             silent! exe "!xrdb ~/.Xresources"        | redraw!
-	au BufWritePost config.h,config.def.h     silent! exe "!make install"              | redraw!
-	au BufWritePost ~/i3/i3blocks.conf        silent! exe "!pkill i3bar && i3bar --bar_id bar-0 2>/dev/null &" | redraw!
-	au BufWritePost ~/.config/dunst/dunstrc   silent! exe "!killall dunst; dunst &"    | redraw!
-	au BufWritePost ~/.config/i3status/config silent! exe "!killall bar; bar 2>/dev/null &" | redraw!
+	au BufWritePost config.h,config.def.h silent! exe "!make clean install" | redraw!
 augroup END
 
 augroup AutoFormat
 	au BufReadPost  *.md,*.MD,*.ms silent! setlocal spell
-	au BufWritePre  *.c,*.h,*.py,*.pl,*.sh,*.hs :%s/\s\+$//e
+	au BufWritePre  *.c,*.h,*.py,*.pdb,*.sh,*.hs :%s/\s\+$//e
     au BufWritePre  *.hs,*.pdb,*.c*.sh :%s/\t/    /ge
 augroup END
 
@@ -294,12 +279,6 @@ augroup FileTemplateSetup
     au BufNewFile *.ms  :r ~/Templates/.ms
 augroup END
 
-augroup Privacy
-    au BufReadPre *.private.* setlocal noswapfile | setlocal noundofile
-augroup END
-
-augroup RestorePosition
-	" Open files at the last edited point. silent! suppresses mark errors.
-	au BufReadPost * silent! normal g;
-augroup END
+" Open files at the last edited point. silent! suppresses mark errors.
+au BufReadPost * silent! normal! g;
 colorscheme wal
