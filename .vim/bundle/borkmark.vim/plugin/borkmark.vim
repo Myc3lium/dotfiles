@@ -5,14 +5,13 @@
 let s:stickypath = expand('~/.vim/bundle/borkmark.vim/plugin/sticky.txt')
 
 function! s:GetStickyFiles()
-    let files = readfile(s:stickypath)
-	return files
+    return readfile(s:stickypath)
 endfunction
 
 " Default config values.
 let s:borkdefaults = { 
     \ 'recenttext'     : '# Recent Files:',
-    \ 'windowname'     : '-\ Startup\ -',
+    \ 'windowname'     : 'Startup',
     \ 'defaultstatus'  : 2,
     \ 'shownum'        : 7,
     \ 'bookmarkpath'   : '$HOME/.vim/bundle/borkmark.vim/plugin/bookmarks.txt',
@@ -98,19 +97,16 @@ function BorkMarkSetup()
         endif 
 		execute 'file ' . g:borkmark.windowname
 
-		" Get and prune history entries.
-        redir => recentfiles
-		    silent oldfiles
-		redir END
-		let recentfiles = split(recentfiles, "\n")
-		let recentfiles = join(recentfiles[0:(g:borkmark.shownum)], "\n")
-
-		" Insert history entries. Replace entry numbers "<n>: " with "<n>. "
-		silent put =recentfiles
+		" Get and prune history entries. 
+		" Remove Duplicates.
+		" Insert history entries. 
+        let l:filter_ = printf('(v:val !~ %s && v:val !~ "/usr/share/vim/vim74/doc/")', string(g:borkmark.windowname))
+		let l:recentfiles = filter(copy(v:oldfiles), l:filter_)[0:g:borkmark.shownum]
+		let l:recentfiles = map(l:recentfiles, 'printf("%s%d%s %s",g:borkmark.historyprefix[0], v:key, g:borkmark.historyprefix[1], v:val)')
+		let l:recentfiles = join(recentfiles, "\n")
+		silent put =l:recentfiles
 		normal! gg"_dd
-		silent execute '%s/^/' . g:borkmark.historyprefix[0] . '/g'
-		silent execute '%s/: /' . g:borkmark.historyprefix[1] . ' /g'
-		
+
 		" Insert prefix text at beginning of file.
 		silent 0put =g:borkmark.recenttext
 		normal! <S-o><Esc><S-o><Esc>
@@ -121,12 +117,15 @@ function BorkMarkSetup()
 		silent :%s/^#/\r#/g
 		normal! gg"_dd
 
+		setlocal nomodifiable
+		setlocal readonly
+
 		" Remap <C-j> to select and open the filename under the cursor's line.
 		" nnoremap <buffer><C-j> ^f<Space>l"nyg_ :tabedit! <C-r>n<Return>
 		nnoremap <silent><buffer><C-j> ^"nyg_:call OpenRecordLine('<C-r>n')<Return>
 
-		" Cleanup
-		unlet recentfiles
+		" Grab a thing and put it into an Ex prompt.
+		nnoremap <buffer><C-k> ^f<Space>"nyg_:tabedit!<Space><C-r>n
 
 		" Open sticky'd files.
 		if !empty(g:borkmark.stickyfiles)

@@ -34,3 +34,8 @@ endfunction
 inoremap <silent><buffer> <CR>  <CR><Esc>:call <SID>auto_list()<CR>A
 inoremap <silent><buffer> <C-j> <CR><Esc>:call <SID>auto_list()<CR>A
 nnoremap <silent><buffer> o     o<Esc>:call <SID>auto_list()<CR>A
+
+
+" Format tables from columnar data
+xnoremap <Leader>t :! ~/.vim/format-scripts/cols2markdown<Cr>
+

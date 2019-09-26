@@ -16,6 +16,10 @@ nnoremap <silent><C-l> :nohlsearch<Cr>
 " Incremental search.
 set incsearch
 
+" Split below and right.
+set splitbelow
+set splitright 
+
 " Set spell check options. Spell check is disabled within quote marks.
 set spelllang=en_gb,en_us
 syntax match quoteblock /"[^"]\+"/ contains=@NoSpell
@@ -35,8 +39,8 @@ set shiftwidth=4
 
 " Highlight control chars. Toggle show with
 " <s> while in normal mode.
-set listchars=tab:⇒\ ,eol:§,nbsp:␣,trail:·
-" ,space:┄
+set listchars=tab:⇒\ ,nbsp:␣,trail:·
+" ,space:┄,eol:§,
 nnoremap <silent>s :set list!<Cr>
 inoremap <Tab> <Space><Space><Space><Space>
 
@@ -50,7 +54,6 @@ let mapleader=";"
 colorscheme wal
 set term=screen-256color
 set background=light
-let g:gruvbox_background = 'light'
 
 " Backup swap files in a more useful place.
 " Move viminfo file somewhere more appropriate.
@@ -82,38 +85,37 @@ let g:haskell_enable_static_pointers    = 1  " to enable highlighting of `static
 let g:haskell_backpack                  = 1  " to enable highlighting of backpack keywords
 
 function! WordCount()
-	return wordcount()['words'] . ' words'
+	let l:wd = wordcount()
+	return printf(" %d,%d,%d", l:wd.words, line('$'), l:wd.bytes)
 endfunction
-
 
 " lightline.vim settings.
 let g:lightline = {
-      \ 'colorscheme': has('gui_running') ? 'default' : 'wal',
+      \ 'colorscheme': has('gui_running') ? 'jellybeans' : 'jellybeans',
           \ 'active': {
-          \   'left':  [[ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified', 'wordCount' ]],
+          \   'left':  [[ 'mode', 'paste' ], [ 'filename', 'readonly' ], [ 'modified', 'wordCount' ]],
 	      \   'right': [[ 'lineinfo'      ], [ 'percent' ],
           \             [ 'fileformat', 'fileencoding', 'filetype', 'spell' ]]
           \ },
 	      \ 'separator':    { 'left': '', 'right' : '' },
-          \ 'subseparator': { 'left': '|',    'right' : '|'   },
+          \ 'subseparator': { 'left': '»',    'right' : '«'   },
 	      \ 'tabline_separator':    { 'left': '', 'right' : '' },
           \ 'tabline_subseparator': { 'left': '', 'right' : '' },
 	      \ 'mode_map' : {
-	      \     'no'     : '[?]',
-	      \     'n'      : ' NORMAL',
-	      \     'i'      : ' INSERT',
-	      \     'v'      : '濾VISUAL',
-	      \     'V'      : ' V-LINE',
-	      \     "\<C-v>" : '  V-BLOCK',
-	      \     'R'      : 'REPLACE',
-	      \     'r'      : 'REPLACE',
-	      \     'c'      : ' COMMAND',
-	      \     's'      : 'SELECT',
-	      \     'S'      : 'S-LINE',
-	      \     "\<C-s>" : 'S-BLOCK',
+	      \     'n'      : ' NORMAL ',
+	      \     'i'      : ' INSERT ',
+	      \     'v'      : ' VISUAL ',
+	      \     'V'      : ' V-LINE ',
+	      \     '\<C-v>' : ' V-BLOCK ',
 	      \ },
           \ 'component_function' : {
           \     'wordCount' : 'WordCount',
+          \ },
+          \ 'component' : {
+		  \     'close'    : '',
+		  \     'filetype' : '  %{&filetype}',
+		  \     'lineinfo': ' %3l: %-2v',
+		  \     'fileformat': '﬌ %{&ff}',
           \ }
       \ }
 
@@ -123,36 +125,43 @@ let g:syntastic_c_compiler_options = "-Wall -Wextra -pedantic -Wno-comment -Wfor
 
 " Borkmark settings
 let g:borkmark = { 
-    \ 'windowname'    : '\ Startup\ ',
+    \ 'windowname'    : 'Startup',
     \ 'defaultstatus' : 2,
-    \ 'shownum'       : 7,
-	\ }
-
-let g:dmenu = {
-    \ 'path'         : '~/bin/dmenuw',
-    \ 'global-opts'  : '-l 8 -i',
-    \ 'open-command' : 'tabd -name manpages zathura -e',
-    \ 'man-flags'    : '-Tpdf',
+    \ 'shownum'       : 16,
 	\ }
 
 nnoremap <silent>z= :call DmenuCorrect()<Cr>
 nnoremap <silent>zm :call DmenuManSearch()<Cr>
+let g:dmenu = {
+    \ 'path'         : '~/bin/dmenuw',
+    \ 'dmenu-flags'  : '-l 8 -i -w 850 -c',
+    \ 'vim-open'     : 'vnew',
+	\ }
+    "\ 'man-flags'    : '-Tpdf',
+    "\ 'open-command' : 'tabd -name manpages zathura -e',
+
+let g:carp = {
+			\ 'control' : '<Leader>,',
+			\ 'shift'   : '<Leader>k',
+			\ 'meta'    : '<Leader>m',
+			\}
 
 " ~~~~# Key Mappings #~~~~
 " Easier command mode. Applies to normal, visual and select.
 noremap : <Nop>
 noremap , :
 
+" Maybe a's behaviour is more intuitive?
+inoremap <Esc> <Esc>l
+
 " Set auto-increment keys. This means another key combination
 " needs to be set in order to access visual-block mode.
 nnoremap <C-v> <C-a>
 
-" Find and replace in normal.
+" Find and replace in normal. Assume /g flag. 
+" /g now replaces only the first instance in a line.
 nnoremap <C-c> :%s/
-
-" Why is C-[ not back a tag by default? Need to change URxvt-font size mapping
-" tho.
-" nnoremap <C-t> <C-t>
+set gdefault
 
 " \%V searches only in the current selection- this will behave the 
 " same as :s/ in visual line mode, but will make sure no unintended
@@ -161,12 +170,12 @@ vnoremap <C-c> :s/\%V
 
 " Edit new files/buffers without needing to write the current one.
 " nnoremap <S-e>   :tabedit!<Space>
-nnoremap <silent><Tab>   :tabnext<Cr>
-nnoremap <silent><S-Tab> :tabprev<Cr>
-nnoremap <silent><C-S-Tab> :tabmove -1<Cr>
-nnoremap <silent><C-Tab>   :tabmove +1<Cr>
-cabbrev  h       tab help
-cabbrev t tabedit!
+nnoremap  <silent><Tab>      :tabnext   <Cr>
+nnoremap  <silent><S-Tab>    :tabprev   <Cr>
+nnoremap  <silent><C-S-Tab>  :tabmove -1<Cr>
+nnoremap  <silent><C-Tab>    :tabmove +1<Cr>
+cabbrev  h tab help
+cabbrev  t tabedit!
 
 " Remove ex mode entry and remap to
 " visual block mode in visual/normal modes.
@@ -179,7 +188,7 @@ noremap <C-a>  ^
 noremap <C-e>  $
 
 " Home, end, backspace, delete and forward backward navigation
-" in insert/command mode.
+" in insert/command mode (noremap!)
 noremap! <C-a>  <Home>
 noremap! <C-e>  <End>
 noremap! <C-o>  <BackSpace>
@@ -196,6 +205,7 @@ vnoremap <Backspace>  d
 vnoremap <Return>     c<Return>
 
 " Autocomplete navigation, similar to command mode / readline.
+" Nicer autocomplete.
 set completeopt=longest,menuone
 inoremap <C-p>     <Nop>
 inoremap <C-n>     <Nop>
@@ -205,10 +215,6 @@ inoremap <Leader>k <C-x><C-k>
 inoremap <Leader>f <C-x><C-f>
 inoremap <Leader>d <C-x><C-o>
 
-" Shadow <C-o>/<C-i> in normal mode.
-noremap <Leader>o <C-o>
-noremap <Leader>i <C-i>
-
 " Run macro on visual selection
 function! MacroRange()
   echo "register» " 
@@ -217,28 +223,26 @@ function! MacroRange()
 endfunction
 xnoremap @ :<C-u>call MacroRange()<Cr>
 
-" Awk a file. <Leader>s now opens a prompt to
-" run the file through.
-function! Awk(md)
-	let command = input('Awk » ')
-	if command == ''
-		return
-	endif
-	if a:md == 'n'
-	    execute ":%! awk " . shellescape(command)
-	elseif a:md == 'v'
-	    execute ":'<,'>! awk " . shellescape(command)
+" Run commands on a range of lines.
+" Uses shellescape to allow passing code to 
+" other commands (awk/perl etc).
+function! DoCommand(range, interpreter)
+	let l:string = shellescape(input(split(a:interpreter, ' ')[0] . '» '))
+	if strlen(l:string) > 2
+		execute printf("normal! :%s!%s %s", a:range, a:interpreter, l:string)
 	endif
 endfunction
-noremap <Leader>a :call Awk(mode())<Cr>
+nnoremap <Leader>s :call DoCommand('%', 'sh -c')<Cr>
+nnoremap <Leader>a :call DoCommand('%', 'awk')<Cr>
+xnoremap <Leader>s :<C-u>call DoCommand("'<,'>", 'sh -c')<Cr>
+xnoremap <Leader>a :<C-u>call DoCommand("'<,'>", 'awk')<Cr>
 
-" Format the whole file or selection
-" with an external command.
-nnoremap <Leader>s :%! 
-xnoremap <Leader>s :! 
+" Source parts of the current file.
+nnoremap <leader>v :%y<Cr>:@"<Cr>
+xnoremap <leader>v y:@"<CR>
 
 " Highlight lines longer than 81 chars
-highlight ColorColumn ctermbg=magenta
+highlight ColorColumn ctermbg=blue
 call matchadd('ColorColumn', '\%81v', 100)
 
 " Delete/Copy/Paste to X clipboard
@@ -255,17 +259,17 @@ vnoremap <C-D>  "+d
 " nostartofline stops moving to the start of the line,
 " allowing for keeping the current column position.
 set nostartofline
-noremap <S-j>   <Nop>
-noremap <S-j>   <C-e>
-noremap <S-k>   <C-y>
-noremap <C-S-j> <C-f>
-noremap <C-S-k> <C-b>
+noremap <S-j> <Nop>
+noremap <S-j> <C-e>
+noremap <S-k> <C-y>
+noremap <C-j> <C-f>
+noremap <C-k> <C-b>
 
 " ~~~~# AutoCommands/ AuGroups #~~~~
 augroup AutoCompile
 	au BufwritePost *.ms  silent! exe "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
 	au BufwritePost *.mom silent! exe "!pdfmom % > %:r.pdf" | redraw!
-    au BufWritePost *.md  silent! exe "!pandoc % --highlight-style tango -f markdown -t html5 --css ~/Templates/killercup.css -o %:r.html" | redraw!
+    au BufWritePost *.md  silent! exe "!pandoc % --highlight-style tango -f markdown -t html5 --css ~/Templates/markdown.css -o %:r.html" | redraw!
 	au BufWritePost ~/i3/config               silent! exe "!i3-msg reload 2>/dev/null" | redraw!
 	au BufWritePost ~/.Xresources             silent! exe "!xrdb ~/.Xresources"        | redraw!
 	au BufWritePost config.h,config.def.h     silent! exe "!make install"              | redraw!
@@ -277,7 +281,7 @@ augroup END
 augroup AutoFormat
 	au BufReadPost  *.md,*.MD,*.ms silent! setlocal spell
 	au BufWritePre  *.c,*.h,*.py,*.pl,*.sh,*.hs :%s/\s\+$//e
-    au BufWritePre  *.hs :%s/\t/    /ge
+    au BufWritePre  *.hs,*.pdb,*.c*.sh :%s/\t/    /ge
 augroup END
 
 augroup FileTemplateSetup

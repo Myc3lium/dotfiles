@@ -7,3 +7,5 @@
 [g] ~/.tmux.conf
 [h] ~/Working/todo.md
 [i] ~/.vim/bundle/borkmark.vim/plugin/bookmarks.txt
+[j] ~/.vim/bundle/dmenu.vim/plugin/dmenu.vim
+[k] ~/.vim/bundle/carp.vim/plugin/carp.vim

@@ -67,7 +67,7 @@ get_dir_symbol(){
 }
 
 #PS1='\[${color2}\]$(get_dir_symbol) -→ \[${normal}\]'
-PS1='\[${color2}\]$(get_dir_symbol) \[${color3}\]»\[${color4}\]»\[${color5}\]» \[${normal}\]'
+PS1='\[${color4}\]$(get_dir_symbol) \[${color3}\]»\[${color4}\]»\[${color5}\]» \[${normal}\]'
 PS2='\[${color2}\]↳\[${normal}\]    '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
@@ -95,26 +95,5 @@ export LESS_TERMCAP_so="$reverse"  # Start standout/ reverse.
 export LESS_TERMCAP_ue="$normal"   # Underline end.
 export LESS_TERMCAP_us="$color2"   # Underline start.
 
-# Directory: di
-# File: fi
-# Symbolic Link: ln
-# Named Pipe: pi
-# Socket: so
-# Block Device: bd
-# Character Device: cd
-# Orphan Symbolic Link: or
-# Missing File: mi
-# Executable File: ex
-# *.extension: files ending in ".extension"
-# LS_COLORS=""
-# export LS_COLORS="di=03;32:ex=03;32:ln=03;36:fi=37"
-
-
 # Load aliases.
 source ~/.bin/aliases.sh
-
-# Launch fff and keep current dir on exit.
-ff(){
-    ~/repos/other/fff/fff "$@"
-    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
-}

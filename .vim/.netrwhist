@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/myc3lium/.bin'
 let g:netrw_dirhist_2='/home/myc3lium/.config/zathura'
+let g:netrw_dirhist_3='/home/myc3lium'
+let g:netrw_dirhist_4='/home/myc3lium/.vim'
+let g:netrw_dirhist_5='/home/myc3lium/Working'
+let g:netrw_dirhist_6='/home/myc3lium'
+let g:netrw_dirhist_7='/home/myc3lium/Working'

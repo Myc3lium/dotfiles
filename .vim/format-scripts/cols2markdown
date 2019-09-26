@@ -1,0 +1,61 @@
+#!/bin/sh
+
+#  Format a series of whitespace separated columns
+#  into a markdown table. The non-empty line is 
+#  considered the table header.
+#  
+#  Example:
+#  $ cols2markdown << EOF
+#    Column-1 Column-2
+#    cell-1a  cell-1b
+#    cell-2a  cell-2b
+#    cell-2a  cell-2b
+#  EOF
+#  
+#  Produces the output:
+#
+#  | Column-1 | Column-2 |
+#  | -------- | -------- |
+#  | cell-1a  | cell-1b  |
+#  | cell-2a  | cell-2b  |
+#  | cell-2a  | cell-2b  |
+#
+#  Preceeding spaces with a backslash "\ "
+#  will prevent expansion of a field containg
+#  said sequence into separate fields. The 
+#  resulting table will then have a space in 
+#  the same place.
+
+runAwk(){
+	awk '
+		FNR == 1 {
+		    all_columns = NF;
+		    for(i=1; i<=NF; i++){
+				printf " | "$i
+			}
+			printf " |\n"
+
+		    for(i=1; i<=NF; i++){
+				printf " | "
+				for (a=0; a<length($i); a++){
+					printf "-"
+				}
+			}
+			printf " |\n"
+		}; 
+
+		FNR > 1 {
+		    for(i=1; i<=NF; i++){
+				printf " | "$i
+			}
+			if (NF < all_columns){
+				for (i = 1; i <= all_columns - NF; i++){
+					printf " | "
+				}
+			}
+
+			printf " |\n"
+		};'
+}
+
+sed '/^\s*$/d;s/\\ /ø/g;s/\\\t/ŧ/g' | runAwk | column -t | sed 's/\( *\) /\1/g' | sed 's/ø/ /g;s/ŧ/\t/g'

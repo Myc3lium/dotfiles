@@ -53,7 +53,7 @@ while true; do
 	. "$HOME"/.cache/wal/colors.sh
 	echo > "$dwm_msg_file" ## Reset messages
 
-    $dwm_path  -nb "$background" -nf "$foreground" -sf "$background" -sb "$color4" -nbr "$color8" -sbr "$color7"
+    $dwm_path  -nb "$background" -nf "$foreground" -sf "$color4" -sb "$background" -nbr "$color8" -sbr "$color4"
 	[ $? -ne 0 ] && continue ## Restart DWM if it crashes !
 	[ "$(cat "$dwm_msg_file")" = "restart" ] && continue 
 	break

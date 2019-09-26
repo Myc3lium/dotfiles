@@ -44,7 +44,18 @@ alias vc="vi ~/.vimrc"
 alias scc="gcc -Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare -Werror=implicit-function-declaration"
 
 # Add manpage completion
-complete -W "$(man -k . | awk $'{ printf $1" "}')" man
+complete -W "$(man -k . | awk $'{ printf $1" "}') -Tpdf" man
+
+# Awk completion. Script file, FS, and variable definition.
+complete -W "-F' -f -v --characters-as-bytes" awk
+
+# Pathogen completion
+complete -W "add remove upgrade" pathogen
+
+# Pkm completion
+complete -W "remove add update upgrade search info src" pkm
+
+
 
 # Python3 help from outside python
 pyhelp(){
@@ -57,4 +68,10 @@ mkpss(){
 	else
 		apg -a 1 -m $1 -n 20 | sed '1q'
 	fi
+}
+
+# Launch fff and keep current dir on exit.
+ff(){
+    ~/repos/other/fff/fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
 }
