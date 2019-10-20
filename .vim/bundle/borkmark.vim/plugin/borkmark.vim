@@ -122,10 +122,12 @@ function BorkMarkSetup()
 
 		" Remap <C-j> to select and open the filename under the cursor's line.
 		" nnoremap <buffer><C-j> ^f<Space>l"nyg_ :tabedit! <C-r>n<Return>
-		nnoremap <silent><buffer><C-j> ^"nyg_:call OpenRecordLine('<C-r>n')<Return>
+		"nnoremap <silent><buffer><C-j> ^"nyg_:call OpenRecordLine('<C-r>n')<Return>
+		nnoremap <silent><buffer><C-j> :call OpenRecordLine(getline(line('.')))<Cr>
 
 		" Grab a thing and put it into an Ex prompt.
-		nnoremap <buffer><C-k> ^f<Space>"nyg_:tabedit!<Space><C-r>n
+		"nnoremap <buffer><C-k> ^f<Space>"nyg_:tabedit!<Space><C-r>n
+		nnoremap <buffer><C-k> :tabedit!<Space><C-r>=split(getline(line('.')))[1]<Cr>
 
 		" Open sticky'd files.
 		if !empty(g:borkmark.stickyfiles)

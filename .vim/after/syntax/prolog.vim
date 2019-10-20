@@ -38,5 +38,3 @@ syn match prologOperator "\(\*\*\|\^\|\^\^\)6\ze\_W" conceal cchar=⁶
 syn match prologOperator "\(\*\*\|\^\|\^\^\)7\ze\_W" conceal cchar=⁷
 syn match prologOperator "\(\*\*\|\^\|\^\^\)8\ze\_W" conceal cchar=⁸
 syn match prologOperator "\(\*\*\|\^\|\^\^\)9\ze\_W" conceal cchar=⁹
-
-setlocal conceallevel=2

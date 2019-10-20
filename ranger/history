@@ -1,17 +1,3 @@
-find cst
-copy
-shell mkdir  cstatus %s
-shell touch config.h
-shell vi %s
-
-shell wal -n --saturate 0.0 -i %s
-shell wal -n --saturate 0.1 -i %s
-shell wal -n --saturate 0.2 -i %s
-shell wal -n --saturate 0.3 -i %s
-shell wal -n --saturate 0kk.3 -i %s
-search Out
-shell wal  -i %s
-shell find %s | sxiv -
 shell feh %s &
 `
 [as
@@ -33,18 +19,32 @@ open_with vi
 shell wal -n -i %s
 shell 
 feh
-shell feh %s
 shell feh --bg-scale %s
-shell feh --bg-max %s
 shell feh --bg-zoom %s
 shell feh --bg-zoom %sq
 shell feh --bg-fille %s
-
 shell wal -l -i %s
 shell wal -i %s
-shell feh --bg-center %s
-shell feh --bg-fill %s
-delete 
-cut
-paste 
+shell mpv %s
+shell sxiv %s
+shell feh %s
 bulkrename 
+shell feh --bg-center %s
+shell feh --bg-scael %s
+shell feh --bg-max %sp
+shell find | sxiv -i
+find 
+shell mpv --shuffle %s
+shell feh --bg-max %s
+rename logskk
+find .c
+open_with 
+open_with fonttosfnt
+cut
+shell  mkdir dissertation
+paste 
+delete 
+p
+
+shell feh --bg-fill %s
+shell feh --bg-fill --no-xinerama %s

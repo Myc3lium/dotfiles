@@ -27,8 +27,8 @@ alias pks="apt search " #find a package based on name
 alias pkfo="apt-cache show"
 alias pss="gpg -d ~/.Private_Docs/pss.new.asc.asc | less"
 alias less="less -R"
-alias oyvey="bleachbit --preset -c && shutdown now"
-alias w3m="w3m -no-graph -no-mouse -o auto_image=FALSE "
+alias oyvey="shutdown now"
+alias w3m="w3m -no-mouse" # -o auto_image=FALSE -no-graph "
 alias py="python3"
 alias rld="source ~/.bashrc"
 alias fth="gforth"
@@ -38,7 +38,7 @@ alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
 alias hs=$'history'
 alias hg="hs | grep"
-alias svi="sudeoedit"
+alias svi="sudoedit"
 alias gv="gvim"
 alias vc="vi ~/.vimrc"
 alias scc="gcc -Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare -Werror=implicit-function-declaration"
@@ -47,7 +47,7 @@ alias scc="gcc -Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat
 complete -W "$(man -k . | awk $'{ printf $1" "}') -Tpdf" man
 
 # Awk completion. Script file, FS, and variable definition.
-complete -W "-F' -f -v --characters-as-bytes" awk
+complete -W "-F -f -v --characters-as-bytes" awk
 
 # Pathogen completion
 complete -W "add remove upgrade" pathogen
@@ -55,7 +55,11 @@ complete -W "add remove upgrade" pathogen
 # Pkm completion
 complete -W "remove add update upgrade search info src" pkm
 
+# Add completion for sudo
+complete -W "$(compgen -c)" sudo
 
+# Add which completion
+complete -W "$(compgen -c)" which
 
 # Python3 help from outside python
 pyhelp(){
@@ -68,6 +72,10 @@ mkpss(){
 	else
 		apg -a 1 -m $1 -n 20 | sed '1q'
 	fi
+}
+
+vman(){
+	man "$@" | view -
 }
 
 # Launch fff and keep current dir on exit.

@@ -3,23 +3,21 @@
 "
 " carp.vim is a small, lightweight plugin designed for providing a more
 " ergonomic way of entering keystrokes requiring the use of modifier keys,
-" such as the control key, shift key and alt key. To do this we define
-" mappings that prompt for another keypress, then modify it and
-" invoke feedkeys to create the same effect as pressing the corresponding
-" normal keyboard sequence.
+" such as the control, shift and alt (Meta) keys. Vim's expression mapping 
+" feature is used to define mappings for leading key sequences that behave 
+" like a sticky version of the equivalent modifier key. These mappings work 
+" in normal, visual, operator pending, command (Ex mode) and insert modes.
 "
-" ControlKey when invoked will take a key, turn it into the control-key 
-" masked equivalent, then invoke feedkeys. The function returns 
-" an empty string to allow the use of the function in the expression
-" register. This means we can invoke the function safely from insert and
-" command mode, without touching the contents of the Ex prompt, or the 
-" current buffer we are inserting text into.
+" Configuration options can be specfied using the global variable g:carp.
+" Each of the values in g:carp should be a string specifying a sequence
+" of keys (using vim's syntax for mappings), to be mapped to each modifier.
+" Example:
 "
-" ShiftKey does the same thing, but applies a shift-key mask to the char
-" we got from the user instead.
-" 
-" If the user is running a gui (has('gui_running')), the function MetaKey()
-" will be defined that takes care of conversion from key -> m-key.
+" let g:carp = {
+" 			\ 'control' : '<Leader>,',
+" 			\ 'shift'   : '<Leader>c',
+" 			\ 'meta'    : '<Leader>m',
+" 			\}
 
 let s:carp = {
 			\ 'control' : '<Leader>,',
@@ -34,43 +32,40 @@ for [configkey, configval] in items(s:carp)
 	endif
 endfor 
 
-function! ControlKey()
-	echo "Key → <C-Key> » "
-	let l:key = getchar()
-	let l:key = ((l:key >= 97 && l:key <= 122) ? l:key - 32 : l:key) - 64
+function! ControlKey(key)
+	let l:key = ((a:key >= 97 && a:key <= 122) ? a:key - 32 : a:key) - 64
 	if l:key < 0 || l:key > 31
-		echoerr "Invalid Key Conbination! "
+		return ''
 	endif
-	call feedkeys(nr2char(l:key), 't') | return ''
+	return nr2char(l:key)
 endfunction
 
-function! ShiftKey()
-	echo "Key → <S-Key> » "
-	let l:key = getchar()
-	let l:key = ((l:key >= 97 && l:key <= 122) ? l:key - 32 : l:key)
-	call feedkeys(nr2char(l:key), 't') | return ''
+function! ShiftKey(key)
+	let l:key = ((a:key >= 97 && a:key <= 122) ? a:key - 32 : a:key)
+	return nr2char(l:key)
 endfunction
 
 if has('gui_running')
-	function! MetaKey()
-		echo "Key → <M-Key> » "
-		let l:key = getchar()
-		let l:key = ((l:key >= 97 && l:key <= 122) ? l:key + 128: l:key)
-		call feedkeys(nr2char(l:key), 't') | return ''
+	function! MetaKey(key)
+		let l:key = ((a:key >= 97 && a:key <= 122) ? a:key + 128: a:key)
+		return nr2char(l:key) 
 	endfunction
 
-	execute "cnoremap " . s:carp.meta .  " <C-r>=MetaKey()<Cr>"
-	execute "inoremap " . s:carp.meta .  " <C-r>=MetaKey()<Cr>"
-	execute "nnoremap " . s:carp.meta .  " :call MetaKey()<Cr>"
-	execute "xnoremap " . s:carp.meta .  " :<C-u>call MetaKey()<Cr>"
+	execute "cmap <expr> " . s:carp.meta . " MetaKey(getchar())"
+	execute "imap <expr> " . s:carp.meta . " MetaKey(getchar())"
+	execute "nmap <expr> " . s:carp.meta . " MetaKey(getchar())"
+	execute "xmap <expr> " . s:carp.meta . " MetaKey(getchar())"
+	execute "omap <expr> " . s:carp.meta . " MetaKey(getchar())"
 endif
 
-execute "cnoremap " . s:carp.control . " <C-r>=ControlKey()<Cr>"
-execute "inoremap " . s:carp.control . " <C-r>=ControlKey()<Cr>"
-execute "nnoremap " . s:carp.control . " :call ControlKey()<Cr>"
-execute "xnoremap " . s:carp.control . " :<C-u>call ControlKey()<Cr>"
+execute "cmap <expr> " . s:carp.control . "  ControlKey(getchar())"
+execute "imap <expr> " . s:carp.control . "  ControlKey(getchar())"
+execute "nmap <expr> " . s:carp.control . "  ControlKey(getchar())"
+execute "xmap <expr> " . s:carp.control . "  ControlKey(getchar())"
+execute "omap <expr> " . s:carp.control . "  ControlKey(getchar())"
 
-execute "cnoremap " . s:carp.shift . " <C-r>=ShiftKey()<Cr>"
-execute "inoremap " . s:carp.shift . " <C-r>=ShiftKey()<Cr>"
-execute "nnoremap " . s:carp.shift . " :call ShiftKey()<Cr>"
-execute "xnoremap " . s:carp.shift . " :<C-u>call ShiftKey()<Cr>"
+execute "cmap <expr> " . s:carp.shift . " ShiftKey(getchar())"
+execute "imap <expr> " . s:carp.shift . " ShiftKey(getchar())"
+execute "nmap <expr> " . s:carp.shift . " ShiftKey(getchar())"
+execute "xmap <expr> " . s:carp.shift . " ShiftKey(getchar())"
+execute "omap <expr> " . s:carp.shift . " ShiftKey(getchar())"

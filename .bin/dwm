@@ -19,8 +19,8 @@ export dwm_msg_file
 battery-notify &
 
 # Start compton and redshift
-compton-start -s &
-redshift -O 4450k &
+compton-start & #-s &
+redshift -O 3300k &
 
 # Start cmus and ranger in the videos directory.
 #(urxvt -title "music-cmus" -name "music-cmus"  -uc -e cmus) 2>/dev/null &
@@ -47,13 +47,16 @@ redshift -O 4450k &
 (bar) &
 # Start cmus notifer
 (~/.config/dwm/cmus-notify)&
+(break-timer)&
 
 # Start dwm.
 while true; do
 	. "$HOME"/.cache/wal/colors.sh
 	echo > "$dwm_msg_file" ## Reset messages
 
+	# (sleep 3; compton-trans 80 -w $(xdotool search --classname dwm))&
     $dwm_path  -nb "$background" -nf "$foreground" -sf "$color4" -sb "$background" -nbr "$color8" -sbr "$color4"
+
 	[ $? -ne 0 ] && continue ## Restart DWM if it crashes !
 	[ "$(cat "$dwm_msg_file")" = "restart" ] && continue 
 	break

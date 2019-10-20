@@ -17,7 +17,19 @@
 #|    tabd urxvt -embed
 #|    tabd -name editors urxvt -embed -e bash -c vim
 
-[ $# -lt 2 ] && exit ## Exit on empty arguments.
+_help(){
+	cat << EOF
+Usage:
+   tabd [-name <name>] <program> <embed option> <others>*
+
+Examples:
+   tabd urxvt -embed
+   tabd st -w
+   tabd -name editors urxvt -embed -e bash -c vim
+EOF
+}
+
+[ $# -lt 2 ] && _help && exit ## Exit on empty arguments.
 [ $# -eq 2 ] && [ "$1" = -name ] && exit
 
 [ "$1"  != -name ] &&\

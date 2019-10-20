@@ -2,4 +2,4 @@
 
 # Dmenu with colors sourced from pywal.
 . "$HOME"/.cache/wal/colors.sh
-dmenu -nb "$background" -nf "$foreground" -sf "$background" -sb "$color4" "$@" # -x 258 -y 306 -w 850 "$@" 
+dmenu -nb "$background" -nf "$foreground" -sf "$background" -sb "$color4" -h 8 "$@" # -x 258 -y 306 -w 850 "$@" 

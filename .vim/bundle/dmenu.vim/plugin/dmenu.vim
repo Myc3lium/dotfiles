@@ -29,13 +29,34 @@ function DmenuCorrect()
 	endif
 endfunction
 
+" Replace the word under the cursor with the correct spelling.
+function DmenuVimConf()
+	let word=CallDmenu(system('find ~/.vim -type f'))
+	if len(word) != 0 
+		execute "tabedit! " . word
+	endif
+endfunction
+
+" Replace the word under the cursor with the correct spelling.
+function DmenuOpen()
+	let word=CallDmenu(system('find ./ -type f'))
+	if len(word) != 0 
+		execute "tabedit! " . word
+	endif
+endfunction
+
+
 " Search the word under the cursor with man and dmenu.
 " Redirect man output to a tempfile and open with 'open-command'.
 " If vim-open is specified, use 'vim-open' as an internal vim
 " command to open a buffer/split/tab.
 if g:dmenu['vim-open'] == ''
 	function! DmenuManSearch()
-		let result = split(CallDmenu(system('man -k ' .  expand('<cword>'))), '[()]')
+		let l:word = expand('<cword>')
+		if l:word == ''
+			let l:word = '.'
+		endif
+		let result = split(CallDmenu(system('man -k ' . l:word)), '[()]')
 		if len(result) != 0
 		    let result = join([result[1], result[0]], ' ')
 			let temp_path=substitute(system("mktemp"), '\n', '', '') 
@@ -48,13 +69,17 @@ if g:dmenu['vim-open'] == ''
 	endfunction
 else
 	function! DmenuManSearch()
-		let result = CallDmenu(system('man -k ' .  expand('<cword>')))
-		let result = split(result, '[()]')
+		let l:word = expand('<cword>')
+		if l:word == ''
+			let l:word = '.'
+		endif
+		let result = split(CallDmenu(system('man -k ' . l:word)), '[()]')
 		if len(result) != 0
 			let result = join([result[1], result[0]], ' ')
 
 			silent! execute g:dmenu['vim-open']
 			setlocal buftype=nofile
+			setlocal filetype=man
 			silent! execute "file " . fnameescape('man: ' . result)
 
 			silent! execute "r! man " . g:dmenu['man-flags'] . ' ' . result

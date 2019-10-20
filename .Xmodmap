@@ -246,3 +246,15 @@ keycode 252 =
 keycode 253 =
 keycode 254 =
 keycode 255 =
+
+clear control
+clear mod1
+keycode 37  = Alt_L Meta_L
+keycode 64  = Control_L
+add control = Control_L Control_R
+add mod1    = Alt_L Meta_L
+
+clear control
+keycode 105 = Return
+keycode 62  = BackSpace
+add control = Control_L Control_R

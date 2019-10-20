@@ -7,3 +7,5 @@ set bind-tty-special-chars off
 "\e[Z":menu-complete-backward
 "\C-m":forward-word
 "\C-n":backward-word
+set blink-matching-paren on
+set convert-meta on

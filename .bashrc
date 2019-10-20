@@ -66,8 +66,9 @@ get_dir_symbol(){
 	esac
 }
 
-#PS1='\[${color2}\]$(get_dir_symbol) -→ \[${normal}\]'
-PS1='\[${color4}\]$(get_dir_symbol) \[${color3}\]»\[${color4}\]»\[${color5}\]» \[${normal}\]'
+#PS1='\[${color4}\]$(get_dir_symbol) \[${color3}\]»\[${color4}\]»\[${color5}\]» \[${normal}\]'
+#PS2='\[${color2}\]↳\[${normal}\]    '
+PS1=$'\[${color4}\]$(get_dir_symbol) \[${color6}\]>tfw\[${normal}\] '
 PS2='\[${color2}\]↳\[${normal}\]    '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
