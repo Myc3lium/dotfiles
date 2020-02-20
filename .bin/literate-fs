@@ -1,0 +1,26 @@
+#!/bin/sh
+
+do_awk(){
+cat <<ENDAWK
+
+BEGIN { IN_BLOCK=0 }
+
+/^\`\`\`.*\$/{
+    if (IN_BLOCK) IN_BLOCK=0
+    else          IN_BLOCK=1
+    next
+}
+
+/^\s*\$/{ next }
+{ if (IN_BLOCK) print }
+
+ENDAWK
+}
+
+source="$1"
+shift
+mkfifo "/tmp/${source}.pipe"
+awk "$(do_awk)" "$source" > "/tmp/${source}.pipe" &
+gforth "/tmp/${source}.pipe" "$@"
+cd /tmp
+rm "${source}.pipe"

@@ -5,10 +5,17 @@ objects="$(tput setaf 2)"
 error="$(tput setaf 3)"
 names="$(tput setaf 4)"
 suggestions="$(tput setab 1; tput setaf 8)"
-operators="$(tput setaf 6)"
+comments="$(tput setaf 8; tput sitm)"
+keywords="$(tput setaf 6; tput bold)"
+operators="$(tput setaf 6; tput sitm)"
+
+underline="$(tput smul)"
+nunderline="$(tput rmul)"
 
 join(){
 	awk '{printf $0}' <<ENDSED
+        1p;
+        1d;
 	    s/^/${normal}/g;
 	    s/$/${normal}/g;
 
@@ -49,26 +56,38 @@ join(){
         s/it :: /it :: ${suggestions}/g;
         s/Relevant bindings include/${suggestions}Relevant bindings include${normal}/g;
 
+        s/-- /${comments}-- /g;
+
+        s/where/${keywords}where${normal}/g;
+        s/forall/${keywords}forall${normal}/g;
+
+        s/instance/${keywords}instance${normal}/g;
+        s/class/${keywords}class${normal}/g;
+
+        s/data/${keywords}data${normal}/g;
+        s/newtype/${keywords}newtype${normal}/g;
+        s/type/${keywords}type${normal}/g;
+
+        s/Data\./${underline}Data${nunderline}./g;
+        s/GHC\./${underline}GHC${nunderline}./g;
+        s/Control\./${underline}Control${nunderline}./g;
+        s/Generics\./${underline}Generics${nunderline}./g;
+        s/System\./${underline}System${nunderline}./g;
+        s/Text\./${underline}Text${nunderline}./g;
+        s/Prelude\./${underline}Prelude${nunderline}./g;
+
+        s/::/${operators}::${normal}/g;
+        s/\=>/${operators}=>${normal}/g;
+        s/->/${operators}->${normal}/g;
 ENDSED
 }
-# s/:? for help/${suggestions}:? for help${normal}/g;
-# s/(Num/(${classes}Num${normal}/g;
-# s/(Ord/(${classes}Ord${normal}/g;
-# s/(Eq/(${classes}Eq${normal}/g;
-# s/(Enum/(${classes}Enum${normal}/g;
-# s/(Bounded/(${classes}Bounded${normal}/g;
-# s/(Show/(${classes}Show${normal}/g;
-# s/(Read/(${classes}Read${normal}/g;
-# s/(Functor/(${classes}Functor${normal}/g;
-# s/(Foldable/(${classes}Foldable${normal}/g;
-# s/(Applicative/(${classes}Applicative${normal}/g;
-# s/(Monad/(${classes}Monad${normal}/g;
-# s/(Category/(${classes}Category${normal}/g;
-# s/class/${objects}class${normal}/g;
 
-case $# in
-	0) cmd="ghci"   ;; 
-	*) cmd="ghc $*" ;; 
-esac
+# s/data\s\+\([A-Z]\w\+\)/${keywords}data ${typename}\1${normal}/g;
+# s/newtype\s\+\([A-Z]\w\+\)/${keywords}newtype ${typename}\1${normal}/g;
+# s/type\s\+\([A-Z]\w\+\)/${keywords}type ${typename}\1${normal}/g;
 
-"$cmd" 2>&1 | sed "$(join)"
+if [ $# -eq 0 ]; then
+	/usr/bin/ghci 2>&1 | sed "$(join)"
+else
+    eval "/usr/bin/ghc $*"
+fi

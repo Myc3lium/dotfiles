@@ -1,50 +1,50 @@
-shell feh %s &
-`
-[as
-shell mv  %s forth
-shell  %s
-shell  feh %s
-default_linemode l
-shell feh --bg-tile %s
-shell feh --bf-max %s
-find Mod
-shell bleachbit --shred %s
-q
-shell mkdir html
-shell mkdir pdf
-shell mkdir text
-shell mkdir  paste
-shell vim -p %s
-open_with vi
 shell wal -n -i %s
+shell mkdir risk\ 2
+w
+shell gv %s
+shell pandoc -t latex %s -o cv.pdf
 shell 
-feh
-shell feh --bg-scale %s
-shell feh --bg-zoom %s
-shell feh --bg-zoom %sq
-shell feh --bg-fille %s
-shell wal -l -i %s
-shell wal -i %s
-shell mpv %s
 shell sxiv %s
-shell feh %s
-bulkrename 
+open_with vim
+open_with vi
+bulk
+shell convert -rotate "-90" %s out.png
+c
+shell clamscan %s
+search Czech
+search Teddy
+find s
+find sc
+rename 1578888420452u.webm
+shell mkdir sdlkjfsd
+shell feh --bg-max --image-bg white %s
+shell mkdir ertyryt
+shell mpv --shuffle --no-video %s
+search 99796
+copy
+shell c %s
+shell mkdir cursors
+shell feh --bg-scale %s
+shell feh --bg-max --no-xrandr %s
+shell feh --bg-max --no-xinerama %s
+shell feh --bg-tile %s
 shell feh --bg-center %s
-shell feh --bg-scael %s
-shell feh --bg-max %sp
-shell find | sxiv -i
-find 
-shell mpv --shuffle %s
+shell feh --bg-max -B white %s
+ %s
+shell sxiv-vchoose 
+shell  %s
 shell feh --bg-max %s
-rename logskk
-find .c
-open_with 
-open_with fonttosfnt
-cut
-shell  mkdir dissertation
-paste 
-delete 
-p
-
 shell feh --bg-fill %s
-shell feh --bg-fill --no-xinerama %s
+search DRM
+copy 
+shell gvim %s
+cut
+paste 
+
+shell mpv --shuffle %s
+delete 
+open_with archive-manager
+open_with 
+shell archive-manager %s
+bulkrename 
+shell bleachbit --shred %s

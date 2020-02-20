@@ -25,6 +25,7 @@ Usage:
 Examples:
    tabd urxvt -embed
    tabd st -w
+   tabd -name video-container mpv --wid= 
    tabd -name editors urxvt -embed -e bash -c vim
 EOF
 }
@@ -44,8 +45,14 @@ EOF
    	embed_command=$4 &&\
 	shift 4 
 
+
 xid=$(xdotool search --classname "$name")
 [ -z "$xid" ] && xid=$(tabbedw -d -c -n "$name")
 export tabdname=$name
 export xid
-eval "$program $embed_command $xid $*" 2>/dev/null &
+
+# compensate for --wid= type options
+echo "$embed_command" | grep "=$" > /dev/null
+[ $? -eq 1 ] && external_command="$external_command "
+
+eval "$program ${embed_command}${xid} $*" 2>/dev/null &

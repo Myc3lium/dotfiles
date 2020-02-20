@@ -1,3 +1,2 @@
 #!/bin/sh
 xmodmap -e "clear lock"
-

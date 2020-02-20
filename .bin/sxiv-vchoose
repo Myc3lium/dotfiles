@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+thumbs=$(mktemp -d)
+
+for file in *; do
+    case "$(xdg-mime query filetype "${file}" )" in
+        video/*)
+            ffmpegthumbnailer -q10 -i"${file}" -o"${thumbs}/${file}.thumbnail"
+            ;;
+    esac
+done
+
+find "${thumbs}" -type f                            \
+    | sxiv -t -i -o -N "--Mark videos to play--"    \
+    | xargs -I{} basename -s ".thumbnail" {}        \
+    | mpv --geometry 800x800 --playlist=-           \

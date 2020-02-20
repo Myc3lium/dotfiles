@@ -7,7 +7,7 @@
 . ~/.cache/wal/colors.sh
 
 dm(){
-	dmenuw -i -l 8
+	dmenuw -i -S -l 8
 }
 
 opt="$(apt-cache search . | dm | awk '{ print $1 }')"

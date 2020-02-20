@@ -1,16 +1,12 @@
 #!/bin/sh
 
-#| Run dmenuw as a window switcher. Positions 
-#| dmenu in the center of the screen.
+#| Run dmenuw as a window switcher. 
+#| Cap the number of dmenu lines at 8.
 
-# width=850
-# lines=8
-# lineheight=20
-# 
-# dimensions="$(xdpyinfo | awk '/dimensions/{ split($2,dimensions,"x"); print dimensions[1],dimensions[2] }')"
-# x="$(echo "$dimensions" | awk '{ print $1 }')"
-# y="$(echo "$dimensions" | awk '{ print $2 }')"
-# x=$(( (x - width) / 2 ))
-# y=$(( (y - (lineheight * (lines + 1))) / 2 ))
+lines="$(lsw | wc -l)"
+[ "$lines" -ge 8 ] && lines=8
 
-lsw | awk '{ $1=""; print }' | dmenuw -i -c -w 850 -l 8 | xargs -I{} wmctrl -a {}
+lsw \
+    | awk '{ $1=""; print }' \
+    | dmenuw -i -c -w 850 -l "$lines" \
+    | xargs -I{} wmctrl -a {}

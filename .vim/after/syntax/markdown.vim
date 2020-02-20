@@ -31,11 +31,36 @@ endfunction
 
 " N.B. Currently only enabled for return key in insert mode, not for normal
 " mode 'o' or 'O'
-inoremap <silent><buffer> <CR>  <CR><Esc>:call <SID>auto_list()<CR>A
-inoremap <silent><buffer> <C-j> <CR><Esc>:call <SID>auto_list()<CR>A
-nnoremap <silent><buffer> o     o<Esc>:call <SID>auto_list()<CR>A
-
+inoremap <buffer> <silent><buffer> <CR>  <CR><Esc>:call <SID>auto_list()<CR>A
+inoremap <buffer> <silent><buffer> <C-j> <CR><Esc>:call <SID>auto_list()<CR>A
+nnoremap <buffer> <silent><buffer> o     o<Esc>:call <SID>auto_list()<CR>A
+inoremap <buffer> <S-Return> <C-o>O
 
 " Format tables from columnar data
-xnoremap <Leader>t :! ~/.vim/format-scripts/cols2markdown<Cr>
+xnoremap <buffer> <Leader>t :! ~/.vim/format-scripts/cols2markdown<Cr>
 
+" Check boxes
+nnoremap <buffer> ic i<C-k>OK<Esc>
+
+" Use dictionary for auto-complete.
+setlocal complete+=k
+
+" Don't do spell checking in quoted text or inline 
+" LaTex math equations.
+syntax match quoteblock /"[^"]\+"/ contains=@NoSpell
+syntax match quoteblock /'[^']\+'/ contains=@NoSpell
+syntax match quoteblock /`[^`]\+`/ contains=@NoSpell
+syntax match quoteblock /\$[^\$]\+\$/ contains=@NoSpell
+
+" Wrapping options for text.
+if expand('%:t') =~ "latex\.md"
+    " Hard wrap if we are using pandoc.
+    setlocal textwidth=80
+    setlocal autoindent
+    setlocal nolinebreak
+else
+    " Soft wrap if we might need to copy into other
+    " documents.
+    setlocal textwidth=0
+    setlocal linebreak
+endif

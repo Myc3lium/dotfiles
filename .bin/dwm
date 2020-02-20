@@ -49,6 +49,8 @@ redshift -O 3300k &
 (~/.config/dwm/cmus-notify)&
 (break-timer)&
 
+(screen-setup right) &
+
 # Start dwm.
 while true; do
 	. "$HOME"/.cache/wal/colors.sh

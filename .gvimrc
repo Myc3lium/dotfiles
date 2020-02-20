@@ -13,26 +13,23 @@
 
 " set background=light
 set background=dark
-colorscheme gruvbox
-" colo sierra
+colorscheme jellybeans
 
 " set guifont=Terminus\ 11
 " set guifont=Ubuntu\ Mono\ Nerd\ Font\ 11
 " set guifont=Ubuntu\ Mono\ Nerd\ Font\ 11
 set guifont=GohuFont\ Nerd\ Font\ 10.5
 
-" Disable Toolbar
-" set guioptions -=T
+" Disable Toolbar, and scrollbars
+set guioptions -=T
+set guioptions -=r
+set guioptions -=L
 " 
 " " Disable Menubar
 " set guioptions -=m
-" 
-" " right and left scrollbar
-" set guioptions -=r
-" set guioptions -=L
-" 
+
 " " disable tabs as well !
-set guioptions=
+" set guioptions=
 
 "set guioptions=cmTF
 set guipty

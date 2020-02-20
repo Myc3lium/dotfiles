@@ -20,7 +20,8 @@ HISTCONTROL=ignoreboth
 HISTSIZE= 											  # 64 Infinite history.
 HISTFILESIZE= 										  # 100 Infinite history.
 shopt -s histappend 								  # Append new history items.
-export PROMPT_COMMAND="history -a; history -n; echo;" # Auto-sync history.
+PROMPT_COMMAND="history -a; history -n; echo;" # Auto-sync history.
+export PROMPT_COMMAND+=$'printf "\033]0;%s\007" "$(echo $PWD | sed s=$HOME=\~=g )"'
 
 shopt -s autocd 		# Automatically change directories
 shopt -s checkwinsize 	# Update line/col count after each command
@@ -53,23 +54,20 @@ HOME_OFFSET=$((${#HOME}+1))
 get_dir_symbol(){
 	case "$PWD" in
 		$HOME)
-			echo -n "${PWD:$HOME_OFFSET}"
+			# echo -en "${PWD:$HOME_OFFSET}\001${reverse}\002"
 		;;
 
 		$HOME/*) 
-			echo -n "@${PWD:$HOME_OFFSET}" 
+			echo -en "\001${reverse}${color5}\002 @ \001${color1}\002| ${PWD:$HOME_OFFSET} |" 
 		;;
 
 		/*)     
-			echo -n "#${PWD:1}" 
+			echo -en "\001${reverse}${color9}\002 # \001${color1}\002| ${PWD:1} |" 
 		;;
 	esac
 }
 
-#PS1='\[${color4}\]$(get_dir_symbol) \[${color3}\]»\[${color4}\]»\[${color5}\]» \[${normal}\]'
-#PS2='\[${color2}\]↳\[${normal}\]    '
-PS1=$'\[${color4}\]$(get_dir_symbol) \[${color6}\]>tfw\[${normal}\] '
-PS2='\[${color2}\]↳\[${normal}\]    '
+PS1='$(get_dir_symbol)\[${reverse}${color8}\] · \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"

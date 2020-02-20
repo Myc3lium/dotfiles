@@ -15,7 +15,7 @@ color8="$(tput setaf 8)"
 
 uptime="$(uptime -p | sed 's/up //')"
 mem=$(free -h | sed '2q;1d' | awk '{ print $3,"/",$2 }')
-temp=$(acpi -t | sed 's/Thermal 0: \w\+,\s*//')
+temp=$(sensors | awk '/CPU: /{ print $NF }')
 cpu=$( (grep "model name" | uniq | sed 's/model name\s*\:\s*//') < /proc/cpuinfo)
 packages="$(dpkg -l | wc -l)"
 
@@ -24,14 +24,14 @@ ${color2}o  ${color4}┏┓┓  ${color5}┳━┓  ${color8}┏━┓
 ${color2}┃  ${color4}┃┃┃  ${color5}┣━   ${color8}┃ ┃
 ${color2}┇  ${color4}┇┗┛  ${color5}┇    ${color8}┛━┛ ${normal}
 
-${bold}- ${color1}temp     ${normal}- $temp                 
-${bold}- ${color2}mem      ${normal}- $mem                  
-${bold}- ${color3}cpu      ${normal}- $cpu
-${bold}- ${color4}up       ${normal}- $uptime               
+${bold}[${color1}temp${normal}${bold}]      ${normal}$temp                 
+${bold}[${color2}mem${normal}${bold}]       ${normal}$mem                  
+${bold}[${color3}cpu${normal}${bold}]       ${normal}$cpu
+${bold}[${color4}up${normal}${bold}]        ${normal}$uptime               
        
-${bold}- ${color5}shell    ${normal}- $SHELL                
-${bold}- ${color6}os       ${normal}- $NAME $VERSION_ID     
-${bold}- ${color7}wm       ${normal}- $XDG_CURRENT_DESKTOP  
-${bold}- ${color8}packages ${normal}- $packages             
+${bold}[${color5}shell${normal}${bold}]     ${normal}$SHELL                
+${bold}[${color6}os${normal}${bold}]        ${normal}$NAME $VERSION_ID     
+${bold}[${color7}wm${normal}${bold}]        ${normal}$XDG_CURRENT_DESKTOP  
+${bold}[${color8}packages${normal}${bold}]  ${normal}$packages             
 
 EOF

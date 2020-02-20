@@ -40,7 +40,7 @@ sub slurp {
 }
 
 my @entry_types;
-my $dmenu_cmd = '$HOME/.bin/dmenuw -i -p "(run) "';
+my $dmenu_cmd = '$HOME/.bin/dmenuw -l 16 -w 270 -y 16 -i -S -p "start> "';
 my $result = GetOptions(
     'dmenu=s' => \$dmenu_cmd,
     'entry-type=s' => \@entry_types,

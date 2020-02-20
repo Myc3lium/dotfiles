@@ -17,9 +17,10 @@
 config="$HOME/.config/compton/"
 case "$1" in 
 	"-s")
-		compton -z -C -c -f -D 9 -r 3 -o 0.4\
-		  	--config "$config/compton.conf"
-		;; 
+		# compton -z -C -c -f -D 1 -r 3 -o 0.4\
+        #     --paint-on-overlay\
+		#   	--config "$config/compton.conf"
+		compton -z -f -b -D 2 -c -C ;;
 	*) 
 		compton -z -f -b -D 2 ;;
 esac

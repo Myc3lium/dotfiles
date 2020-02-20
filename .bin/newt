@@ -4,4 +4,9 @@
 # Requires the calling env has $xid set.
 [ -z "$xid" ] && echo "tabd: Not in tabbed. exiting..." && exit
 [ $# -gt 1 ] && program=$1 && embed_command=$2 && shift && shift && arguments=${*}
-eval "$program $embed_command $xid $arguments" 2> /dev/null &
+
+# compensate for --wid= type options
+echo "$embed_command" | grep "=$"
+[ $? -eq 1 ] && external_command="$external_command "
+
+eval "$program ${embed_command}${xid} $arguments" 2> /dev/null &

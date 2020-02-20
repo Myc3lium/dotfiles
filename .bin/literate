@@ -1,0 +1,11 @@
+#!/usr/bin/awk -f
+
+BEGIN { IN_BLOCK=0 }
+
+/^```.*$/{
+    if (IN_BLOCK) IN_BLOCK=0
+    else          IN_BLOCK=1
+    next
+}
+
+{ if (IN_BLOCK) print }

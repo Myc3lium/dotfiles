@@ -79,40 +79,7 @@ XTerm.boldFont: xft: FONT : size=FSIZE:Italic
 XTerm.italicFont: xft: FONT : size=FSIZE Italic
 XTerm.boldItalicFont: xft: FONT : size=FSIZE:Italic : Bold
 
-UXTerm.font: xft:FONT:size=14:Regular
-UXTerm.boldFont: xft:FONT:size=14:Regular
-UXTerm.italicFont: xft:FONT:size=14:Italic
-UXTerm.boldItalicFont: xft:FONT:size=14:Italic:Bold
-
-! *.color0: #282828
-! *color0:  #282828
-! *.color1: #fb4934
-! *color1:  #fb4934
-! *.color2: #b8bb26
-! *color2:  #b8bb26
-! *.color3: #fabd2f
-! *color3:  #fabd2f
-! *.color4: #83a598
-! *color4:  #83a598
-! *.color5: #d3869b
-! *color5:  #d3869b
-! *.color6: #8ec07c
-! *color6:  #8ec07c
-! *.color7: #d5c4a1
-! *color7:  #d5c4a1
-! *.color8: #665c54
-! *color8:  #665c54
-! *.color9: #fb4934
-! *color9:  #fb4934
-! *.color10: #b8bb26
-! *color10:  #b8bb26
-! *.color11: #fabd2f
-! *color11:  #fabd2f
-! *.color12: #83a598
-! *color12:  #83a598
-! *.color13: #d3869b
-! *color13:  #d3869b
-! *.color14: #8ec07c
-! *color14:  #8ec07c
-! *.color15: #fbf1c7
-! *color15:  #fbf1c7
+xterm*font: xft:FONT:size=14:Regular
+xterm*boldFont: xft:FONT:size=14:Regular
+xterm*italicFont: xft:FONT:size=14:Italic
+xterm*boldItalicFont: xft:FONT:size=14:Italic:Bold

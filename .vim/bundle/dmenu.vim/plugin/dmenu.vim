@@ -52,7 +52,7 @@ endfunction
 " command to open a buffer/split/tab.
 if g:dmenu['vim-open'] == ''
 	function! DmenuManSearch()
-		let l:word = expand('<cword>')
+		let l:word = shellescape(expand('<cword>'))
 		if l:word == ''
 			let l:word = '.'
 		endif
@@ -65,6 +65,7 @@ if g:dmenu['vim-open'] == ''
 			" Fork to stop blocking.
 			call system('man ' . g:dmenu['man-flags'] . ' ' . result . ' > ' . temp_path)     
 			call system(g:dmenu['open-command'] . ' ' . temp_path . ' &')
+            setlocal nowrap
 		endif
 	endfunction
 else
@@ -84,6 +85,7 @@ else
 
 			silent! execute "r! man " . g:dmenu['man-flags'] . ' ' . result
 			normal! gg
+            setlocal nowrap
 		endif
 	endfunction
 endif

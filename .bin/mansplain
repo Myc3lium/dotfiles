@@ -27,7 +27,10 @@ export LESS_TERMCAP_so
 export LESS_TERMCAP_ue
 export LESS_TERMCAP_us
 
-opt="$(man -k . | dmenuw -l 8 -i | awk -F'[()]' '{ print $2,$1 }')"
+pattern="."
+[ $# -gt 0 ] && pattern="$1"
+
+opt="$(man -k "$pattern" | dmenuw -l 8 -i -S | awk -F'[()]' '{ print $2,$1 }')"
 [ -n "$opt" ] && tabd -name manpages st -w -e "bash -c 'man $opt'"
 
 # [ -n "$opt" ] && fname=$(mktemp) && eval "man -Tpdf $opt > $fname" && tabd -name manpages zathura -e "$fname"

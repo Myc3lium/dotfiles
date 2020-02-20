@@ -11,30 +11,28 @@ set showcmd
 
 " Highlight search results. Use gl to un-highlight.
 set hlsearch
-nnoremap <silent>gl :nohlsearch<Cr>
+nnoremap <silent><C-l> :nohlsearch<Cr>
 
 " Incremental search.
 set incsearch
 
-" Set showmatch! Useful for displaying the location of 
-" matching parens. This works for (),[],{} and <>.
+" Display the location of matching parens
 set showmatch
-set matchpairs+=<:>
 
 " Highlight lines longer than 81 chars
 highlight ColorColumn ctermbg=blue
 call matchadd('ColorColumn', '\%81v', 100)
 
+set breakindent     " Keep indent on broken lines
+set showbreak=[﬌]\  " Show before a broken line
+
 " Split below and right.
 set splitbelow
 set splitright 
 
-" Set spell-file/dict. Spell check is disabled within quote marks.
+" Set spell-file/dict. 
 set spelllang=en_gb,en_us
 set dictionary=/usr/share/dict/words,~/.vim/spell/en.utf-8.add
-syntax match quoteblock /"[^"]\+"/ contains=@NoSpell
-syntax match quoteblock /'[^']\+'/ contains=@NoSpell
-syntax match quoteblock /`[^`]\+`/ contains=@NoSpell
 
 " Set default file encoding.
 set encoding=utf-8
@@ -44,29 +42,26 @@ set number relativenumber
 
 " Set visibility of folds when open
 set foldcolumn=1
+set fillchars+=fold:▒
 
-" Set tab and shift width. 'set expandtab' will set tabs to be
-" spaces. This will not work with auto-indent produced tabs from ftplugin.
+" Set tab and shift width. 'expandtab' will set tabs as spaces.
 set tabstop=4
 set shiftwidth=4
-inoremap <Tab> <Space><Space><Space><Space>
+set expandtab
 
-" Highlight control chars. Toggle show with <s> while in normal mode.
-set listchars=tab:⇒\ ,trail:␣
-nnoremap <silent>s :set list!<Cr>
+" Highlight control chars.
+set listchars=tab:⇒\ ,trail:␣,extends:г,precedes:г
 
-" Set timeout on Escape. This is vital for not being extra slow on exiting 
-" insert mode, but if this is zero it interferes with leader mappings.
+" Set timeout on Escape. 
 set timeout timeoutlen=64 ttimeoutlen=64
 let mapleader=";"
 
 " Set colour representation.
 colorscheme wal
 set term=screen-256color
-set background=light
+set background=dark
 
-" Backup swap files in a more useful place. Move viminfo file somewhere more 
-" appropriate. Set persistent undo/redo. Very useful.
+" Peristant undo and info file location.
 set undofile
 set undodir=~/.vim/undodir/
 set backupdir=~/.vim/backups
@@ -78,11 +73,16 @@ set nomodeline
 
 " ~~~~# Plugin Options #~~~~
 " Enable plugins and set relevant options.
+let g:pathogen_disabled = ['carp.vim']
 call pathogen#infect()
 filetype  off
 syntax    on
 filetype  plugin indent on
 runtime   macros/matchit.vim
+runtime ftplugin/man.vim
+
+" gz.vim mapping
+let g:gz = '<C-g>'
 
 " Haskell-vim settings
 set omnifunc=syntaxcomplete#Complete
@@ -102,7 +102,7 @@ endfunction
 " lightline.vim settings.
 let g:gruvbox_background = 'dark'
 let g:lightline = {
-      \ 'colorscheme': has('gui_running') ? 'gruvbox' : 'jellybeans',
+      \ 'colorscheme': has('gui_running') ? 'jellybeans' : 'jellybeans',
           \ 'active': {
           \   'left':  [[ 'mode', 'paste' ], [ 'filename', 'readonly' ], [ 'modified', 'wordCount', 'lastcmd' ]],
 	      \   'right': [[ 'lineinfo'      ], [ 'percent' ],
@@ -119,12 +119,10 @@ let g:lightline = {
 	      \     'i'      : 'ins',
 	      \     'v'      : 'vsl',
 	      \     'V'      : '-vsl-',
-	      \     ''     : '^vsl^',
+	      \     ''     : ';vsl;',
 	      \     'R'      : 'rpl',
 	      \ },
-          \ 'component_function' : {
-          \     'wordCount' : 'WordCount',
-          \ },
+          \ 'component_function' : { 'wordCount' : 'WordCount', },
           \ 'component' : {
 		  \     'close'      : '',
 		  \     'filetype'   : '  %{&filetype}',
@@ -136,54 +134,41 @@ let g:lightline = {
 " Syntastic settings
 let g:syntastic_c_check_header = 1
 let g:syntastic_c_compiler_options="-Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare"
+let g:syntastic_error_symbol   = '✗✗ '
+let g:syntastic_warning_symbol = '▷▷ '
+let g:syntastic_warning_symbol = '∆∆'
+let g:syntastic_style_warning_symbol = '≈≈'
+let g:syntastic_enable_balloons = 1
 
 " Borkmark settings
 let g:borkmark = { 
-    \ 'windowname'    : 'Startup',
+    \ 'windowname'    : '*Startup*',
     \ 'defaultstatus' : 2,
     \ 'shownum'       : 16,
 	\ }
 
 nnoremap <silent>z= :call DmenuCorrect()<Cr>
 nnoremap <silent>zm :call DmenuManSearch()<Cr>
-nnoremap <silent>zf :call DmenuOpen()<Cr>
-nnoremap <silent>zc :call DmenuVimConf()<Cr>
+" nnoremap <silent>zf :call DmenuOpen()<Cr>
 let g:dmenu = {
     \ 'path'         : '~/bin/dmenuw',
     \ 'dmenu-flags'  : '-l 8 -i -w 850 -c',
     \ 'vim-open'     : 'tabedit!',
 	\ }
 
-let g:carp = {
-			\ 'control' : '\x',
-			\}
-
 " ~~~~# Key Mappings #~~~~
 " Easier command mode. Applies to normal, visual and select.
-noremap : @:
 noremap , :
 
-" Write the buffer file.
+" Write the buffer to file.
 nnoremap ,w :w<Cr>
-
-" Redo and insert-register mappings.
-nnoremap GR <C-r>
-noremap! GR <C-r>
 
 " Get help on word.
 nnoremap <expr> zh (":tab help " . expand('<cword>') . "\n")
+xnoremap  zh         y:tab help <C-r>"<Cr>
 
 " Search selection under cursor.
-xnoremap * y/<C-r>"<Cr>
-
-" Window changes
-nnoremap gw <C-w>
-
-" Start insert-visual mode.
-inoremap gv <C-o>v
-
-" Go to insert-normal
-inoremap go <C-o>
+xnoremap * y/\M<C-r>"<Cr>
 
 " Insert lines above the cursor in insert.
 inoremap <S-Return> <C-o><S-o>
@@ -191,29 +176,28 @@ inoremap <S-Return> <C-o><S-o>
 " Auto-increment keys.
 nnoremap + <C-a>
 nnoremap - <C-x>
+xnoremap + :normal! <Cr>
 set nrformats=bin,hex,alpha
 
-" substitute in normal and visual. 
-" \%V means only in the current selection.
-" /g now replaces only the first instance in a line.
+" Substitute in normal and visual. 
 xnoremap ,c :s/\%V
 nnoremap ,c :%s/
+xnoremap gc y:%s/\M<C-r>"/
 set gdefault
 
 " Edit new files/buffers without needing to write the current one.
-nnoremap  <silent><Tab>      :tabnext   <Cr>
-nnoremap  <silent><S-Tab>    :tabprev   <Cr>
+nnoremap  <silent><Tab>   :tabnext <Cr>
+nnoremap  <silent><S-Tab> :tabprev <Cr>
 cabbrev  h tab help
 cabbrev  t tabedit!
+nnoremap <silent> rf :tabedit! <C-r>=expand('%:h')<Cr>/<cfile><Cr> 
 nnoremap <silent> gf :tabedit! <cfile><Cr>
-nnoremap <expr> GF (":tabedit! " . expand('<cfile>'))
+xnoremap <silent> gf "ny:tabedit! <C-r>=fnameescape(@n)<Cr><Cr>
 
 " Prevent ex mode entry by remapping to visual block mode.
 noremap Q  <C-v>
 
-" Home, end, backspace, delete and forward backward navigation in insert/
-" command mode.
-noremap! <C-u>  <Backspace>
+" Navigation in insert/command mode.
 noremap! <C-a>  <Home>
 noremap! <C-e>  <End>
 noremap! <C-d>  <Del>
@@ -223,43 +207,53 @@ cnoremap <C-h>  <Down>
 cnoremap <C-k>  <Up>
 cnoremap <C-n>  <C-Left>
 cnoremap <C-m>  <C-Right>
+inoremap <C-j>  <Return>
 
 " Autocomplete navigation, similar to command mode/readline.
 set completeopt=longest,menuone,preview
-inoremap <C-h>    <Nop>
-inoremap <C-k>    <Nop>
+for key in ['n', 'p', 'h', 'k']
+    execute printf("inoremap <C-%s> <Nop>", key)
+endfor
 inoremap <C-h>    <C-n>
 inoremap <C-k>    <C-p>
 inoremap <Leader>k <C-x><C-k>
 inoremap <Leader>f <C-x><C-f>
 inoremap <Leader>d <C-x><C-o>
 
-" Shift-j goes down a page, Shift-k goes up. Nostartofline stops the cursor 
-" moving to the start of the line.
+" Digraph insertion
+noremap! ĸ <C-k>
+
+" Shift-j/k move down/up a page. Don't move the cursor to start of line.
 set nostartofline
 noremap <S-j> <C-e>
 noremap <S-k> <C-y>
 noremap <C-j> <C-f>
 noremap <C-k> <C-b>
 
-" Let the cursor move past the last character in the line. Useful for using
-" <S-x> to backspace chars.
-set virtualedit=onemore
-
-" Toggle fold in normal mode. visual <Leader>f will only work with
-" foldmethod=manual.
-noremap <silent> <Leader>f @=(foldlevel('.')?'za':"\<Space>")<CR>
+" Toggle fold in n/vmode. Visual <Leader>f only works with foldmethod=manual.
+noremap <expr> <silent> <Leader>f (foldlevel('.') ? 'za':"\<Space>")
 xnoremap <silent> <Leader>f zf
 
-" Run macro on visual selection.
+" Digraph from string literal
+command! -nargs=+ Digraph call Digraph(<f-args>)
+function! Digraph(keys, character)
+    execute printf('digraph %s %d', a:keys, char2nr(a:character))
+endfunction
+
+Digraph \|- ⊢
+Digraph lm λ
+Digraph ^\| ⊤
+Digraph _\| ⊥
+
+" Run macro on selection.
 function! MacroRange()
   echo "(register) " 
   execute ":'<,'>normal! @" . nr2char(getchar())
 endfunction
 xnoremap <silent> @ :<C-u>call MacroRange()<Cr>
 
-" Run commands lines or selections. `shellescape` allows using pipes
-" and passing the command to an interpreter (awk, python, etc).
+" Run commands on selections. `shellescape` allows pipes and external
+" interpreters.
 function! DoCommand(motion, interpreter)
 	let l:string = shellescape(input('(' . split(a:interpreter, ' ')[0] . ') '))
 	if strlen(l:string) > 2
@@ -282,28 +276,19 @@ noremap ed  "+d
 
 " ~~~~# AutoCommands/ AuGroups #~~~~
 augroup AutoCompile
-	au BufwritePost *.ms  silent! exe "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
-	au BufwritePost *.mom silent! exe "!pdfmom % > %:r.pdf" | redraw!
-    au BufWritePost *.md  silent! exe "!pandoc % --highlight-style tango -f markdown -t html5 --css ~/Templates/markdown.css -o %:r.html" | redraw!
-	au BufWritePost config.h,config.def.h silent! exe "!make clean install" | redraw!
+	au BufwritePost *.ms                     silent! exe "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
+	au BufwritePost *.mom                    silent! exe "!pdfmom % > %:r.pdf" | redraw!
+    au BufWritePost *.latex.md               silent! exe "!pandoc \"%\" --bibliography bibliography.bib --filter pandoc-citeproc --listing -f markdown -t latex -o \"%:r:r.pdf\"" | redraw!
+    au BufWritePost *[^l][^a][^t][^e][^x].md silent! exe "!pandoc \"%\" --highlight-style tango -f markdown -t html5 --css ~/Templates/markdown.css -o \"%:r.html\"" | redraw!
 augroup END
-
 augroup AutoFormat
-    au BufReadPost bash-fc*  set filetype=sh
-	au BufReadPost  *.md,*.MD,*.ms silent! setlocal spell
-	au BufWritePre  *.c,*.h,*.py,*.pdb,*.sh,*.hs :%s/\s\+$//e
+    au BufReadPost  bash-fc* :set    filetype=sh
+    au BufReadPost  *.md,*.MD,*.ms :silent ! setlocal spell
+    au BufWritePre  *.c,*.h,*.py,*.pdb,*.sh,*.hs :%s/\s\+$//e
     au BufWritePre  *.hs,*.pdb,*.c*.sh :%s/\t/    /ge
-    au BufReadPost * silent! normal! g;
+    au BufReadPost  * :silent! normal! g`
 augroup END
 
-augroup FileTemplateSetup
-    au BufNewFile *.sh  :r ~/Templates/.sh
-    au BufNewFile *.c   :r ~/Templates/.c
-    au BufNewFile *.py  :r ~/Templates/.py
-    au BufNewFile *.pdb :r ~/Templates/.pl
-    au BufNewFile *.hs  :r ~/Templates/.hs
-    au BufNewFile *.md  :r ~/Templates/.md
-    au BufNewFile *.ms  :r ~/Templates/.ms
-augroup END
-
-colorscheme wal
+for type in ['sh', 'c', 'py', 'pdb', 'hs', 'md']
+    execute printf("au BufNewFile *.%s     :r ~/Templates/.%s", type, type)
+endfor

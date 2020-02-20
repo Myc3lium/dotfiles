@@ -44,7 +44,7 @@ alias vc="vi ~/.vimrc"
 alias scc="gcc -Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare -Werror=implicit-function-declaration"
 
 # Add manpage completion
-complete -W "$(man -k . | awk $'{ printf $1" "}') -Tpdf" man
+#complete -W "$(man -k . | awk $'{ printf $1" "}') -Tpdf" man
 
 # Awk completion. Script file, FS, and variable definition.
 complete -W "-F -f -v --characters-as-bytes" awk
@@ -55,11 +55,14 @@ complete -W "add remove upgrade" pathogen
 # Pkm completion
 complete -W "remove add update upgrade search info src" pkm
 
+# Bleachbit cleaner completion
+#complete -W "$(bleachbit -l) -c" bleachbit
+
 # Add completion for sudo
-complete -W "$(compgen -c)" sudo
+#complete -W "$(compgen -c)" sudo
 
 # Add which completion
-complete -W "$(compgen -c)" which
+#complete -W "$(compgen -c)" which
 
 # Python3 help from outside python
 pyhelp(){
@@ -72,10 +75,6 @@ mkpss(){
 	else
 		apg -a 1 -m $1 -n 20 | sed '1q'
 	fi
-}
-
-vman(){
-	man "$@" | view -
 }
 
 # Launch fff and keep current dir on exit.
