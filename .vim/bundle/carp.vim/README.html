@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="/home/myc3lium/Templates/markdown.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ｃａｒｐｖｉｍ">ＣＡＲＰ．ＶＩＭ</h1>
+<p>Carp.vim is a small, lightweight plugin designed for providing a more ergonomic way of entering keystrokes requiring the use of modifier keys, such as the control, shift and alt (Meta) keys. Vim's expression mapping feature is used to define mappings for leading key sequences that behave like a sticky version of the equivalent modifier key. These mappings work in normal, visual, operator pending, command (Ex mode) and insert modes.</p>
+<p>Configuration options can be specified using the global variable g:carp. Each of the values in g:carp should be a string specifying a sequence of keys (using vim's syntax for mappings), to be mapped to each modifier.</p>
+<p>Example configuration:</p>
+<pre class="vim"><code>    let g:carp = {
+                \ &#39;control&#39; : &#39;&lt;Leader&gt;,&#39;,
+                \ &#39;shift&#39;   : &#39;&lt;Leader&gt;c&#39;,
+                \ &#39;meta&#39;    : &#39;&lt;Leader&gt;m&#39;,
+                \}</code></pre>
+</body>
+</html>

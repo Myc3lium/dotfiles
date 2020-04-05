@@ -1,0 +1,2 @@
+#!/bin/bash
+git push "https://github.com/Myc3lium/carp.vim/" master
