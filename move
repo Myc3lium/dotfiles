@@ -34,7 +34,7 @@ pushd "$current"/.vim
 rm -r swaps/
 rm -r undodir/
 rm -r backups/
-rm    viminfo
+rm    *viminfo*
 popd
 
 
