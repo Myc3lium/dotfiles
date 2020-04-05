@@ -89,6 +89,7 @@ function BorkMarkSetup()
 		setlocal bufhidden=hide
 		setlocal filetype=markdown
 		setlocal noswapfile
+        setlocal nospell
 
 		setlocal cursorline
 		setlocal nonumber norelativenumber

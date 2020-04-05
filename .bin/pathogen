@@ -24,4 +24,8 @@ upgrade(){
 	cd "$var"
 }
 
+info(){
+    ls "$pathogen_dir"
+}
+
 eval "$@"

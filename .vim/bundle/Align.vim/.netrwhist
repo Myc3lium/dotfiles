@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/myc3lium/.vim/bundle/haskell-vim'
+let g:netrw_dirhist_2='/usr/share/vim/vim74'
+let g:netrw_dirhist_3='/home/myc3lium/.nano'
+let g:netrw_dirhist_4='/home/myc3lium'

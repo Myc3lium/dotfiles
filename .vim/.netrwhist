@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/usr/share/vim-scripts/autoload'
-let g:netrw_dirhist_2='/usr/share/vim-scripts'
-let g:netrw_dirhist_3='/usr/share/vim-scripts/autoload'
-let g:netrw_dirhist_4='/usr/share/vim-scripts'
-let g:netrw_dirhist_5='/usr/share/vim-scripts/colors'
-let g:netrw_dirhist_6='/home/myc3lium/.vim/colors'
-let g:netrw_dirhist_7='/home/myc3lium/.vim/bundle/vim-repeat'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/myc3lium/.vim/bundle/Align.vim/doc'
+let g:netrw_dirhist_2='/home/myc3lium/.vim/bundle/Align.vim'
+let g:netrw_dirhist_3='/home/myc3lium/.vim/bundle/Align.vim/plugin'
+let g:netrw_dirhist_4='/home/myc3lium/.vim'

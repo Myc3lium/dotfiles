@@ -24,6 +24,7 @@ set guifont=GohuFont\ Nerd\ Font\ 10.5
 set guioptions -=T
 set guioptions -=r
 set guioptions -=L
+
 " 
 " " Disable Menubar
 " set guioptions -=m
@@ -42,15 +43,3 @@ set mouse=a
 
 " hide mouse when typing
 set mh
-
-function! ToggleProse()
-	if &laststatus == 2
-		setlocal laststatus=0
-	endif
-	if &showtabline == 2
-		setlocal showtabline =0
-	endif
-
-	setlocal number! relativenumber!
-endfunction
-command! ToggleProse call ToggleProse()

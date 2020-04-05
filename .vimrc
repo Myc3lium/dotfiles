@@ -3,36 +3,39 @@
 " ┗┛   ┇  ┛ ┇  ┇┗┛  ┗━┛   
 
 " ~~~~# Main Options #~~~~
-" *Always* show status line, tabs and command. Disable showing mode.
-set noshowmode
-set laststatus=2
-set showtabline=2
-set showcmd
+set noshowmode       " Don't show mode indicator.
+set laststatus=2     " Show statusline.
+set showtabline=2    " Show tabline.
+set showcmd          " Show last command.
 
-" Highlight search results. Use gl to un-highlight.
-set hlsearch
+" Allow backspace over start of insert, auto-indents and the end of a line.
+set backspace=indent,eol,start
+    
+set hlsearch    " Highlight search results. Use <C-l> to un-highlight.
 nnoremap <silent><C-l> :nohlsearch<Cr>
+xnoremap <silent><C-l> :<C-u>nohlsearch<Cr>
 
 " Incremental search.
 set incsearch
 
-" Display the location of matching parens
+" Lazy redraw for macro replay.
+set lazyredraw
+
+" Display the location of matching parens.
 set showmatch
 
-" Highlight lines longer than 81 chars
+" Highlight lines longer than 81 chars.
 highlight ColorColumn ctermbg=blue
 call matchadd('ColorColumn', '\%81v', 100)
 
-set breakindent     " Keep indent on broken lines
-set showbreak=[﬌]\  " Show before a broken line
+set breakindent      " Keep indent on broken lines.
+set showbreak=→\     " Show before a broken line.
 
-" Split below and right.
-set splitbelow
-set splitright 
+set splitbelow splitright   " Open splits below the current window.
+                            " Open splits right of the current window.
 
-" Set spell-file/dict. 
-set spelllang=en_gb,en_us
-set dictionary=/usr/share/dict/words,~/.vim/spell/en.utf-8.add
+set spelllang=en_gb,en_us                                         " Set English-American hybrid spelling.
+set dictionary=/usr/share/dict/words,~/.vim/spell/en.utf-8.add    " Set file for dictionary-completion.
 
 " Set default file encoding.
 set encoding=utf-8
@@ -40,31 +43,26 @@ set encoding=utf-8
 " Set line numbering options.
 set number relativenumber
 
-" Set visibility of folds when open
-set foldcolumn=1
-set fillchars+=fold:▒
+set foldcolumn=1         " Make closed folds visible.
+set fillchars+=fold:▒    " Use <char> for fold indicator.
 
-" Set tab and shift width. 'expandtab' will set tabs as spaces.
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set tabstop=4             " Number of spaces shown for a tab.
+let &shiftwidth=&tabstop  " Number of auto-indent spaces.
+set expandtab             " 'expandtab' will insert tabs as spaces.
 
 " Highlight control chars.
-set listchars=tab:⇒\ ,trail:␣,extends:г,precedes:г
+set listchars=tab:⇒\ ,trail:␣,extends:г,precedes:г,eol:⮠
 
-" Set timeout on Escape. 
-set timeout timeoutlen=64 ttimeoutlen=64
-let mapleader=";"
+set timeout timeoutlen=64 ttimeoutlen=64    " Set timeout for mappings.
+let mapleader=";"                           " Set mapleader key to semi-colon
 
-" Set colour representation.
-colorscheme wal
-set term=screen-256color
-set background=dark
+colorscheme wal             " Use automatic coloring.
+set term=screen-256color    " Set 256 colors profile.
+set background=dark         " Make the background dark.
 
-" Peristant undo and info file location.
-set undofile
-set undodir=~/.vim/undodir/
-set backupdir=~/.vim/backups
+set undofile                    " Use an 'undofile'.
+set undodir=~/.vim/undodir/     " Keep undo-files in ~/.vim
+set backupdir=~/.vim/backups    " Keep backups, etc. in ~/.vim
 set directory=~/.vim/swaps
 set viminfo+=n~/.vim/viminfo
 
@@ -73,65 +71,43 @@ set nomodeline
 
 " ~~~~# Plugin Options #~~~~
 " Enable plugins and set relevant options.
-let g:pathogen_disabled = ['carp.vim']
-call pathogen#infect()
+let g:pathogen_disabled = ['carp.vim', 'gz.vim', 'prolog.vim', 'haskell.vim']
+call pathogen#infect("$HOME/.vim/bundle/{}")
 filetype  off
 syntax    on
 filetype  plugin indent on
-runtime   macros/matchit.vim
-runtime ftplugin/man.vim
-
-" gz.vim mapping
-let g:gz = '<C-g>'
-
-" Haskell-vim settings
-set omnifunc=syntaxcomplete#Complete
-let g:haskell_enable_quantification     = 1  " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo        = 1  " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax        = 1  " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms   = 1  " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles          = 1  " to enable highlighting of type roles
-let g:haskell_enable_static_pointers    = 1  " to enable highlighting of `static`
-let g:haskell_backpack                  = 1  " to enable highlighting of backpack keywords
-
-function! WordCount()
-	let l:wd = wordcount()
-	return printf("≡ %d,%d,%d", l:wd.words, line('$'), l:wd.bytes)
-endfunction
-
+runtime   ftplugin/man.vim
+ 
+" " gz.vim mapping.
+" let g:gz = '<C-g>'
+" 
+" let g:haskell_enable_quantification   = 1 " Enable highlighting of `forall`.
+" let g:haskell_enable_pattern_synonyms = 1 " Enable highlighting of `pattern`.
+ 
 " lightline.vim settings.
 let g:gruvbox_background = 'dark'
 let g:lightline = {
       \ 'colorscheme': has('gui_running') ? 'jellybeans' : 'jellybeans',
-          \ 'active': {
-          \   'left':  [[ 'mode', 'paste' ], [ 'filename', 'readonly' ], [ 'modified', 'wordCount', 'lastcmd' ]],
-	      \   'right': [[ 'lineinfo'      ], [ 'percent' ],
-          \             [ 'fileformat', 'fileencoding', 'filetype', 'spell' ]]
-          \ },
-	      \ 'separator':    { 'left': '', 'right' : '' },
-          \ 'subseparator': { 'left': '|',    'right' : '|'   },
-	      \ 'tabline_separator':    { 'left': '', 'right' : '' },
-          \ 'tabline_subseparator': { 'left': '', 'right' : '' },
-	      \ 'mode_map' : {
-	      \     'n'      : 'nrm',
-	      \     'ni'     : '*nrm',
-          \     'c'      : '/src',
-	      \     'i'      : 'ins',
-	      \     'v'      : 'vsl',
-	      \     'V'      : '-vsl-',
-	      \     ''     : ';vsl;',
-	      \     'R'      : 'rpl',
-	      \ },
-          \ 'component_function' : { 'wordCount' : 'WordCount', },
-          \ 'component' : {
-		  \     'close'      : '',
-		  \     'filetype'   : '  %{&filetype}',
-		  \     'lineinfo'   : ' %3l: %-2v',
-		  \     'fileformat' : '﬌ %{&ff}',
-          \ }
+      \ 'active': {
+      \   'left':  [[ 'mode', 'paste' ], [ 'filename', 'readonly' ], [ 'modified' ]],
+      \   'right': [[], ['lineinfo'],    [ 'fileformat', 'encoding', 'filetype', 'buftype', 
+      \                                    'spell' ]]
+      \ },
+      \ 'separator'            : { 'left' : '',  'right' : ''  },
+      \ 'subseparator'         : { 'left' : '│', 'right' : '│' },
+      \ 'tabline_separator'    : { 'left' : '',  'right' : ''  },
+      \ 'tabline_subseparator' : { 'left' : '',  'right' : ''  },
+      \ 'mode_map' : { 'n' : 'nrm', 'i' : 'ins', 'v' : 'vsl', 'V'  : '-vsl-', '' : ';vsl;', 'R' : 'rpl', 'c': '/src' },
+      \ 'component_visible_condition' : { 'filetype'   : 'len(&filetype)', 'buftype'  : 'len(&buftype)',  
+      \                                   'fileformat' : '&fileformat!="unix"' },
+      \ 'component' : { 'close'    : '',               'spell'      : '§ %{&spell?&spelllang:""}', 
+      \                 'buftype'  : 'ß %{&buftype}',  'filetype'   : ':: %{&filetype}', 
+      \                 'lineinfo' : '%P %3l,%-2v',    'fileformat' : '﬌ %{&fileformat=="unix"?"":&fileformat}', 
+      \                 'encoding' : 'ε %{len(&fileencoding) ? &fileencoding : &encoding }',
       \ }
+\ }
 
-" Syntastic settings
+" Syntastic settings.
 let g:syntastic_c_check_header = 1
 let g:syntastic_c_compiler_options="-Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare"
 let g:syntastic_error_symbol   = '✗✗ '
@@ -140,24 +116,21 @@ let g:syntastic_warning_symbol = '∆∆'
 let g:syntastic_style_warning_symbol = '≈≈'
 let g:syntastic_enable_balloons = 1
 
-" Borkmark settings
-let g:borkmark = { 
+" Borkmark settings.
+let g:borkmark = {
     \ 'windowname'    : '*Startup*',
     \ 'defaultstatus' : 2,
     \ 'shownum'       : 16,
-	\ }
+    \ }
 
+let g:dmenu = { 'path' : '~/bin/dmenuw', 'flags' : '-S -l 8 -i -W' }
 nnoremap <silent>z= :call DmenuCorrect()<Cr>
 nnoremap <silent>zm :call DmenuManSearch()<Cr>
-" nnoremap <silent>zf :call DmenuOpen()<Cr>
-let g:dmenu = {
-    \ 'path'         : '~/bin/dmenuw',
-    \ 'dmenu-flags'  : '-l 8 -i -w 850 -c',
-    \ 'vim-open'     : 'tabedit!',
-	\ }
+nnoremap <silent>zb :call DmenuBufSelect()<Cr>
+
 
 " ~~~~# Key Mappings #~~~~
-" Easier command mode. Applies to normal, visual and select.
+" Easier command mode. Applies to normal, visual and operator.
 noremap , :
 
 " Write the buffer to file.
@@ -170,26 +143,40 @@ xnoremap  zh         y:tab help <C-r>"<Cr>
 " Search selection under cursor.
 xnoremap * y/\M<C-r>"<Cr>
 
+" Make H and L behave like bol/eol for ergonomics.
+noremap H ^
+noremap L $
+
+" Go one (screen) line down unless range is given.
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" If spelling, find errors, else linter error.
+nnoremap <expr> [s (&spell ? "[s" : ":lprev\<Cr>")
+nnoremap <expr> ]s (&spell ? "]s" : ":lnext\<Cr>")
+
 " Insert lines above the cursor in insert.
 inoremap <S-Return> <C-o><S-o>
 
 " Auto-increment keys.
 nnoremap + <C-a>
 nnoremap - <C-x>
-xnoremap + :normal! <Cr>
+xnoremap + <C-g><C-a>
+xnoremap - <C-x>
 set nrformats=bin,hex,alpha
 
-" Substitute in normal and visual. 
+" Substitute in normal and visual. Assume `/g`.
+set gdefault    
 xnoremap ,c :s/\%V
 nnoremap ,c :%s/
 xnoremap gc y:%s/\M<C-r>"/
-set gdefault
 
 " Edit new files/buffers without needing to write the current one.
 nnoremap  <silent><Tab>   :tabnext <Cr>
 nnoremap  <silent><S-Tab> :tabprev <Cr>
 cabbrev  h tab help
 cabbrev  t tabedit!
+cabbrev  e edit!
 nnoremap <silent> rf :tabedit! <C-r>=expand('%:h')<Cr>/<cfile><Cr> 
 nnoremap <silent> gf :tabedit! <cfile><Cr>
 xnoremap <silent> gf "ny:tabedit! <C-r>=fnameescape(@n)<Cr><Cr>
@@ -214,23 +201,22 @@ set completeopt=longest,menuone,preview
 for key in ['n', 'p', 'h', 'k']
     execute printf("inoremap <C-%s> <Nop>", key)
 endfor
-inoremap <C-h>    <C-n>
-inoremap <C-k>    <C-p>
+inoremap <C-h>     <C-n>
+inoremap <C-k>     <C-p>
 inoremap <Leader>k <C-x><C-k>
 inoremap <Leader>f <C-x><C-f>
-inoremap <Leader>d <C-x><C-o>
 
-" Digraph insertion
+" Use ĸ for inserting digraphs.
 noremap! ĸ <C-k>
 
-" Shift-j/k move down/up a page. Don't move the cursor to start of line.
+" Page/line based movement using hjkl. Don't move the cursor to start of line.
 set nostartofline
 noremap <S-j> <C-e>
 noremap <S-k> <C-y>
 noremap <C-j> <C-f>
 noremap <C-k> <C-b>
 
-" Toggle fold in n/vmode. Visual <Leader>f only works with foldmethod=manual.
+" Toggle fold in n/vmode. Visual <Leader>f only works when foldmethod=manual.
 noremap <expr> <silent> <Leader>f (foldlevel('.') ? 'za':"\<Space>")
 xnoremap <silent> <Leader>f zf
 
@@ -245,29 +231,34 @@ Digraph lm λ
 Digraph ^\| ⊤
 Digraph _\| ⊥
 
-" Run macro on selection.
+" Set filetype
+command! -nargs=1 Sft set filetype=<args>
+cabbrev sft Sft
+
+" Run a macro on a visual selection.
 function! MacroRange()
   echo "(register) " 
   execute ":'<,'>normal! @" . nr2char(getchar())
 endfunction
 xnoremap <silent> @ :<C-u>call MacroRange()<Cr>
 
-" Run commands on selections. `shellescape` allows pipes and external
+" Run commands on selections. `shellescape` allows using pipes and external
 " interpreters.
 function! DoCommand(motion, interpreter)
-	let l:string = shellescape(input('(' . split(a:interpreter, ' ')[0] . ') '))
-	if strlen(l:string) > 2
-		execute printf("normal! :%s!%s %s", a:motion, a:interpreter, l:string)
-	endif
+    let l:string = shellescape(input('(' . split(a:interpreter, ' ')[0] . ') '))
+    if strlen(l:string) > 2
+        return printf(":%s!%s %s\<Cr>", a:motion, a:interpreter, l:string)
+    endif
+    return "\<Esc>"
 endfunction
-nnoremap <Leader>s :call DoCommand('%', 'sh -c')<Cr>
-nnoremap <Leader>a :call DoCommand('%', 'awk')<Cr>
-xnoremap <Leader>s :<C-u>call DoCommand("'<,'>", 'sh -c')<Cr>
-xnoremap <Leader>a :<C-u>call DoCommand("'<,'>", 'awk')<Cr>
+nnoremap <expr> <Leader>s DoCommand('%', 'sh -c')
+nnoremap <expr> <Leader>a DoCommand('%', 'awk')
+xnoremap <expr> <Leader>s DoCommand("'<,'>", 'sh -c')
+xnoremap <expr> <Leader>a DoCommand("'<,'>", 'awk')
 
 " Source parts of the current file.
-nnoremap <Leader>v :%y<Cr>:@"<Cr>
-xnoremap <Leader>v y:@"<CR>
+nnoremap <silent> <Leader>v :%y<Cr>:execute @"<Cr>
+xnoremap <silent> <Leader>v y:execute @"<CR>
 
 " External (e) yanking, deleting and pasting.
 noremap ep  o<C-r>+<Esc>
@@ -276,19 +267,12 @@ noremap ed  "+d
 
 " ~~~~# AutoCommands/ AuGroups #~~~~
 augroup AutoCompile
-	au BufwritePost *.ms                     silent! exe "!refer -S -P -p references % | groff -ms -Tpdf > %:r.pdf" | redraw!
-	au BufwritePost *.mom                    silent! exe "!pdfmom % > %:r.pdf" | redraw!
-    au BufWritePost *.latex.md               silent! exe "!pandoc \"%\" --bibliography bibliography.bib --filter pandoc-citeproc --listing -f markdown -t latex -o \"%:r:r.pdf\"" | redraw!
+    au BufWritePost *.latex.md               silent! exe "!pandoc \"%\" --filter pandoc-citeproc --listing -f markdown -t latex -o \"%:r:r.pdf\"" | redraw!
     au BufWritePost *[^l][^a][^t][^e][^x].md silent! exe "!pandoc \"%\" --highlight-style tango -f markdown -t html5 --css ~/Templates/markdown.css -o \"%:r.html\"" | redraw!
 augroup END
 augroup AutoFormat
-    au BufReadPost  bash-fc* :set    filetype=sh
-    au BufReadPost  *.md,*.MD,*.ms :silent ! setlocal spell
+    au BufReadPost  bash-fc*                     :set filetype=sh | :execute "normal! i#!/bin/bash\<Esc>o\<Cr>"
+    au BufReadPost  *.md,*.MD,                   :silent! setlocal spell
     au BufWritePre  *.c,*.h,*.py,*.pdb,*.sh,*.hs :%s/\s\+$//e
-    au BufWritePre  *.hs,*.pdb,*.c*.sh :%s/\t/    /ge
-    au BufReadPost  * :silent! normal! g`
+    au BufReadPost  *                            :silent! normal! g`"
 augroup END
-
-for type in ['sh', 'c', 'py', 'pdb', 'hs', 'md']
-    execute printf("au BufNewFile *.%s     :r ~/Templates/.%s", type, type)
-endfor

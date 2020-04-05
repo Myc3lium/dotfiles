@@ -58,16 +58,16 @@ get_dir_symbol(){
 		;;
 
 		$HOME/*) 
-			echo -en "\001${reverse}${color5}\002 @ \001${color1}\002| ${PWD:$HOME_OFFSET} |" 
+			echo -en "\001${reverse}${color5}\002 @ \001${color4}\002| ${PWD:$HOME_OFFSET} |" 
 		;;
 
 		/*)     
-			echo -en "\001${reverse}${color9}\002 # \001${color1}\002| ${PWD:1} |" 
+			echo -en "\001${reverse}${color9}\002 # \001${color4}\002| ${PWD:1} |" 
 		;;
 	esac
 }
 
-PS1='$(get_dir_symbol)\[${reverse}${color8}\] · \[${normal}\] '
+PS1='$(get_dir_symbol)\[${reverse}${color1}\] » \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -95,4 +95,4 @@ export LESS_TERMCAP_ue="$normal"   # Underline end.
 export LESS_TERMCAP_us="$color2"   # Underline start.
 
 # Load aliases.
-source ~/.bin/aliases.sh
+source ~/.config/bash/aliases

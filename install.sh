@@ -8,6 +8,8 @@ cp -r .bin $HOME/.bin
 cp -r .urxvt $HOME/.urxvt
 cp -r .vim $HOME/.vim
 
+cp -r bashconf $HOME/.config/bash
+
 cp .gitconfig $HOME/.gitconfig
 cp .vimrc $HOME/.vimrc
 cp .inputrc $HOME/.inputrc

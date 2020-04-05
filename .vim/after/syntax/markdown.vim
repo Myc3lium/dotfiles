@@ -36,21 +36,45 @@ inoremap <buffer> <silent><buffer> <C-j> <CR><Esc>:call <SID>auto_list()<CR>A
 nnoremap <buffer> <silent><buffer> o     o<Esc>:call <SID>auto_list()<CR>A
 inoremap <buffer> <S-Return> <C-o>O
 
-" Format tables from columnar data
-xnoremap <buffer> <Leader>t :! ~/.vim/format-scripts/cols2markdown<Cr>
+function! s:SelectParaColumn(action)
+    execute printf("normal! \<C-v>ip%d|\<C-v>o%s", getcurpos()[2], a:action)
+endfunction
 
-" Check boxes
-nnoremap <buffer> ic i<C-k>OK<Esc>
+function! s:NewTableRow()
+    let l:line=getline('.')
+    put =substitute(line, '[^\|]', ' ', 'g')
+    normal! ^ll
+endfunction
+
+function! s:NewTableColumn()
+    let l:y = @y
+    call s:SelectParaColumn('F|ot|"yyt|"ypt|')
+    call s:SelectParaColumn("T|:s/\\%V./ /\<Cr>\<C-o>jlvt|hr-k")
+    let @y=l:y
+endfunction
+
+nnoremap to :call <SID>NewTableRow()<Cr>
+nnoremap ti :call <SID>NewTableColumn()<Cr>
+nnoremap td :call <SID>SelectParaColumn('f\|d')<Cr>
+
+" Format tables from columised data
+xnoremap <buffer> <Leader>t :! ~/.vim/format-scripts/cols2markdown<Cr>
+setlocal spell
 
 " Use dictionary for auto-complete.
 setlocal complete+=k
 
 " Don't do spell checking in quoted text or inline 
-" LaTex math equations.
-syntax match quoteblock /"[^"]\+"/ contains=@NoSpell
-syntax match quoteblock /'[^']\+'/ contains=@NoSpell
-syntax match quoteblock /`[^`]\+`/ contains=@NoSpell
-syntax match quoteblock /\$[^\$]\+\$/ contains=@NoSpell
+" LaTex math equations. Don't check spelling in
+" Pandoc citeproc citation anchors.
+syntax match Quoteblock   /"[^"]\+"/         contains=@NoSpell 
+syntax match Quoteblock   /'[^']\+'/         contains=@NoSpell 
+syntax match Quoteblock   /`[^`]\+`/         contains=@NoSpell 
+syntax match Mathblock    /\$[^\$]\+\$/      contains=@NoSpell 
+syntax match Pandoccite   /\[@\w\+[,\]]/     contains=@NoSpell 
+syntax match Pandocmeta   /---\n\_.*\n---/   contains=@NoSpell 
+syntax match LaTexCommand /\\\w\+/           contains=@NoSpell
+
 
 " Wrapping options for text.
 if expand('%:t') =~ "latex\.md"
