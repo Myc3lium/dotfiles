@@ -8,5 +8,5 @@ lines="$(lsw | wc -l)"
 
 lsw \
     | awk '{ $1=""; print }' \
-    | dmenuw -i -c -w 850 -l "$lines" \
+    | dmenuw -i -wd 30 -l "$lines" \
     | xargs -I{} wmctrl -a {}

@@ -10,6 +10,8 @@
 case "$1" in
     left|right) side="--${1}-of" ;;
 	mirror)     side="--same-as" ;; 
+	above)      side="--above" ;; 
+	below)      side="--below" ;; 
 	"")         side="--same-as" ;;
 esac
 

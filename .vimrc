@@ -87,7 +87,7 @@ runtime   ftplugin/man.vim
 " lightline.vim settings.
 let g:gruvbox_background = 'dark'
 let g:lightline = {
-      \ 'colorscheme': has('gui_running') ? 'jellybeans' : 'jellybeans',
+      \ 'colorscheme': has('gui_running') ? 'jellybeans' : 'wal',
       \ 'active': {
       \   'left':  [[ 'mode', 'paste' ], [ 'filename', 'readonly' ], [ 'modified' ]],
       \   'right': [[], ['lineinfo'],    [ 'fileformat', 'encoding', 'filetype', 'buftype', 
@@ -123,11 +123,10 @@ let g:borkmark = {
     \ 'shownum'       : 16,
     \ }
 
-let g:dmenu = { 'path' : '~/bin/dmenuw', 'flags' : '-S -l 8 -i -W' }
+let g:dmenu = { 'path' : 'dmenu', 'flags' : '-b -n -l 8 -i -w' }
 nnoremap <silent>z= :call DmenuCorrect()<Cr>
 nnoremap <silent>zm :call DmenuManSearch()<Cr>
 nnoremap <silent>zb :call DmenuBufSelect()<Cr>
-
 
 " ~~~~# Key Mappings #~~~~
 " Easier command mode. Applies to normal, visual and operator.
@@ -146,6 +145,10 @@ xnoremap * y/\M<C-r>"<Cr>
 " Make H and L behave like bol/eol for ergonomics.
 noremap H ^
 noremap L $
+
+" mode() == 'c' is only triggered once keypresses are entered once in search
+" mode.
+nnoremap <expr> / "/ \<Backspace>"
 
 " Go one (screen) line down unless range is given.
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -170,6 +173,7 @@ set gdefault
 xnoremap ,c :s/\%V
 nnoremap ,c :%s/
 xnoremap gc y:%s/\M<C-r>"/
+nnoremap gc yiw:%s/<C-r>"/
 
 " Edit new files/buffers without needing to write the current one.
 nnoremap  <silent><Tab>   :tabnext <Cr>
@@ -179,7 +183,7 @@ cabbrev  t tabedit!
 cabbrev  e edit!
 nnoremap <silent> rf :tabedit! <C-r>=expand('%:h')<Cr>/<cfile><Cr> 
 nnoremap <silent> gf :tabedit! <cfile><Cr>
-xnoremap <silent> gf "ny:tabedit! <C-r>=fnameescape(@n)<Cr><Cr>
+xnoremap <silent> gf y:tabedit! <C-r>=fnameescape(@")<Cr><Cr>
 
 " Prevent ex mode entry by remapping to visual block mode.
 noremap Q  <C-v>

@@ -1,3 +1,20 @@
+To Save
+- Documents
+- Videos
+- Music
+- Downloads
+- Working
+- config
+- .bin
+- .vim
+- .df
+- .Private_Docs/
+- .mozilla
+- .bashrc
+- .vimrc
+- .Xmodmap
+- .inputrc
+
 [a] ~/.vimrc
 [b] ~/.gvimrc
 [c] ~/.bashrc

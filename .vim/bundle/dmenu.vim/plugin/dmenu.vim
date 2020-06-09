@@ -1,6 +1,6 @@
 let s:dmenu_defaults = { 
     \ 'path'   : '/bin/dmenu',
-    \ 'flags'  : '-l 8 -i -W',
+    \ 'flags'  : '-l 8 -i -w',
     \ 'embed'  : 1,
     \ 'man'    : 'tabedit!',
 	\ }
@@ -61,6 +61,7 @@ function! DmenuManSearch()
         setlocal showbreak=
         setlocal wrap linebreak
         setlocal nonumber norelativenumber
+        nnoremap <buffer> q q
 
         silent! execute printf("file %s", fnameescape('man: ' . result))
         silent! execute printf("r! man %s", l:result)

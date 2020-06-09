@@ -8,23 +8,25 @@
 }
 
 #urlbar {
-	text-align:   		center !important;
+	/*text-align:   		center !important;*/
   	height:       		25px 			    !important;
 	border-width: 		0.5px 			  !important;
 	border-radius:  	3px 3px 3px 3px   !important;
 	font-size: 			14px 			  !important;
 
-	margin-top:			-8px 			  !important;
-	margin-bottom:		-8px 			  !important;
+	/*margin-top:			-8px 			  !important;*/
+	/*margin-bottom:		-8px 			  !important;*/
 
-	margin-left:		16px 			  !important;
-	margin-right:		8px 			  !important;
+	/*margin-left:		16px 			  !important;*/
+	/*margin-right:		8px 			  !important;*/
 }
 
+/*
 #urlbar[focused=true] {
 	-webkit-transition: border-color,color 0.05s ease-in-out;
 	transition: border-color,color 0.05s ease-in-out;
 }
+*/
 
 .tab-close-button {
 	display: none !important;
@@ -34,12 +36,16 @@
 	display: none !important; 
 }
 
+/*
 #nav-bar-overflow-button { 
 	display: none !important; 
 }
+*/
 
 /* remove maximum/minimum  width restriction of sidebar */
+/*
 #sidebar {
     max-width: none !important;
     min-width: 0px !important;
 }
+*/

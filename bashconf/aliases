@@ -32,6 +32,7 @@ alias svi="sudoedit"
 alias gv="gvim"
 alias vc="vi ~/.vimrc"
 alias scc="gcc -Wall -Wextra -pedantic -Wno-comment -Wformat-nonliteral -Wformat-security -Wuninitialized -Winit-self -Warray-bounds=2  -Wenum-compare -Werror=implicit-function-declaration"
+alias cp="cp -iv"
 
 # Pathogen completion
 complete -W "add remove upgrade" pathogen
@@ -47,26 +48,32 @@ mkpss(){
 	fi
 }
 
-dfg(){
+dmenu-nest(){
+    dmenuw -w "$WID" "$@"
+}
+
+dmenu-job-select(){
     job="$(jobs -l \
-        | dmenuw -b -p '> ' -W "$(xdotool getwindowfocus)" -l 8 \
-        | sed 's/Stopped/Paused/g;' \
+        | sed 's/(wd: \(.*\))/(in-dir: \1)/g;s/Stopped/Paused/g;' \
+        | dmenu-nest -i -b -p '(job-select) ' -l 8 \
         | awk -F'[\\[\\]]' '{ print $2 }')"
 
     [ -z "$job" ] && return
     fg "$job"
 }
 
-dhs(){
+dmenu-hist-select(){
     command="$(history \
-        | awk '{$1=""; print}' \
+        | cut -d' ' -f1 --complement \
         | tac \
         | uniq -u \
-        | dmenuw -b -l 8 -p '> ' -W "$(xdotool getwindowfocus)")"
+        | dmenu-nest -F -i -b -l 8 -p '(hist-search) ')"
 
     [ -z "$command" ] && return
-    eval "$command"
+
+    READLINE_LINE="${command:1} " # Trim leading whitespace
+    READLINE_POINT=${#READLINE_LINE}
 }
 
-bind -x '"":"dhs"'
-bind -x '"":"dfg"'
+bind -x '"":"dmenu-hist-select"'
+bind -x '"":"dmenu-job-select"'

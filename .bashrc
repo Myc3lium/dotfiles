@@ -58,16 +58,17 @@ get_dir_symbol(){
 		;;
 
 		$HOME/*) 
-			echo -en "\001${reverse}${color5}\002 @ \001${color4}\002| ${PWD:$HOME_OFFSET} |" 
+			echo -en "\001${reverse}${color5}\002 @ \001${color4}\002 ${PWD:$HOME_OFFSET} " 
 		;;
 
 		/*)     
-			echo -en "\001${reverse}${color9}\002 # \001${color4}\002| ${PWD:1} |" 
+			echo -en "\001${reverse}${color9}\002 # \001${color4}\002 ${PWD:1} " 
 		;;
 	esac
 }
 
-PS1='$(get_dir_symbol)\[${reverse}${color1}\] » \[${normal}\] '
+
+PS1='$(get_dir_symbol)\[${reverse}${color1}\] % \[${normal}\] '
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -83,6 +84,8 @@ export LOCATION=Derby              # Weather blocklet.
 export display_=VGA-1              # Xrandr scripts.
 export img_width=700               # feh_scale max width
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01' # Colored GCC warnings and errors.
+
+[ -n "$DISPLAY" ] && export WID="$(xdotool getwindowfocus)"
 
 # Less colors.
 export LESS="--RAW-CONTROL-CHARS"

@@ -22,7 +22,7 @@ set guifont=GohuFont\ Nerd\ Font\ 10.5
 
 " Disable Toolbar, and scrollbars
 set guioptions -=T
-set guioptions -=r
+" set guioptions -=r
 set guioptions -=L
 
 " 
