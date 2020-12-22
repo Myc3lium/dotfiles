@@ -67,7 +67,8 @@ set directory=~/.vim/swaps
 set viminfo+=n~/.vim/viminfo
 
 " Don't let vim interpret mode lines.
-set nomodeline
+" set nomodeline
+set modeline
 
 " ~~~~# Plugin Options #~~~~
 " Enable plugins and set relevant options.
@@ -97,13 +98,13 @@ let g:lightline = {
       \ 'subseparator'         : { 'left' : '│', 'right' : '│' },
       \ 'tabline_separator'    : { 'left' : '',  'right' : ''  },
       \ 'tabline_subseparator' : { 'left' : '',  'right' : ''  },
-      \ 'mode_map' : { 'n' : 'nrm', 'i' : 'ins', 'v' : 'vsl', 'V'  : '-vsl-', '' : ';vsl;', 'R' : 'rpl', 'c': '/src' },
+      \ 'mode_map' : { 'n' : 'n', 'i' : 'i', 'v' : 'v', 'V'  : '=v', '' : '#v', 'R' : 'r', 'c': '/s' },
       \ 'component_visible_condition' : { 'filetype'   : 'len(&filetype)', 'buftype'  : 'len(&buftype)',  
       \                                   'fileformat' : '&fileformat!="unix"' },
       \ 'component' : { 'close'    : '',               'spell'      : '§ %{&spell?&spelllang:""}', 
       \                 'buftype'  : 'ß %{&buftype}',  'filetype'   : ':: %{&filetype}', 
       \                 'lineinfo' : '%P %3l,%-2v',    'fileformat' : '﬌ %{&fileformat=="unix"?"":&fileformat}', 
-      \                 'encoding' : 'ε %{len(&fileencoding) ? &fileencoding : &encoding }',
+      \                 'encoding' : 'ε %{len(&fileencoding) ? &fileencoding : &encoding }', 
       \ }
 \ }
 
@@ -127,6 +128,7 @@ let g:dmenu = { 'path' : 'dmenu', 'flags' : '-b -n -l 8 -i -w' }
 nnoremap <silent>z= :call DmenuCorrect()<Cr>
 nnoremap <silent>zm :call DmenuManSearch()<Cr>
 nnoremap <silent>zb :call DmenuBufSelect()<Cr>
+nnoremap <silent>z/ :call DmenuSearch()<Cr>
 
 " ~~~~# Key Mappings #~~~~
 " Easier command mode. Applies to normal, visual and operator.

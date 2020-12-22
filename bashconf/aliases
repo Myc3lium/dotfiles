@@ -26,7 +26,7 @@ alias hr="~/.bin/ghc"
 alias swi="swipl"
 alias aesthetic="figlet -d ~/repos/other/figlet-fonts -f wideterm.tlf "
 alias fm="ranger "
-alias hs=$'history'
+alias hs='history'
 alias hg="hs | grep"
 alias svi="sudoedit"
 alias gv="gvim"
@@ -63,16 +63,22 @@ dmenu-job-select(){
 }
 
 dmenu-hist-select(){
-    command="$(history \
-        | cut -d' ' -f1 --complement \
-        | tac \
-        | uniq -u \
-        | dmenu-nest -F -i -b -l 8 -p '(hist-search) ')"
+    # command="$(history \
+    #     | cut -d' ' -f1 --complement \
+    #     | tac \
+    #     | uniq -u \
+    #     | dmenu-nest -F -i -b -l 8 -p '(hist-search) ')"
+
+    command="$(history                   \
+        | awk '{$1=""; print }'          \
+        | sed 's/\s\+/ /g; s/^\s\+//g;'  \
+        | awk '!seen[$0]++'              \
+        | dmenu-nest -F -i -b -l 8 -p '(hist-search)' )"
 
     [ -z "$command" ] && return
 
-    READLINE_LINE="${command:1} " # Trim leading whitespace
-    READLINE_POINT=${#READLINE_LINE}
+    READLINE_LINE="${command## } " # Trim any leading whitespace
+    READLINE_POINT="${#READLINE_LINE}"
 }
 
 bind -x '"":"dmenu-hist-select"'

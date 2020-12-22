@@ -1,6 +1,6 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/myc3lium/Documents/assignments/multimedia security II/screenshots'
-let g:netrw_dirhist_2='/home/myc3lium/Documents/assignments/multimedia security II/screenshots/labs2'
-let g:netrw_dirhist_3='/home/myc3lium/Documents/assignments/dissertation/project code'
-let g:netrw_dirhist_4='/home/myc3lium/Documents/assignments/dissertation/project code/src'
+let g:netrw_dirhist_1='/home/myc3lium/.minecraft/saves/LAN w_ angus/datapacks/bullshit/data/main/recipes'
+let g:netrw_dirhist_2='/home/myc3lium/.minecraft/saves/LAN w_ angus/datapacks/bullshit/data/main'
+let g:netrw_dirhist_3='/home/myc3lium/.vim/format-scripts'
+let g:netrw_dirhist_4='/home/myc3lium/Downloads'

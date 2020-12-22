@@ -33,22 +33,10 @@ stty -ixon 				# Disable C-s C-q.
 # Prompt config 
 normal="$(tput sgr0)"
 reverse="$(tput rev)"
-bold="$(tput bold)"
 color1="$(tput setaf 1)"
-color2="$(tput setaf 2)"
-color3="$(tput setaf 3)"
 color4="$(tput setaf 4)"
 color5="$(tput setaf 5)"
-color6="$(tput setaf 6)"
-color7="$(tput setaf 7)"
-color8="$(tput setaf 8)"
 color9="$(tput setaf 9)"
-color10="$(tput setaf 10)"
-color11="$(tput setaf 11)"
-color12="$(tput setaf 12)"
-color13="$(tput setaf 13)"
-color14="$(tput setaf 14)"
-color15="$(tput setaf 15)"
 
 HOME_OFFSET=$((${#HOME}+1))
 get_dir_symbol(){

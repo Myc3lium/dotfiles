@@ -1,50 +1,50 @@
-search Evert
-search Ever
-search GhostBro
-search 
-search Ghost
-search Singapore
-search Airsoft
-search Guardian
-shell sxiv -a %s
-shell feh --bf-tile %s
-shell feh --bg-tile %s
-shell feh --bg-fit %s
-shell gvim %s
-shell feh --bg-fill %s
-shell feh --bg-center %s
-shell feh --bg-scale %s
-shell feh --bg-max %s
-shell rm %s
-p
-shell wal -n -i %s
-shell feh --bg-max --no-xinerama %s
-shell feh --bg-scale --no-xinerama %s
-shell feh --bg-center --no-xinerama %s
-shell feh --bg-fill --no-xinerama %s
-shell feh --bg-max - %s
-shell feh --bg-max  %s
-shell feh --bg-fill  %s
-shell  mkdir vanessa
-shell mkdir ham
-shell mkdir phishing
-open_with vi
-shell mkdir src
-shell mkdir blah
+open_with k
+help 
+shell ladder_sticks.json
+shell vi ladder_sticks.json
+shell  
+copy
+shell  touch loop.mcfunction
+shell  touch load.mcfunction
+touch
+shell touch jump.mcfunction
 c
-shell vi 
-shell vi "Vaporwave + Chillwave - Ultimate Mix.times"
-shell mpv --shuffle %s
-
-shell 
-d
-shell b %s
-ble
-shell bleachbit --shred %s
-shell  %s
-shell mkdir misc
-cut
-paste 
-bulkrename 
-delete 
+open_with mpv
+open_with file-roller
+open_with file-
+shell mkdir slabs
+shell vi oak_planks.json
+cop
+shell vi template
+shell vi all
+shell vi planks.json %s
+shell mkdir functions
+shell vi tick.json
+shell vi show_coords.mcfunction
+shell load.mcfunction
+shell vi load.mcfunction
+shell vi load.json
+shell vi saplings.json
+shell glass.json
+shell vi glass.json
 open_with 
+shell charcoal.json
+shell  %s
+shell vi charcoal.json
+shell vi cobweb.json
+shell vi boat_down.mcfunction
+shell vi boat_raise.mcfunction
+
+shell gvim %s
+bulkrename 
+open_with vi
+
+d
+cut
+pas
+paste 
+delete 
+shell mkdir The\ Mackaman
+shell mkdir CloverLawn
+shell mkdir MiscellaneousKeyboard
+shell mkdir MidnightBroadcast
